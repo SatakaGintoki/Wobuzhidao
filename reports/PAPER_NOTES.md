@@ -1,5 +1,10 @@
 # 论文笔记与来源映射
 
+> 最新写作偏好（2026-09-11）：用户要求“论文先不要写，我有我写的想法”。论文工作暂停，不续写、润色或合并正文。下方已生成稿件只保留参考；第三问模型记录与数值工作不等于论文写作授权。
+
+- 第三问来源更新：q3-closeout-v1，模型仍为 q3-model-v1；表5、result3、图形和验收入口为 `reports/Q3_VERIFY_REPORT.md`。旧 G4 的57.473333 h及热收支失败记录属于历史版本，恢复写作时应从新版未舍入 NPZ/JSON取值。本轮只更新来源索引，没有修改论文正文。
+- 第四问 q4-baseline-v1 从原初值独立求解，不读取第三问结果；第三、四问物性和几何同时变化，不能把两问时长差全部归因于收缩。
+
 - 引擎沿用用户已选LaTeX/xelatex；入口`paper/main.tex`；编译器`D:/MikTex/miktex/bin/x64/xelatex.exe`。主论文正有并行编辑，本轮最终交付位于独立closeout目录，避免覆盖。
 - 前两问收尾授权包含可审阅章节整理；章节为草稿，结果采纳状态仍PENDING。本轮不写摘要和后问结果。
 - 第一问章节`paper/closeout/sections/5_problem1.tex`：对应q1-plan-v1/PCHIP和q1-closeout-v1；表1、2来自`results/q1_solution.npz`，验证来自`q1_validation.json`；径向温湿图来自`figures/q1_T_profiles.pdf`、`q1_C_profiles.pdf`。

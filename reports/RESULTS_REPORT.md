@@ -114,21 +114,31 @@
 
 第二问实现与 `q2-plan-v2` 一致：附录3 全程、联合非线性、PCHIP、无潜热、无一维以外的二维对照、正式 result2 经导出门禁。未拼接第一问数值。
 
+## 问题三结果
+
+版本 `q3-closeout-v1`，数值及导出验收PASS，结果采纳PENDING。物理模型仍为附录3、固定半径、原初值、前4 h PCHIP及后续50°C/0.05 kg/kg。G8（2113节点）临界根57.472519502244495 h；带经验裕量的严格报告57.4731 h（206903.16 s），全内部网格最大含水率0.14999939128976764 kg/kg，事件最大值在中心。G8/G16事件差0.585132 s，时间加密差1.7506e-5 s；表5四位稳定。均匀41节点约9天探针仍不可作答。
+
+核验、关键指标来源表及表5见 `reports/Q3_VERIFY_REPORT.md`。源文件仍为 `results/q3_validation.json`、`q3_solution.npz`、`result3.xlsx`、`q3_table_moisture.csv`。连续解积分热残差3.6640e-8、湿残差4.0221e-11，均通过1e-6门限；保留变热容量修正项，未声称完整多相能量守恒。15项检查逐项失败或缺失均阻断正式发布，证据为 `results/q3_closeout_delivery_validation.json`。Excel共3450行（含表头），72429个含水率数值与源解全量一致。四组计算及诊断约242 s；旧G4快照位于 `results/archive/q3-pre-closeout-20260911/`。
+
 ## 当前结果版本、审核状态及对后续问题的影响
 
-- 第一问版本：`q1-baseline-v2`，待审
-- 第二问版本：`q2-baseline-v1`，待审
-- 探索：两问均未授权潜热；第二问未做二维端面 PDE
-- 对第3问：不把 10800 s 场默认当作第三问初值；第三问若沿用附录3，应从 t=0 或按将来批准的方案续算，并另定 4 h 后环境
+- 第一问版本：`q1-closeout-v1` / 历史 `q1-baseline-v2`，待审
+- 第二问版本：`q2-closeout-v1` / 历史 `q2-baseline-v1`，待审
+- 第三问版本：`q3-closeout-v1`，技术PASS、采纳PENDING；严格报告57.4731 h，旧q3-baseline-v1已替代
+- 第四问版本：`q4-baseline-v1`，技术PASS、采纳PENDING；严格报告51.0877 h
+- 探索：第三问创新方法仍暂缓
+- 对第4问：不把本问 57.47 h 或固定半径场直接当作收缩问题的初值；第四问用附录4与 \(R(t)\) 另算
 
 ## 可复现运行方式
 
 ```text
 D:/python/python.exe code/problem1.py
 D:/python/python.exe code/problem2.py
+D:/python/python.exe code/problem3.py
+D:/python/python.exe code/plot_q3_results.py
 ```
 
-工作目录为项目根目录。产出写入 `results/` 与 `figures/`。
+工作目录为项目根目录。产出写入 `results/` 与 `figures/`。第三问门禁回归与文件核对命令见 `Q3_VERIFY_REPORT.md`；独立绘图脚本用同一源解重绘剖面和事件窗口，来源记录 `results/diagnostics/q3_delivery/figure_provenance.json`。可加 `--probe-only` 只跑粗网格估计（该估计不可作答）。
 
 ## 图表
 
@@ -144,3 +154,18 @@ D:/python/python.exe code/problem2.py
 - `figures/q2_T_center_surface.pdf` 第二问中心/表面/烘房温度
 - `figures/q2_C_center_surface.pdf` 第二问中心/表面含水率
 - `figures/q2_D_center_surface.pdf` 第二问中心/表面 \(D(C,T)\)
+- `figures/q3_C_max_history.pdf` 第三问全网格最大/中心/表面含水率
+- `figures/q3_C_profiles.pdf` 第三问径向含水率剖面
+- `figures/q3_max_location.pdf` 第三问最大值径向位置
+- `figures/q3_event_zoom.pdf` 第三问阈值附近
+- `figures/q3_T_center_surface.pdf` 第三问中心/表面/烘房温度
+
+## 第四问基线 q4-baseline-v1（2026-09-11，待审）
+
+已按q4-model-v1完成收缩域有限体积+BDF及必要验证。完整报告reports/Q4_VERIFY_REPORT.md，表6见reports/Q4_TABLE6.md与results/q4_table6.csv。
+
+- 临界根51.08712298095006h；严格报告51.0877h（183915.72s），最大含水率0.1499989333363775，事件最大值在中心，表面半径1.2cm。
+- 生产G8，2113节点；G16事件差0.113486s，时间加密差0.002883s；表6全部有效单元四位稳定，水分收支相对误差约4.06e-9以内。
+- 结果results/result4.xlsx、q4_solution.npz、q4_validation.json、q4_delivery_validation.json；各网格源数据与配置results/q4_baseline/；绘图figures/q4_C_history.pdf、q4_C_profiles.pdf，PNG为预览，均来自同一生产源数组。
+- Excel导出3067行×23列，含表头，数值与源数据全量一致，域外留空。热验证限于有效热方程离散残差与收敛，不声称完整多相物理守恒。
+- 数值及导出技术PASS，用户采纳PENDING；论文暂停。第三问现已单独完成q3-closeout-v1修复，未改变第四问代码及结果。

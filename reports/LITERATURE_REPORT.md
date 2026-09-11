@@ -192,3 +192,9 @@ Alessandra Adrover, Claudia Venditti, Antonio Brasiello (2020). A Non-Isothermal
 支持：收缩传递应区分材料运动与扩散，温度和水分可在移动域联合求解。差异：该文由局部水流预测收缩，研究梨、包含表面蒸发，采用体积浓度及自身物性；本题R已给定、C为干基量、物性由附录4给定。不能直接搬入其体积浓度压缩项，不移植其收缩因子或潜热参数。本题s与sC守恒消元、比例收缩映射与密度兼容性检查属于自行推导，文献不证明这些本题假设成立。
 
 其他线索：2018年A moving boundary model for food isothermal drying and shrinkage: General setting的作者库返回403；2019年The Role of Shrinkage on Food Isothermal Drying: a Moving Boundary Model期刊页超时。只作检索线索，不计全文核实，不据其填写模型公式。
+
+## 2026-09-11：第四问讨论恢复时的来源核对
+
+对应q4-discussion-v2。本轮重新打开L10原期刊PDF https://www.cetjournal.it/cet/21/87/033.pdf ，实际读取第1–3节的文本（出版页193–196），核对作者、年份、DOI及材料速度、体积水浓度、界面蒸发和吸附等温关系的文字说明。网页提取未显示完整数学公式，不宣称本轮重新视觉核验各式。支持收缩热湿传递应明确材料运动；不证明本题比例收缩、无潜热或经验密度解释。题给R而文献由局部水流建立收缩，两者不直接互换。
+
+L-Q4-01原期刊再次访问返回429，核实状态不升级。q4-discussion-v2的干基守恒和密度全局上界仍是依据题给关系自行推导，不来自外部文献。原题依据本輪重读A_text.txt，附件数值依据重读A_INPUT_AUDIT.json与v1原表读取记录；本轮未重开原Excel。

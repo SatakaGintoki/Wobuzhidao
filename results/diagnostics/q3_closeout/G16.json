@@ -1,0 +1,36 @@
+{
+  "tag": "G16",
+  "level": 16,
+  "n_nodes": 4225,
+  "rtol": 1e-09,
+  "atol_T": 1e-08,
+  "atol_C": 1e-10,
+  "max_step_early": 2.0,
+  "max_step_late": 60.0,
+  "elapsed_s": 79.29193659999873,
+  "event": {
+    "t_star_s": 206900.48507561683,
+    "t_star_h": 57.47235696544912,
+    "t_solver_event_s": 206900.48507561683,
+    "event_solver_minus_brent_s": 0.0,
+    "M_star": 0.15,
+    "g_star": 0.0,
+    "rmax_star_m": 0.0,
+    "rmax_star_cm": 0.0,
+    "imax_star": 0,
+    "center_is_max": true,
+    "C_center_star": 0.15,
+    "C_surface_star": 0.052659504987325634,
+    "T_center_star": 50.0,
+    "T_surface_star": 50.0,
+    "bracket_s": [
+      206880.0,
+      206900.48507561683
+    ],
+    "zoom_nfev": 87,
+    "t_event_raw_s": 206900.4850565327,
+    "M_event_raw": 0.15,
+    "dMdt_per_s": -2.9127365171188746e-07,
+    "dMdt_per_h": -0.0010485851461627949
+  }
+}

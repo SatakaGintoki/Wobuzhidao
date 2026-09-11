@@ -1,24 +1,41 @@
 # 当前状态索引
 
-## 2026-09-11：前两问技术收尾完成
+日期：2026-09-11。当前工作：第三问收尾已完成，四问基线状态已统一。数值及文件技术检查均PASS；四个交付版本的结果采纳仍PENDING，论文写作暂停。
 
-- 用户授权：“你帮我收尾一下并告诉我做了什么”，执行范围为前两问修复、复算、核验、章节草稿及状态整理。
-- 当前交付：`q1-closeout-v1`、`q2-closeout-v1`；技术核验PASS（已选等效模型与明确数值阈值下），结果采纳PENDING，不自动登记用户已批准新版本。
-- 前两问所有答卷数值与收尾前一致。修复发布门禁、参考级数收敛、第一问通量积分、第二问图例和内部场归档。
-- 入口：`reports/Q12_CLOSEOUT_REPORT.md`；证据`results/verification/closeout/`；Excel位于`results/result1.xlsx`与`result2.xlsx`。
-- 论文采用已选LaTeX/xelatex；前两问已积累到`paper/closeout/sections/5_problem1.tex`、`6_problem2.tex`，单独预览`paper/q12_closeout.pdf`。全文仍未完成。
-- 第一问旧v1、v2及第二问旧v1为历史版本；数值未失效，当前代码及验证以closeout版本为准。原快照及SHA256见`results/archive/pre-closeout-20260911/`。
-- 第三问：`q3-discussion-v1`，后期环境和实施方案未定，创新选型暂缓；无求解结果。
-- 第四问：`q4-discussion-v1`，收缩运动与经验密度解释未闭合；无求解结果。
-- 下一步：审阅前两问交付，随后明确第三问实施方案。本轮没有开启第三、四问求解。
+## 四问基线
 
-## 偏好、模型与历史入口
+| 问题 | 当前交付版本 | 技术状态 | 主要结果与范围 | 入口 |
+|---|---|---|---|---|
+| 第一问 | q1-closeout-v1 | PASS | 0–1800 s；答卷数值与收尾前一致；解析参考、收支和门禁已修复 | Q12_CLOSEOUT_REPORT.md |
+| 第二问 | q2-closeout-v1 | PASS | 0–10800 s；答卷数值与收尾前一致；全量文件核对、内部场和门禁通过 | Q12_CLOSEOUT_REPORT.md |
+| 第三问 | q3-closeout-v1 | PASS | G8；临界57.4725195022 h；严格报告57.4731 h；最大含水率0.1499993913 | Q3_VERIFY_REPORT.md |
+| 第四问 | q4-baseline-v1 | PASS | G8；临界51.0871229810 h；严格报告51.0877 h；无半径外推 | Q4_VERIFY_REPORT.md |
 
-- 只做A题《药材的烘干问题》，四问，中文国赛论文；整体路线`A-route-v1`已批准。
-- 已批准第一问方案`q1-plan-v1`及PCHIP修订；第二问`q2-plan-v2`，PCHIP、一维、不做二维或潜热探索。
-- 第二问从原初值独立计算，不使用第一问末态；第三问不能从已舍入Excel恢复内部状态。
-- 方案详情：`reports/models/q1.md`至`q4.md`；决定原文：`reports/REVIEW_LOG.md`。
-- 文献：`reports/LITERATURE_REPORT.md`；论文来源：`reports/PAPER_NOTES.md`；图形风格：`figures/STYLE.md`。
-- 完整旧状态记录保存在`reports/archive/pre-closeout-20260911/STATE.md`，其中旧“当前”标签均为历史时点。
+正式答卷为results/result1.xlsx至result4.xlsx，各自源解和验证为results/qN_solution.npz与qN_validation.json。采纳PENDING不影响本次已授权收尾工作完成，但不能记录为用户已采纳新结果或全文可提交。
 
-- 并行写作记录补充：工作区另有整体正文及Overleaf包，详见`reports/PAPER_NOTES.md`保留的其他任务记录。本轮验收只覆盖独立closeout章节与前两问结果，不覆盖该并行全文。
+## 第三问本次收尾
+
+- 用户要求核对热收支与达标时间验证、修复检查失败仍导出、复算对照并更新验收记录；这些工作已完成。
+- G4/G8全场水分差6.2693e-5超过2e-5目标，生产改用G8（2113节点）；G16及G8时间收紧复核通过。空间事件差0.585132 s，时间事件差1.7506e-5 s，表5四位稳定。
+- 连续解上4/8点Gauss积分保留变热容量项，沿原轨迹、事件局部重算及报告续算无缝积分；热残差3.6640e-8、湿残差4.0221e-11，均低于1e-6。
+- 同一物理时刻比较网格最大值，经验裕量3.50882e-7；严格报告向上取四位小时，G8/G16/时间加密在该时刻均低于0.15。
+- 固定15项必需检查，任一失败或缺失均阻断正式发布；Python和Node回归均通过。Excel含表头3450行×22列，72429个水分值与源解完全一致。
+- 五张PDF和Excel首尾预览已检查；剖面图图例、事件图时间标注已修复。诊断results/diagnostics/q3_closeout/，文件验收results/q3_closeout_delivery_validation.json，图形来源results/diagnostics/q3_delivery/。
+- q3-baseline-v1为历史版本，不能继续引用其热收支失败结果或G4报告时刻作当前结论。快照及SHA256位于results/archive/q3-pre-closeout-20260911/。
+
+## 依赖与保留限制
+
+- 整体路线A-route-v1、第一问方案及PCHIP修订、第二问q2-plan-v2、第三问q3-model-v1、第四问q4-model-v1沿用已有决定；用户原话及范围见REVIEW_LOG.md，模型公式见models/q1.md至q4.md。
+- 四问从各自原初值按题意计算；第三问复用第二问附录3框架，不读取其Excel末态。与第二问在四个相同时间的温湿输出差小于2e-5。
+- 第四问只继承第三问的环境口径和阈值方向，不读取第三问时长或源解；本次未重算第四问。受保护的前两问及第四问文件哈希不变，前两问原验收源文件哈希也一致。
+- 真实物理预测没有内部实测数据验证。有效热方程收支不等于完整多相能量守恒；没有显式潜热、二维端面或后期环境敏感性实验。网格差和达标裕量为经验数值证据，不是严格误差界。
+- 前两问全部Excel末位不保证冻结；第三问中心四位显示0.1500但未舍入值严格达标。第三、四问同时改变物性和几何，时长差不能全部归因于收缩。
+- 均匀41节点约9天诊断保留作失败案例，入口Q3_TIME_DISCREPANCY.md；该诊断文中的旧待修项已由本次收尾处理。
+
+## 写作与下一步
+
+- 用户明确“论文先不要写，我有我写的想法”。不自动续写、润色、合并正文或更新Overleaf包；本轮只更新来源索引PAPER_NOTES.md。
+- 前两问阶段章节保留于paper/closeout/sections/，预览paper/q12_closeout.pdf。主论文及其他并行稿件的历史记录见PAPER_NOTES.md；全文尚未完成最终验收。
+- 可选创新继续暂缓。下一步由用户审阅四问当前结果并决定后续写作或改进；本次没有新增未完成的数值收尾项。
+- 运行环境及复现命令见plan.md和各问验收报告，解释器D:/python/python.exe。无新增依赖安装。
+- 旧状态索引保存于results/archive/q3-pre-closeout-20260911/reports/STATE.md及reports/archive/pre-closeout-20260911/STATE.md；历史“当前”标签仅对应当时状态。

@@ -1,0 +1,108 @@
+{
+  "purpose": "isolate mesh effects at identical time tolerances; no model or production output edits",
+  "source_sha256": {
+    "code/problem3.py": "51fc5107348353a9dd9c4b16459bd0b98c060257ce02b6df6abad06b87d2f9b6",
+    "code/radial_coupled.py": "1f407695a7269dc57d9ac329f44ec3db07415faf63c4afbe1d1ded4fa1d2e1b0",
+    "code/appendix3.py": "f511164c8fe42cd15ca1fa59aea9552dd413f1b00487360ff0c3e1f53b276d44",
+    "results/q3_validation.json": "58889c9a6506219a93ad43bb591d57e54e93ab3534ed1f4469308dfe4ebe94e2",
+    "results/q3_solution.npz": "4a0cb52c4eda6f6fab1dbae457d9daf273ef6716acb6f6f49252bad44f8b49a8"
+  },
+  "runs": [
+    {
+      "mesh": "uniform41",
+      "nodes": 41,
+      "surface_dr_m": 0.0005000000000000004,
+      "rtol": 1e-09,
+      "max_step_early_s": 2.0,
+      "max_step_late_s": 60.0,
+      "t_h": 222.73542061123183,
+      "t_days": 9.280642525467993,
+      "C_surface": 0.05102909759118052,
+      "C_center": 0.15,
+      "elapsed_s": 8.438204400008544
+    },
+    {
+      "mesh": "uniform81",
+      "nodes": 81,
+      "surface_dr_m": 0.0002500000000000002,
+      "rtol": 1e-09,
+      "max_step_early_s": 2.0,
+      "max_step_late_s": 60.0,
+      "t_h": 87.22810853978923,
+      "t_days": 3.634504522491218,
+      "C_surface": 0.05199758334948096,
+      "C_center": 0.15,
+      "elapsed_s": 6.468299999993178
+    },
+    {
+      "mesh": "uniform161",
+      "nodes": 161,
+      "surface_dr_m": 0.0001250000000000001,
+      "rtol": 1e-09,
+      "max_step_early_s": 2.0,
+      "max_step_late_s": 60.0,
+      "t_h": 60.42192258236151,
+      "t_days": 2.5175801075983966,
+      "C_surface": 0.05266856781520159,
+      "C_center": 0.15,
+      "elapsed_s": 6.7901788000017405
+    },
+    {
+      "mesh": "gradedG4",
+      "nodes": 1057,
+      "surface_dr_m": 3.9062500000013045e-06,
+      "rtol": 1e-09,
+      "max_step_early_s": 2.0,
+      "max_step_late_s": 60.0,
+      "t_h": 57.4731739792251,
+      "t_days": 2.3947155824677124,
+      "C_surface": 0.05265954638660592,
+      "C_center": 0.15,
+      "elapsed_s": 20.76688429999922
+    }
+  ],
+  "face_diagnostics_on_fine_event_profile": [
+    {
+      "dr_m": 0.0005,
+      "C_inner_from_fine_solution": 0.08634256808013502,
+      "C_surface": 0.052659546386683735,
+      "D_inner": 8.761612079324625e-11,
+      "D_surface": 3.1245917422249994e-12,
+      "D_harmonic": 6.033997306541947e-12,
+      "D_integral_mean": 3.1706858479874236e-11,
+      "harmonic_over_integral": 0.19030574442977363
+    },
+    {
+      "dr_m": 0.00025,
+      "C_inner_from_fine_solution": 0.07861044875691023,
+      "C_surface": 0.052659546386683735,
+      "D_inner": 5.247479068180978e-11,
+      "D_surface": 3.1245917422249994e-12,
+      "D_harmonic": 5.8979898873297465e-12,
+      "D_integral_mean": 2.0565794947536382e-11,
+      "harmonic_over_integral": 0.28678638012173113
+    },
+    {
+      "dr_m": 0.000125,
+      "C_inner_from_fine_solution": 0.07216101706510954,
+      "C_surface": 0.052659546386683735,
+      "D_inner": 3.145974280531204e-11,
+      "D_surface": 3.1245917422249994e-12,
+      "D_harmonic": 5.684588347182802e-12,
+      "D_integral_mean": 1.3684114221130655e-11,
+      "harmonic_over_integral": 0.4154151489326805
+    },
+    {
+      "dr_m": 3.9062500000013045e-06,
+      "C_inner_from_fine_solution": 0.05492460701697321,
+      "C_surface": 0.052659546386683735,
+      "D_inner": 4.444705766972307e-12,
+      "D_surface": 3.1245917422249994e-12,
+      "D_harmonic": 3.669532322973591e-12,
+      "D_integral_mean": 3.755213363009213e-12,
+      "harmonic_over_integral": 0.9771834429224118
+    }
+  ],
+  "surface_D_over_hm_m": 3.905739677781249e-06,
+  "production_files_unchanged": true
+}

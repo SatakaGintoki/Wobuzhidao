@@ -1,0 +1,36 @@
+{
+  "tag": "G8t",
+  "level": 8,
+  "n_nodes": 2113,
+  "rtol": 2e-10,
+  "atol_T": 2e-09,
+  "atol_C": 2.0000000000000002e-11,
+  "max_step_early": 1.0,
+  "max_step_late": 30.0,
+  "elapsed_s": 54.25282390000939,
+  "event": {
+    "t_star_s": 206901.07019057433,
+    "t_star_h": 57.47251949738176,
+    "t_solver_event_s": 206901.07019057433,
+    "event_solver_minus_brent_s": 0.0,
+    "M_star": 0.15,
+    "g_star": 0.0,
+    "rmax_star_m": 0.0,
+    "rmax_star_cm": 0.0,
+    "imax_star": 0,
+    "center_is_max": true,
+    "C_center_star": 0.15,
+    "C_surface_star": 0.05265951311401887,
+    "T_center_star": 50.0,
+    "T_surface_star": 50.0,
+    "bracket_s": [
+      206880.0,
+      206901.07019057433
+    ],
+    "zoom_nfev": 89,
+    "t_event_raw_s": 206901.0701872174,
+    "M_event_raw": 0.15,
+    "dMdt_per_s": -2.912719777592443e-07,
+    "dMdt_per_h": -0.0010485791199332795
+  }
+}

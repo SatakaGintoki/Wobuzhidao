@@ -1,6 +1,10 @@
-> **当前执行状态（2026-09-11）**：前两问收尾完成，当前交付q1-closeout-v1、q2-closeout-v1，技术核验及章节草稿见`reports/Q12_CLOSEOUT_REPORT.md`。排版沿用已选LaTeX/xelatex。下方早期“尚未求解”等句为历史记录，当前进度以`reports/STATE.md`为准；原plan快照已保存到`reports/archive/pre-closeout-20260911/plan.md`。
+> **当前执行状态（2026-09-11）**：四问基线均已完成数值及交付技术检查。当前版本q1-closeout-v1、q2-closeout-v1、q3-closeout-v1、q4-baseline-v1，结果采纳均PENDING。第三问严格报告57.4731 h，第四问51.0877 h；入口 `reports/Q3_VERIFY_REPORT.md`、`reports/Q4_VERIFY_REPORT.md`。论文工作暂停，当前状态以 `reports/STATE.md` 为准。
 
 # 方案
+
+第四问模型决定（2026-09-11）：采用q4-model-v1，完整模型见reports/models/q4-model-v1.md；比例收缩、材料坐标、附录4及有效热容量解释已接受。后续已实施q4-baseline-v1并在72 h内达标，无需半径外推。
+
+当前用户偏好（2026-09-11）：论文写作暂停，用户有自己的写作思路；不自动续写、润色或合并章节。第三问采用q3-model-v1，基线已完成热收支、同时间比较、严格阈值裕量及失败阻断修复；有限体积+BDF主路线不变，可选创新继续暂缓。
 
 先整体审核，再按当前问调用这些 skill。没有对应批准不得越过审核点。
 
@@ -55,3 +59,7 @@ workflow:
 用户已明确“就做A题了”，随后针对整体路线确认回复“来吧”。第1问方案 `q1-plan-v1` 已于2026-09-11由用户确认：主求解为节点有限体积+BDF，温度用Bessel–Duhamel核验，水分保留D(C)。正在用 `D:/python/python.exe` 实施基线及必要验证。后续仍逐问求解、验证、积累论文。
 
 补充数值环境：宿主Python缺少SciPy，已验证现有 `D:/python/python.exe` 可用Python3.14.6、NumPy2.5.1、SciPy1.18.0及稀疏BDF工具。无需安装；数值计算使用该解释器。
+
+## 第四问实施状态（2026-09-11）
+
+q4-model-v1已实施为q4-baseline-v1，详见reports/Q4_VERIFY_REPORT.md。采用G8生产、G16空间验证及G8时间加密；严格报告51.0877h，数值与导出技术PASS，采纳PENDING。无半径外推，论文暂停。数值环境D:/python/python.exe，Excel使用宿主Node/Artifact Tool。

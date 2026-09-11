@@ -1,0 +1,36 @@
+{
+  "tag": "G8",
+  "level": 8,
+  "n_nodes": 2113,
+  "rtol": 1e-09,
+  "atol_T": 1e-08,
+  "atol_C": 1e-10,
+  "max_step_early": 2.0,
+  "max_step_late": 60.0,
+  "elapsed_s": 81.23097810000763,
+  "event": {
+    "t_star_s": 206901.07020808017,
+    "t_star_h": 57.472519502244495,
+    "t_solver_event_s": 206901.07020808017,
+    "event_solver_minus_brent_s": 0.0,
+    "M_star": 0.15,
+    "g_star": 0.0,
+    "rmax_star_m": 0.0,
+    "rmax_star_cm": 0.0,
+    "imax_star": 0,
+    "center_is_max": true,
+    "C_center_star": 0.15,
+    "C_surface_star": 0.05265951311406575,
+    "T_center_star": 50.0,
+    "T_surface_star": 50.0,
+    "bracket_s": [
+      206880.0,
+      206901.07020808017
+    ],
+    "zoom_nfev": 89,
+    "t_event_raw_s": 206901.07018892767,
+    "M_event_raw": 0.15,
+    "dMdt_per_s": -2.912719777592443e-07,
+    "dMdt_per_h": -0.0010485791199332795
+  }
+}

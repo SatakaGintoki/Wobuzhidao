@@ -1,0 +1,164 @@
+{
+  "label": "G4",
+  "level": 4,
+  "tight": false,
+  "nodes": 1057,
+  "rtol": 1e-08,
+  "atol_T": 1e-08,
+  "atol_C": 1e-10,
+  "early_max_step_s": 10.0,
+  "late_max_step_s": 60.0,
+  "event_s": 183914.09542229798,
+  "event_h": 51.08724872841611,
+  "end_maxC": 0.1236076240019822,
+  "max_mass_abs_error": 5.9721250167399376e-09,
+  "mass_relative_error": 2.3420098104862503e-09,
+  "heat_equation_residual_max": 2.2737367544323206e-13,
+  "bounds_Tmin_Tmax_Cmin_Cmax": [
+    28.0,
+    50.05238951530108,
+    0.051264008817151076,
+    2.5500000000000007
+  ],
+  "max_outward_C_increase": 8.881784197001252e-16,
+  "segments": [
+    {
+      "start_s": 0.0,
+      "end_s": 14400.0,
+      "steps": 4760,
+      "nfev": 11901,
+      "nlu": 1442,
+      "mass_abs_error": 1.6598651342292214e-09
+    },
+    {
+      "start_s": 14400.0,
+      "end_s": 21600.0,
+      "steps": 223,
+      "nfev": 455,
+      "nlu": 53,
+      "mass_abs_error": 3.170701923238539e-09
+    },
+    {
+      "start_s": 21600.0,
+      "end_s": 43200.0,
+      "steps": 375,
+      "nfev": 815,
+      "nlu": 82,
+      "mass_abs_error": 2.9872717632883905e-09
+    },
+    {
+      "start_s": 43200.0,
+      "end_s": 64800.0,
+      "steps": 373,
+      "nfev": 812,
+      "nlu": 90,
+      "mass_abs_error": 3.058522768384364e-09
+    },
+    {
+      "start_s": 64800.0,
+      "end_s": 86400.0,
+      "steps": 372,
+      "nfev": 780,
+      "nlu": 89,
+      "mass_abs_error": 2.6742807968105353e-09
+    },
+    {
+      "start_s": 86400.0,
+      "end_s": 108000.0,
+      "steps": 371,
+      "nfev": 772,
+      "nlu": 90,
+      "mass_abs_error": 3.039804852278394e-09
+    },
+    {
+      "start_s": 108000.0,
+      "end_s": 129600.0,
+      "steps": 370,
+      "nfev": 746,
+      "nlu": 84,
+      "mass_abs_error": 3.6915150936067676e-09
+    },
+    {
+      "start_s": 129600.0,
+      "end_s": 151200.0,
+      "steps": 370,
+      "nfev": 742,
+      "nlu": 79,
+      "mass_abs_error": 4.267330488971766e-09
+    },
+    {
+      "start_s": 151200.0,
+      "end_s": 172800.0,
+      "steps": 370,
+      "nfev": 742,
+      "nlu": 80,
+      "mass_abs_error": 4.741461889778975e-09
+    },
+    {
+      "start_s": 172800.0,
+      "end_s": 194400.0,
+      "steps": 369,
+      "nfev": 740,
+      "nlu": 79,
+      "mass_abs_error": 5.137884340200571e-09
+    },
+    {
+      "start_s": 194400.0,
+      "end_s": 216000.0,
+      "steps": 369,
+      "nfev": 741,
+      "nlu": 85,
+      "mass_abs_error": 5.476443742935544e-09
+    },
+    {
+      "start_s": 216000.0,
+      "end_s": 237600.0,
+      "steps": 368,
+      "nfev": 738,
+      "nlu": 92,
+      "mass_abs_error": 5.770109723357564e-09
+    },
+    {
+      "start_s": 237600.0,
+      "end_s": 259200.0,
+      "steps": 368,
+      "nfev": 738,
+      "nlu": 96,
+      "mass_abs_error": 5.9721250167399376e-09
+    }
+  ],
+  "input_audit": {
+    "radius_records": 145,
+    "radius_range_m": [
+      0.02,
+      0.01198
+    ],
+    "radius_cap_s": 259200.0,
+    "oven_records": 241,
+    "radius_input_headers": [
+      "时间",
+      "半径"
+    ],
+    "radius_node_error_m": 0.0,
+    "oven_node_error": 0.0,
+    "source_sha256": {
+      "附件1.xlsx": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7",
+      "附件2.xlsx": "5563acbfa4b4afb10cc6c03e2207e5369bf39da27576672aff14cc5c32e704af"
+    }
+  },
+  "model_checks": {
+    "instant_mass_abs": 0.0,
+    "instant_heat_abs": 3.637978807091713e-12,
+    "fixed_physical_operator_abs": 1.880440247958859e-15,
+    "pure_shrinkage_uniform_abs": 0.0,
+    "pure_shrinkage_success": true,
+    "pass": true
+  },
+  "wall_s": 15.579907799998182,
+  "python": "3.14.6",
+  "numpy": "2.5.1",
+  "scipy": "1.18.0",
+  "model": "q4-model-v1",
+  "radius_extrapolation": false,
+  "source_code_sha256": "1d684acc541100bae4104fc1a2663d9a18a49c72811fbbda55fae74ca4492cf4"
+}

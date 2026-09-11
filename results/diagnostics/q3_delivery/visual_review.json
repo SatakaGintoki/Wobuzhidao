@@ -1,0 +1,20 @@
+{
+  "pass": true,
+  "date": "2026-09-11",
+  "result_version": "q3-closeout-v1",
+  "method": "Rendered five single-page PDFs with PyMuPDF and viewed each image; viewed Artifact Tool workbook head and tail previews.",
+  "figures_reviewed": [
+    "q3_C_max_history.pdf",
+    "q3_C_profiles.pdf",
+    "q3_event_zoom.pdf",
+    "q3_max_location.pdf",
+    "q3_T_center_surface.pdf"
+  ],
+  "corrections_verified": [
+    "Profile legend is outside the axes and no longer crosses the curves.",
+    "Event plot distinguishes critical and strict-report times in seconds and six-decimal hour labels.",
+    "Event lines connect saved numerical states and do not represent a new PDE solution."
+  ],
+  "workbook_previews": ["tmp/q3_export/after.png", "tmp/q3_export/tail.png"],
+  "limitations": "No native Excel application inspection or full-manuscript compilation was performed."
+}

@@ -1,0 +1,23 @@
+{
+  "result_version": "q3-closeout-v1",
+  "event_times_s": [
+    206820.0,
+    206880.0,
+    206901.07020808017,
+    206903.16
+  ],
+  "event_maxima": [
+    0.15002362342183037,
+    0.15000613804075463,
+    0.15,
+    0.14999939128976764
+  ],
+  "event_lines": "linear guides connecting saved states; no new PDE solve",
+  "sha256": {
+    "code/plot_q3_results.py": "be8c2f7554532416c47e91a30f8d8482d8b185f7e30c9cfc883220cf05564488",
+    "results/q3_solution.npz": "b270a1cd041d9b5e5f0545bbdd70f34b55bdbbf5fb3476265684cd22c920e9a4",
+    "results/q3_validation.json": "7e1cdb2ac0090eca990ba4170560ce5f8dc8d3857ff9507db2fc3441302f83db",
+    "figures/q3_C_profiles.pdf": "368d57475dcf1965649c9489d15f7e8733558e408c57e15c91504bf0b7ef92da",
+    "figures/q3_event_zoom.pdf": "b87b729a1f92e19834abe64cc8c0cff3223709e52d24e68b3b045b4f0987c77f"
+  }
+}
