@@ -1,0 +1,220 @@
+{
+  "status": "INPUT_AND_SCALE_AUDIT_ONLY_NO_PDE",
+  "sources_sha256": {
+    "data\\A.pdf": "052d8014bff5727c019b72e44fdffaf5c145ce04050dd938baaf3527db331736",
+    "data\\附件\\附件1.xlsx": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7",
+    "data\\附件\\附件3\\result2.xlsx": "23b261b295c1b787d000eebbca6521c37075107b6fcf78724f8d395ce1798ff4"
+  },
+  "oven": {
+    "sheet": "Sheet1",
+    "headers": [
+      "时间",
+      "温度",
+      "水分浓度"
+    ],
+    "count": 241,
+    "time_range_s": [
+      0.0,
+      14400.0
+    ],
+    "intervals_s": [
+      60.0
+    ],
+    "finite": true,
+    "unique_times": true,
+    "q2_count": 181,
+    "q2_first": [
+      0.0,
+      28.0,
+      0.01963
+    ],
+    "q2_last": [
+      10800.0,
+      50.195,
+      0.04977
+    ],
+    "q2_min": [
+      0.0,
+      28.0,
+      0.01963
+    ],
+    "q2_max": [
+      10800.0,
+      50.246,
+      0.05025
+    ]
+  },
+  "template": {
+    "温度": {
+      "rows": 5,
+      "cols": 6,
+      "values": [
+        [
+          "时间\\到药材中心的距离",
+          0,
+          0.1,
+          0.2,
+          "…",
+          2
+        ],
+        [
+          1,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          2,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          3,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "…",
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ],
+      "merges": []
+    },
+    "水分浓度": {
+      "rows": 5,
+      "cols": 6,
+      "values": [
+        [
+          "时间\\到药材中心的距离",
+          0,
+          0.1,
+          0.2,
+          "…",
+          2
+        ],
+        [
+          1,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          2,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          3,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "…",
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ],
+      "merges": []
+    }
+  },
+  "initial_properties": {
+    "C": 2.55,
+    "T_C": 28.0,
+    "T_K": 301.15,
+    "rho": 976.4,
+    "cp": 3415.295774647887,
+    "k": 0.48295774647887324,
+    "capacity": 3334694.7943661967,
+    "alpha": 1.448281705704542e-07,
+    "D": 5.641680373025664e-09,
+    "dlogD_dT": 0.042451691009357605,
+    "dlogD_dC": 0.06920415224913495
+  },
+  "coefficient_samples": [
+    {
+      "C": 2.55,
+      "T_C": 50.0,
+      "T_K": 323.15,
+      "rho": 976.4,
+      "cp": 3415.295774647887,
+      "k": 0.48295774647887324,
+      "capacity": 3334694.7943661967,
+      "alpha": 1.448281705704542e-07,
+      "D": 1.3470968217415811e-08,
+      "dlogD_dT": 0.0368682402590219,
+      "dlogD_dC": 0.06920415224913495
+    },
+    {
+      "C": 1.0,
+      "T_C": 50.0,
+      "T_K": 323.15,
+      "rho": 778.0,
+      "cp": 2818.0,
+      "k": 0.4,
+      "capacity": 2192404.0,
+      "alpha": 1.8244812543673521e-07,
+      "D": 1.024723031208691e-08,
+      "dlogD_dT": 0.0368682402590219,
+      "dlogD_dC": 0.45
+    },
+    {
+      "C": 0.15,
+      "T_C": 50.0,
+      "T_K": 323.15,
+      "rho": 669.2,
+      "cp": 1806.8695652173913,
+      "k": 0.25956521739130434,
+      "capacity": 1209157.1130434782,
+      "alpha": 2.1466624526400237e-07,
+      "D": 8.001208146652626e-10,
+      "dlogD_dT": 0.0368682402590219,
+      "dlogD_dC": 20.0
+    }
+  ],
+  "scales": {
+    "alpha_max_on_model_bounds": 2.2163465703172862e-07,
+    "D_max_on_model_bounds": 1.3593606276291845e-08,
+    "heat_length_3h_m": 0.048924986417398925,
+    "moisture_length_3h_m": 0.012116556762709112,
+    "end_distance_m": 0.125,
+    "one_end_step_erfc_scale": 0.0708231795735776,
+    "one_end_moisture_erfc_scale": 2.9901334136727627e-13,
+    "thermal_Bi_R_initial": 1.0352872557596966,
+    "moisture_Bi_R_initial": 2.8360344688260164,
+    "initial_dry_density_if_wet_density": 275.0422535211268,
+    "dry_density_inferred_at_C1": 389.0,
+    "note": "Scales only; erfc comparison is not a 2D error bound or a Q2 solution."
+  },
+  "q1_preservation_sha256": {
+    "code/problem1.py": "8f82013219ea9bf5655cd231ad892923bb98e69835b12ab467b00728cb546e97",
+    "code/radial_fvm.py": "06e69fccc9303f10821b3c777c8a3ba60239ab01a83c2f33d2bfbd1a0bef2c7a",
+    "code/utils.py": "3b02ad884c8616bfb220d803470fdbbe48e425be2e9c97f15f02cf31d03dbed1",
+    "code/q1_analytic.py": "bbf843c4f44c02564ee0f6b6d3c2e7bb9e8ba9238e1f9b028b2fabec74cdbca4",
+    "results/q1_solution.npz": "f7e94b448feb6634932cafd9789a23feb1e789231fa72ae6bba4b3b2ed80b6c5",
+    "results/result1.xlsx": "2affa5d467aee5f288bcbfa95a43aaa935836842c0ca0d3c89b08e55b854728f",
+    "paper/drafts/problem1_model_consolidated.md": "a960f3f9ea251ffcb83eb00a94860a82a90bf2aa72ee3218ef499c3af064393c"
+  }
+}

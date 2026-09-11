@@ -1,0 +1,93 @@
+{
+  "purpose": "Energy scale audit of existing no-latent baseline, not a revised PDE solution",
+  "source": "C:\\Users\\chens\\Desktop\\国赛文件夹 GPT\\results\\q1_solution.npz",
+  "source_sha256": "f7e94b448feb6634932cafd9789a23feb1e789231fa72ae6bba4b3b2ed80b6c5",
+  "source_N": 640,
+  "assumptions": {
+    "initial_wet_density_kg_m3": 820.0,
+    "constant_reference_dry_mass_kg": 0.07256636551953889,
+    "free_water_Lv_J_kg": 2400000.0,
+    "Lv_reference": "NISTIR 5078 Table 1; 40 C delta h 2406.0 kJ/kg; rounded 2.4 MJ/kg for screening",
+    "warning": "Dry mass assumes 820 kg/m3 is initial wet bulk density. Existing effective moisture boundary is retained only for this consistency audit."
+  },
+  "rows": [
+    {
+      "time_s": 100,
+      "mean_C_kg_kg": 2.531403509401563,
+      "mean_T_C": 28.04545017158895,
+      "mass_lost_kg": 0.001349479734146851,
+      "implied_latent_J": 3238.7513619524425,
+      "baseline_sensible_gain_J": 30.4419592458689,
+      "latent_over_sensible": 106.3910287703297,
+      "implied_latent_flux_W_m2": 987.5320598103439,
+      "baseline_convective_flux_W_m2": 19.764902981900345
+    },
+    {
+      "time_s": 300,
+      "mean_C_kg_kg": 2.497525690436453,
+      "mean_T_C": 28.359384024756533,
+      "mass_lost_kg": 0.0038078699281737815,
+      "implied_latent_J": 9138.887827617076,
+      "baseline_sensible_gain_J": 240.71094679683446,
+      "latent_over_sensible": 37.96623273361351,
+      "implied_latent_flux_W_m2": 899.820378616345,
+      "baseline_convective_flux_W_m2": 49.62868327341292
+    },
+    {
+      "time_s": 600,
+      "mean_C_kg_kg": 2.4510988615394287,
+      "mean_T_C": 29.241227315803155,
+      "mass_lost_kg": 0.007176896163828331,
+      "implied_latent_J": 17224.550793187995,
+      "baseline_sensible_gain_J": 831.3586074936943,
+      "latent_over_sensible": 20.71855711594186,
+      "implied_latent_flux_W_m2": 821.6544069591234,
+      "baseline_convective_flux_W_m2": 75.91929850812917
+    },
+    {
+      "time_s": 900,
+      "mean_C_kg_kg": 2.4081952247585843,
+      "mean_T_C": 30.484964866253186,
+      "mass_lost_kg": 0.010290257152584619,
+      "implied_latent_J": 24696.617166203087,
+      "baseline_sensible_gain_J": 1664.3985389108473,
+      "latent_over_sensible": 14.838163209614516,
+      "implied_latent_flux_W_m2": 766.4077486519118,
+      "baseline_convective_flux_W_m2": 94.839997833604
+    },
+    {
+      "time_s": 1200,
+      "mean_C_kg_kg": 2.367938927383401,
+      "mean_T_C": 31.949062269597768,
+      "mass_lost_kg": 0.013211510342375435,
+      "implied_latent_J": 31707.624821701043,
+      "baseline_sensible_gain_J": 2645.0327571419243,
+      "latent_over_sensible": 11.987611395770593,
+      "implied_latent_flux_W_m2": 722.7382833896332,
+      "baseline_convective_flux_W_m2": 111.35911120293204
+    },
+    {
+      "time_s": 1500,
+      "mean_C_kg_kg": 2.3298360483673277,
+      "mean_T_C": 33.552375301140685,
+      "mass_lost_kg": 0.015976497788402565,
+      "implied_latent_J": 38343.59469216615,
+      "baseline_sensible_gain_J": 3718.911870427087,
+      "latent_over_sensible": 10.310433811856559,
+      "implied_latent_flux_W_m2": 686.4139680009118,
+      "baseline_convective_flux_W_m2": 111.86845232543341
+    },
+    {
+      "time_s": 1800,
+      "mean_C_kg_kg": 2.293555833696767,
+      "mean_T_C": 35.16791580216732,
+      "mass_lost_kg": 0.0186092211073138,
+      "implied_latent_J": 44662.13065755312,
+      "baseline_sensible_gain_J": 4800.980790586244,
+      "latent_over_sensible": 9.30270971821561,
+      "implied_latent_flux_W_m2": 655.1127004666139,
+      "baseline_convective_flux_W_m2": 118.1859904698575
+    }
+  ],
+  "conclusion": "Under these assumptions, the implied latent load is not a small correction. These are not corrected temperatures or experimental validation."
+}

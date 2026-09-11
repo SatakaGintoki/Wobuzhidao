@@ -1,0 +1,355 @@
+{
+  "附件1.xlsx": {
+    "headers": [
+      "时间",
+      "温度",
+      "水分浓度"
+    ],
+    "rows": 241,
+    "columns": 3,
+    "missing_or_nonfinite": 0,
+    "duplicate_times": 0,
+    "time_strictly_increasing": true,
+    "time_step_values": [
+      60.0
+    ],
+    "minimum": [
+      0.0,
+      28.0,
+      0.01963
+    ],
+    "maximum": [
+      14400.0,
+      50.246,
+      0.05025
+    ],
+    "first": [
+      0.0,
+      28.0,
+      0.01963
+    ],
+    "last": [
+      14400.0,
+      50.165,
+      0.04986
+    ],
+    "last_hour_mean_T_C": [
+      49.99893442622951,
+      0.04998754098360656
+    ],
+    "last_hour_std_T_C": [
+      0.15435336826607313,
+      0.0001501294523370292
+    ],
+    "at_1800s": [
+      1800.0,
+      41.513,
+      0.03307
+    ]
+  },
+  "附件2.xlsx": {
+    "headers": [
+      "时间",
+      "半径"
+    ],
+    "rows": 145,
+    "columns": 2,
+    "missing_or_nonfinite": 0,
+    "duplicate_times": 0,
+    "time_strictly_increasing": true,
+    "time_step_values": [
+      1800.0
+    ],
+    "minimum": [
+      0.0,
+      1.198
+    ],
+    "maximum": [
+      259200.0,
+      2.0
+    ],
+    "first": [
+      0.0,
+      2.0
+    ],
+    "last": [
+      259200.0,
+      1.198
+    ],
+    "radius_increases": 0,
+    "nonpositive_radii": 0
+  },
+  "result1.xlsx": {
+    "温度": [
+      [
+        "时间\\到药材中心的距离",
+        0,
+        0.1,
+        0.2,
+        "…",
+        2
+      ],
+      [
+        1,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        2,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        3,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "…",
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    ],
+    "水分浓度": [
+      [
+        "时间\\到药材中心的距离",
+        0,
+        0.1,
+        0.2,
+        "…",
+        2
+      ],
+      [
+        1,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        2,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        3,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "…",
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    ]
+  },
+  "result2.xlsx": {
+    "温度": [
+      [
+        "时间\\到药材中心的距离",
+        0,
+        0.1,
+        0.2,
+        "…",
+        2
+      ],
+      [
+        1,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        2,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        3,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "…",
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    ],
+    "水分浓度": [
+      [
+        "时间\\到药材中心的距离",
+        0,
+        0.1,
+        0.2,
+        "…",
+        2
+      ],
+      [
+        1,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        2,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        3,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "…",
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    ]
+  },
+  "result3.xlsx": {
+    "Sheet1": [
+      [
+        "时间\\到药材中心的距离",
+        0,
+        0.1,
+        0.2,
+        "…",
+        2
+      ],
+      [
+        60,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        120,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        180,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "…",
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    ]
+  },
+  "result4.xlsx": {
+    "Sheet1": [
+      [
+        "时间\\到药材中心的距离",
+        0,
+        0.1,
+        0.2,
+        "…",
+        "药材表面"
+      ],
+      [
+        60,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        120,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        180,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "…",
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    ]
+  },
+  "scale_checks_not_solution": {
+    "length_over_diameter": 6.25,
+    "end_area_over_lateral_area": 0.08,
+    "alpha": 1.6885553470919323e-07,
+    "Bi_radius": 1.3888888888888888,
+    "Bi_volume_over_area": 0.6430041152263374,
+    "initial_D1": 4.937655094173937e-09,
+    "initial_mass_Bi": 3.2404045432170427,
+    "thermal_radial_scale_seconds": 2368.888888888889,
+    "moisture_radial_scale_hours": 22.50280932789613,
+    "D23_at_C_015_T50": 8.001208146652626e-10,
+    "D23_at_C_255_T50": 1.3470968217415811e-08
+  }
+}

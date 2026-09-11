@@ -1,0 +1,196 @@
+{
+  "source_sha256": {
+    "data\\A.pdf": "052d8014bff5727c019b72e44fdffaf5c145ce04050dd938baaf3527db331736",
+    "data\\附件\\附件1.xlsx": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7",
+    "data\\附件\\附件3\\result2.xlsx": "23b261b295c1b787d000eebbca6521c37075107b6fcf78724f8d395ce1798ff4",
+    "results\\q2_run.log": "a6d368cd04c2edbc4d56144332d35669a61e8d54c6898e309115540477968dbb",
+    "results\\q2_solution.npz": "654e76ce3a91dca1b4e75eed8f307646e57c0d7a078bad6b58bd38cfeaa8f2bb",
+    "results\\q2_table_moisture.csv": "4ecaea718741f410af382f481a93f592dbd7f0a67a1c54f3d231f4298e31ab30",
+    "results\\q2_table_temperature.csv": "c649ed21a545a3e097ee85d52b3b1e8d7c826f601b46e3b35791401418ec4911",
+    "results\\q2_validation.json": "dabd8db2b1807a31a8930c496340b027f2782a24e8210115a5391302769bf593",
+    "results\\result2.xlsx": "90fda96efb4b0fd838cbc1912819591aafdb51bb98c10ad8f21c62a70f5f2196",
+    "figures\\q2_C_center_surface.pdf": "50bc330a69e66da05431669fdd20470a70c40e1b76ed8f7d19ce5d5e34fe2c35",
+    "figures\\q2_C_profiles.pdf": "fc91be11e20a8f19ebe95297d1da44694b26375f5e68ca5124fffe0cecd40694",
+    "figures\\q2_D_center_surface.pdf": "a4d0d3a48f2cedf73173c0706ce18bb2b2a61c1862ce42e7d5ee9f188a01ee2e",
+    "figures\\q2_T_center_surface.pdf": "3322845dbd2c674ba488dc623dd334766cccff610e09316b91d454b2c18fab1a",
+    "figures\\q2_T_profiles.pdf": "a2f6383bd9bd503410c97fd900ff292e9efc11d57229167fa7a82cba5f45fdaa",
+    "code\\problem2.py": "484871322c81536893356630b7ced043bc6e9c824cc6cce9cc5c18907f7cb97a",
+    "code\\radial_coupled.py": "1f407695a7269dc57d9ac329f44ec3db07415faf63c4afbe1d1ded4fa1d2e1b0",
+    "code\\appendix3.py": "f511164c8fe42cd15ca1fa59aea9552dd413f1b00487360ff0c3e1f53b276d44",
+    "code\\utils.py": "bc1fb8a55cf09eed7ef27386bed3a443c35cd148798e1bc572fae2b00a38bc47",
+    "code\\radial_fvm.py": "a971934481734141ced1d9dae481211a0e582adad7e3b601b90816f9ca46ca88"
+  },
+  "npz_keys": [
+    "mesh_level",
+    "n_nodes",
+    "times",
+    "r",
+    "T_out",
+    "C_out",
+    "interpolation",
+    "rtol",
+    "atol_T",
+    "atol_C",
+    "max_step"
+  ],
+  "workbook": {
+    "T": {
+      "dimensions": [
+        10801,
+        22
+      ],
+      "times_ok": true,
+      "radii_ok": true,
+      "all_finite": true,
+      "numeric_cells": 226800,
+      "formatted_cells": 226800,
+      "max_difference_vs_npz": 7.105427357601002e-15,
+      "minimum": 28.0,
+      "maximum": 49.96451998031974
+    },
+    "C": {
+      "dimensions": [
+        10801,
+        22
+      ],
+      "times_ok": true,
+      "radii_ok": true,
+      "all_finite": true,
+      "numeric_cells": 226800,
+      "formatted_cells": 226800,
+      "max_difference_vs_npz": 4.440892098500626e-16,
+      "minimum": 1.008119768125087,
+      "maximum": 2.550000000000001
+    }
+  },
+  "tables": {
+    "T": {
+      "csv_max_difference": 4.931081321046804e-09,
+      "csv_hours_ok": true,
+      "report_four_decimal_matches": true,
+      "json_max_difference": 0.0
+    },
+    "C": {
+      "csv_max_difference": 4.993230717786901e-09,
+      "csv_hours_ok": true,
+      "report_four_decimal_matches": true,
+      "json_max_difference": 0.0
+    }
+  },
+  "figures": [
+    {
+      "name": "q2_C_center_surface.pdf",
+      "pages": 1,
+      "text": "0.0 0.5 1.0 1.5 2.0 2.5 3.0 时间 t (h)\r\n1.0\r\n1.2\r\n1.4\r\n1.6\r\n1.8\r\n2.0\r\n2.2\r\n2.4\r\n2.6\r\n干基含水率 C (kg/kg)\r\n表面\r\n中心"
+    },
+    {
+      "name": "q2_C_profiles.pdf",
+      "pages": 1,
+      "text": "0.00 0.25 0.50 0.75 1.00 1.25 1.50 1.75 2.00 半径 r (cm)\r\n1.0\r\n1.2\r\n1.4\r\n1.6\r\n1.8\r\n2.0\r\n2.2\r\n2.4\r\n2.6\r\n干基含水率 C (kg/kg)\r\nt\r\n=\r\n0\r\n.\r\n5\r\nh\r\nt\r\n=\r\n1\r\nh\r\nt\r\n=\r\n1\r\n.\r\n5\r\nh\r\nt\r\n=\r\n2\r\nh\r\nt\r\n=\r\n2\r\n.\r\n5\r\nh\r\nt\r\n=\r\n3\r\nh"
+    },
+    {
+      "name": "q2_D_center_surface.pdf",
+      "pages": 1,
+      "text": "0.0 0.5 1.0 1.5 2.0 2.5 3.0 时间 t (h)\r\n0.6\r\n0.7\r\n0.8\r\n0.9\r\n1.0\r\n1.1\r\n1.2\r\nD (m2/s)\r\n1e-8\r\n表\r\n面\r\nD\r\n中\r\n心\r\nD"
+    },
+    {
+      "name": "q2_T_center_surface.pdf",
+      "pages": 1,
+      "text": "0.0 0.5 1.0 1.5 2.0 2.5 3.0 时间 t (h)\r\n30\r\n35\r\n40\r\n45\r\n50\r\n温度 (°C)\r\n烘\r\n房\r\nTa\r\n表面\r\n中心"
+    },
+    {
+      "name": "q2_T_profiles.pdf",
+      "pages": 1,
+      "text": "0.00 0.25 0.50 0.75 1.00 1.25 1.50 1.75 2.00\r\n半径 r (cm)\r\n32.5\r\n35.0\r\n37.5\r\n40.0\r\n42.5\r\n45.0\r\n47.5\r\n50.0\r\n温\r\n度\r\nT (°C)\r\nt = 0.5 h\r\nt = 1 h\r\nt = 1.5 h\r\nt = 2 h\r\nt = 2.5 h\r\nt = 3 h"
+    }
+  ],
+  "axes": {
+    "times_ok": true,
+    "grid_increasing": true,
+    "n_nodes": 1057
+  },
+  "template": {
+    "温度": {
+      "dimensions": [
+        5,
+        6
+      ],
+      "first_rows": [
+        [
+          "时间\\到药材中心的距离",
+          0,
+          0.1,
+          0.2,
+          "…",
+          2
+        ],
+        [
+          1,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          2,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          3,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    "水分浓度": {
+      "dimensions": [
+        5,
+        6
+      ],
+      "first_rows": [
+        [
+          "时间\\到药材中心的距离",
+          0,
+          0.1,
+          0.2,
+          "…",
+          2
+        ],
+        [
+          1,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          2,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          3,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "sheet_order_ok": true,
+  "source_files_unchanged": true
+}

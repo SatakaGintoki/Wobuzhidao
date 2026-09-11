@@ -1,0 +1,11 @@
+{
+  "t_s": 1,
+  "surface_C": {
+    "80": 2.5178760208842745,
+    "160": 2.51979725390763,
+    "320": 2.5198243091522654,
+    "640": 2.5198243090441004
+  },
+  "difference_320_vs_640": 1.0816503248634035e-10,
+  "method": "exact first-interval PCHIP polynomial convolution, hypergeometric moments"
+}

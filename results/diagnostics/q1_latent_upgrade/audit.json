@@ -1,0 +1,119 @@
+{
+  "purpose": "Exploratory feasibility screening, not official predictions",
+  "source": "C:\\Users\\chens\\Desktop\\国赛文件夹 GPT\\results\\q1_solution.npz",
+  "source_sha256": "f7e94b448feb6634932cafd9789a23feb1e789231fa72ae6bba4b3b2ed80b6c5",
+  "assumptions": [
+    "rho=820 interpreted as initial wet density",
+    "fixed initial heat capacity and cylinder volume",
+    "prescribed moisture from original N640 solution, interpolated at 1 s",
+    "humidity w=kg water/kg dry air; ideal moist air; sea-level pressure for main check",
+    "surface evaporation only; NIST pure-water saturation limits"
+  ],
+  "saturation_source": "https://www.nist.gov/document/nistir5078-tab1pdf",
+  "grid160_320_max_temperature_difference_C": 0.005580208886456717,
+  "no_latent_vs_baseline640_max_difference_C": 2.9910528695609173e-05,
+  "dewpoint_initial_C": 24.628395655355085,
+  "dewpoint_final_C": 33.28260660765977,
+  "pressure_cases": [
+    {
+      "pressure_Pa": 80000.0,
+      "dewpoint_initial_C": 20.734231322296157,
+      "dewpoint_final_C": 29.128482471851008,
+      "conflict_samples": 1768
+    },
+    {
+      "pressure_Pa": 101325.0,
+      "dewpoint_initial_C": 24.628395655355085,
+      "dewpoint_final_C": 33.28260660765977,
+      "conflict_samples": 1794
+    },
+    {
+      "pressure_Pa": 120000.0,
+      "dewpoint_initial_C": 27.488654181853164,
+      "dewpoint_final_C": 36.336793629955274,
+      "conflict_samples": 1800
+    }
+  ],
+  "runs": [
+    {
+      "tag": "N160_Lv0",
+      "N": 160,
+      "Lv_J_kg": 0.0,
+      "final_center_C": 33.57534247732917,
+      "final_surface_C": 36.785555992557526,
+      "min_surface_C": 28.0,
+      "min_surface_time_s": 0.0,
+      "final_mean_C": 35.16794253455262,
+      "convective_energy_J": 4800.99869560311,
+      "latent_energy_J": 0.0,
+      "sensible_energy_J": 4800.998695605201,
+      "max_energy_residual_J": 2.090928319375962e-09,
+      "dewpoint_conflict_samples": 0,
+      "first_conflict_sample_s": null
+    },
+    {
+      "tag": "N160_Lv2400000",
+      "N": 160,
+      "Lv_J_kg": 2400000.0,
+      "final_center_C": 11.016486564863238,
+      "final_surface_C": 12.410338839796516,
+      "min_surface_C": 9.611770125376772,
+      "min_surface_time_s": 907.0,
+      "final_mean_C": 11.606435382875535,
+      "convective_energy_J": 33682.01440181457,
+      "latent_energy_J": 44662.21994388564,
+      "sensible_energy_J": -10980.20554207002,
+      "max_energy_residual_J": 1.053194864653051e-09,
+      "dewpoint_conflict_samples": 1794,
+      "first_conflict_sample_s": 7.0
+    },
+    {
+      "tag": "N320_Lv2400000",
+      "N": 320,
+      "Lv_J_kg": 2400000.0,
+      "final_center_C": 11.016482494519728,
+      "final_surface_C": 12.410362791958084,
+      "min_surface_C": 9.611826193286587,
+      "min_surface_time_s": 907.0,
+      "final_mean_C": 11.606430532764744,
+      "convective_energy_J": 33682.011052808906,
+      "latent_energy_J": 44662.219843417864,
+      "sensible_energy_J": -10980.208790613862,
+      "max_energy_residual_J": 4.903995431959629e-09,
+      "dewpoint_conflict_samples": 1794,
+      "first_conflict_sample_s": 7.0
+    },
+    {
+      "tag": "N160_Lv2380000",
+      "N": 160,
+      "Lv_J_kg": 2380000.0,
+      "final_center_C": 11.204477008572798,
+      "final_surface_C": 12.613465563057973,
+      "min_surface_C": 9.796373520732644,
+      "min_surface_time_s": 906.0,
+      "final_mean_C": 11.802781187538567,
+      "convective_energy_J": 33441.339125873696,
+      "latent_energy_J": 44290.03469175156,
+      "sensible_energy_J": -10848.695565876607,
+      "max_energy_residual_J": 1.2623786460608244e-09,
+      "dewpoint_conflict_samples": 1794,
+      "first_conflict_sample_s": 7.0
+    },
+    {
+      "tag": "N160_Lv2500000",
+      "N": 160,
+      "Lv_J_kg": 2500000.0,
+      "final_center_C": 10.076534519182346,
+      "final_surface_C": 11.394704867681705,
+      "min_surface_C": 8.687519012988126,
+      "min_surface_time_s": 917.0,
+      "final_mean_C": 10.62470606960829,
+      "convective_energy_J": 34885.389149034876,
+      "latent_energy_J": 46523.14476627922,
+      "sensible_energy_J": -11637.755617243385,
+      "max_energy_residual_J": 9.986251825466752e-10,
+      "dewpoint_conflict_samples": 1795,
+      "first_conflict_sample_s": 6.0
+    }
+  ]
+}

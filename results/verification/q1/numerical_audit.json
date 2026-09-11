@@ -1,0 +1,36 @@
+{
+  "temperature_max_difference_to_120_mode_reference": 2.0637078144147836e-06,
+  "moisture_short_runs": [
+    {
+      "N": 640,
+      "C_surface_t1": 2.518123091179099,
+      "C_surface_t100": 2.247074150552959,
+      "max_difference_vs_saved_N640_first100s": 1.848729374032132e-07,
+      "four_decimal_changed_cells_vs_saved": 0
+    },
+    {
+      "N": 1280,
+      "C_surface_t1": 2.517823577828194,
+      "C_surface_t100": 2.247052434529251,
+      "max_difference_vs_saved_N640_first100s": 0.00029949109896865167,
+      "four_decimal_changed_cells_vs_saved": 51
+    },
+    {
+      "N": 2560,
+      "C_surface_t1": 2.517750133642097,
+      "C_surface_t100": 2.2470470068015564,
+      "max_difference_vs_saved_N640_first100s": 0.0003729352850658785,
+      "four_decimal_changed_cells_vs_saved": 64
+    }
+  ],
+  "C_640_vs_1280_first100s": {
+    "max_abs": 0.00029951335090494524,
+    "time_s": 1,
+    "radius_cm": 2.0
+  },
+  "C_1280_vs_2560_first100s": {
+    "max_abs": 7.34441860972268e-05,
+    "time_s": 1,
+    "radius_cm": 2.0
+  }
+}

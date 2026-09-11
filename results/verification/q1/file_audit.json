@@ -1,0 +1,229 @@
+{
+  "scope": "q1 result acceptance, read only",
+  "source_sha256": {
+    "data\\A.pdf": "052d8014bff5727c019b72e44fdffaf5c145ce04050dd938baaf3527db331736",
+    "data\\附件\\附件1.xlsx": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7",
+    "data\\附件\\附件3\\result1.xlsx": "23b261b295c1b787d000eebbca6521c37075107b6fcf78724f8d395ce1798ff4",
+    "results\\q1_solution.npz": "f7e94b448feb6634932cafd9789a23feb1e789231fa72ae6bba4b3b2ed80b6c5",
+    "results\\q1_table_moisture.csv": "069aba1c982808ad3bf0e2810cb049dbe7542d76e73e95c131435316fc312f21",
+    "results\\q1_table_temperature.csv": "cc3565e209f39cce5256e377059fafb649f8e4b6aec7edb3af6f1433b8af6bea",
+    "results\\q1_validation.json": "574fcab2dba269c35fe4101f275b82b00bba251e0e4ec9285a28e9eaa7f03233",
+    "results\\result1.xlsx": "2affa5d467aee5f288bcbfa95a43aaa935836842c0ca0d3c89b08e55b854728f",
+    "figures\\q1_C_center_surface.pdf": "e0269274babe40a0ea97abe94af01c4fa7ce3231303e21e3a193033fba312c68",
+    "figures\\q1_C_profiles.pdf": "07f96074cf0b531eb4b315a27eab0c308845a6f1b8899a9df6db61c67c925e8d",
+    "figures\\q1_oven_input.pdf": "ca6a58cec3cbc4738627fa7f75dabbe0df560daad96c57c51a13ccbfbd3c7aae",
+    "figures\\q1_T_center_surface.pdf": "ee705a50d272b4e1b35ecc57f84e3cf53388f276e3f42bed06158b5a9549ffde",
+    "figures\\q1_T_profiles.pdf": "18499feecd7c9ca089b5fc87d4b4e4bc58899a6e81892e332dee7d1662ddd472",
+    "code\\problem1.py": "8f82013219ea9bf5655cd231ad892923bb98e69835b12ab467b00728cb546e97",
+    "code\\radial_fvm.py": "06e69fccc9303f10821b3c777c8a3ba60239ab01a83c2f33d2bfbd1a0bef2c7a",
+    "code\\utils.py": "3b02ad884c8616bfb220d803470fdbbe48e425be2e9c97f15f02cf31d03dbed1",
+    "code\\q1_analytic.py": "bbf843c4f44c02564ee0f6b6d3c2e7bb9e8ba9238e1f9b028b2fabec74cdbca4"
+  },
+  "npz_N": 640,
+  "npz_keys": [
+    "N",
+    "times",
+    "r",
+    "T_full",
+    "C_full",
+    "T_out",
+    "C_out",
+    "output_radii_m",
+    "rtol",
+    "atol_T",
+    "atol_C",
+    "max_step"
+  ],
+  "workbook": {
+    "温度": {
+      "dimensions": [
+        1801,
+        22
+      ],
+      "times_ok": true,
+      "radii_ok": true,
+      "all_finite": true,
+      "numeric_cells": 37800,
+      "four_decimal_formatted_cells": 37800,
+      "max_difference_vs_npz": 7.105427357601002e-15,
+      "npz_output_vs_full": 0.0,
+      "minimum": 27.99999999999802,
+      "maximum": 36.7855603812057,
+      "final_center": 33.57534519647406,
+      "final_surface": 36.7855603812057,
+      "hidden_rows": 0,
+      "hidden_cols": 0,
+      "a1": "时间\\到药材中心的距离",
+      "freeze_panes": null
+    },
+    "水分浓度": {
+      "dimensions": [
+        1801,
+        22
+      ],
+      "times_ok": true,
+      "radii_ok": true,
+      "all_finite": true,
+      "numeric_cells": 37800,
+      "four_decimal_formatted_cells": 37800,
+      "max_difference_vs_npz": 4.440892098500626e-16,
+      "npz_output_vs_full": 0.0,
+      "minimum": 1.5102359595125,
+      "maximum": 2.550000000000001,
+      "final_center": 2.549992395793864,
+      "final_surface": 1.5102359595125,
+      "hidden_rows": 0,
+      "hidden_cols": 0,
+      "a1": "时间\\到药材中心的距离",
+      "freeze_panes": null
+    }
+  },
+  "csv": {
+    "T": {
+      "shape": [
+        7,
+        6
+      ],
+      "times_match": true,
+      "max_difference": 4.533099229320214e-09,
+      "paper_report_four_decimal_matches": true,
+      "validation_json_table_max_difference": 0.0
+    },
+    "C": {
+      "shape": [
+        7,
+        6
+      ],
+      "times_match": true,
+      "max_difference": 4.827035215981823e-09,
+      "paper_report_four_decimal_matches": true,
+      "validation_json_table_max_difference": 0.0
+    }
+  },
+  "figures": [
+    {
+      "name": "q1_C_center_surface.pdf",
+      "pages": 1,
+      "text": "0 200 400 600 800 1000 1200 1400 1600 1800\n时间 t (s)\n1.6\n1.8\n2.0\n2.2\n2.4\n2.6\n干基含水率 C (kg/kg)\n表面\n中心",
+      "nonempty": true
+    },
+    {
+      "name": "q1_C_profiles.pdf",
+      "pages": 1,
+      "text": "0.00 0.25 0.50 0.75 1.00 1.25 1.50 1.75 2.00\n半径 r (cm)\n1.6\n1.8\n2.0\n2.2\n2.4\n2.6\n干基含水率 C (kg/kg)\nt = 100 s\nt = 300 s\nt = 600 s\nt = 900 s\nt = 1200 s\nt = 1500 s\nt = 1800 s",
+      "nonempty": true
+    },
+    {
+      "name": "q1_oven_input.pdf",
+      "pages": 1,
+      "text": "0 200 400 600 800 1000 1200 1400 1600 1800\n时间 t (s)\n28\n30\n32\n34\n36\n38\n40\n42\n烘房温度 (°C)\n烘房温度\n烘房水分\n0.020\n0.022\n0.024\n0.026\n0.028\n0.030\n0.032\n烘房水分 (kg/kg)",
+      "nonempty": true
+    },
+    {
+      "name": "q1_T_center_surface.pdf",
+      "pages": 1,
+      "text": "0 200 400 600 800 1000 1200 1400 1600 1800\n时间 t (s)\n28\n30\n32\n34\n36\n38\n40\n42\n温度 (°C)\n烘房 Ta\n表面\n中心",
+      "nonempty": true
+    },
+    {
+      "name": "q1_T_profiles.pdf",
+      "pages": 1,
+      "text": "0.00 0.25 0.50 0.75 1.00 1.25 1.50 1.75 2.00\n半径 r (cm)\n28\n30\n32\n34\n36\n温度 T (°C)\nt = 100 s\nt = 300 s\nt = 600 s\nt = 900 s\nt = 1200 s\nt = 1500 s\nt = 1800 s",
+      "nonempty": true
+    }
+  ],
+  "axes": {
+    "times_1_to_1800": true,
+    "radii_0_to_2cm": true
+  },
+  "template": {
+    "温度": {
+      "dimensions": [
+        5,
+        6
+      ],
+      "first_rows": [
+        [
+          "时间\\到药材中心的距离",
+          0,
+          0.1,
+          0.2,
+          "…",
+          2
+        ],
+        [
+          1,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          2,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          3,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    "水分浓度": {
+      "dimensions": [
+        5,
+        6
+      ],
+      "first_rows": [
+        [
+          "时间\\到药材中心的距离",
+          0,
+          0.1,
+          0.2,
+          "…",
+          2
+        ],
+        [
+          1,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          2,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          3,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "sheet_order_ok": true,
+  "conservation_recomputed": {
+    "heat_E_J": 4800.98079058604,
+    "heat_Q_J": 4800.979482239281,
+    "heat_relative_residual": 2.725165576466751e-07,
+    "moisture_relative_residual": 2.0063933241365776e-06
+  },
+  "source_files_unchanged": true
+}
