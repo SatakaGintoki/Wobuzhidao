@@ -1,3 +1,5 @@
+> 2026-09-11后续修复：本报告列出的四项问题已在q2-closeout-v1中修复并核验，当前报告见`Q12_CLOSEOUT_REPORT.md`。本文保留原审核证据，原FAIL不作为当前交付状态。
+
 # 第二问结果审核报告
 
 日期：2026-09-11。对象：`q2-baseline-v1`，生产网格 G4（1057 节点），0–10800 s。按本项目 `skills/6verity/SKILL.md` 执行阶段审核，并使用 Spreadsheets/PDF 的只读核查要求。

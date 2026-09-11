@@ -8,13 +8,14 @@ from pathlib import Path
 
 import numpy as np
 from openpyxl import Workbook
-from scipy.integrate import solve_ivp
+from scipy.integrate import solve_ivp, quad
 
 CODE_DIR = Path(__file__).resolve().parent
 if str(CODE_DIR) not in sys.path:
     sys.path.insert(0, str(CODE_DIR))
 
-from q1_analytic import BesselDuhamel
+from q1_analytic import BesselDuhamel, converged_reference
+from delivery import make_gate, require_delivery
 from radial_fvm import RadialFVM
 from radial_fvm import graded_radial_nodes
 from utils import (
@@ -136,15 +137,15 @@ def extract_output_grid(fvm: RadialFVM, Y: np.ndarray) -> np.ndarray:
 def conservation_heat(fvm: RadialFVM, pieces, Ta_fun: PchipOven, T_init: np.ndarray, t: float) -> dict:
     T_t = dense_state(pieces, t)
     E = 2.0 * np.pi * L * RHO * CP * np.dot(fvm.W, T_t - T_init)
-    ts = np.linspace(0.0, t, int(t) + 1)
-    T_s = np.array([float(dense_state(pieces, s)[-1]) for s in ts])
-    Ta = np.array([float(Ta_fun(s)) for s in ts])
-    Q = 2.0 * np.pi * R * L * H * np.trapezoid(Ta - T_s, ts)
+    flux = lambda x: float(Ta_fun(x)) - float(dense_state(pieces, x)[-1])
+    Qraw, qerr = quad(flux, 0, t, points=Ta_fun.t[(Ta_fun.t > 0) & (Ta_fun.t < t)], epsabs=1e-9, epsrel=1e-10, limit=500)
+    Q = 2.0 * np.pi * R * L * H * Qraw
     denom = max(abs(Q), abs(E), 1e-12)
     return {
         "E_relative_J": E,
         "Q_surface_J": Q,
         "relative_residual": abs(E - Q) / denom,
+        "quadrature_abs_error": qerr, "quadrature": "adaptive QUADPACK on PCHIP intervals",
     }
 
 
@@ -152,10 +153,8 @@ def conservation_moisture(fvm: RadialFVM, pieces, Ca_fun: PchipOven, C_init: np.
     C_t = dense_state(pieces, t)
     MC = float(np.dot(fvm.W, C_t))
     MC0 = float(np.dot(fvm.W, C_init))
-    ts = np.linspace(0.0, t, int(t) + 1)
-    C_s = np.array([float(dense_state(pieces, s)[-1]) for s in ts])
-    Ca = np.array([float(Ca_fun(s)) for s in ts])
-    I = float(np.trapezoid(HM * (C_s - Ca), ts))
+    flux = lambda x: HM * (float(dense_state(pieces, x)[-1]) - float(Ca_fun(x)))
+    I, qerr = quad(flux, 0, t, points=Ca_fun.t[(Ca_fun.t > 0) & (Ca_fun.t < t)], epsabs=1e-14, epsrel=1e-10, limit=500)
     rhs = MC0 - R * I
     denom = max(abs(MC0 - MC), abs(R * I), 1e-18)
     return {
@@ -163,6 +162,7 @@ def conservation_moisture(fvm: RadialFVM, pieces, Ca_fun: PchipOven, C_init: np.
         "MC0": MC0,
         "minus_R_int_hm": rhs,
         "relative_residual": abs(MC - rhs) / denom,
+        "quadrature_abs_error": qerr, "quadrature": "adaptive QUADPACK on PCHIP intervals",
     }
 
 
@@ -244,7 +244,7 @@ def assert_physical(T_out, C_out, Ta_fun, Ca_fun) -> dict:
         "Ca_range": [Ca_min, float(np.max(Ca_fun.y))],
     }
     info["T_bounds_ok"] = info["T_below_28"] <= 1e-6 and info["T_above_Ta_max"] <= 1e-6
-    info["C_bounds_ok"] = info["C_above_C0"] <= 1e-8 and C_out.min() >= -1e-8
+    info["C_bounds_ok"] = info["C_above_C0"] <= 1e-8 and info["C_below_Ca_min"] <= 1e-8
     info["C_nonnegative"] = bool(C_out.min() >= -1e-8)
     return info
 
@@ -499,16 +499,14 @@ def main():
 
     print("Bessel temperature reference")
     Bi = H * R / K
-    heat_ref = BesselDuhamel(Bi=Bi, diffusivity=ALPHA, R=R, n_terms=120)
-    T_ref = heat_ref.evaluate_many(OUTPUT_RADII_M, times, Ta_fun, T0)
+    T_ref, heat_truncation = converged_reference(Bi, ALPHA, R, OUTPUT_RADII_M, times, Ta_fun, T0, start_terms=120)
     bessel_T = compare_on_output(pub["T_out"], T_ref, times)
     print("Bessel T", bessel_T)
 
     print("frozen-D moisture probe")
     D0 = float(moisture_diffusivity(C0))
     Bi_m = HM * R / D0
-    moist_ref = BesselDuhamel(Bi=Bi_m, diffusivity=D0, R=R, n_terms=120)
-    C_ref = moist_ref.evaluate_many(OUTPUT_RADII_M, times, Ca_fun, C0)
+    C_ref, moisture_truncation = converged_reference(Bi_m, D0, R, OUTPUT_RADII_M, times, Ca_fun, C0)
     tCf, YCf, _ = solve_moisture(fvm, Ca_fun, t_breaks, rtol, atol_C, max_step, D_const=D0)
     C_frozen = extract_output_grid(fvm, YCf[tCf > 0])
     frozen = compare_on_output(C_frozen, C_ref, times)
@@ -532,7 +530,7 @@ def main():
     }
     print("D stats", D_stats)
 
-    bounds = assert_physical(pub["T_out"], pub["C_out"], Ta_fun, Ca_fun)
+    bounds = assert_physical(pub["YT"], pub["YC"], Ta_fun, Ca_fun)
     print("bounds", bounds)
 
     cons_T = conservation_heat(fvm, pub["piecesT"], Ta_fun, pub["T_init"], T_END)
@@ -540,22 +538,66 @@ def main():
     print("conservation T", cons_T)
     print("conservation C", cons_C)
 
-    delivery = {
-        "paper_four_decimal_stable_G4_vs_G8": paper_4dp_stable,
-        "full_field_four_decimal_stable_G4_vs_G8": full_4dp_stable,
-        "abs_2e5_G4_vs_G8": abs_2e5,
-        "time_four_decimal_stable": (
-            time_4dp["T"]["changed_cells"] == 0 and time_4dp["C"]["changed_cells"] == 0
-        ),
-        "exported_as_candidate": True,
-        "meets_delivery_gate": bool(
-            paper_4dp_stable
-            and time_4dp["T"]["paper_changed_cells"] == 0
-            and time_4dp["C"]["paper_changed_cells"] == 0
-        ),
-    }
+    delivery = make_gate({
+        "space_abs": abs_2e5,
+        "space_paper": paper_4dp_stable,
+        "all_finite": np.isfinite(pub["YT"]).all() and np.isfinite(pub["YC"]).all(),
+        "heat_reference_truncation": heat_truncation["passed"],
+        "heat_reference_error": bessel_T["max_abs"] <= 2e-5,
+        "time_abs": time_sens["T"]["max_abs"] <= 2e-5 and time_sens["C"]["max_abs"] <= 2e-5,
+        "time_paper": time_4dp["T"]["paper_changed_cells"] == 0 and time_4dp["C"]["paper_changed_cells"] == 0,
+        "temperature_bounds": bounds["T_bounds_ok"],
+        "moisture_bounds": bounds["C_bounds_ok"],
+        "moisture_reference_truncation": moisture_truncation["passed"],
+        "frozen_reference_error": frozen["max_abs"] <= 2e-5,
+        "heat_balance": cons_T["relative_residual"] <= 1e-6,
+        "moisture_balance": cons_C["relative_residual"] <= 1e-6,
+    })
     print("delivery", delivery)
 
+    paper_T = {
+        f"t{int(t)}_r{rc:g}": float(pub["T_out"][int(t) - 1, int(round(rc / 0.1))])
+        for t in TABLE_TIMES for rc in TABLE_RADII_CM
+    }
+    paper_C = {
+        f"t{int(t)}_r{rc:g}": float(pub["C_out"][int(t) - 1, int(round(rc / 0.1))])
+        for t in TABLE_TIMES for rc in TABLE_RADII_CM
+    }
+
+    validation = {
+        "result_version": "q1-closeout-v1",
+        "interpolation": Ta_fun.kind,
+        "published_mesh": pub["tag"],
+        "published_n_nodes": pub["n_nodes"],
+        "published_surface_dr_m": pub["surface_dr"],
+        "mesh_levels": mesh_levels,
+        "mesh_n_nodes": {f"G{lv}": solutions[lv]["n_nodes"] for lv in mesh_levels},
+        "solver": "FVM+BDF",
+        "rtol": rtol,
+        "atol_T": atol_T,
+        "atol_C": atol_C,
+        "max_step": max_step,
+        "t_breaks": t_breaks.tolist(),
+        "grid_convergence": conv,
+        "four_decimal_grid": fourdec,
+        "time_sensitivity": time_sens,
+        "four_decimal_time": time_4dp,
+        "delivery_gate": delivery,
+        "reference_truncation_T": heat_truncation,
+        "bessel_temperature": bessel_T,
+        "reference_truncation_C": moisture_truncation,
+        "frozen_D_moisture_vs_analytic": frozen,
+        "nonlinear_C_vs_frozen_D": nl_vs_frozen,
+        "D_variation": D_stats,
+        "conservation_T_1800s": cons_T,
+        "conservation_C_1800s": cons_C,
+        "physical_bounds": bounds,
+        "paper_table_T": paper_T,
+        "paper_table_C": paper_C,
+        "elapsed_s": time.perf_counter() - t_wall0,
+        "python": sys.version,
+    }
+    require_delivery(validation, RESULTS_DIR / "diagnostics/q1_delivery/latest.json")
     np.savez(
         RESULTS_DIR / "q1_solution.npz",
         N=pub["n_nodes"] - 1,
@@ -563,6 +605,9 @@ def main():
         n_nodes=pub["n_nodes"],
         times=times,
         r=fvm.r,
+        checkpoint_times=np.r_[0., TABLE_TIMES],
+        T_checkpoints=np.vstack([pub["T_init"], pub["YT"][TABLE_TIMES.astype(int)-1]]),
+        C_checkpoints=np.vstack([pub["C_init"], pub["YC"][TABLE_TIMES.astype(int)-1]]),
         T_full=pub["YT"],
         C_full=pub["YC"],
         T_out=pub["T_out"],
@@ -582,54 +627,13 @@ def main():
     plt = setup_mpl()
     plot_figures(plt, fvm, times, pub["YT"], pub["YC"], pub["T_out"], pub["C_out"], Ta_fun, Ca_fun)
 
-    paper_T = {
-        f"t{int(t)}_r{rc:g}": float(pub["T_out"][int(t) - 1, int(round(rc / 0.1))])
-        for t in TABLE_TIMES for rc in TABLE_RADII_CM
-    }
-    paper_C = {
-        f"t{int(t)}_r{rc:g}": float(pub["C_out"][int(t) - 1, int(round(rc / 0.1))])
-        for t in TABLE_TIMES for rc in TABLE_RADII_CM
-    }
-
-    validation = {
-        "result_version": "q1-baseline-v2",
-        "interpolation": Ta_fun.kind,
-        "published_mesh": pub["tag"],
-        "published_n_nodes": pub["n_nodes"],
-        "published_surface_dr_m": pub["surface_dr"],
-        "mesh_levels": mesh_levels,
-        "mesh_n_nodes": {f"G{lv}": solutions[lv]["n_nodes"] for lv in mesh_levels},
-        "solver": "FVM+BDF",
-        "rtol": rtol,
-        "atol_T": atol_T,
-        "atol_C": atol_C,
-        "max_step": max_step,
-        "t_breaks": t_breaks.tolist(),
-        "grid_convergence": conv,
-        "four_decimal_grid": fourdec,
-        "time_sensitivity": time_sens,
-        "four_decimal_time": time_4dp,
-        "delivery_gate": delivery,
-        "bessel_temperature": bessel_T,
-        "frozen_D_moisture_vs_analytic": frozen,
-        "nonlinear_C_vs_frozen_D": nl_vs_frozen,
-        "D_variation": D_stats,
-        "conservation_T_1800s": cons_T,
-        "conservation_C_1800s": cons_C,
-        "physical_bounds": bounds,
-        "paper_table_T": paper_T,
-        "paper_table_C": paper_C,
-        "elapsed_s": time.perf_counter() - t_wall0,
-        "python": sys.version,
-    }
     (RESULTS_DIR / "q1_validation.json").write_text(
         json.dumps(validation, ensure_ascii=False, indent=2, default=float),
         encoding="utf-8",
     )
     print("elapsed_s", validation["elapsed_s"])
     print("wrote results to", RESULTS_DIR)
-    if not delivery["meets_delivery_gate"]:
-        print("WARNING: paper 4-decimal delivery gate not met; files are a candidate only")
+
 
 
 if __name__ == "__main__":

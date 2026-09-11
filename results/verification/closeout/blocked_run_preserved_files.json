@@ -1,0 +1,13 @@
+{
+  "results\\q1_run.log": true,
+  "results\\q1_solution.npz": true,
+  "results\\q1_table_moisture.csv": true,
+  "results\\q1_table_temperature.csv": true,
+  "results\\q1_validation.json": true,
+  "results\\result1.xlsx": true,
+  "figures\\q1_C_center_surface.pdf": true,
+  "figures\\q1_C_profiles.pdf": true,
+  "figures\\q1_oven_input.pdf": true,
+  "figures\\q1_T_center_surface.pdf": true,
+  "figures\\q1_T_profiles.pdf": true
+}

@@ -1,0 +1,25 @@
+\vspace{1.1em}
+
+下面给出径向有限体积中，内部界面通量与表面 Robin 通量的核心计算，用于说明正文离散格式。完整求解还包括网格生成、BDF 时间积分与结果输出。
+
+\begin{lstlisting}[language=Python]
+import numpy as np
+
+def harmonic(a, b):
+    return 2 * a * b / (a + b) if a > 0 and b > 0 else 0.0
+
+def moisture_rhs(C, Ca, r, W, Dfun, hm):
+    N = len(C) - 1
+    dC = np.zeros_like(C)
+    for i in range(N):
+        rm = 0.5 * (r[i] + r[i + 1])
+        Dm = harmonic(Dfun(C[i]), Dfun(C[i + 1]))
+        Flux = -rm * Dm * (C[i + 1] - C[i]) / (r[i + 1] - r[i])
+        if i == 0:
+            dC[0] -= Flux / W[0]
+        else:
+            dC[i] -= Flux / W[i]
+        dC[i + 1] += Flux / W[i + 1]
+    dC[N] -= r[N] * hm * (C[N] - Ca) / W[N]
+    return dC
+\end{lstlisting}

@@ -1,0 +1,127 @@
+\subsection{模型建立}
+
+预热阶段药材与热空气同时交换热量和水分。取中部横截面，用径向坐标 $r$ 与时间 $t$ 描述状态。计算区域为 $0\le r\le R=0.02\,\mathrm{m}$，$0\le t\le 1800\,\mathrm{s}$。附录给定
+\[
+\rho=820\,\mathrm{kg/m^3},\quad
+c_p=2600\,\mathrm{J/(kg\cdot K)},\quad
+k=0.36\,\mathrm{W/(m\cdot K)},
+\]
+\[
+h=25\,\mathrm{W/(m^2\cdot K)},\qquad
+h_m=8\times10^{-7}\,\mathrm{m/s},
+\]
+以及
+\begin{equation}
+D(C)=7\times10^{-9}\exp(-0.89/C)\quad(\mathrm{m^2/s}).
+\label{eq:q1-D}
+\end{equation}
+热扩散率 $\alpha=k/(\rho c_p)=1.6886\times10^{-7}\,\mathrm{m^2/s}$。$1800\,\mathrm{s}$ 内热扩散特征长度约 $0.0174\,\mathrm{m}$，小于中截面到端面的距离 $L/2=0.125\,\mathrm{m}$，支持本问采用径向近似。
+
+在相邻观测时刻之间，对烘房温度 $T_a(t)$ 与水分浓度 $C_a(t)$ 作 PCHIP 插值，使曲线精确通过全部观测点，并避免在单调段内产生新的过冲。
+
+基准模型中，环层蓄热率等于径向导热净输入，水分质量浓度按固定参考干物质骨架书写。约去公共几何因子后得到
+\begin{equation}
+\rho c_p\frac{\partial T}{\partial t}
+=\frac1r\frac{\partial}{\partial r}\left(rk\frac{\partial T}{\partial r}\right),
+\qquad
+\frac{\partial C}{\partial t}
+=\frac1r\frac{\partial}{\partial r}\left[rD(C)\frac{\partial C}{\partial r}\right].
+\label{eq:q1-pde}
+\end{equation}
+初值与中心对称条件为
+\begin{equation}
+T(r,0)=28,\quad C(r,0)=2.55,\qquad
+\frac{\partial T}{\partial r}(0,t)=\frac{\partial C}{\partial r}(0,t)=0.
+\label{eq:q1-ic}
+\end{equation}
+表面第三类边界为
+\begin{equation}
+-k\frac{\partial T}{\partial r}(R,t)=h\bigl[T(R,t)-T_a(t)\bigr],
+\qquad
+-D(C_s)\frac{\partial C}{\partial r}(R,t)=h_m\bigl[C_s(t)-C_a(t)\bigr].
+\label{eq:q1-bc}
+\end{equation}
+在常物性、$D=D(C)$ 且不显式计入潜热时，温度场与含水率场相互独立，可分开积分。圆柱湿物料的径向扩散与表面交换已有同类研究\cite{hussain2003,dasilva2014}，本文只借鉴其守恒思路，不移植其他物料的经验参数。
+
+\subsection{数值求解}
+
+采用包含圆心与表面的节点型有限体积法。节点 $r_i=i\Delta r$，$i=0,\ldots,N$，$\Delta r=R/N$。控制体权重 $W_i=(b_i^2-a_i^2)/2$，其中 $a_i=\max(0,r_i-\Delta r/2)$，$b_i=\min(R,r_i+\Delta r/2)$。内部界面取调和平均扩散系数
+\[
+D_{i+1/2}=\frac{2D(C_i)D(C_{i+1})}{D(C_i)+D(C_{i+1})},
+\]
+向外通量为
+\[
+F^T_{i+1/2}=-r_{i+1/2}k\frac{T_{i+1}-T_i}{\Delta r},\qquad
+F^C_{i+1/2}=-r_{i+1/2}D_{i+1/2}\frac{C_{i+1}-C_i}{\Delta r}.
+\]
+半离散后，中心节点满足
+\[
+\dot T_0=\frac{4\alpha}{\Delta r^2}(T_1-T_0),\qquad
+\dot C_0=\frac{4D_{1/2}}{\Delta r^2}(C_1-C_0);
+\]
+表面节点把 Robin 通量写入右侧控制体。时间方向采用变阶变步长隐式 BDF，水分非线性用 Newton 迭代。选择隐式是因为显式稳定限制 $\Delta t\sim\Delta r^2/\alpha$ 远小于输出步长，而不是更换物理模型。
+
+发表网格在规定的 $0.1\,\mathrm{cm}$ 输出点上加密表面层，节点数为 $2113$。相对容差 $10^{-10}$，温度绝对容差 $10^{-10}$，水分绝对容差 $10^{-12}$，最大时间步 $0.5\,\mathrm{s}$。
+
+\subsection{解析核验}
+
+常物性热方程在环境温度分段光滑时可用分离变量加 Duhamel 原理核验。令 $\mathrm{Bi}=hR/k$，特征根满足 $\mu J_1(\mu)=\mathrm{Bi}\,J_0(\mu)$。对从初值出发的单位阶跃响应
+\begin{equation}
+\theta(r,t)=1-\sum_{n=1}^{\infty}
+\frac{2\mathrm{Bi}}{(\mu_n^2+\mathrm{Bi}^2)J_0(\mu_n)}
+J_0\!\left(\mu_n\frac{r}{R}\right)
+\exp\!\left(-\mu_n^2\frac{\alpha t}{R^2}\right).
+\label{eq:bessel}
+\end{equation}
+本题 $T_a(0)=T_0$，故
+\begin{equation}
+T(r,t)=T_0+\int_0^t \theta(r,t-\tau)\,T_a'(\tau)\,\mathrm{d}\tau.
+\label{eq:duhamel}
+\end{equation}
+$T_a'$ 由 PCHIP 导数给出，不对附件作平滑。水分只在把 $D$ 冻结为常数时有同形式级数；变 $D(C)$ 的正式答卷仍是数值解。
+
+温度场与 Bessel--Duhamel 解在全部输出点上的最大绝对差为 $3.42\times10^{-7}\,{}^\circ\mathrm{C}$。相邻两套加密网格的全场最大差：温度 $5.90\times10^{-7}\,{}^\circ\mathrm{C}$，水分 $4.56\times10^{-6}\,\mathrm{kg/kg}$。题目要求的 $7\times5$ 表格在四位小数下不再变化。热量与归一化水分收支的相对残差分别为 $1.22\times10^{-7}$ 与 $2.10\times10^{-6}$。
+
+\subsection{计算结果}
+
+表~\ref{tab:q1T} 与表~\ref{tab:q1C} 给出四位小数结果。$1800\,\mathrm{s}$ 时烘房温度为 $41.513^\circ\mathrm{C}$，表面 $36.7879^\circ\mathrm{C}$，中心 $33.5758^\circ\mathrm{C}$。中心含水率的源值为 $2.549992$，四位显示仍为 $2.5500$；失水集中在外侧，表面降至 $1.5102\,\mathrm{kg/kg}$。完整时空场按题目要求写入结果文件。
+
+\begin{table}[htbp]
+\centering
+\caption{30分钟内药材的温度（单位：$^\circ\mathrm{C}$）}
+\label{tab:q1T}
+\begin{tabular}{cccccc}
+\toprule
+时间/s & $0\,\mathrm{cm}$ & $0.5\,\mathrm{cm}$ & $1.0\,\mathrm{cm}$ & $1.5\,\mathrm{cm}$ & $2.0\,\mathrm{cm}$ \\
+\midrule
+100  & 28.0000 & 28.0003 & 28.0038 & 28.0319 & 28.1795 \\
+300  & 28.0406 & 28.0634 & 28.1513 & 28.3673 & 28.8486 \\
+600  & 28.4533 & 28.5361 & 28.8039 & 29.3155 & 30.1641 \\
+900  & 29.3243 & 29.4583 & 29.8757 & 30.6164 & 31.7295 \\
+1200 & 30.5429 & 30.7099 & 31.2225 & 32.1130 & 33.4295 \\
+1500 & 31.9960 & 32.1871 & 32.7667 & 33.7476 & 35.1211 \\
+1800 & 33.5758 & 33.7724 & 34.3642 & 35.3626 & 36.7879 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{30分钟内药材的水分浓度（单位：$\mathrm{kg/kg}$）}
+\label{tab:q1C}
+\begin{tabular}{cccccc}
+\toprule
+时间/s & $0\,\mathrm{cm}$ & $0.5\,\mathrm{cm}$ & $1.0\,\mathrm{cm}$ & $1.5\,\mathrm{cm}$ & $2.0\,\mathrm{cm}$ \\
+\midrule
+100  & 2.5500 & 2.5500 & 2.5500 & 2.5500 & 2.2470 \\
+300  & 2.5500 & 2.5500 & 2.5500 & 2.5492 & 2.0508 \\
+600  & 2.5500 & 2.5500 & 2.5500 & 2.5353 & 1.8770 \\
+900  & 2.5500 & 2.5500 & 2.5497 & 2.5045 & 1.7547 \\
+1200 & 2.5500 & 2.5500 & 2.5482 & 2.4646 & 1.6586 \\
+1500 & 2.5500 & 2.5499 & 2.5445 & 2.4206 & 1.5787 \\
+1800 & 2.5500 & 2.5497 & 2.5383 & 2.3755 & 1.5102 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+场上 $D(C)$ 的最小值约为 $3.883\times10^{-9}\,\mathrm{m^2/s}$，约为 $D(C_0)$ 的 $0.786$；表面处变 $D$ 与冻结 $D$ 的含水率差约为 $0.0419$。因此不能把冻结扩散系数的 Bessel 解当作本问水分答卷。内部接近初值处 $D$ 几乎不变，失水锋面由外向内推进。

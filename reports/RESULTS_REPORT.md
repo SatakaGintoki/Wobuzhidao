@@ -1,3 +1,5 @@
+> **2026-09-11收尾更新（优先于下方历史描述）**：当前版本q1-closeout-v1、q2-closeout-v1。正式数值与原q1-baseline-v2/q2-baseline-v1完全一致，下方表格继续有效；代码已修复失败导出、解析截断检查、第一问收支积分，补齐检查点并调整第二问图例。新验证值及状态见`Q12_CLOSEOUT_REPORT.md`和`results/q1_validation.json`、`q2_validation.json`。下方旧“早期解析差来自初边值不相容”“导出门禁待修”等描述属于历史记录，不是当前结论。
+
 # 计算结果
 
 由 `3coding-visual` 在已审核方案落地后填写。

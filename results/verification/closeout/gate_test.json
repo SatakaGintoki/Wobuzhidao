@@ -1,0 +1,12 @@
+{
+  "q1": {
+    "failure_cases_blocked": 13,
+    "valid_case_passed": true,
+    "all_production_writers_after_guard": true
+  },
+  "q2": {
+    "failure_cases_blocked": 12,
+    "valid_case_passed": true,
+    "all_production_writers_after_guard": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "q1": {
+    "table_cells_verified": 70,
+    "tables_match_npz_to_four_decimals": true,
+    "chapter_sha256": "11e33771cb0a179bec44ac77bc0af583471ca6dbb6cb0dd6e0566fc2bf67d5a9"
+  },
+  "q2": {
+    "table_cells_verified": 60,
+    "tables_match_npz_to_four_decimals": true,
+    "chapter_sha256": "595c8bdb0a58c0483032c02711d1f362bdfb2083b81a16f3255b6c19b4d773d4"
+  }
+}

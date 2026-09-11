@@ -1,9 +1,11 @@
+> **当前执行状态（2026-09-11）**：前两问收尾完成，当前交付q1-closeout-v1、q2-closeout-v1，技术核验及章节草稿见`reports/Q12_CLOSEOUT_REPORT.md`。排版沿用已选LaTeX/xelatex。下方早期“尚未求解”等句为历史记录，当前进度以`reports/STATE.md`为准；原plan快照已保存到`reports/archive/pre-closeout-20260911/plan.md`。
+
 # 方案
 
 先整体审核，再按当前问调用这些 skill。没有对应批准不得越过审核点。
 
 用户偏好：
-- 排版引擎：待正式排版前确定（引擎未定时先积累 Markdown 段落）
+- 排版引擎：LaTeX（xelatex）；国赛中文模板 `zh/cumcm-latex`，工作区入口 `paper/main.tex`
 - 竞赛类型：全国大学生数学建模竞赛
 - 论文语言：中文
 - 子问题数量：A题共4问
@@ -31,6 +33,8 @@ workflow:
 ## 环境
 
 本轮只读附件审计使用宿主Python：`C:/Users/chens/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe`，已实际运行openpyxl、numpy、pypdfium2读取与渲染。未安装新依赖。数值求解环境在逐问实施时按需检查。
+
+排版环境（2026-09-11）：用户选定 LaTeX / xelatex。编译器 `D:\MikTex\miktex\bin\x64\xelatex.exe`；写作阶段探测为 DETECTED。工作区模板为 `paper/main.tex`（`fontset=windows`），源模板仍在 `skills/5writing/templates/zh/cumcm-latex/`。逐问仍先积累 `paper/drafts/`，正式正文须等各问最终结果审核通过。
 
 ## 风险控制
 

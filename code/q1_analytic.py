@@ -7,6 +7,7 @@ import numpy as np
 from scipy.integrate import solve_ivp
 from scipy.optimize import brentq
 from scipy.special import j0, j1
+from scipy.sparse import diags
 
 
 def robin_eigenvalues(Bi: float, n_roots: int) -> np.ndarray:
@@ -89,6 +90,7 @@ class BesselDuhamel:
             (0.0, max(t_end, 1e-30)),
             I0,
             method="BDF",
+            jac=diags(-beta, format="csc"),
             rtol=1e-11,
             atol=1e-13,
             t_eval=t_eval,
@@ -103,3 +105,17 @@ class BesselDuhamel:
         out[zero] = u0
         out[~zero] = nonzero_vals
         return out
+
+
+def converged_reference(Bi, diffusivity, R, r, times, env, u0, start_terms=320, tolerance=1e-8):
+    """Double the modal truncation and explicitly check every requested point."""
+    previous = BesselDuhamel(Bi, diffusivity, R, start_terms).evaluate_many(r, times, env, u0)
+    history = []
+    for terms in (start_terms * 2, start_terms * 4, start_terms * 8):
+        current = BesselDuhamel(Bi, diffusivity, R, terms).evaluate_many(r, times, env, u0)
+        error = float(np.max(np.abs(current - previous)))
+        history.append({"terms": terms, "previous_terms": terms // 2, "max_abs_difference": error})
+        if np.isfinite(error) and error <= tolerance:
+            return current, {"passed": True, "tolerance": tolerance, "history": history, "terms": terms}
+        previous = current
+    return current, {"passed": False, "tolerance": tolerance, "history": history, "terms": terms}

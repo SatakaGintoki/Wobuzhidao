@@ -22,7 +22,8 @@ from appendix3 import (
     heat_capacity_deriv,
     moisture_diffusivity_q2,
 )
-from q1_analytic import BesselDuhamel
+from q1_analytic import BesselDuhamel, converged_reference
+from delivery import make_gate, require_delivery
 from radial_coupled import CoupledRadialFVM
 from radial_fvm import graded_radial_nodes
 from utils import (
@@ -253,7 +254,7 @@ def assert_physical(T_out, C_out, Ta_fun, Ca_fun) -> dict:
         "Ca_range": [Ca_min, float(np.max(Ca_fun.y))],
     }
     info["T_bounds_ok"] = info["T_below_28"] <= 1e-6 and info["T_above_Ta_max"] <= 1e-4
-    info["C_bounds_ok"] = info["C_above_C0"] <= 1e-8 and C_out.min() >= -1e-8
+    info["C_bounds_ok"] = info["C_above_C0"] <= 1e-8 and info["C_below_Ca_min"] <= 1e-8
     return info
 
 
@@ -322,7 +323,7 @@ def plot_figures(plt, fvm, times, Y, T_out, C_out, Ta_fun, Ca_fun):
     ax.set_xlabel("半径 $r$ (cm)")
     ax.set_ylabel("温度 $T$ (°C)")
     ax.set_xlim(0, 2)
-    ax.legend(frameon=False, ncol=2)
+    ax.legend(frameon=False, ncol=3, loc="lower center", bbox_to_anchor=(0.5, 1.02))
     fig.tight_layout()
     fig.savefig(FIGURES_DIR / "q2_T_profiles.pdf")
     plt.close(fig)
@@ -495,8 +496,7 @@ def main():
     print("frozen-D moisture probe")
     D_freeze = D0
     Bi_m = HM * R / D_freeze
-    moist_ref = BesselDuhamel(Bi=Bi_m, diffusivity=D_freeze, R=R, n_terms=80)
-    C_ref = moist_ref.evaluate_many(OUTPUT_RADII_M, times, Ca_fun, C0)
+    C_ref, moisture_truncation = converged_reference(Bi_m, D_freeze, R, OUTPUT_RADII_M, times, Ca_fun, C0)
     y0f = fvm.pack(np.full(fvm.n_nodes, T0), np.full(fvm.n_nodes, C0))
     atol = np.concatenate([np.full(fvm.n_nodes, atol_T), np.full(fvm.n_nodes, atol_C)])
     tf, Yf = integrate_coupled(fvm, y0f, T_END, Ta_fun, Ca_fun, rtol, atol, max_step, D_const=D_freeze)
@@ -521,37 +521,28 @@ def main():
     }
     print("D stats", D_stats)
 
-    bounds = assert_physical(pub["T_out"], pub["C_out"], Ta_fun, Ca_fun)
+    bounds = assert_physical(pub["Y_full"][:, :n], pub["Y_full"][:, n:], Ta_fun, Ca_fun)
     cons_C = conservation_moisture(fvm, pub["times_full"], pub["Y_full"], Ca_fun)
     cons_T = conservation_heat(fvm, pub["times_full"], pub["Y_full"], Ta_fun)
     print("bounds", bounds)
     print("conservation C", cons_C)
     print("conservation T", cons_T)
 
-    delivery = {
-        "paper_four_decimal_stable": paper_ok,
-        "abs_2e5": abs_ok,
-        "time_paper_stable": time_4dp["T"]["paper_changed_cells"] == 0 and time_4dp["C"]["paper_changed_cells"] == 0,
-        "meets_delivery_gate": bool(paper_ok and abs_ok and time_4dp["T"]["paper_changed_cells"] == 0 and time_4dp["C"]["paper_changed_cells"] == 0),
-    }
+    delivery = make_gate({
+        "space_abs": abs_ok,
+        "space_paper": paper_ok,
+        "all_finite": np.isfinite(pub["Y_full"]).all(),
+        "manufactured_solution": mms["T_max_abs"] <= 2e-5 and mms["C_max_abs"] <= 2e-5,
+        "time_abs": time_sens["T"]["max_abs"] <= 2e-5 and time_sens["C"]["max_abs"] <= 2e-5,
+        "time_paper": time_4dp["T"]["paper_changed_cells"] == 0 and time_4dp["C"]["paper_changed_cells"] == 0,
+        "temperature_bounds": bounds["T_bounds_ok"],
+        "moisture_bounds": bounds["C_bounds_ok"],
+        "moisture_reference_truncation": moisture_truncation["passed"],
+        "frozen_reference_error": frozen["max_abs"] <= 2e-5,
+        "heat_balance": cons_T["relative_residual"] <= 1e-6,
+        "moisture_balance": cons_C["relative_residual"] <= 1e-6,
+    })
     print("delivery", delivery)
-
-    np.savez(
-        RESULTS_DIR / "q2_solution.npz",
-        mesh_level=pub_level,
-        n_nodes=pub["n_nodes"],
-        times=times,
-        r=fvm.r,
-        T_out=pub["T_out"],
-        C_out=pub["C_out"],
-        interpolation=np.array(Ta_fun.kind),
-        rtol=rtol, atol_T=atol_T, atol_C=atol_C, max_step=max_step,
-    )
-    write_result_workbook(RESULTS_DIR / "result2.xlsx", pub["T_out"], pub["C_out"], times)
-    write_paper_csv(RESULTS_DIR / "q2_table_temperature.csv", pub["T_out"], times)
-    write_paper_csv(RESULTS_DIR / "q2_table_moisture.csv", pub["C_out"], times)
-    plt = setup_mpl()
-    plot_figures(plt, fvm, times, pub["Y"], pub["T_out"], pub["C_out"], Ta_fun, Ca_fun)
 
     paper_T = {f"h{th:g}_r{rc:g}": float(pub["T_out"][int(t) - 1, int(round(rc / 0.1))])
                for th, t in zip(TABLE_HOURS, TABLE_TIMES) for rc in TABLE_RADII_CM}
@@ -559,7 +550,7 @@ def main():
                for th, t in zip(TABLE_HOURS, TABLE_TIMES) for rc in TABLE_RADII_CM}
 
     validation = {
-        "result_version": "q2-baseline-v1",
+        "result_version": "q2-closeout-v1",
         "interpolation": Ta_fun.kind,
         "published_mesh": pub["tag"],
         "published_n_nodes": pub["n_nodes"],
@@ -572,6 +563,7 @@ def main():
         "time_sensitivity": time_sens,
         "four_decimal_time": time_4dp,
         "delivery_gate": delivery,
+        "reference_truncation_C": moisture_truncation,
         "frozen_D_moisture_vs_analytic": frozen,
         "nonlinear_C_vs_frozen_D": nl_vs_frozen,
         "D_variation": D_stats,
@@ -584,14 +576,35 @@ def main():
         "python": sys.version,
         "end_face_2d": "skipped_by_plan",
     }
+    require_delivery(validation, RESULTS_DIR / "diagnostics/q2_delivery/latest.json")
+    np.savez(
+        RESULTS_DIR / "q2_solution.npz",
+        mesh_level=pub_level,
+        n_nodes=pub["n_nodes"],
+        times=times,
+        r=fvm.r,
+        output_radii_m=OUTPUT_RADII_M,
+        checkpoint_times=np.r_[0., 1., 60., 100., TABLE_TIMES],
+        T_checkpoints=pub["Y_full"][np.r_[0., 1., 60., 100., TABLE_TIMES].astype(int), :n],
+        C_checkpoints=pub["Y_full"][np.r_[0., 1., 60., 100., TABLE_TIMES].astype(int), n:],
+        T_out=pub["T_out"],
+        C_out=pub["C_out"],
+        interpolation=np.array(Ta_fun.kind),
+        rtol=rtol, atol_T=atol_T, atol_C=atol_C, max_step=max_step,
+    )
+    write_result_workbook(RESULTS_DIR / "result2.xlsx", pub["T_out"], pub["C_out"], times)
+    write_paper_csv(RESULTS_DIR / "q2_table_temperature.csv", pub["T_out"], times)
+    write_paper_csv(RESULTS_DIR / "q2_table_moisture.csv", pub["C_out"], times)
+    plt = setup_mpl()
+    plot_figures(plt, fvm, times, pub["Y"], pub["T_out"], pub["C_out"], Ta_fun, Ca_fun)
+
     (RESULTS_DIR / "q2_validation.json").write_text(
         json.dumps(validation, ensure_ascii=False, indent=2, default=float),
         encoding="utf-8",
     )
     print("elapsed_s", validation["elapsed_s"])
     print("wrote results to", RESULTS_DIR)
-    if not delivery["meets_delivery_gate"]:
-        print("WARNING: delivery gate not met; files are a candidate only")
+
 
 
 if __name__ == "__main__":
