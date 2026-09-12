@@ -1,0 +1,6 @@
+numpy
+scipy
+openpyxl
+matplotlib
+pypdfium2
+pillow

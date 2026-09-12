@@ -214,3 +214,8 @@
 - 材料：reports/Q3_VERIFY_REPORT.md、reports/STATE.md、results/q3_validation.json、q3_closeout_delivery_validation.json、result3.xlsx及results/diagnostics/q3_closeout/。旧基线及哈希保存在results/archive/q3-pre-closeout-20260911/，旧门禁失败交付不能作为当前验收依据。
 - 影响：第三问生产网格和精确报告时间更新；旧G4到G8临界时间提前约2.36 s，共同Excel水分最大变化4.0680e-6，常规表5四位不变。第一、二、四问受保护文件哈希保持不变；第四问独立求解，无需因本次收尾重算。论文正文及Overleaf包未改，来源索引已更新。
 - 四问当前数值技术状态均PASS，采纳均PENDING。下一步为用户审阅已有结果；写作暂停，创新选型继续暂缓。
+
+
+## 2026-09-12 全文写作授权与交付
+
+用户明确要求整体查看现有工作，并根据模型建立与公式推导写成条理清晰、符合国赛标准的论文，随后回复继续。本次据此恢复并完成全文写作。新稿独立存放paper/guosai2026，原论文与数值结果保留；不将写作授权另记为历史数值结果已被用户采纳。详见PAPER_REVIEW_20260912.md。

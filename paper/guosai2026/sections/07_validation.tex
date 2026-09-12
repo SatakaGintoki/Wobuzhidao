@@ -1,0 +1,85 @@
+\section{模型检验与误差分析}
+\subsection{水分收支与有效热方程检验}
+固定域对半离散方程求和，内部通量相消，得到
+\begin{equation}\label{eq_mass_fixed}
+\sum_iW_i[C_i(t)-C_i(0)]
+=-Rh_m\int_0^t[C_s(\tau)-C_a(\tau)]\dd\tau.
+\end{equation}
+式\eqref{eq_mass_fixed}以统一参考干密度归一化，未乘干密度和长度时不能直接标为失水质量kg。收缩域则使用式\eqref{eq_mass_shrink}，累计表面通量在BDF接受步区间上积分。
+
+问题一热容量恒定，总有效蓄热增量应与累计对流输入一致。问题二、三则令
+\[
+E(t)=2\pi L\sum_iW_iB(C_i)(T_i-T_0),
+\]
+由式\eqref{eq_B_identity}推导
+\begin{equation}\label{eq_heat_check}
+\begin{split}
+E(t)-E(0){}-&2\pi L\int_0^t\sum_iW_iB'(C_i)(T_i-T_0)\dot C_i\dd\tau\\
+&=2\pi LRh\int_0^t(T_a-T_s)\dd\tau.
+\end{split}
+\end{equation}
+式\eqref{eq_heat_check}中的组成修正项不能省略。相对残差以收支两侧之差的绝对值除以相应累计交换量的尺度计算；接近零时设正的小量下限。问题三在连续解各接受步上采用4点、8点Gauss积分对照，避免用60 s输出样本的粗梯形积分代替高精度轨迹积分。
+
+现有计算的收支残差见表\ref{tab_balance}。第四问的热量检查限定为加权半离散热方程残差及温度收敛，不套用固定几何下的累计储量公式。
+\begin{table}[htbp]\centering\small
+\caption{各问收支检验；相对残差仅针对所选有效模型}\label{tab_balance}
+\begin{tabular}{cccc}\toprule
+问题 & 水分相对残差 & 有效热收支相对残差 & 检验范围\\\midrule
+一 & $2.4254\times10^{-11}$ & $2.0484\times10^{-9}$ & 0至1800 s\\
+二 & $4.312\times10^{-7}$ & $3.565\times10^{-8}$ & 0至10800 s\\
+三 & $4.0221\times10^{-11}$ & $3.6640\times10^{-8}$ & 至报告时刻\\
+四 & $4.0558\times10^{-9}$ & 不作同类累计比较 & 生产计算至72 h\\\bottomrule
+\end{tabular}
+\end{table}
+残差较小支持离散通量与所选方程的一致性，不验证潜热、相平衡或端面简化的真实物理误差。
+
+\subsection{空间与时间加密}
+对固定域共享节点、收缩域共享材料节点，在相同物理时刻比较温度和含水率。每个比较量定义为$\max_{i,j}|u^{(a)}_i(t_j)-u^{(b)}_i(t_j)|$。表\ref{tab_convergence}列出各问主要空间、时间比较值，温度和含水率分别按自身单位评价，不将二者合成无量纲误差。
+\begin{table}[htbp]\centering\small
+\caption{主要网格与时间加密差异}\label{tab_convergence}
+\begin{tabular}{clrrrr}\toprule
+问题 & 空间比较 & $\Delta T_{\rm space}$ & $\Delta C_{\rm space}$ & $\Delta T_{\rm time}$ & $\Delta C_{\rm time}$\\
+ & & $^\circ$C & kg/kg & $^\circ$C & kg/kg\\\midrule
+一 & $G_4/G_8$ & $5.895\!\times\!10^{-7}$ & $4.564\!\times\!10^{-6}$ & $2.874\!\times\!10^{-8}$ & $1.179\!\times\!10^{-9}$\\
+二 & $G_2/G_4$ & $2.452\!\times\!10^{-6}$ & $1.493\!\times\!10^{-5}$ & $4.108\!\times\!10^{-7}$ & $2.381\!\times\!10^{-8}$\\
+三 & $G_8/G_{16}$ & $9.545\!\times\!10^{-7}$ & $1.537\!\times\!10^{-5}$ & $1.002\!\times\!10^{-6}$ & $7.716\!\times\!10^{-9}$\\
+四 & $G_8/G_{16}$ & $1.012\!\times\!10^{-5}$ & $8.681\!\times\!10^{-7}$ & $1.188\!\times\!10^{-5}$ & $6.383\!\times\!10^{-8}$\\\bottomrule
+\end{tabular}
+\end{table}
+第一、二问比较全部规定输出点；第三、四问还比较内部共享节点。第四问共享节点比较覆盖用于验证的72 h轨迹。上述数值是相邻计算配置之间的差，不是已知真解误差。第二问另有$G_4/G_8$独立复核，温度、含水率最大差分别为$6.244\times10^{-7}$ $^\circ$C、$3.732\times10^{-6}$ kg/kg。
+
+第三问的$G_4/G_8$内部水分最大差为$6.2693\times10^{-5}$ kg/kg，超过所取$2\times10^{-5}$的数值比较目标，因此采用$G_8$生产。第四问$G_4/G_8$在36 h、1.0 cm处跨越四位舍入边界，采用$G_8$并以$G_{16}$复核后，题定表格有效单元格四位稳定。可见时长稳定与表格显示稳定应分别检查。
+
+临界时间对照见表\ref{tab_event_convergence}。第三问空间加密临界时间差为0.585132 s，时间收紧差为$1.7506\times10^{-5}$ s；第四问对应为0.113486 s和0.002883 s。六张题定结果表在相应空间及时间检验下四位一致，但部分Excel单元格可能恰处于舍入边界，不能据此声称所有输出的第四位已完全冻结。
+\begin{table}[htbp]\centering\small
+\caption{不同计算配置下的临界烘干时间（h）}\label{tab_event_convergence}
+\begin{tabular}{crr}\toprule
+配置 & 问题三 & 问题四\\\midrule
+$G_4$ & 57.4731739851 & 51.0872487284\\
+$G_8$ & 57.4725195022 & 51.0871229810\\
+$G_{16}$ & 57.4723569654 & 51.0870914570\\
+$G_8$时间收紧 & 57.4725194974 & 51.0871221801\\\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{独立对照与输出一致性}
+问题一的Bessel--Duhamel温度对照及冻结扩散系数辅助测试见第\ref{sec_q1_validation}节。问题二在短时制造解测试中保留变系数导数项，温度和含水率最大误差分别为$6.0949\times10^{-8}$ $^\circ$C和$8.9808\times10^{-9}$ kg/kg。制造解用于检验实现，不是药材实验数据。
+
+第三问与第二问在1800、3600、7200、9000 s的重叠输出比较中，温度、水分最大差分别为$4.66\times10^{-7}$ $^\circ$C和$9.12\times10^{-7}$ kg/kg，支持独立起算的两个过程在共享区间内一致。第四问则采用同一附录4物性的固定半径退化检查及关闭边界交换的纯收缩检查，不把附录3结果直接作为附录4的退化参照。
+
+输出环节保持源数组、论文表格和Excel来自同一状态。数值非有限、含水率越界、必需收支或收敛检查失败时，程序阻断正式文件写入。第三问另存准确终时，第四问逐行核对当前半径、域外空白与移动表面。这些检查服务于结果可追溯性，不替代模型的物理验证。
+
+\subsection{局部敏感性与适用边界}
+式\eqref{eq_logD}给出扩散系数对状态变量的局部敏感性。在$T=50\ ^\circ$C、$C=0.15$时，问题三有
+\[
+\frac{\partial\ln D}{\partial T}\approx0.0369\ \mathrm{K^{-1}},\qquad
+\frac{\partial\ln D}{\partial C}=20\ \mathrm{(kg/kg)^{-1}}.
+\]
+因而在固定其他状态的一阶近似下，升温1 $^\circ$C对应局部$D$约3.69\%的相对变化；该结论不能直接等同于烘干时长变化3.69\%。问题四对应$\partial\ln D/\partial U=0.30/U^2$，在阈值处为13.3333 $(\mathrm{kg/kg})^{-1}$。材料域扩散系数前的几何因子满足$\partial\ln(R^{-2})/\partial\ln R=-2$，可说明局部方程中的几何敏感方向，不能代替全过程几何对照。
+
+若事件附近最大值位置不变且$M'(t_*)\ne0$，一阶扰动给出
+\begin{equation}\label{eq_event_sensitivity}
+\delta t_*\approx-\frac{\delta M(t_*)}{M'(t_*)}.
+\end{equation}
+式\eqref{eq_event_sensitivity}说明后期曲线越平缓，相同含水率误差可能造成越大的时间偏差，因而必须直接检验事件时间收敛。本文完成的是解析局部敏感性和数值配置加密；未实施后期环境或经验参数的独立扰动实验，不对其全局稳健性作量化保证。
+\FloatBarrier

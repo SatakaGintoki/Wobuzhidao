@@ -1,0 +1,134 @@
+\section{问题一：预热阶段的径向热湿传递}
+\subsection{由环层收支建立控制方程}
+取半径$r$至$r+\dd r$、长度$L$的圆柱环层，以向外为正方向，Fourier定律给出热流密度$q=-kT_r$。根据假设（1）至（3），环层蓄热等于净流入热量，即
+\[
+\rho c_p(2\pi rL\dd r)T_t=-\partial_r(2\pi rLq)\dd r.
+\]
+约去公共几何因子，得到
+\begin{equation}\label{eq_heat1}
+\rho c_p T_t=\frac1r\partial_r(rkT_r),\qquad 0<r<R.
+\end{equation}
+问题一取$\rho=820$ kg/m$^3$、$c_p=2600$ J/(kg$\cdot$K)、$k=0.36$ W/(m$\cdot$K)，所以式\eqref{eq_heat1}可写为$T_t=\alpha(T_{rr}+T_r/r)$。
+
+含水率$C$是单位干物质质量所含的水质量。按假设（5），令参考干物质密度为常数$s_0$，水质量浓度为$s_0C$，相对扩散通量为$j=-s_0D(C)C_r$。环层水分收支为
+\[
+s_0(2\pi rL\dd r)C_t=-\partial_r(2\pi rLj)\dd r.
+\]
+消去$s_0$与几何因子后得到
+\begin{equation}\label{eq_moist1}
+C_t=\frac1r\partial_r\!\left[rD(C)C_r\right],\qquad
+D(C)=7\times10^{-9}\exp\!\left(-\frac{0.89}{C}\right).
+\end{equation}
+式\eqref{eq_moist1}中$D$的单位为m$^2$/s。其展开形式为
+\[
+C_t=D(C)\left(C_{rr}+\frac{C_r}{r}\right)+D'(C)(C_r)^2,
+\qquad D'(C)=\frac{0.89D(C)}{C^2}.
+\]
+可见把$D$移到散度算子外会漏掉梯度平方项。实际计算保留式\eqref{eq_moist1}的通量形式。此时热方程不依赖$C$、水分方程不依赖$T$，两场在所选假设下相互独立。
+
+\subsection{初始条件与交换边界}
+题给均匀初值与中心对称条件为
+\begin{equation}\label{eq_initial}
+T(r,0)=28,quad C(r,0)=2.55;\qquad
+T_r(0,t)=C_r(0,t)=0.
+\end{equation}
+由假设（4），外表面取Robin边界
+\begin{equation}\label{eq_robin}
+\begin{aligned}
+-kT_r(R,t)&=h\,[T_s-T_a(t)],\\
+-D(C_s)C_r(R,t)&=h_m\,[C_s-C_a(t)].
+\end{aligned}
+\end{equation}
+式\eqref{eq_robin}保留了药材表面与烘房之间的差异：$T_a>T_s$时向外热流为负，表示热量进入药材；$C_s>C_a$时水分向外迁移。表面值由方程求解，不能直接设为环境值。式\eqref{eq_initial}的中心对称条件也不等同于把中心固定在初始状态。
+
+均匀初始水分使表面初始梯度为零，而交换边界在接触烘房后立即产生失水通量，二者在$t=0$角点不相容。本文保留题给初值，在$t>0$施加表面交换，求得初始表面层的瞬态发展，并把前1 s的表面结果纳入网格检验。
+
+\subsection{表面加密网格与有限体积离散}
+为同时保留题目输出位置和表面薄层，将$[0,0.02]$ m分为20个宽0.001 m的基本区间。第$j$个区间（$j=0,\ldots,19$）再等分为$mb_j$份，其中
+\begin{equation}\label{eq_grid}
+b_j=\begin{cases}
+8,&0\le j\le14,\\16,&15\le j\le17,\\32,&j=18,\\64,&j=19.
+\end{cases}
+\qquad r_{j,\ell}=0.001\left(j+\frac{\ell}{mb_j}\right).
+\end{equation}
+去除相邻区间重复端点后，网格$G_m$共有$264m+1$个节点。因此$G_2,G_4,G_8,G_{16}$分别有529、1057、2113、4225个节点。式\eqref{eq_grid}使0、0.1、$\ldots$、2.0 cm均为实际节点；问题一采用$G_8$，最小表面间距为$1.953125\times10^{-6}$ m。
+
+设全部节点依次为$r_i$（$i=0,\ldots,N$），内部面为$r_{i+1/2}=(r_i+r_{i+1})/2$。控制体左右端点为$a_i,b_i^*$，中心端取0、表面端取$R$，定义
+\begin{equation}\label{eq_weights}
+W_i=\int_{a_i}^{b_i^*}r\dd r=\frac{(b_i^*)^2-a_i^2}{2},
+\qquad \sum_{i=0}^NW_i=\frac{R^2}{2}.
+\end{equation}
+真实控制体体积为$2\pi LW_i$。在内部面上采用相邻节点的调和平均系数，得到已乘半径的向外通量
+\begin{equation}\label{eq_flux}
+\begin{aligned}
+F^T_{i+1/2}&=-r_{i+1/2}k\frac{T_{i+1}-T_i}{r_{i+1}-r_i},\\
+F^C_{i+1/2}&=-r_{i+1/2}\frac{2D_iD_{i+1}}{D_i+D_{i+1}}
+\frac{C_{i+1}-C_i}{r_{i+1}-r_i}.
+\end{aligned}
+\end{equation}
+中心外侧虚拟面通量取零，表面通量直接取$Rh(T_N-T_a)$、$Rh_m(C_N-C_a)$。对式\eqref{eq_heat1}和式\eqref{eq_moist1}作控制体积分，并用节点状态近似体平均，得到
+\begin{equation}\label{eq_fvm}
+\rho c_pW_i\dot T_i=F^T_{i-1/2}-F^T_{i+1/2},\qquad
+W_i\dot C_i=F^C_{i-1/2}-F^C_{i+1/2}.
+\end{equation}
+式\eqref{eq_weights}至式\eqref{eq_fvm}使同一内部面通量在相邻控制体中以相反符号出现，求和后仅保留外边界通量。
+
+中心不直接计算$1/r$。若第一个节点间距为$\delta=r_1-r_0$，则$W_0=\delta^2/8$，由式\eqref{eq_flux}可得
+\[
+\dot T_0=\frac{4\alpha}{\delta^2}(T_1-T_0),\qquad
+\dot C_0=\frac{4D_{1/2}}{\delta^2}(C_1-C_0).
+\]
+圆柱中心系数为4，区别于平板中心离散。表面控制体则满足
+\[
+\begin{aligned}
+\rho c_pW_N\dot T_N&=\frac{r_{N-1/2}k}{r_N-r_{N-1}}(T_{N-1}-T_N)+Rh(T_a-T_N),\\
+W_N\dot C_N&=\frac{r_{N-1/2}D_{N-1/2}}{r_N-r_{N-1}}(C_{N-1}-C_N)-Rh_m(C_N-C_a).
+\end{aligned}
+\]
+表面节点保留蓄积项，避免用靠近表面的内部节点替代真实表面。
+
+\subsection{隐式推进与Bessel--Duhamel核验}
+空间离散后形成常微分方程$\dot{\boldsymbol y}=\boldsymbol f(t,\boldsymbol y)$。表面间距较小使系统具有刚性，因此采用隐式变阶BDF及稀疏雅可比结构求解~\cite{bdf}。以等步长二阶公式说明其隐式形式，
+\[
+\frac{3\boldsymbol y^{n+1}-4\boldsymbol y^n+\boldsymbol y^{n-1}}{2\Delta t}
+=\boldsymbol f(t_{n+1},\boldsymbol y^{n+1}).
+\]
+实际实现采用变步长、变阶积分，而非固定使用上式。非线性含水率场在迭代中更新$D$。问题一相对容差为$10^{-10}$，温度与含水率绝对容差分别为$10^{-10}$、$10^{-12}$，最大步长0.5 s；整秒仅为输出时刻。
+
+常热物性允许独立构造温度参考解。先考虑环境恒为$T_f$的情况，令$u=T-T_f=X(r)G(t)$，分离变量后径向方程为
+\[
+r^2X''+rX'+\lambda^2\frac{r^2}{R^2}X=0.
+\]
+中心有界性排除第二类Bessel函数，故$X(r)=J_0(\lambda r/R)$。表面Robin条件给出特征方程
+\begin{equation}\label{eq_bessel}
+\lambda_nJ_1(\lambda_n)=\mathrm{Bi}\,J_0(\lambda_n),\qquad
+\mathrm{Bi}=\frac{hR}{k}.
+\end{equation}
+以$r$为权展开均匀初值，模态系数为
+\[
+A_n=\frac{\int_0^1xJ_0(\lambda_nx)\dd x}{\int_0^1xJ_0^2(\lambda_nx)\dd x}
+=\frac{2J_1(\lambda_n)}{\lambda_n[J_0^2(\lambda_n)+J_1^2(\lambda_n)]}.
+\]
+由式\eqref{eq_bessel}得恒定环境解
+\[
+T(r,t)=T_f+(28-T_f)\sum_{n=1}^{\infty}A_nJ_0(\lambda_nr/R)
+e^{-\beta_nt},\qquad\beta_n=\alpha\lambda_n^2/R^2.
+\]
+对PCHIP环境应用Duhamel叠加，由$T_a(0)=28$得到
+\begin{equation}\label{eq_duhamel}
+\begin{aligned}
+T(r,t)&=T_a(t)-\sum_{n=1}^{\infty}A_nJ_0(\lambda_nr/R)I_n(t),\\
+I_n(t)&=\int_0^te^{-\beta_n(t-\tau)}T_a'(\tau)\dd\tau,
+\quad \dot I_n=-\beta_nI_n+T_a'(t),\quad I_n(0)=0.
+\end{aligned}
+\end{equation}
+式\eqref{eq_duhamel}通过独立模态ODE计算。级数从480项增至960项的最大变化为$2.7632\times10^{-9}$ $^\circ$C，960项参考解与有限体积输出的最大温度差为$2.1547\times10^{-7}$ $^\circ$C。水分仅在冻结$D$的测试问题中使用同类解析展开，实际结果仍采用式\eqref{eq_moist1}。
+
+\subsection{计算结果与分析}
+表\ref{tab_q1T}、表\ref{tab_q1C}给出题目要求的温度和含水率，图\ref{fig_q1}展示径向分布。至1800 s，表面温度36.7879 $^\circ$C仍低于环境41.5130 $^\circ$C，中心升至33.5758 $^\circ$C，说明有限表面换热与内部导热共同形成温度滞后。
+\input{tables/q1T}
+\input{tables/q1C}
+\figpair{q1_T_profiles.pdf}{q1_C_profiles.pdf}{预热阶段温度与含水率径向剖面。外层先升温、先失水，中心含水率在30 min内变化很小；不同曲线对应题定输出时刻。}{fig_q1}
+
+末时刻中心含水率未舍入值为2.5499924 kg/kg，四位显示为2.5500；表面已降至1.5102 kg/kg，形成明显水分梯度。这不是把中心设为恒定水源的结果，而是初期水分尚未充分向外迁移。实际$D$由初始$4.9377\times10^{-9}$降至局部最小$3.8830\times10^{-9}$ m$^2$/s；与冻结初始$D$的解相比，含水率最大差达到0.0419 kg/kg，故冻结扩散系数不能替代本问正式结果。
+\FloatBarrier

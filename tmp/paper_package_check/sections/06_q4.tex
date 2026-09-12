@@ -1,0 +1,97 @@
+\section{问题四：给定径向收缩的移动边界模型}
+\subsection{由干物质守恒推导材料运动}
+问题四同时给出了半径变化和一套新的经验物性，不能仅把问题三的固定半径替换为末时半径。Brasiello等研究了食品干燥的非等温移动边界模型~\cite{brasiello2021}，将收缩与传热传质联系起来。本文直接利用附件2构造已知$R(t)$，按假设（2）取比例径向收缩速度
+\begin{equation}\label{eq_velocity}
+v(r,t)=\frac{\dot R(t)}{R(t)}r.
+\end{equation}
+外半径数据本身不能唯一确定内部运动，式\eqref{eq_velocity}是用于闭合速度场的假设。
+
+设$s(r,t)$为单位当前体积的干物质质量，$j$为相对固体骨架的向外水质量通量。干物质不流失时，干物质与水质量分别满足
+\begin{equation}\label{eq_solid_water}
+\begin{aligned}
+s_t+\frac1r\partial_r(rsv)&=0,\\
+\partial_t(sC)+\frac1r\partial_r[r(sCv+j)]&=0,\qquad j=-sD(C,T)C_r.
+\end{aligned}
+\end{equation}
+将第二式展开，减去第一式乘以$C$，得到
+\begin{equation}\label{eq_material_C}
+C_t+vC_r=\frac1{sr}\partial_r(rsDC_r).
+\end{equation}
+初始$s$均匀时，将式\eqref{eq_velocity}代入干物质方程，可得
+\begin{equation}\label{eq_s_density}
+\dot s+2\frac{\dot R}{R}s=0,\qquad
+s(t)=s_0\left[\frac{R_0}{R(t)}\right]^2.
+\end{equation}
+因此$s$保持空间均匀，可从式\eqref{eq_material_C}的空间散度中约去。式\eqref{eq_solid_water}至式\eqref{eq_s_density}说明，纯收缩不会改变同一材料单元的水质量与干物质质量之比；对干基含水率直接添加$-C\nabla\cdot v$项会重复计算几何变化。
+
+\subsection{材料坐标变换与控制方程}
+定义固定区间上的材料坐标和状态
+\begin{equation}\label{eq_xi}
+\xi=\frac{r}{R(t)},\quad
+U(\xi,t)=C(R(t)\xi,t),\quad
+\Theta(\xi,t)=T(R(t)\xi,t),\qquad 0\le\xi\le1.
+\end{equation}
+由链式法则，$U_t=C_t+\xi\dot R C_r=C_t+vC_r$，且$C_r=U_\xi/R$。式\eqref{eq_material_C}于是变为
+\begin{equation}\label{eq_shrink}
+\boxed{\begin{aligned}
+U_t&=\frac1{R(t)^2\xi}\partial_\xi[\xi D(U,\Theta)U_\xi],\\
+B(U)\Theta_t&=\frac1{R(t)^2\xi}\partial_\xi[\xi k(U)\Theta_\xi].
+\end{aligned}}
+\end{equation}
+材料运动与坐标网格同步，使显式对流项抵消。式\eqref{eq_shrink}的热方程是前述有效传热近似在材料坐标下的表达，不由水质量守恒自动推出，也未包含收缩机械功或完整水分携焓。
+
+本问全部物性改为附录4经验式：
+\begin{equation}\label{eq_prop4}
+\begin{aligned}
+\rho(U)&=760+90U,&c_p(U)&=1850+2150\frac{U}{1+U},\\
+k(U)&=0.12+0.20\frac{U}{1+U},&&\\[-3pt]
+D(U,\Theta)&=4.2\times10^{-4}\exp\!\left(-\frac{0.30}{U}\right)
+\exp\!\left[-\frac{3850}{\Theta+273.15}\right].&&
+\end{aligned}
+\end{equation}
+将式\eqref{eq_prop4}与$R(0)=0.02$ m、$U(\xi,0)=2.55$、$\Theta(\xi,0)=28$共同使用。中心仍取$U_\xi(0,t)=\Theta_\xi(0,t)=0$；外表面为
+\begin{equation}\label{eq_shrink_boundary}
+-\frac{D_s}{R}U_\xi(1,t)=h_m(U_s-C_a),\qquad
+-\frac{k_s}{R}\Theta_\xi(1,t)=h(\Theta_s-T_a).
+\end{equation}
+式\eqref{eq_xi}至式\eqref{eq_shrink_boundary}共同保留了内部扩散的$R^{-2}$与边界梯度的$R^{-1}$，不能只改控制方程而遗漏边界尺度。
+
+\subsection{固定材料网格上的求解与物理输出}
+将问题一的$G_8$节点除以$R_0$得到固定材料节点$\xi_i$，令内部面$\xi_{i+1/2}=(\xi_i+\xi_{i+1})/2$，径向权重$w_i=(\xi_{i+1/2}^2-\xi_{i-1/2}^2)/2$，端点按0和1截取。记
+\[
+\widehat F^C_{i+1/2}=-\xi_{i+1/2}D_{i+1/2}
+\frac{U_{i+1}-U_i}{\xi_{i+1}-\xi_i},\qquad
+\widehat F^T_{i+1/2}=-\xi_{i+1/2}k_{i+1/2}
+\frac{\Theta_{i+1}-\Theta_i}{\xi_{i+1}-\xi_i}.
+\]
+表面通量分别取$Rh_m(U_N-C_a)$与$Rh(\Theta_N-T_a)$。半离散方程为
+\begin{equation}\label{eq_shrink_fvm}
+R^2w_i\dot U_i=\widehat F^C_{i-1/2}-\widehat F^C_{i+1/2},\quad
+R^2w_iB_i\dot\Theta_i=\widehat F^T_{i-1/2}-\widehat F^T_{i+1/2}.
+\end{equation}
+式\eqref{eq_shrink_fvm}使用2113个材料节点，BDF相对容差为$10^{-8}$，温度与含水率绝对容差分别为$10^{-8}$、$10^{-10}$；前4 h最大步长10 s，其后60 s。环境切换处分段，过程状态连续。以全部材料节点的最大含水率定位事件，并在细网格和时间收紧解上核验同一报告时刻。
+
+题目要求的是当前物理距离。对每个$r_j\le R(t)$，先求$\xi_j=r_j/R(t)$，再对材料网格上的$U$作保形插值；固定$r_j>R(t)$的位置已在药材外，单元格留空。表面始终使用$\xi=1$的实际节点并单列，不能用固定的2 cm列表示移动表面。
+
+\subsection{烘干时长与径向含水率}
+生产解临界时刻为51.0871229810 h。程序在生产、空间加密和时间收紧解的最晚临界时刻之后增加2 s，再向上选择四位小时报告值，并复核三组未舍入最大值。最终得到
+\begin{equation}\label{eq_q4_answer}
+\boxed{t_{\mathrm{rep},4}=51.0877\ \mathrm h=183915.72\ \mathrm s.}
+\end{equation}
+式\eqref{eq_q4_answer}对应最大含水率为0.1499989333 kg/kg，最大值位于中心，当前半径为1.2000 cm，位于附件2的72 h覆盖范围内，无需半径外推。表\ref{tab_q4C}为题目要求的结果，图\ref{fig_q4}同时展示含水率历程与当前物理半径剖面。
+\input{tables/q4C}
+\figpair{q4_C_history.pdf}{q4_C_profiles.pdf}{收缩模型的含水率变化。左图为中心和表面历程；右图以当前物理半径绘制剖面，曲线右端随收缩移动，始终对应真实表面。}{fig_q4}
+
+表\ref{tab_q4C}各列含水率单位均为kg/kg，空白表示该固定距离已超出当时半径；附加的$R(t)$列用于明确表面位置。终时中心四位显示为0.1500，与问题三相同，应结合未舍入最大值理解严格达标条件。
+
+第四问比第三问的报告时长减少6.3854 h，约为第三问的11.11\%。这个差异同时包含附录3变为附录4以及几何收缩两项改变，不能据此认定收缩单独使时长减少11.11\%。若要分离二者作用，需要另作相同物性下固定域与收缩域的对照，本文不将尚未完成的对照写成结论。
+
+\subsection{收缩过程的干基收支}
+按式\eqref{eq_s_density}，干物质总量$M_d=s_0\pi R_0^2L$保持不变，水质量满足
+\begin{equation}\label{eq_mass_shrink}
+\frac{M_w}{M_d}=2\int_0^1U\xi\dd\xi,\qquad
+\frac{\dd}{\dd t}\left(\frac{M_w}{M_d}\right)
+=-\frac{2h_m}{R(t)}[U_s-C_a(t)].
+\end{equation}
+式\eqref{eq_mass_shrink}由材料域方程积分并使用表面条件得到，可不指定未知$s_0$而检验归一化水分收支。关闭边界交换时，均匀初始含水率在纯收缩下保持不变；令$R$为常数时，模型退化为采用同一附录4物性的固定域方程。两种退化测试均与现有程序结果一致。
+\FloatBarrier

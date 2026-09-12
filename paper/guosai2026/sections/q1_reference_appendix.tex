@@ -1,0 +1,47 @@
+\section*{附录C\quad 问题一温度参考解的推导}
+
+本附录补充第\ref{sec_q1_validation}节温度参考解的构造过程。先求恒定环境下的阶跃响应，再对环境温度的连续变化进行叠加。
+
+当烘房温度恒为$T_f$时，令$u(r,t)=T(r,t)-T_f$，取分离变量形式$u=X(r)G(t)$。将其代入常热物性导热方程，得到
+\[
+\frac{G'}{\alpha G}=\frac{X''+X'/r}{X}
+=-\frac{\lambda^2}{R^2}.
+\]
+时间部分为$G(t)=\exp(-\alpha\lambda^2t/R^2)$，径向部分满足
+\[
+r^2X''+rX'+\lambda^2\frac{r^2}{R^2}X=0.
+\]
+该方程为零阶Bessel方程。中心有界性排除第二类Bessel函数，取$X(r)=J_0(\lambda r/R)$。由$J_0'=-J_1$，将其代入表面条件$-ku_r(R,t)=hu(R,t)$，即得正文式\eqref{eq_bessel}。
+
+以$r$为权展开均匀初始温差$28-T_f$。令$x=r/R$，利用径向模态的正交性，得到
+\[
+A_n=\frac{\int_0^1xJ_0(\lambda_nx)\dd x}
+{\int_0^1xJ_0^2(\lambda_nx)\dd x}
+=\frac{2J_1(\lambda_n)}{\lambda_n[J_0^2(\lambda_n)+J_1^2(\lambda_n)]}.
+\]
+因此，恒定环境下的解为
+\[
+T(r,t)=T_f+(28-T_f)\sum_{n=1}^{\infty}
+A_nJ_0(\lambda_nr/R)e^{-\beta_nt},
+\qquad\beta_n=\alpha\lambda_n^2/R^2.
+\]
+
+对随时间变化的$T_a(t)$，利用热方程的线性性，将环境变化分解为一系列微小阶跃。单位环境阶跃的温度响应为
+\[
+H(r,t)=1-\sum_{n=1}^{\infty}A_nJ_0(\lambda_nr/R)e^{-\beta_nt}.
+\]
+由$T_a(0)=28$及Duhamel叠加，有
+\[
+T_{\mathrm{ref}}(r,t)=28+\int_0^tH(r,t-\tau)T_a'(\tau)\dd\tau.
+\]
+代入$H$并利用$\int_0^tT_a'(\tau)\dd\tau=T_a(t)-28$，即可得到正文式\eqref{eq_duhamel}。
+
+计算中对PCHIP插值函数求导。各阶卷积积分记为
+\[
+I_n(t)=\int_0^te^{-\beta_n(t-\tau)}T_a'(\tau)\dd\tau,
+\]
+对时间求导可将其改写为相互独立的模态常微分方程
+\[
+\dot I_n=-\beta_nI_n+T_a'(t),\qquad I_n(0)=0.
+\]
+由此得到独立于径向有限体积离散的温度参考计算，并通过增加模态数检查级数截断的影响。

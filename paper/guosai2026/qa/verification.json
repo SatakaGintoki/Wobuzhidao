@@ -1,0 +1,1076 @@
+{
+  "table_cells": {
+    "q1T": 35,
+    "q1C": 35,
+    "q2T": 30,
+    "q2C": 30,
+    "q3C": 50,
+    "q4C": 36
+  },
+  "total_cells": 216,
+  "source_hashes_unchanged": true,
+  "pdfs": {
+    "reading": {
+      "pages": 24,
+      "bytes": 558521,
+      "page_stats": [
+        {
+          "page": 1,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1028,
+          "start": "考虑变物性与径向收缩的药材\r\n热湿传递及烘干时长预测\r\n摘 要\r\n针对圆柱形药材烘干过程中温湿分布不均、材料物性变化和失水收缩问题，建立由固定\r\n域向收缩域递进的径向热湿传递模型，"
+        },
+        {
+          "page": 2,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1366,
+          "start": "一 问题重述与分析\r\n1.1 问题重述\r\n热风烘干通过烘房与药材表面的热量、水分交换改变药材内部状态。题给药材近似\r\n为长 25 cm、初始半径 2 cm 的圆柱，初始温度 28 "
+        },
+        {
+          "page": 3,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1005,
+          "start": "0 200 400 600 800 1000 1200 1400 1600 1800\r\n时间 t (s)\r\n28\r\n30\r\n32\r\n34\r\n36\r\n38\r\n40\r\n42\r\n烘房温度"
+        },
+        {
+          "page": 4,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1070,
+          "start": "（5） 固定域采用均匀、恒定的参考干物质密度；收缩域按干物质守恒更新该密度。它与\r\n用于热方程的经验 ρ(C) 分别记账，不强制二者逐点满足湿密度换算关系。\r\n径向近似在问题一中可"
+        },
+        {
+          "page": 5,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1097,
+          "start": "其中，k 为药材的导热系数。半径为 r 的圆柱面面积为 2πrL，因此通过该面的热流率为\r\nQ(r, t) = 2πrLq(r, t) = −2πrLk ∂T\r\n∂r .\r\n在不计"
+        },
+        {
+          "page": 6,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1167,
+          "start": "与常系数扩散不同，式(4)中的 D 随局部含水率变化，因而水分迁移过程具有非线性。将\r\n其展开可得\r\n∂C\r\n∂t = D(C)\r\n\u0012\r\n∂\r\n2C\r\n∂r2\r\n+\r\n1\r\nr\r\n"
+        },
+        {
+          "page": 7,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1382,
+          "start": ". . .、2.0 cm 输出位置均为实际节点。将每个 0.1 cm 基本区间细分，在 0 至 1.5、1.5 至\r\n1.8、1.8 至 1.9、1.9 至 2.0 cm 四段内，"
+        },
+        {
+          "page": 8,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1155,
+          "start": "步内迭代收敛后，还需估计局部时间误差；误差满足容差时才接受该时间步，否则\r\n缩小步长重算。实际调用 SciPy 的变步长、变阶 BDF 实现，式(10)仅用于说明其隐式离\r\n散形式"
+        },
+        {
+          "page": 9,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1515,
+          "start": "0.00 0.25 0.50 0.75 1.00 1.25 1.50 1.75 2.00\r\n半径 r (cm)\r\n28\r\n30\r\n32\r\n34\r\n36\r\n温\r\n度\r\nT (°C)\r"
+        },
+        {
+          "page": 10,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1313,
+          "start": "表 3 问题一空间与时间加密结果\r\n比较项 max |∆T| max |∆C| 最大差位置\r\n(\r\n◦C) (kg/kg)\r\nG2/G4 2.289 × 10−6 1.828 × "
+        },
+        {
+          "page": 11,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1072,
+          "start": "分的离散实现正确；正式非线性水分场仍由上述三级网格收敛检验和下述收支检验共同\r\n支持。\r\n（4）热量与水分收支一致性\r\n对式(9)在所有控制体上求和，内部面通量成对抵消，只保留表面"
+        },
+        {
+          "page": 12,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1209,
+          "start": "其中温度场仍按 ◦C 表示，扩散系数指数仅使用药材局部绝对温度 T +273.15。将式(14)代\r\n入环层模型，得到\r\nB(C)Tt =\r\n1\r\nr\r\n∂r[rk(C)Tr],\r"
+        },
+        {
+          "page": 13,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1052,
+          "start": "表 4 3 小时内药材的温度（◦C）\r\n到药材中心的距离/cm\r\n时间/h 0 0.5 1.0 1.5 2.0\r\n0.5 32.1896 32.3824 32.9660 33.96"
+        },
+        {
+          "page": 14,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1278,
+          "start": "4.4 升温与失水对扩散系数的竞争\r\n由式(14)直接求导可得\r\n∂ ln D\r\n∂C =\r\n0.45\r\nC2\r\n> 0,\r\n∂ ln D\r\n∂T =\r\n3850\r\n(T + 27"
+        },
+        {
+          "page": 15,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1090,
+          "start": "生产网格临界时刻为 57.4725195022 h，最终报告\r\ntrep,3 = 57.4731 h = 206903.16 s. (20)\r\n式(20)对应的生产解最大含水率为 "
+        },
+        {
+          "page": 16,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 445,
+          "start": "0 10 20 30 40 50\r\n时间 t (h)\r\n0.0\r\n0.5\r\n1.0\r\n1.5\r\n2.0\r\n2.5\r\n干\r\n基\r\n含\r\n水\r\n率\r\nC (k\r\ng\r\n/\r\nk\r\ng)"
+        },
+        {
+          "page": 17,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 968,
+          "start": "六 问题四：给定径向收缩的移动边界模型\r\n6.1 由干物质守恒推导材料运动\r\n问题四同时给出了半径变化和一套新的经验物性，不能仅把问题三的固定半径替换\r\n为末时半径。Brasiel"
+        },
+        {
+          "page": 18,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1324,
+          "start": "本问全部物性改为附录 4 经验式：\r\nρ(U) = 760 + 90U, cp(U) = 1850 + 2150 U\r\n1 + U\r\n,\r\nk(U) = 0.12 + 0.20\r\n"
+        },
+        {
+          "page": 19,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1226,
+          "start": "表 7 收缩模型药材烘干过程的水分浓度（kg/kg）\r\n到药材中心的距离/cm\r\n时间/h 0 0.5 1.0 1.5 2.0 药材表面 R(t)/cm\r\n6 1.7188 1.5"
+        },
+        {
+          "page": 20,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1075,
+          "start": "式(31)由材料域方程积分并使用表面条件得到，可不指定未知 s0 而检验归一化水分收\r\n支。关闭边界交换时，均匀初始含水率在纯收缩下保持不变；令 R 为常数时，模型退化\r\n为采用同"
+        },
+        {
+          "page": 21,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1387,
+          "start": "表 9 主要网格与时间加密差异\r\n问题 空间比较 ∆Tspace ∆Cspace ∆Ttime ∆Ctime\r\n◦C kg/kg ◦C kg/kg\r\n一 G4/G8 5.895×1"
+        },
+        {
+          "page": 22,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1153,
+          "start": "行核对当前半径、域外空白与移动表面。这些检查服务于结果可追溯性，不替代模型的\r\n物理验证。\r\n7.4 局部敏感性与适用边界\r\n式(17)给出扩散系数对状态变量的局部敏感性。在 T "
+        },
+        {
+          "page": 23,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 577,
+          "start": "kg/m3。72 h 半径对应的体积比为 (1.198/2)2 = 0.358801，固定长度且干物质守恒要求平\r\n均干密度约 776.84 kg/m3；但对任意 U ≥ 0，\r\n"
+        },
+        {
+          "page": 24,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1140,
+          "start": "AI 工具使用声明\r\n本文工作使用了 AI 工具，主要用于既有建模材料与程序的辅助核对、论文结构整\r\n理、中文正文起草、公式与结果的一致性检查以及 LaTeX 排版。具体使用范围、"
+        }
+      ]
+    },
+    "main": {
+      "pages": 91,
+      "bytes": 782440,
+      "page_stats": [
+        {
+          "page": 1,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1028,
+          "start": "考虑变物性与径向收缩的药材\r\n热湿传递及烘干时长预测\r\n摘 要\r\n针对圆柱形药材烘干过程中温湿分布不均、材料物性变化和失水收缩问题，建立由固定\r\n域向收缩域递进的径向热湿传递模型，"
+        },
+        {
+          "page": 2,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1366,
+          "start": "一 问题重述与分析\r\n1.1 问题重述\r\n热风烘干通过烘房与药材表面的热量、水分交换改变药材内部状态。题给药材近似\r\n为长 25 cm、初始半径 2 cm 的圆柱，初始温度 28 "
+        },
+        {
+          "page": 3,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1005,
+          "start": "0 200 400 600 800 1000 1200 1400 1600 1800\r\n时间 t (s)\r\n28\r\n30\r\n32\r\n34\r\n36\r\n38\r\n40\r\n42\r\n烘房温度"
+        },
+        {
+          "page": 4,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1070,
+          "start": "（5） 固定域采用均匀、恒定的参考干物质密度；收缩域按干物质守恒更新该密度。它与\r\n用于热方程的经验 ρ(C) 分别记账，不强制二者逐点满足湿密度换算关系。\r\n径向近似在问题一中可"
+        },
+        {
+          "page": 5,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1097,
+          "start": "其中，k 为药材的导热系数。半径为 r 的圆柱面面积为 2πrL，因此通过该面的热流率为\r\nQ(r, t) = 2πrLq(r, t) = −2πrLk ∂T\r\n∂r .\r\n在不计"
+        },
+        {
+          "page": 6,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1167,
+          "start": "与常系数扩散不同，式(4)中的 D 随局部含水率变化，因而水分迁移过程具有非线性。将\r\n其展开可得\r\n∂C\r\n∂t = D(C)\r\n\u0012\r\n∂\r\n2C\r\n∂r2\r\n+\r\n1\r\nr\r\n"
+        },
+        {
+          "page": 7,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1382,
+          "start": ". . .、2.0 cm 输出位置均为实际节点。将每个 0.1 cm 基本区间细分，在 0 至 1.5、1.5 至\r\n1.8、1.8 至 1.9、1.9 至 2.0 cm 四段内，"
+        },
+        {
+          "page": 8,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1155,
+          "start": "步内迭代收敛后，还需估计局部时间误差；误差满足容差时才接受该时间步，否则\r\n缩小步长重算。实际调用 SciPy 的变步长、变阶 BDF 实现，式(10)仅用于说明其隐式离\r\n散形式"
+        },
+        {
+          "page": 9,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1515,
+          "start": "0.00 0.25 0.50 0.75 1.00 1.25 1.50 1.75 2.00\r\n半径 r (cm)\r\n28\r\n30\r\n32\r\n34\r\n36\r\n温\r\n度\r\nT (°C)\r"
+        },
+        {
+          "page": 10,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1313,
+          "start": "表 3 问题一空间与时间加密结果\r\n比较项 max |∆T| max |∆C| 最大差位置\r\n(\r\n◦C) (kg/kg)\r\nG2/G4 2.289 × 10−6 1.828 × "
+        },
+        {
+          "page": 11,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1072,
+          "start": "分的离散实现正确；正式非线性水分场仍由上述三级网格收敛检验和下述收支检验共同\r\n支持。\r\n（4）热量与水分收支一致性\r\n对式(9)在所有控制体上求和，内部面通量成对抵消，只保留表面"
+        },
+        {
+          "page": 12,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1209,
+          "start": "其中温度场仍按 ◦C 表示，扩散系数指数仅使用药材局部绝对温度 T +273.15。将式(14)代\r\n入环层模型，得到\r\nB(C)Tt =\r\n1\r\nr\r\n∂r[rk(C)Tr],\r"
+        },
+        {
+          "page": 13,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1052,
+          "start": "表 4 3 小时内药材的温度（◦C）\r\n到药材中心的距离/cm\r\n时间/h 0 0.5 1.0 1.5 2.0\r\n0.5 32.1896 32.3824 32.9660 33.96"
+        },
+        {
+          "page": 14,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1278,
+          "start": "4.4 升温与失水对扩散系数的竞争\r\n由式(14)直接求导可得\r\n∂ ln D\r\n∂C =\r\n0.45\r\nC2\r\n> 0,\r\n∂ ln D\r\n∂T =\r\n3850\r\n(T + 27"
+        },
+        {
+          "page": 15,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1090,
+          "start": "生产网格临界时刻为 57.4725195022 h，最终报告\r\ntrep,3 = 57.4731 h = 206903.16 s. (20)\r\n式(20)对应的生产解最大含水率为 "
+        },
+        {
+          "page": 16,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 445,
+          "start": "0 10 20 30 40 50\r\n时间 t (h)\r\n0.0\r\n0.5\r\n1.0\r\n1.5\r\n2.0\r\n2.5\r\n干\r\n基\r\n含\r\n水\r\n率\r\nC (k\r\ng\r\n/\r\nk\r\ng)"
+        },
+        {
+          "page": 17,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 968,
+          "start": "六 问题四：给定径向收缩的移动边界模型\r\n6.1 由干物质守恒推导材料运动\r\n问题四同时给出了半径变化和一套新的经验物性，不能仅把问题三的固定半径替换\r\n为末时半径。Brasiel"
+        },
+        {
+          "page": 18,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1324,
+          "start": "本问全部物性改为附录 4 经验式：\r\nρ(U) = 760 + 90U, cp(U) = 1850 + 2150 U\r\n1 + U\r\n,\r\nk(U) = 0.12 + 0.20\r\n"
+        },
+        {
+          "page": 19,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1226,
+          "start": "表 7 收缩模型药材烘干过程的水分浓度（kg/kg）\r\n到药材中心的距离/cm\r\n时间/h 0 0.5 1.0 1.5 2.0 药材表面 R(t)/cm\r\n6 1.7188 1.5"
+        },
+        {
+          "page": 20,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1075,
+          "start": "式(31)由材料域方程积分并使用表面条件得到，可不指定未知 s0 而检验归一化水分收\r\n支。关闭边界交换时，均匀初始含水率在纯收缩下保持不变；令 R 为常数时，模型退化\r\n为采用同"
+        },
+        {
+          "page": 21,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1387,
+          "start": "表 9 主要网格与时间加密差异\r\n问题 空间比较 ∆Tspace ∆Cspace ∆Ttime ∆Ctime\r\n◦C kg/kg ◦C kg/kg\r\n一 G4/G8 5.895×1"
+        },
+        {
+          "page": 22,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1153,
+          "start": "行核对当前半径、域外空白与移动表面。这些检查服务于结果可追溯性，不替代模型的\r\n物理验证。\r\n7.4 局部敏感性与适用边界\r\n式(17)给出扩散系数对状态变量的局部敏感性。在 T "
+        },
+        {
+          "page": 23,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 577,
+          "start": "kg/m3。72 h 半径对应的体积比为 (1.198/2)2 = 0.358801，固定长度且干物质守恒要求平\r\n均干密度约 776.84 kg/m3；但对任意 U ≥ 0，\r\n"
+        },
+        {
+          "page": 24,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1140,
+          "start": "AI 工具使用声明\r\n本文工作使用了 AI 工具，主要用于既有建模材料与程序的辅助核对、论文结构整\r\n理、中文正文起草、公式与结果的一致性检查以及 LaTeX 排版。具体使用范围、"
+        },
+        {
+          "page": 25,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1385,
+          "start": "附录 A 支撑材料清单与复现说明\r\n支撑材料包含 code/中的 18 个 Python 源文件、tmp/中的 4 个 JavaScript 导出与检\r\n查脚本、四个正式 Exce"
+        },
+        {
+          "page": 26,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2165,
+          "start": "10 ROOT = Path(__file__).resolve().parents[1]\r\n11 DATA_DIR = ROOT / \"data\"\r\n12 ATTACH_DIR "
+        },
+        {
+          "page": 27,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2090,
+          "start": "75 t = float(t)\r\n76 if t <= self.t[0] or t >= self.t[‐1]:\r\n77 if t >= self.t[‐1]:\r\n78 dt ="
+        },
+        {
+          "page": 28,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2187,
+          "start": "28 return K_A + K_B * C_arr / (1.0 + C_arr)\r\n29\r\n30\r\n31 def heat_capacity(C: np.ndarray | "
+        },
+        {
+          "page": 29,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2257,
+          "start": "12 def graded_radial_nodes(level: int) ‐> np.ndarray:\r\n13 \"\"\"Nodes denser near the surface"
+        },
+        {
+          "page": 30,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2322,
+          "start": "77 )\r\n78 self._heat_force_coef = (R * H) / (RHO * CP * self.W[‐1])\r\n79 self._heat_force_in"
+        },
+        {
+          "page": 31,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1907,
+          "start": "142 \"\"\"Heat into the solid per unit surface area, W/m^2.\"\"\"\r\n143 return H * (Ta ‐ T_s)\r\n14"
+        },
+        {
+          "page": 32,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2026,
+          "start": "50 Dn = np.full_like(C, float(D_const))\r\n51 k_face = harmonic_mean(kn[:‐1], kn[1:])\r\n52 D_"
+        },
+        {
+          "page": 33,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2269,
+          "start": "27 v0, v1 = vals[i], vals[i + 1]\r\n28 if not np.isfinite(v0) or not np.isfinite(v1):\r\n29 co"
+        },
+        {
+          "page": 34,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2561,
+          "start": "92 method=\"BDF\",\r\n93 jac=diags(‐beta, format=\"csc\"),\r\n94 rtol=1e‐11,\r\n95 atol=1e‐13,\r\n96 t"
+        },
+        {
+          "page": 35,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1861,
+          "start": "7 from pathlib import Path\r\n8\r\n9 import numpy as np\r\n10 from openpyxl import Workbook\r\n11 "
+        },
+        {
+          "page": 36,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1915,
+          "start": "72 atol: float,\r\n73 max_step: float,\r\n74 jac=None,\r\n75 jac_sparsity=None,\r\n76 field_name: "
+        },
+        {
+          "page": 37,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2612,
+          "start": "137 def conservation_heat(fvm: RadialFVM, pieces, Ta_fun: PchipOven, T_init: np.ndarray, t"
+        },
+        {
+          "page": 38,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2482,
+          "start": "199 \"max_abs\": float(np.max(np.abs(A ‐ B))),\r\n200 \"paper_table_max_abs\": float(np.max(np.a"
+        },
+        {
+          "page": 39,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2206,
+          "start": "264 cell.number_format = \"0.0000\"\r\n265 if \"Sheet\" in wb.sheetnames:\r\n266 del wb[\"Sheet\"]\r\n"
+        },
+        {
+          "page": 40,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2486,
+          "start": "329 fig.tight_layout()\r\n330 fig.savefig(FIGURES_DIR / \"q1_C_profiles.pdf\")\r\n331 plt.close("
+        },
+        {
+          "page": 41,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2180,
+          "start": "393 )\r\n394 print(\"alpha\", ALPHA, \"D(C0)\", moisture_diffusivity(C0), \"Bi_T\", H * R / K)\r\n39"
+        },
+        {
+          "page": 42,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2650,
+          "start": "458 print(\"conv C\", coarse, fine, conv[f\"C_G{coarse}_vs_G{fine}\"])\r\n459 print(\"4dp T\", coa"
+        },
+        {
+          "page": 43,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2662,
+          "start": "522 \"D_max_over_D0\": float(np.max(D_field) / D0),\r\n523 \"C_min_field\": float(np.min(pub[\"YC"
+        },
+        {
+          "page": 44,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2186,
+          "start": "586 \"reference_truncation_T\": heat_truncation,\r\n587 \"bessel_temperature\": bessel_T,\r\n588 \""
+        },
+        {
+          "page": 45,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1985,
+          "start": "8\r\n9 import numpy as np\r\n10 from openpyxl import Workbook\r\n11 from scipy.integrate import "
+        },
+        {
+          "page": 46,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2039,
+          "start": "73 atol_arr = np.asarray(atol, dtype=float)\r\n74 if atol_arr.ndim == 0:\r\n75 atol_arr = np.c"
+        },
+        {
+          "page": 47,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2359,
+          "start": "138 \"paper_changed_cells\": int(np.sum(paper_changed)),\r\n139 \"paper_total_cells\": int(paper"
+        },
+        {
+          "page": 48,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2485,
+          "start": "203\r\n204 def conservation_moisture(fvm, times, Y, Ca_fun) ‐> dict:\r\n205 n = fvm.n_nodes\r\n2"
+        },
+        {
+          "page": 49,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2163,
+          "start": "268 ws.cell(1, j, float(rc))\r\n269 for i, t in enumerate(times):\r\n270 ws.cell(i + 2, 1, int"
+        },
+        {
+          "page": 50,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2458,
+          "start": "333 ax.plot(r_cm, Y[idx[float(t)], n:], lw=1.2, label=fr\"$t={t/3600:g}\\,\\mathrm{{h}}$\")\r\n3"
+        },
+        {
+          "page": 51,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2824,
+          "start": "398 \"level\": level,\r\n399 \"n_nodes\": n,\r\n400 \"T_max_abs\": float(np.max(np.abs(T_num ‐ T_ex)"
+        },
+        {
+          "page": 52,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 3255,
+          "start": "461 times, Y = integrate_coupled(fvm, y0, T_END, Ta_fun, Ca_fun, rtol, atol, max_step)\r\n46"
+        },
+        {
+          "page": 53,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2754,
+          "start": "522 print(\"D stats\", D_stats)\r\n523\r\n524 bounds = assert_physical(pub[\"Y_full\"][:, :n], pub"
+        },
+        {
+          "page": 54,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2135,
+          "start": "586 output_radii_m=OUTPUT_RADII_M,\r\n587 checkpoint_times=np.r_[0., 1., 60., 100., TABLE_TI"
+        },
+        {
+          "page": 55,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2229,
+          "start": "37 OUTPUT_RADII_M = 0.001 * np.arange(21)\r\n38 TABLE_RADII_CM = np.array([0.0, 0.5, 1.0, 1."
+        },
+        {
+          "page": 56,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1651,
+          "start": "101\r\n102\r\n103 def atol_vector(n: int, atol_T: float = ATOL_T, atol_C: float = ATOL_C) ‐> n"
+        },
+        {
+          "page": 57,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2245,
+          "start": "166 max_step=max_step,\r\n167 dense_output=dense_output or balance_audit,\r\n168 vectorized=Fa"
+        },
+        {
+          "page": 58,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2172,
+          "start": "231 \"T_center\": Y[:, 0].copy(),\r\n232 \"T_surface\": Y[:, n ‐ 1].copy(),\r\n233 }\r\n234\r\n235\r\n23"
+        },
+        {
+          "page": 59,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2429,
+          "start": "296 \"T_center_star\": float(y_star[0]),\r\n297 \"T_surface_star\": float(y_star[n ‐ 1]),\r\n298 \""
+        },
+        {
+          "page": 60,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2668,
+          "start": "361\r\n362 def slope_at(eval_M, t: float, h: float = 1.0) ‐> float:\r\n363 return float(eval_M"
+        },
+        {
+          "page": 61,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2482,
+          "start": "423 times2 = np.concatenate([sol2.t[sol2.t > T_SWITCH + 1e‐12], sol2b.t[sol2b.t > t_cont +"
+        },
+        {
+          "page": 62,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2752,
+          "start": "488 if tt < times[0]:\r\n489 raise ValueError(f\"state requested before initial time: {tt}\")\r"
+        },
+        {
+          "page": 63,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2113,
+          "start": "553 \"C_center\": float(y_e[n]),\r\n554 \"C_surface\": float(y_e[‐1]),\r\n555 \"nfev\": int(sol1.nfe"
+        },
+        {
+          "page": 64,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2460,
+          "start": "618 for i, t in enumerate(times_x):\r\n619 if t <= times[‐1] + 1e‐12 and t < t_star ‐ 1e‐9:\r"
+        },
+        {
+          "page": 65,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2387,
+          "start": "683 \"C_max\": float(C.max()),\r\n684 \"T_below_28\": float(max(0.0, 28.0 ‐ T.min())),\r\n685 \"T_a"
+        },
+        {
+          "page": 66,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2344,
+          "start": "748 ax.plot(r_cm, C, lw=1.2, label=fr\"$t={th:g}\\,\\mathrm{{h}}$\")\r\n749 ax.set_xlabel(\" 半径 $"
+        },
+        {
+          "page": 67,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 3083,
+          "start": "4 from appendix3 import heat_capacity, heat_capacity_deriv, moisture_diffusivity_q2\r\n5 fro"
+        },
+        {
+          "page": 68,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2784,
+          "start": "69 'interpretation':'Integrated effective equation with B_prime(C)*(T‐28)*Cdot correction;"
+        },
+        {
+          "page": 69,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 3890,
+          "start": "57 na,nb=a['n_nodes'],b['n_nodes']\r\n58 # Batch to bound temporary array sizes for fine mes"
+        },
+        {
+          "page": 70,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 4309,
+          "start": "118 'quadrature_convergence_1e‐7':max(balances['quadrature_relative_difference'].values())"
+        },
+        {
+          "page": 71,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2240,
+          "start": "173\r\n174 if __name__=='__main__':\r\n175 main()\r\nB.12 code/problem4.py\r\n1 \"\"\"Q4: prescribed "
+        },
+        {
+          "page": 72,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2727,
+          "start": "60 self.audit = {\"radius_records\": len(a), \"radius_range_m\": [float(self.rv[0]), float(sel"
+        },
+        {
+          "page": 73,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2959,
+          "start": "121 uniform = np.r_[np.full(fvm.n, T0), np.full(fvm.n, C0)]\r\n122 pure = solve_ivp(lambda t"
+        },
+        {
+          "page": 74,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 3260,
+          "start": "186 mass_loss += integral\r\n187 y0 = sol.y[:,‐1]\r\n188 mass_error = abs(float(2*np.dot(fvm.w"
+        },
+        {
+          "page": 75,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 3082,
+          "start": "15 def load(label):\r\n16 return np.load(OUT/f\"{label}.npz\"), json.loads((OUT/f\"{label}.json"
+        },
+        {
+          "page": 76,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 4041,
+          "start": "78 C_phys,radii,fixed = physical_values(a[\"xi\"],YY,tt,inputs)\r\n79 C8,_,_ = physical_values"
+        },
+        {
+          "page": 77,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 3000,
+          "start": "128 writer.writerow([f\"{t/3600:.4f}\"]+[\"\" if np.isnan(v) else f\"{v:.4f}\" for v in\r\n,→ row]"
+        },
+        {
+          "page": 78,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2789,
+          "start": "25 else:\r\n26 indices = np.flatnonzero(abs(z['times'] ‐ hour * 3600) < 1e‐7)\r\n27 if len(ind"
+        },
+        {
+          "page": 79,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 3379,
+          "start": "19 OUT.mkdir(parents=True, exist_ok=True)\r\n20 (OUT/name).write_text(json.dumps(report, ens"
+        },
+        {
+          "page": 80,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 3029,
+          "start": "77 rows = ws.iter_rows()\r\n78 header=next(rows)\r\n79 assert np.allclose([c.value for c in he"
+        },
+        {
+          "page": 81,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2557,
+          "start": "132 report[f'q{q}']={'surface_C_at_1s':{str(k):float(v[‐1]) for k,v in\r\nvalues.items()},'6"
+        },
+        {
+          "page": 82,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 3836,
+          "start": "26 hashes = {str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in "
+        },
+        {
+          "page": 83,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 3279,
+          "start": "86 z=np.load(ROOT/'results/q2_solution.npz')\r\n87 Ta,Ca,knots=p.load_q2_inputs()\r\n88 report"
+        },
+        {
+          "page": 84,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2690,
+          "start": "142 values[str(n)]=float(env(1)‐modes@ref.radial_modes(np.array([p.R]))[:,0])\r\n143 dump('m"
+        },
+        {
+          "page": 85,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 3478,
+          "start": "52 raise AssertionError('empty gate passed')\r\n53 except RuntimeError:\r\n54 pass\r\n55 assert "
+        },
+        {
+          "page": 86,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 3919,
+          "start": "116 assert np.array_equal(source['y_end'][n:][indices],source['C_out'][‐1])\r\n117 assert np"
+        },
+        {
+          "page": 87,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2925,
+          "start": "172 'internal_fields_and_initial_state_match':True,'empty_gate_blocked':True,'valid_gate_r"
+        },
+        {
+          "page": 88,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 3749,
+          "start": "43 audit={'pass':True,'sheet':'Sheet1','rows_including_header':len(rows),'columns':actual_"
+        },
+        {
+          "page": 89,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 2925,
+          "start": "6 'time_full_fields_2e‐5', 'table_four_decimals', 'q2_overlap',\r\n7 ];\r\n8\r\n9 export functio"
+        },
+        {
+          "page": 90,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1467,
+          "start": "24 sheet.getRangeByIndexes(nr‐1,0,1,1).setNumberFormat('0.00');\r\n25 const header=sheet.get"
+        },
+        {
+          "page": 91,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1071,
+          "start": "附录 C 问题一温度参考解的推导\r\n本附录补充第 3.5 节温度参考解的构造过程。先求恒定环境下的阶跃响应，再对环\r\n境温度的连续变化进行叠加。\r\n当烘房温度恒为 Tf 时，令 u"
+        }
+      ]
+    },
+    "ai_details": {
+      "pages": 1,
+      "bytes": 133921,
+      "page_stats": [
+        {
+          "page": 1,
+          "size_pt": [
+            595.280029296875,
+            841.8900146484375
+          ],
+          "chars": 1336,
+          "start": "AI 工具使用详情\r\n一、可确认的工具与使用范围\r\n2026 年 9 月 12 日，本次论文整理在 OpenAI Codex 中进行，会话系统标识为 GPT-6。AI 读\r\n取工作"
+        }
+      ]
+    }
+  }
+}
