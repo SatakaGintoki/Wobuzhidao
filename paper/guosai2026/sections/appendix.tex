@@ -1,5 +1,5 @@
 \section*{附录A\quad 支撑材料清单与复现说明}
-支撑材料包含\texttt{code/}中的18个Python源文件、\texttt{tmp/}中的4个JavaScript导出与检查脚本、四个正式Excel结果文件、题定结果CSV、四问验证JSON、主要验证报告、依赖清单、源文件哈希映射和AI工具使用详情。赛题原始数据按原附件目录放置，较大的内部网格数组可通过程序复算生成。
+支撑材料包含完整Python模型与验证程序、JavaScript导出与检查脚本、四个正式Excel结果文件、题定结果CSV、验证JSON、主要报告、依赖清单、源文件哈希映射和AI工具使用详情。另附第三问二维校核的全部网格场与配对数据；原四问的大型内部数组可复算。
 
 Python依赖为NumPy、SciPy、openpyxl和Matplotlib；原生产运行记录为Python 3.14.6、NumPy 2.5.1、SciPy 1.18.0。代码采用相对项目根目录，需提供\texttt{data/附件/附件1.xlsx}、\texttt{附件2.xlsx}及\texttt{附件3/}中的题给模板。所有初值、物性和时间单位与正文一致。
 
@@ -109,3 +109,43 @@ python code/plot_q3_results.py
 \subsection*{B.22\quad\texttt{tmp/q4\_export/build.mjs}}
 
 \VerbatimInput[fontsize=\fontsize{7.5}{9}\selectfont,breaklines=true,breakanywhere=true,numbers=left,numbersep=5pt,xleftmargin=12pt]{support/tmp/q4_export/build.mjs}
+
+\subsection*{补充对照程序与复现}
+附录4固定半径对照的完整程序如下。复算依次运行：
+\begin{Verbatim}[fontsize=\small,breaklines=true]
+python code/q4_fixed_comparison.py --level 8
+python code/q4_fixed_comparison.py --level 16
+python code/q4_fixed_comparison.py --level 8 --tight
+python code/q4_fixed_comparison.py --summarize
+python code/plot_q4_fixed_comparison.py
+\end{Verbatim}
+汇总需先按前述步骤生成第四问原收缩结果。若仅复核图形，可直接使用支撑材料所附的对照JSON与两组中心曲线CSV；较大的固定组内部数组可重算。
+\VerbatimInput[fontsize=\fontsize{7.5}{9}\selectfont,breaklines=true,breakanywhere=true,numbers=left,numbersep=5pt,xleftmargin=12pt]{support/code/q4_fixed_comparison.py}
+\VerbatimInput[fontsize=\fontsize{7.5}{9}\selectfont,breaklines=true,breakanywhere=true,numbers=left,numbersep=5pt,xleftmargin=12pt]{support/code/plot_q4_fixed_comparison.py}
+
+\subsection*{第三问敏感性程序}
+敏感性程序从原初值独立计算各情景，参数口径和结果见随附报告。新增后期水分量情景可单独复算：
+\begin{Verbatim}[fontsize=\small,breaklines=true]
+python code/q3_sensitivity.py --only Ca_minus10pct Ca_plus10pct
+\end{Verbatim}
+\VerbatimInput[fontsize=\fontsize{7.5}{9}\selectfont,breaklines=true,breakanywhere=true,numbers=left,numbersep=5pt,xleftmargin=12pt]{support/code/q3_sensitivity.py}
+
+\subsection*{第三问二维端面校核程序与复现}
+本项采用独立二维求解器，保留第三问原初值、物性与环境。支撑材料附全部校核网格的NPZ、配对曲线及验证JSON；可直接运行下列最后两项复核和重绘，重算全部对照则依次执行完整命令。运行时需提供原附件1。
+\begin{Verbatim}[fontsize=\small,breaklines=true]
+python code/q3_axisymmetric.py --checks
+python code/q3_axisymmetric.py --radial --nr 80
+python code/q3_axisymmetric.py --radial --nr 160
+python code/q3_axisymmetric.py --radial --nr 160 --tight
+python code/q3_axisymmetric.py --nr 80 --nz 40 --end-scale 0
+python code/q3_axisymmetric.py --nr 80 --nz 40
+python code/q3_axisymmetric.py --nr 160 --nz 40
+python code/q3_axisymmetric.py --nr 80 --nz 80
+python code/q3_axisymmetric.py --nr 160 --nz 80
+python code/q3_axisymmetric.py --nr 160 --nz 80 --tight
+python code/verify_q3_axisymmetric.py
+python code/plot_q3_axisymmetric.py
+\end{Verbatim}
+\VerbatimInput[fontsize=\fontsize{7.5}{9}\selectfont,breaklines=true,breakanywhere=true,numbers=left,numbersep=5pt,xleftmargin=12pt]{support/code/q3_axisymmetric.py}
+\VerbatimInput[fontsize=\fontsize{7.5}{9}\selectfont,breaklines=true,breakanywhere=true,numbers=left,numbersep=5pt,xleftmargin=12pt]{support/code/verify_q3_axisymmetric.py}
+\VerbatimInput[fontsize=\fontsize{7.5}{9}\selectfont,breaklines=true,breakanywhere=true,numbers=left,numbersep=5pt,xleftmargin=12pt]{support/code/plot_q3_axisymmetric.py}

@@ -1,3 +1,5 @@
+> **2026-09-13 短板修补**：用户明确不做问题分析结构图，其余短板已写入 `paper/guosai2026/` 并按 skill 留档。当前阅读版 31 页，完整版 113 页。正式结果版本仍为 q1-closeout-v1、q2-closeout-v1、q3-closeout-v1、q4-baseline-v1，采纳 PENDING。下一步为队伍审阅新正文，而不是改正式时长。
+
 > **2026-09-12 写作任务完成**：用户要求基于既有模型与推导撰写完整国赛论文，已完成，入口 paper/guosai2026/main.tex，交付 论文交付_20260912/。本轮未修改数值方案或正式源解。下方暂停写作与旧工作流状态按历史时点阅读。
 
 > **当前执行状态（2026-09-11）**：四问基线均已完成数值及交付技术检查。当前版本q1-closeout-v1、q2-closeout-v1、q3-closeout-v1、q4-baseline-v1，结果采纳均PENDING。第三问严格报告57.4731 h，第四问51.0877 h；入口 `reports/Q3_VERIFY_REPORT.md`、`reports/Q4_VERIFY_REPORT.md`。论文工作暂停，当前状态以 `reports/STATE.md` 为准。

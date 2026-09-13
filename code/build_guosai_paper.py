@@ -61,7 +61,7 @@ def main():
             assert np.allclose(z['times_s'][ids],z['table_times_s'],rtol=0,atol=1e-8)
             tables['q4C']=table('q4C','收缩模型药材烘干过程的水分浓度（kg/kg）','tab_q4C',z['table_times_s']/3600,z['table_C'],'时间/h',r'注：域外位置留空，药材表面对应当前$R(t)$。终时中心未舍入值为0.1499989333 kg/kg。',z['radius_m'][ids])
         z.close()
-    figs=['q1_oven_input','q1_T_profiles','q1_C_profiles','q2_T_profiles','q2_C_profiles','q3_C_max_history','q3_C_profiles','q4_C_history','q4_C_profiles']
+    figs=['q1_oven_input','q1_T_profiles','q1_C_profiles','q2_T_profiles','q2_C_profiles','q3_C_max_history','q3_C_profiles','q3_axisymmetric_check','q4_R_history','q4_C_history','q4_C_profiles']
     (PAPER/'figures').mkdir(exist_ok=True)
     for f in figs:
         shutil.copy2(ROOT/f'figures/{f}.pdf',PAPER/f'figures/{f}.pdf')

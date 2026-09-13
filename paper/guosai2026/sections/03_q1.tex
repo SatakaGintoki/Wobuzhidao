@@ -3,7 +3,7 @@
 \medskip
 \noindent\textbf{（1）基于热量守恒的径向导热模型}
 
-烘干过程中，烘房通过药材表面向内部传递热量，使药材各位置的温度随时间变化。根据轴对称假设，忽略轴向和周向的温度差异，将温度表示为径向位置与时间的函数$T(r,t)$。在药材内部取半径为$r$至$r+\dd r$、长度为$L$的薄圆柱环层，其体积为
+烘干过程中，烘房通过药材表面向内部传递热量，使药材各位置的温度随时间变化。根据假设（1），药材满足轴对称，本文忽略轴向和周向的温度差异，将温度表示为径向位置与时间的函数$T(r,t)$。在药材内部取半径为$r$至$r+\dd r$、长度为$L$的薄圆柱环层，其体积为
 \[
 \dd V=\pi\bigl[(r+\dd r)^2-r^2\bigr]L
 \approx2\pi rL\,\dd r.
@@ -19,7 +19,7 @@ Q(r,t)=2\pi rLq(r,t)
 =-2\pi rLk\frac{\partial T}{\partial r}.
 \]
 
-在不计内部热源、汽化潜热及水分迁移携带热量的条件下，环层内的蓄热速率等于内外两侧的净流入热流率。由热量平衡可得
+根据假设（3），在不计内部热源、汽化潜热及水分迁移携带热量的条件下，环层内的蓄热速率等于内外两侧的净流入热流率。由热量平衡可得
 \[
 \rho c_p\,\dd V\frac{\partial T}{\partial t}
 =Q(r,t)-Q(r+\dd r,t).
@@ -90,14 +90,14 @@ T(r,0)=28,\qquad C(r,0)=2.55,\qquad 0\le r\le R.
 
 在外表面，导热通量与对流换热通量相平衡，水分扩散通量与假设（4）中的等效水分交换通量相平衡。因此采用Robin边界
 \begin{equation}\label{eq_robin}
-\begin{aligned}
--kT_r(R,t)&=h\,[T_s-T_a(t)],\\
--D(C_s)C_r(R,t)&=h_m\,[C_s-C_a(t)].
-\end{aligned}
+\begin{gathered}
+-kT_r(R,t)=h\,[T_s-T_a(t)],\\
+-D(C_s)C_r(R,t)=h_m\,[C_s-C_a(t)].
+\end{gathered}
 \end{equation}
 其中，$T_s=T(R,t)$、$C_s=C(R,t)$，$h=25$ W/(m$^2\cdot$K)、$h_m=8\times10^{-7}$ m/s。式\eqref{eq_robin}中，$T_a>T_s$时向外热流为负，表示热量进入药材；$C_s>C_a$时水分向外迁移。表面温度和含水率由内部传递与外部交换共同决定，因而通常与烘房状态不同。
 
-环境函数$T_a(t)$和$C_a(t)$沿用“输入整理与时间延续”中的PCHIP处理，按式\eqref{eq_pchip}对附件1前1800 s的31组观测插值，在求解器所需时刻计算边界输入。这里的$h_m(C_s-C_a)$仍按等效交换关系使用，$C_a$的含义与模型假设保持一致。
+环境函数$T_a(t)$和$C_a(t)$采用第\ref{sec_preprocessing}节整理的前1800 s观测插值，在求解器所需时刻计算边界输入。这里的$h_m(C_s-C_a)$仍按等效交换关系使用，$C_a$的含义与模型假设保持一致。
 
 均匀初始水分使表面初始梯度为零，而交换边界在接触烘房后立即产生失水通量，二者在$t=0$角点不相容。本文保留题给初值，在$t>0$施加表面交换，求得初始表面层的瞬态发展，并把前1 s的表面结果纳入网格检验。
 
@@ -119,11 +119,11 @@ W_i=\int_{a_i}^{b_i^*}r\dd r=\frac{(b_i^*)^2-a_i^2}{2},
 
 记$D_i=D(C_i)$，在相邻节点之间对扩散系数取调和平均，得到已乘半径的向外通量
 \begin{equation}\label{eq_flux}
-\begin{aligned}
-F^T_{i+1/2}&=-r_{i+1/2}k\frac{T_{i+1}-T_i}{r_{i+1}-r_i},\\
-F^C_{i+1/2}&=-r_{i+1/2}\frac{2D_iD_{i+1}}{D_i+D_{i+1}}
+\begin{gathered}
+F^T_{i+1/2}=-r_{i+1/2}k\frac{T_{i+1}-T_i}{r_{i+1}-r_i},\\
+F^C_{i+1/2}=-r_{i+1/2}\frac{2D_iD_{i+1}}{D_i+D_{i+1}}
 \frac{C_{i+1}-C_i}{r_{i+1}-r_i}.
-\end{aligned}
+\end{gathered}
 \end{equation}
 中心控制体在$r=0$处的边界通量取零，表面通量直接取$Rh(T_N-T_a)$、$Rh_m(C_N-C_a)$。对式\eqref{eq_heat1}和式\eqref{eq_moist1}作控制体积分，并用节点状态近似体平均，得到
 \begin{equation}\label{eq_fvm}
@@ -221,12 +221,12 @@ A_n=\frac{2J_1(\lambda_n)}{\lambda_n[J_0^2(\lambda_n)+J_1^2(\lambda_n)]}.
 
 对式\eqref{eq_fvm}在所有控制体上求和，内部面通量成对抵消，有效蓄热增量应等于累计表面热输入，水分存量的减少应等于累计表面排湿。分别定义
 \begin{equation}\label{eq_q1_balance}
-\begin{aligned}
-\mathcal E_T(t)&=2\pi L\rho c_p\sum_iW_i[T_i(t)-T_i(0)],\\
-Q_T(t)&=2\pi RL\int_0^t h[T_a(\tau)-T_s(\tau)]\dd\tau,\\
-M_C(t)&=\sum_iW_iC_i(t),\qquad
+\begin{gathered}
+\mathcal E_T(t)=2\pi L\rho c_p\sum_iW_i[T_i(t)-T_i(0)],\\
+Q_T(t)=2\pi RL\int_0^t h[T_a(\tau)-T_s(\tau)]\dd\tau,\\
+M_C(t)=\sum_iW_iC_i(t),\qquad
 L_C(t)=R\int_0^t h_m[C_s(\tau)-C_a(\tau)]\dd\tau.
-\end{aligned}
+\end{gathered}
 \end{equation}
 \end{minipage}\par\medskip
 式\eqref{eq_q1_balance}中的量应满足$\mathcal E_T=Q_T$和$\Delta M_C=-L_C$，其中$\Delta M_C(t)=M_C(t)-M_C(0)$。$M_C$为归一化水分存量，乘以$2\pi Ls_0$后才对应水质量。为比较收支偏差与实际交换量的大小，定义相对残差

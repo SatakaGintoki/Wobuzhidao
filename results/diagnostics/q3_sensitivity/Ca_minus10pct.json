@@ -1,0 +1,17 @@
+{
+  "case": "Ca_minus10pct",
+  "Ta_after_C": 50.0,
+  "Ca_after": 0.045,
+  "hm_scale": 1.0,
+  "hm_window": "full_horizon",
+  "Ca_window": "after_4h",
+  "Ta_window": "after_4h",
+  "t_star_s": 206573.49469583482,
+  "t_star_h": 57.38152630439856,
+  "M_star": 0.15,
+  "rmax_star_cm": 0.0,
+  "nodes": 2113,
+  "rtol": 1e-09,
+  "atol_T": 1e-08,
+  "atol_C": 1e-10
+}

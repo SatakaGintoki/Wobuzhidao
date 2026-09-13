@@ -1,0 +1,14 @@
+{
+  "case": "Ta_minus2",
+  "Ta_after_C": 48.0,
+  "Ca_after": 0.05,
+  "hm_scale": 1.0,
+  "t_star_s": 220653.6627522045,
+  "t_star_h": 61.29268409783458,
+  "M_star": 0.15,
+  "rmax_star_cm": 0.0,
+  "nodes": 2113,
+  "rtol": 1e-09,
+  "atol_T": 1e-08,
+  "atol_C": 1e-10
+}

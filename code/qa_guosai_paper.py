@@ -1,6 +1,6 @@
 """Independent table check and PDF page renders for the final manuscript."""
 from pathlib import Path
-import json,re,hashlib
+import json,re,hashlib,argparse
 import numpy as np
 import pypdfium2 as pdfium
 from PIL import Image,ImageOps,ImageDraw
@@ -10,6 +10,12 @@ P=ROOT/'paper/guosai2026'
 Q=P/'qa'
 
 def main():
+    global Q
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--reading-stem',default='reading')
+    parser.add_argument('--qa-dir',default='qa')
+    args=parser.parse_args()
+    Q=P/args.qa_dir
     Q.mkdir(exist_ok=True)
     counts={}
     for q in range(1,5):
@@ -20,7 +26,7 @@ def main():
                 got=[]
                 for line in rows:
                     cells=line.replace('\\\\','').split('&')
-                    got.append([float(x.strip()) if x.strip() else np.nan for x in cells])
+                    got.append([float(x.strip()) if x.strip() not in ('','---') else np.nan for x in cells])
                 got=np.asarray(got)
                 if q<3:
                     times=np.array([100,300,600,900,1200,1500,1800]) if q==1 else np.arange(1800,10801,1800)
@@ -41,12 +47,13 @@ def main():
                 assert np.array_equal(actual[good],formatted),(q,f)
                 assert np.allclose(got[:,0],t,rtol=0,atol=1e-7)
                 counts[f'q{q}{f}']=int(good.sum())
-    original=json.loads((Q/'table_sources.json').read_text(encoding='utf8'))['source_sha256']
+    original=json.loads((P/'qa/table_sources.json').read_text(encoding='utf8'))['source_sha256']
     assert all(hashlib.sha256((ROOT/k).read_bytes()).hexdigest()==v for k,v in original.items())
     # Gather page statistics and render contact sheets plus full body pages.
     pdf_summary={}
     for stem in ['reading','main','ai_details']:
-        doc=pdfium.PdfDocument(str(P/f'{stem}.pdf'))
+        file_stem=args.reading_stem if stem=='reading' else stem
+        doc=pdfium.PdfDocument(str(P/f'{file_stem}.pdf'))
         thumbs=[]; stats=[]; all_text=[]
         for i in range(len(doc)):
             page=doc[i];textpage=page.get_textpage();txt=textpage.get_text_range();all_text.append(txt)
@@ -72,11 +79,12 @@ def main():
         assert '??' not in full,(stem,'unresolved reference')
         assert all(s['chars']>10 for s in stats),(stem,'blank page')
         (Q/f'{stem}_text.txt').write_text(full,encoding='utf8')
-        pdf_summary[stem]={'pages':len(doc),'bytes':(P/f'{stem}.pdf').stat().st_size,'page_stats':stats}
+        pdf_summary[stem]={'pages':len(doc),'bytes':(P/f'{file_stem}.pdf').stat().st_size,'page_stats':stats}
         doc.close()
     assert pdf_summary['reading']['pages']-1<=30
     for f in ['reading','main']:
-        log=(P/f'{f}.log').read_text(encoding='utf8',errors='replace')
+        file_stem=args.reading_stem if f=='reading' else f
+        log=(P/f'{file_stem}.log').read_text(encoding='utf8',errors='replace')
         assert 'Overfull' not in log
         assert 'undefined references' not in log
         assert 'Missing character' not in log

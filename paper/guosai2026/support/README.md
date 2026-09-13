@@ -32,10 +32,22 @@ python code/plot_q3_results.py
 
 ## 程序附录与变更范围
 
-code/ 包含全文模型、计算与对应验证所用18个完整Python文件；tmp/ 包含4个原Excel导出/门禁脚本。附录逐字载入这些文件。仅把原计算机的Node绝对路径改为从PATH查找，并把第三问历史Excel模板路径改为随附结果表路径；未改物性、方程、积分容差、网格或数值流程。哈希映射见source_manifest.json。
+code/ 包含全文模型、计算与对应验证程序；tmp/ 包含原Excel导出/门禁脚本。附录逐字载入源程序。仅把原计算机的Node绝对路径改为从PATH查找，并把第三问历史Excel模板路径改为随附结果表路径；未改物性、方程、积分容差、网格或数值流程。哈希映射见source_manifest.json。
 
 较大的NPZ与网格诊断数组可按上述指令重建，不放入20MB以内的支撑材料包。报告中历史工作区归档路径是既有验证的来源记录，不表示本压缩包已包含全部历史备份。部分历史回归脚本需先生成完整诊断目录再运行。
+
+## 2026-09-13 第三问二维端面校核
+
+新增 q3_axisymmetric.py、verify_q3_axisymmetric.py、plot_q3_axisymmetric.py。results/q3_axisymmetric/附全部小型NPZ场、同网格配对CSV和验证JSON，完整重算命令见 reports/Q3_AXISYMMETRIC_REPORT.md 与论文程序附录。准备原附件1后，可直接运行验证程序并重绘，无须重新积分。额外依赖threadpoolctl用于限制线性代数线程。
+
+运行原始记录中的路径已在算例JSON内改为相对路径，original_source_sha256保留原代码哈希；source_sha256对应随附代码，原problem3.py的导出路径适配沿用source_manifest.json说明。数值数组未改，详见packaging.json。原figure_provenance.json是生成记录；在本目录重新绘图后会生成当前目录的图源记录。该校核只支持第三问指定情景下的径向简化，不验证第四问收缩时长。
+
+现有敏感性表的程序 q3_sensitivity.py 及全部情景JSON/CSV一并收录。其后期温度、水分量仅在4 h后改变，传质系数在全过程缩放；大数组可复算。
 
 ## AI记录
 
 AI工具使用详情.pdf记录本次可确认的工具、用途与核验边界；历史工具版本及人工逐项核验须由参赛队据实补全，不能把自动检查等同于人工审阅。
+
+## 2026-09-12 同物性收缩对照补充
+
+新增code/q4_fixed_comparison.py和plot_q4_fixed_comparison.py。依次运行前者 --level 8、--level 16、--level 8 --tight、--summarize，最后运行绘图脚本。汇总前需已生成原q4_solution.npz和q4_validation.json；仅重绘可直接读取附带的results/q4_fixed_comparison/两份CSV及comparison.json，不必重算PDE。新增固定组不读取实测半径作为演化输入，不外推半径；后4小时沿用50°C、0.05kg/kg环境。详见reports/Q4_FIXED_COMPARISON_REPORT.md。

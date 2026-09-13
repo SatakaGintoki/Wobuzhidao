@@ -1,0 +1,11 @@
+{
+  "figure": "figures/q3_axisymmetric_check.pdf",
+  "field_time_s": 129600,
+  "sources": {
+    "C:\\Users\\chens\\Desktop\\国赛文件夹 GPT\\results\\q3_axisymmetric\\r160_z80_end1.npz": "5792a306f24c6207614656e598a99166854d10c287ad75617626fecc0473fc1e",
+    "C:\\Users\\chens\\Desktop\\国赛文件夹 GPT\\results\\q3_axisymmetric\\paired_history.csv": "449a3c3aed02d30e2fd0354a0a62f7ff33b24c4c7cfebb868bc19375ddf9de9c",
+    "C:\\Users\\chens\\Desktop\\国赛文件夹 GPT\\results\\q3_axisymmetric\\comparison.json": "2c91e78c591392bec5f8b0521e76ddc580cb68cd2d3b87955d3eaf583f5e0a3e"
+  },
+  "field_reconstruction": "Mirror the symmetric half-cylinder across z=0 and transverse axis.",
+  "curve_comparison": "Matched radial mesh; common exact 600 s sample times only."
+}

@@ -1,0 +1,181 @@
+{
+  "version": "q3-axisymmetric-v1",
+  "production": "r160_z80_end1",
+  "time_check": "r160_z80_end1_tight",
+  "official_1d_t_star_h": 57.472519502244495,
+  "official_1d_t_rep_h": 57.4731,
+  "production_2d_t_star_h": 57.47763747934139,
+  "production_paired_1d_t_star_h": 57.47975790994204,
+  "production_vs_official_pct": 0.008905085667414605,
+  "paired_end_effect_s": -7.633550162339816,
+  "paired_end_effect_pct": -0.0036890040559533857,
+  "paired_common_600s_max_C_difference": 2.2534611409108507e-05,
+  "common_samples": 345,
+  "snapshot_stats": {
+    "t43200": {
+      "center_C": 0.45614259288813885,
+      "side_mid_C": 0.16418216226061147,
+      "end_axis_C": 0.13169103015994205,
+      "corner_C": 0.05002515569136463,
+      "min_C": 0.05002515569136463,
+      "max_C": 0.45614259288813885
+    },
+    "t129600": {
+      "center_C": 0.18588109012370357,
+      "side_mid_C": 0.05664808153341275,
+      "end_axis_C": 0.05593238848501303,
+      "corner_C": 0.050001916313101226,
+      "min_C": 0.050001916313101226,
+      "max_C": 0.18588109012370357
+    },
+    "t172800": {
+      "center_C": 0.1618314096370099,
+      "side_mid_C": 0.05373486474315069,
+      "end_axis_C": 0.05341784569295431,
+      "corner_C": 0.05000111828273448,
+      "min_C": 0.05000111828273448,
+      "max_C": 0.1618314096370099
+    },
+    "event": {
+      "center_C": 0.15000000000000002,
+      "side_mid_C": 0.05265925067320714,
+      "end_axis_C": 0.05246458188594276,
+      "corner_C": 0.0500008098566985,
+      "min_C": 0.0500008098566985,
+      "max_C": 0.15000000000000002
+    }
+  },
+  "convergence": {
+    "radial_refinement_at_z40_s": -80.27727783643059,
+    "radial_refinement_at_z80_s": -80.27762909480953,
+    "axial_refinement_at_r80_s": 0.5097435829229653,
+    "axial_refinement_at_r160_s": 0.5093923245440237,
+    "time_tightening_s": 0.007549224013928324,
+    "sealed_2d_vs_paired_1d_s": 0.0014554457156918943
+  },
+  "shared_node_field_checks": {
+    "r80_z80_end1": {
+      "max_T_difference_C": 2.842170943040401e-14,
+      "max_C_difference": 0.0002443410510900301,
+      "times_h": [
+        12,
+        36,
+        48
+      ],
+      "comparison": "shared nodes at identical physical times"
+    },
+    "r160_z40_end1": {
+      "max_T_difference_C": 2.842170943040401e-14,
+      "max_C_difference": 0.0016697305738899437,
+      "times_h": [
+        12,
+        36,
+        48
+      ],
+      "comparison": "shared nodes at identical physical times"
+    },
+    "r160_z80_end1_tight": {
+      "max_T_difference_C": 2.842170943040401e-14,
+      "max_C_difference": 1.6550210257815223e-08,
+      "times_h": [
+        12,
+        36,
+        48
+      ],
+      "comparison": "shared nodes at identical physical times"
+    }
+  },
+  "sealed_axial_spread": 4.992102287104672e-10,
+  "max_mass_relative_loss": 1.1326275255390705e-08,
+  "production_mean_C_event": 0.12139412368881815,
+  "production_end_loss_fraction": 0.053011378587826945,
+  "wet_region_tolerance_C": 1e-07,
+  "production_wet_region_max_rz_m": [
+    0.0,
+    0.0
+  ],
+  "rows": [
+    {
+      "label": "r80_z40_end1",
+      "nr": 81,
+      "nz": 41,
+      "t_star_h": 57.499795225316916,
+      "paired_radial_h": 57.50206007533394,
+      "end_effect_s": -8.153460061294027,
+      "end_effect_pct": -0.003938728480438647,
+      "difference_from_official_s": 98.19260306071374,
+      "mass_relative_loss": 1.1326275255390705e-08,
+      "wall_s": 82.11868119999963
+    },
+    {
+      "label": "r160_z40_end1",
+      "nr": 161,
+      "nz": 41,
+      "t_star_h": 57.47749598147346,
+      "paired_radial_h": 57.47975790994204,
+      "end_effect_s": -8.14294248688384,
+      "end_effect_pct": -0.00393517396528145,
+      "difference_from_official_s": 17.91532522428315,
+      "mass_relative_loss": 9.71071419466384e-09,
+      "wall_s": 171.28091909999966
+    },
+    {
+      "label": "r80_z80_end1",
+      "nr": 81,
+      "nz": 81,
+      "t_star_h": 57.499936820756616,
+      "paired_radial_h": 57.50206007533394,
+      "end_effect_s": -7.643716478371061,
+      "end_effect_pct": -0.003692484364114261,
+      "difference_from_official_s": 98.7023466436367,
+      "mass_relative_loss": 1.0194604749248477e-08,
+      "wall_s": 188.3909190000013
+    },
+    {
+      "label": "r160_z80_end1",
+      "nr": 161,
+      "nz": 81,
+      "t_star_h": 57.47763747934139,
+      "paired_radial_h": 57.47975790994204,
+      "end_effect_s": -7.633550162339816,
+      "end_effect_pct": -0.0036890040559533857,
+      "difference_from_official_s": 18.424717548827175,
+      "mass_relative_loss": 6.133520784985668e-09,
+      "wall_s": 401.42973599999823
+    },
+    {
+      "label": "r160_z80_end1_tight",
+      "nr": 161,
+      "nz": 81,
+      "t_star_h": 57.47763957634806,
+      "paired_radial_h": 57.479760339098554,
+      "end_effect_s": -7.634745901770657,
+      "end_effect_pct": -0.0036895817553527204,
+      "difference_from_official_s": 18.432266772841103,
+      "mass_relative_loss": 6.244728373533315e-10,
+      "wall_s": 575.9292667999998
+    }
+  ],
+  "gates": {
+    "structural_checks": true,
+    "source_hashes_match": true,
+    "sealed_trajectory_reduction": true,
+    "all_cases_mass_and_physical_checks": true,
+    "quadrature_check": true,
+    "radial_event_change_below_0_1pct": true,
+    "axial_event_change_below_0_1pct": true,
+    "time_event_change_below_0_01pct": true,
+    "event_at_center_with_tolerance": true,
+    "sampled_center_controls": true
+  },
+  "pass": true,
+  "interpretation": "Dimensional sensitivity of the stipulated effective Q3 model; not experimental validation or a rigorous PDE error bound.",
+  "q4_scope": "Not extended; Q3 evidence does not validate the Q4 time-saving percentage.",
+  "paired_effect_convergence_s": {
+    "radial_at_z40": 0.01051757441018708,
+    "radial_at_z80": 0.010166316031245515,
+    "axial_at_r80": 0.5097435829229653,
+    "axial_at_r160": 0.5093923245440237,
+    "time": -0.0011957394308410585
+  }
+}

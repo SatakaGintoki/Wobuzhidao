@@ -1,0 +1,9 @@
+{
+  "mass_rate_abs": 0.0,
+  "effective_heat_rate_abs": 1.1102230246251565e-16,
+  "sealed_rhs_vs_independent_radial_max_abs": 1.3877787807814457e-17,
+  "uniform_polynomial_relative_error": 1.0596403515916817e-14,
+  "jacobian_missing_entry_max_abs": 0.0,
+  "volume_relative_error": 1.1102230246251565e-16,
+  "pass": true
+}

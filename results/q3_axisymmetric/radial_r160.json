@@ -1,0 +1,16 @@
+{
+  "tag": "radial_r160",
+  "nr": 161,
+  "tight": false,
+  "t_star_s": 206927.12847579134,
+  "t_star_h": 57.47975790994204,
+  "wall_s": 3.06206370000109,
+  "source_sha256": {
+    "C:\\Users\\chens\\Desktop\\国赛文件夹 GPT\\code\\q3_axisymmetric.py": "fe641a568ce42d299113418b6fd8c59ad5428e3e69aa1b2203f4f6345cdad778",
+    "C:\\Users\\chens\\Desktop\\国赛文件夹 GPT\\code\\appendix3.py": "f511164c8fe42cd15ca1fa59aea9552dd413f1b00487360ff0c3e1f53b276d44",
+    "C:\\Users\\chens\\Desktop\\国赛文件夹 GPT\\code\\problem3.py": "c510ea0aec630ff5b18c19498c025309ce4cae2ad58e77df79ba7b96b5aa8b07",
+    "C:\\Users\\chens\\Desktop\\国赛文件夹 GPT\\code\\utils.py": "bc1fb8a55cf09eed7ef27386bed3a443c35cd148798e1bc572fae2b00a38bc47",
+    "C:\\Users\\chens\\Desktop\\国赛文件夹 GPT\\data\\附件\\附件1.xlsx": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7",
+    "C:\\Users\\chens\\Desktop\\国赛文件夹 GPT\\results\\q3_validation.json": "7e1cdb2ac0090eca990ba4170560ce5f8dc8d3857ff9507db2fc3441302f83db"
+  }
+}

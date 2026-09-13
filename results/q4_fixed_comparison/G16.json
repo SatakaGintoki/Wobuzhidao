@@ -1,0 +1,186 @@
+{
+  "label": "G16",
+  "nodes": 4225,
+  "rtol": 1e-08,
+  "atol_T": 1e-08,
+  "atol_C": 1e-10,
+  "critical_s": 467438.72690839943,
+  "critical_h": 129.84409080788873,
+  "radius_m": 0.02,
+  "properties": "Appendix 4",
+  "input_audit": {
+    "radius_records": 145,
+    "radius_range_m": [
+      0.02,
+      0.01198
+    ],
+    "radius_cap_s": 259200.0,
+    "oven_records": 241,
+    "radius_input_headers": [
+      "时间",
+      "半径"
+    ],
+    "radius_node_error_m": 0.0,
+    "oven_node_error": 0.0,
+    "source_sha256": {
+      "附件1.xlsx": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7",
+      "附件2.xlsx": "5563acbfa4b4afb10cc6c03e2207e5369bf39da27576672aff14cc5c32e704af"
+    }
+  },
+  "mass_relative_error": 5.238377400696753e-09,
+  "heat_equation_residual": 2.842170943040401e-14,
+  "physical_operator_error": 4.568434519569564e-10,
+  "bounds": [
+    28.0,
+    50.01819287209558,
+    0.05151967003059285,
+    2.5500000000000003
+  ],
+  "segments": [
+    {
+      "start_s": 0.0,
+      "end_s": 14400.0,
+      "steps": 4754,
+      "mass_abs": 5.177414053036955e-12
+    },
+    {
+      "start_s": 14400.0,
+      "end_s": 21600.0,
+      "steps": 219,
+      "mass_abs": 3.389688529864543e-11
+    },
+    {
+      "start_s": 21600.0,
+      "end_s": 43200.0,
+      "steps": 373,
+      "mass_abs": 6.233642491082492e-10
+    },
+    {
+      "start_s": 43200.0,
+      "end_s": 64800.0,
+      "steps": 372,
+      "mass_abs": 1.9362123016009036e-09
+    },
+    {
+      "start_s": 64800.0,
+      "end_s": 86400.0,
+      "steps": 371,
+      "mass_abs": 3.9769822990365356e-09
+    },
+    {
+      "start_s": 86400.0,
+      "end_s": 108000.0,
+      "steps": 371,
+      "mass_abs": 5.521529011787152e-09
+    },
+    {
+      "start_s": 108000.0,
+      "end_s": 129600.0,
+      "steps": 370,
+      "mass_abs": 6.790491724473213e-09
+    },
+    {
+      "start_s": 129600.0,
+      "end_s": 151200.0,
+      "steps": 370,
+      "mass_abs": 7.832157589149347e-09
+    },
+    {
+      "start_s": 151200.0,
+      "end_s": 172800.0,
+      "steps": 370,
+      "mass_abs": 8.690771657882124e-09
+    },
+    {
+      "start_s": 172800.0,
+      "end_s": 194400.0,
+      "steps": 370,
+      "mass_abs": 9.407032486308253e-09
+    },
+    {
+      "start_s": 194400.0,
+      "end_s": 216000.0,
+      "steps": 369,
+      "mass_abs": 1.0013316398271854e-08
+    },
+    {
+      "start_s": 216000.0,
+      "end_s": 237600.0,
+      "steps": 369,
+      "mass_abs": 1.0534003003215275e-08
+    },
+    {
+      "start_s": 237600.0,
+      "end_s": 259200.0,
+      "steps": 369,
+      "mass_abs": 1.098726842840847e-08
+    },
+    {
+      "start_s": 259200.0,
+      "end_s": 280800.0,
+      "steps": 369,
+      "mass_abs": 1.1386785292444301e-08
+    },
+    {
+      "start_s": 280800.0,
+      "end_s": 302400.0,
+      "steps": 368,
+      "mass_abs": 1.1742401717640405e-08
+    },
+    {
+      "start_s": 302400.0,
+      "end_s": 324000.0,
+      "steps": 368,
+      "mass_abs": 1.2052354225744466e-08
+    },
+    {
+      "start_s": 324000.0,
+      "end_s": 345600.0,
+      "steps": 368,
+      "mass_abs": 1.2318031483715686e-08
+    },
+    {
+      "start_s": 345600.0,
+      "end_s": 367200.0,
+      "steps": 368,
+      "mass_abs": 1.2548383221400172e-08
+    },
+    {
+      "start_s": 367200.0,
+      "end_s": 388800.0,
+      "steps": 368,
+      "mass_abs": 1.2750133393524266e-08
+    },
+    {
+      "start_s": 388800.0,
+      "end_s": 410400.0,
+      "steps": 368,
+      "mass_abs": 1.2928419668156721e-08
+    },
+    {
+      "start_s": 410400.0,
+      "end_s": 432000.0,
+      "steps": 368,
+      "mass_abs": 1.3087227745955943e-08
+    },
+    {
+      "start_s": 432000.0,
+      "end_s": 453600.0,
+      "steps": 368,
+      "mass_abs": 1.3229695117189522e-08
+    },
+    {
+      "start_s": 453600.0,
+      "end_s": 475200.0,
+      "steps": 368,
+      "mass_abs": 1.3357862371776719e-08
+    }
+  ],
+  "max_center_gap": 1.3322676295501878e-15,
+  "wall_s": 69.50842560000001,
+  "source_sha256": {
+    "q4_fixed_comparison.py": "2cb56ea0f8f4227a34f0314022aee8707412c15a7d0188119e85c94cff7f3f89",
+    "problem4.py": "1d684acc541100bae4104fc1a2663d9a18a49c72811fbbda55fae74ca4492cf4",
+    "radial_fvm.py": "a971934481734141ced1d9dae481211a0e582adad7e3b601b90816f9ca46ca88"
+  }
+}

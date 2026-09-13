@@ -1,26 +1,24 @@
-\section{模型检验与误差分析}
+\section{模型检验与误差分析}\label{sec_validation}
 \subsection{水分收支与有效热方程检验}
 固定域对半离散方程求和，内部通量相消，得到
 \begin{equation}\label{eq_mass_fixed}
 \sum_iW_i[C_i(t)-C_i(0)]
 =-Rh_m\int_0^t[C_s(\tau)-C_a(\tau)]\dd\tau.
 \end{equation}
-式\eqref{eq_mass_fixed}以统一参考干密度归一化，未乘干密度和长度时不能直接标为失水质量kg。收缩域则使用式\eqref{eq_mass_shrink}，累计表面通量在BDF接受步区间上积分。
+式\eqref{eq_mass_fixed}按参考干密度归一化，不能直接以kg标记；收缩域使用式\eqref{eq_mass_shrink}。
 
 问题一热容量恒定，总有效蓄热增量应与累计对流输入一致。问题二、三则令
 \[
-E(t)=2\pi L\sum_iW_iB(C_i)(T_i-T_0),
+E(t)=2\pi L\sum_iW_iB(C_i)(T_i-T_{\mathrm{ini}}),
 \]
 由式\eqref{eq_B_identity}推导
 \begin{equation}\label{eq_heat_check}
-\begin{split}
-E(t)-E(0){}-&2\pi L\int_0^t\sum_iW_iB'(C_i)(T_i-T_0)\dot C_i\dd\tau\\
-&=2\pi LRh\int_0^t(T_a-T_s)\dd\tau.
-\end{split}
+\begin{gathered}
+E(t)-E(0)-2\pi L\int_0^t\sum_iW_iB'(C_i)(T_i-T_{\mathrm{ini}})\dot C_i\dd\tau\\
+=2\pi LRh\int_0^t(T_a-T_s)\dd\tau.
+\end{gathered}
 \end{equation}
-式\eqref{eq_heat_check}中的组成修正项不能省略。相对残差以收支两侧之差的绝对值除以相应累计交换量的尺度计算；接近零时设正的小量下限。问题三在连续解各接受步上采用4点、8点Gauss积分对照，避免用60 s输出样本的粗梯形积分代替高精度轨迹积分。
-
-现有计算的收支残差见表\ref{tab_balance}。其中，第一问为1800 s末时的累计收支检查，残差定义见式\eqref{eq_q1_balance_residual}。第四问的热量检查限定为加权半离散热方程残差及温度收敛，不套用固定几何下的累计储量公式。
+组成修正项不能省略。相对残差用收支差除以累计交换量尺度，近零时设正下限；第一问定义见式\eqref{eq_q1_balance_residual}。第三问在BDF接受步连续解上作4点、8点Gauss积分对照。表\ref{tab_balance}汇总结果，第四问热量仅检验加权半离散方程及温度收敛。
 \begin{table}[htbp]\centering\small
 \caption{各问收支检验；相对残差仅针对所选有效模型}\label{tab_balance}
 \begin{tabular}{cccc}\toprule
@@ -34,7 +32,7 @@ E(t)-E(0){}-&2\pi L\int_0^t\sum_iW_iB'(C_i)(T_i-T_0)\dot C_i\dd\tau\\
 残差较小支持离散通量与所选方程的一致性，不验证潜热、相平衡或端面简化的真实物理误差。
 
 \subsection{空间与时间加密}
-对固定域共享节点、收缩域共享材料节点，在相同物理时刻比较温度和含水率。每个比较量定义为$\max_{i,j}|u^{(a)}_i(t_j)-u^{(b)}_i(t_j)|$。表\ref{tab_convergence}列出各问主要空间、时间比较值，温度和含水率分别按自身单位评价，不将二者合成无量纲误差。
+在相同物理时刻比较固定域共享节点及收缩域共享材料节点，以各配置的节点最大绝对差为指标。表\ref{tab_convergence}分别列出温度和含水率结果。
 \begin{table}[htbp]\centering\small
 \caption{主要网格与时间加密差异}\label{tab_convergence}
 \begin{tabular}{clrrrr}\toprule
@@ -46,11 +44,7 @@ E(t)-E(0){}-&2\pi L\int_0^t\sum_iW_iB'(C_i)(T_i-T_0)\dot C_i\dd\tau\\
 四 & $G_8/G_{16}$ & $1.012\!\times\!10^{-5}$ & $8.681\!\times\!10^{-7}$ & $1.188\!\times\!10^{-5}$ & $6.383\!\times\!10^{-8}$\\\bottomrule
 \end{tabular}
 \end{table}
-第一、二问比较全部规定输出点；第三、四问还比较内部共享节点。第四问共享节点比较覆盖用于验证的72 h轨迹。上述数值是相邻计算配置之间的差，不是已知真解误差。第二问另有$G_4/G_8$独立复核，温度、含水率最大差分别为$6.244\times10^{-7}$ $^\circ$C、$3.732\times10^{-6}$ kg/kg。
-
-第三问的$G_4/G_8$内部水分最大差为$6.2693\times10^{-5}$ kg/kg，超过所取$2\times10^{-5}$的数值比较目标，因此采用$G_8$生产。第四问$G_4/G_8$在36 h、1.0 cm处跨越四位舍入边界，采用$G_8$并以$G_{16}$复核后，题定表格有效单元格四位稳定。可见时长稳定与表格显示稳定应分别检查。
-
-临界时间对照见表\ref{tab_event_convergence}。第三问空间加密临界时间差为0.585132 s，时间收紧差为$1.7506\times10^{-5}$ s；第四问对应为0.113486 s和0.002883 s。六张题定结果表在相应空间及时间检验下四位一致，但部分Excel单元格可能恰处于舍入边界，不能据此声称所有输出的第四位已完全冻结。
+前两问覆盖全部规定输出点，后两问还覆盖内部节点，第四问比较至72 h。第二问另以$G_4/G_8$复核，温度、含水率最大差为$6.244\times10^{-7}$ $^\circ$C、$3.732\times10^{-6}$ kg/kg。配置差不等于真解误差；临界时间见表\ref{tab_event_convergence}。六张题定表在相应加密下四位一致，但不能据此声称全部Excel单元格的末位均已稳定。
 \begin{table}[htbp]\centering\small
 \caption{不同计算配置下的临界烘干时间（h）}\label{tab_event_convergence}
 \begin{tabular}{crr}\toprule
@@ -67,7 +61,10 @@ $G_8$时间收紧 & 57.4725194974 & 51.0871221801\\\bottomrule
 
 第三问与第二问在1800、3600、7200、9000 s的重叠输出比较中，温度、水分最大差分别为$4.66\times10^{-7}$ $^\circ$C和$9.12\times10^{-7}$ kg/kg，支持独立起算的两个过程在共享区间内一致。第四问则采用同一附录4物性的固定半径退化检查及关闭边界交换的纯收缩检查，不把附录3结果直接作为附录4的退化参照。
 
-输出环节保持源数组、论文表格和Excel来自同一状态。数值非有限、含水率越界、必需收支或收敛检查失败时，程序阻断正式文件写入。第三问另存准确终时，第四问逐行核对当前半径、域外空白与移动表面。这些检查服务于结果可追溯性，不替代模型的物理验证。
+源数组、题定表及Excel保持同源，数值非有限、含水率越界或必需检查失败均阻断正式输出；另核对第三问准确终时、第四问当前半径及域外标记。这些检查不替代物理验证。
+
+\subsection{同物性固定半径对照的检验}
+固定组通过独立物理环层算子检查。空间加密和时间收紧的临界时间差为0.498231 s和0.013113 s；至132 h共同保存时刻的温度、水分空间差分别为$1.3522\times10^{-5}$ $^\circ$C、$1.9052\times10^{-6}$ kg/kg，时间差分别为$1.4730\times10^{-5}$ $^\circ$C、$6.4161\times10^{-8}$ kg/kg。三组累计水分相对残差均低于$10^{-6}$。129.8448 h时三组最大含水率均低于0.15，生产值加经验裕量$1.9437\times10^{-7}$后仍达标，支持表\ref{tab_q4_control}的数值可比性。
 
 \subsection{局部敏感性与适用边界}
 式\eqref{eq_logD}给出扩散系数对状态变量的局部敏感性。在$T=50\ ^\circ$C、$C=0.15$时，问题三有
@@ -75,11 +72,13 @@ $G_8$时间收紧 & 57.4725194974 & 51.0871221801\\\bottomrule
 \frac{\partial\ln D}{\partial T}\approx0.0369\ \mathrm{K^{-1}},\qquad
 \frac{\partial\ln D}{\partial C}=20\ \mathrm{(kg/kg)^{-1}}.
 \]
-因而在固定其他状态的一阶近似下，升温1 $^\circ$C对应局部$D$约3.69\%的相对变化；该结论不能直接等同于烘干时长变化3.69\%。问题四对应$\partial\ln D/\partial U=0.30/U^2$，在阈值处为13.3333 $(\mathrm{kg/kg})^{-1}$。材料域扩散系数前的几何因子满足$\partial\ln(R^{-2})/\partial\ln R=-2$，可说明局部方程中的几何敏感方向，不能代替全过程几何对照。
+局部升温1 $^\circ$C对应$D$约3.69\%的一阶变化，不能等同于时长变化。问题四有$\partial\ln D/\partial U=0.30/U^2$，阈值处为13.3333 $(\mathrm{kg/kg})^{-1}$；几何因子满足$\partial\ln(R^{-2})/\partial\ln R=-2$，其局部方向仍需全过程对照检验。
 
 若事件附近最大值位置不变且$M'(t_*)\ne0$，一阶扰动给出
 \begin{equation}\label{eq_event_sensitivity}
 \delta t_*\approx-\frac{\delta M(t_*)}{M'(t_*)}.
 \end{equation}
-式\eqref{eq_event_sensitivity}说明后期曲线越平缓，相同含水率误差可能造成越大的时间偏差，因而必须直接检验事件时间收敛。本文完成的是解析局部敏感性和数值配置加密；未实施后期环境或经验参数的独立扰动实验，不对其全局稳健性作量化保证。
+后期曲线越平缓，相同含水率误差越可能放大为时间偏差，故需直接检验事件收敛。表\ref{tab_q3_sensitivity}的有限输入扰动量化了指定情景的时长变化，不构成全局稳健性保证。
+
+第三问径向近似的二维端面校核已在第\ref{sec_axisymmetric}节给出；其作用是检验本题条件下的维度简化，与本章的离散收支和数值加密检验相互补充。
 \FloatBarrier

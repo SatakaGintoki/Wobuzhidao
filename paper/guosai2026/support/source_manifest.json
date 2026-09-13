@@ -106,5 +106,41 @@
     "original_sha256": "f1a8e77cd8cdd70561b5335e091e4aea2c325b8fc4354305da8bfc1ef773a495",
     "packaged_sha256": "479329f15df9cb9b81daff536828044a9fa985d840c6ace066c54be6ca3d3a9b",
     "adaptation": "none"
+  },
+  {
+    "file": "code/q4_fixed_comparison.py",
+    "original_sha256": "2cb56ea0f8f4227a34f0314022aee8707412c15a7d0188119e85c94cff7f3f89",
+    "packaged_sha256": "2cb56ea0f8f4227a34f0314022aee8707412c15a7d0188119e85c94cff7f3f89",
+    "adaptation": "none"
+  },
+  {
+    "file": "code/plot_q4_fixed_comparison.py",
+    "original_sha256": "7f70f5061f3da880d7c9ec275b40ca561b0e5e61610787ea79acfaddc59094bf",
+    "packaged_sha256": "7f70f5061f3da880d7c9ec275b40ca561b0e5e61610787ea79acfaddc59094bf",
+    "adaptation": "none"
+  },
+  {
+    "file": "code/q3_axisymmetric.py",
+    "original_sha256": "fe641a568ce42d299113418b6fd8c59ad5428e3e69aa1b2203f4f6345cdad778",
+    "packaged_sha256": "fe641a568ce42d299113418b6fd8c59ad5428e3e69aa1b2203f4f6345cdad778",
+    "adaptation": "none"
+  },
+  {
+    "file": "code/verify_q3_axisymmetric.py",
+    "original_sha256": "67d439137f5987d913a2a182283e40eab612aa2bb8c3aeca5de5fd56131967c9",
+    "packaged_sha256": "67d439137f5987d913a2a182283e40eab612aa2bb8c3aeca5de5fd56131967c9",
+    "adaptation": "none"
+  },
+  {
+    "file": "code/plot_q3_axisymmetric.py",
+    "original_sha256": "242409468afa3192d3c269755cc8aa2e04f07c947774f5b7003dc3d01738ed26",
+    "packaged_sha256": "242409468afa3192d3c269755cc8aa2e04f07c947774f5b7003dc3d01738ed26",
+    "adaptation": "none"
+  },
+  {
+    "file": "code/q3_sensitivity.py",
+    "original_sha256": "1eae36f42ed1a86e14aa04de9b0f0dbca1ced4d8befb919b251034329a2baa44",
+    "packaged_sha256": "1eae36f42ed1a86e14aa04de9b0f0dbca1ced4d8befb919b251034329a2baa44",
+    "adaptation": "none"
   }
 ]

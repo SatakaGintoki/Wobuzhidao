@@ -20,7 +20,11 @@ node_modules/
 # Excel 临时锁文件
 ~$*.xlsx
 
+# 本地全量归档，不上传远程
+ARCHIVE_all/
+
 # 体积过大的可再生产物（超过 GitHub 100MB 单文件上限，可由 code/ 中求解器重新生成）
 results/q4_baseline/*.npz
+results/q4_fixed_comparison/*.npz
 results/diagnostics/**/*.npz
 results/archive/**/*.npz

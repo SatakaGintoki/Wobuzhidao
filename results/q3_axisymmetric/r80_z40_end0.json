@@ -1,0 +1,81 @@
+{
+  "version": "q3-axisymmetric-v1",
+  "tag": "r80_z40_end0",
+  "nr": 81,
+  "nz": 41,
+  "unknowns": 6642,
+  "end_scale": 0.0,
+  "tight": false,
+  "r_mesh_power": 2.0,
+  "z_mesh_power": 2.5,
+  "rtol": 1e-07,
+  "atol_T": 1e-07,
+  "atol_C": 1e-09,
+  "early_max_step_s": 10.0,
+  "late_max_step_s": 60.0,
+  "t_star_s": 207007.4177266479,
+  "t_star_h": 57.50206047962442,
+  "event_max_C": 0.15000000000000002,
+  "event_center_C": 0.14999999999999936,
+  "event_argmax_rz_m": [
+    0.0,
+    0.035477923851600035
+  ],
+  "wet_region_tolerance_C": 1e-07,
+  "event_wet_region_max_rz_m": [
+    0.0,
+    0.125
+  ],
+  "mean_C_event": 0.12433171319627183,
+  "side_loss_per_dry_mass": 2.42566827184092,
+  "ends_loss_per_dry_mass": 0.0,
+  "mass_balance_max_abs": 2.4091073580478906e-08,
+  "mass_balance_relative_initial": 9.447479835481925e-09,
+  "mass_balance_relative_loss": 9.931726325293805e-09,
+  "quadrature_4_vs_8_abs": 2.099387330645186e-11,
+  "bounds_Tmin_Tmax_Cmin_Cmax": [
+    28.0,
+    50.04143849501491,
+    0.05265814459155102,
+    2.5500000000000003
+  ],
+  "sampled_max_radial_C_increase": 0.0,
+  "sampled_max_axial_C_increase": 3.3753205785913565e-10,
+  "sampled_max_C_minus_center": 1.368904989362818e-13,
+  "sealed_sampled_axial_spread": 4.992102287104672e-10,
+  "accepted_steps": 6028,
+  "nfev": 13980,
+  "njev": 310,
+  "nlu": 1734,
+  "wall_s": 74.97278049999841,
+  "python": "3.14.6",
+  "numpy": "2.5.1",
+  "scipy": "1.18.0",
+  "source_sha256": {
+    "C:\\Users\\chens\\Desktop\\国赛文件夹 GPT\\code\\q3_axisymmetric.py": "fe641a568ce42d299113418b6fd8c59ad5428e3e69aa1b2203f4f6345cdad778",
+    "C:\\Users\\chens\\Desktop\\国赛文件夹 GPT\\code\\appendix3.py": "f511164c8fe42cd15ca1fa59aea9552dd413f1b00487360ff0c3e1f53b276d44",
+    "C:\\Users\\chens\\Desktop\\国赛文件夹 GPT\\code\\problem3.py": "c510ea0aec630ff5b18c19498c025309ce4cae2ad58e77df79ba7b96b5aa8b07",
+    "C:\\Users\\chens\\Desktop\\国赛文件夹 GPT\\code\\utils.py": "bc1fb8a55cf09eed7ef27386bed3a443c35cd148798e1bc572fae2b00a38bc47",
+    "C:\\Users\\chens\\Desktop\\国赛文件夹 GPT\\data\\附件\\附件1.xlsx": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7",
+    "C:\\Users\\chens\\Desktop\\国赛文件夹 GPT\\results\\q3_validation.json": "7e1cdb2ac0090eca990ba4170560ce5f8dc8d3857ff9507db2fc3441302f83db"
+  },
+  "history_columns": [
+    "time_s",
+    "max_C",
+    "center_C",
+    "side_mid_C",
+    "end_axis_C",
+    "center_T",
+    "mean_C",
+    "argmax_r_m",
+    "argmax_z_m"
+  ],
+  "limitations": [
+    "effective no-latent baseline",
+    "equal end/side coefficients in open case",
+    "isotropic coefficients",
+    "identical end environments",
+    "Q3 only"
+  ],
+  "numerical_checks_pass": true
+}

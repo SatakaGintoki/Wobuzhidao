@@ -1,0 +1,186 @@
+{
+  "label": "G8",
+  "nodes": 2113,
+  "rtol": 1e-08,
+  "atol_T": 1e-08,
+  "atol_C": 1e-10,
+  "critical_s": 467439.22513933637,
+  "critical_h": 129.84422920537122,
+  "radius_m": 0.02,
+  "properties": "Appendix 4",
+  "input_audit": {
+    "radius_records": 145,
+    "radius_range_m": [
+      0.02,
+      0.01198
+    ],
+    "radius_cap_s": 259200.0,
+    "oven_records": 241,
+    "radius_input_headers": [
+      "时间",
+      "半径"
+    ],
+    "radius_node_error_m": 0.0,
+    "oven_node_error": 0.0,
+    "source_sha256": {
+      "附件1.xlsx": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7",
+      "附件2.xlsx": "5563acbfa4b4afb10cc6c03e2207e5369bf39da27576672aff14cc5c32e704af"
+    }
+  },
+  "mass_relative_error": 4.41490382378757e-09,
+  "heat_equation_residual": 4.547473508864641e-13,
+  "physical_operator_error": 8.205295037172489e-11,
+  "bounds": [
+    28.0,
+    50.01820011450484,
+    0.05151967390220243,
+    2.5500000000000007
+  ],
+  "segments": [
+    {
+      "start_s": 0.0,
+      "end_s": 14400.0,
+      "steps": 4730,
+      "mass_abs": 2.0974213477131798e-09
+    },
+    {
+      "start_s": 14400.0,
+      "end_s": 21600.0,
+      "steps": 217,
+      "mass_abs": 2.0974213477131798e-09
+    },
+    {
+      "start_s": 21600.0,
+      "end_s": 43200.0,
+      "steps": 373,
+      "mass_abs": 2.7252387013732005e-09
+    },
+    {
+      "start_s": 43200.0,
+      "end_s": 64800.0,
+      "steps": 372,
+      "mass_abs": 2.7252387013732005e-09
+    },
+    {
+      "start_s": 64800.0,
+      "end_s": 86400.0,
+      "steps": 371,
+      "mass_abs": 2.7252387013732005e-09
+    },
+    {
+      "start_s": 86400.0,
+      "end_s": 108000.0,
+      "steps": 371,
+      "mass_abs": 3.4215799082915055e-09
+    },
+    {
+      "start_s": 108000.0,
+      "end_s": 129600.0,
+      "steps": 370,
+      "mass_abs": 4.690684285435509e-09
+    },
+    {
+      "start_s": 129600.0,
+      "end_s": 151200.0,
+      "steps": 370,
+      "mass_abs": 5.732295527138831e-09
+    },
+    {
+      "start_s": 151200.0,
+      "end_s": 172800.0,
+      "steps": 370,
+      "mass_abs": 6.590896717284522e-09
+    },
+    {
+      "start_s": 172800.0,
+      "end_s": 194400.0,
+      "steps": 370,
+      "mass_abs": 7.307152216640134e-09
+    },
+    {
+      "start_s": 194400.0,
+      "end_s": 216000.0,
+      "steps": 369,
+      "mass_abs": 7.913436572692945e-09
+    },
+    {
+      "start_s": 216000.0,
+      "end_s": 237600.0,
+      "steps": 369,
+      "mass_abs": 8.434125842171625e-09
+    },
+    {
+      "start_s": 237600.0,
+      "end_s": 259200.0,
+      "steps": 369,
+      "mass_abs": 8.887376168331684e-09
+    },
+    {
+      "start_s": 259200.0,
+      "end_s": 280800.0,
+      "steps": 369,
+      "mass_abs": 9.286897473259614e-09
+    },
+    {
+      "start_s": 280800.0,
+      "end_s": 302400.0,
+      "steps": 368,
+      "mass_abs": 9.642518339347816e-09
+    },
+    {
+      "start_s": 302400.0,
+      "end_s": 324000.0,
+      "steps": 368,
+      "mass_abs": 9.952475288343976e-09
+    },
+    {
+      "start_s": 324000.0,
+      "end_s": 345600.0,
+      "steps": 368,
+      "mass_abs": 1.0218156543118084e-08
+    },
+    {
+      "start_s": 345600.0,
+      "end_s": 367200.0,
+      "steps": 368,
+      "mass_abs": 1.044851183351625e-08
+    },
+    {
+      "start_s": 367200.0,
+      "end_s": 388800.0,
+      "steps": 368,
+      "mass_abs": 1.0650265114264812e-08
+    },
+    {
+      "start_s": 388800.0,
+      "end_s": 410400.0,
+      "steps": 368,
+      "mass_abs": 1.0828554497521736e-08
+    },
+    {
+      "start_s": 410400.0,
+      "end_s": 432000.0,
+      "steps": 368,
+      "mass_abs": 1.0987365239856217e-08
+    },
+    {
+      "start_s": 432000.0,
+      "end_s": 453600.0,
+      "steps": 368,
+      "mass_abs": 1.1129834831535845e-08
+    },
+    {
+      "start_s": 453600.0,
+      "end_s": 475200.0,
+      "steps": 368,
+      "mass_abs": 1.1258004750658301e-08
+    }
+  ],
+  "max_center_gap": 1.3322676295501878e-15,
+  "wall_s": 30.29247630000009,
+  "source_sha256": {
+    "q4_fixed_comparison.py": "2cb56ea0f8f4227a34f0314022aee8707412c15a7d0188119e85c94cff7f3f89",
+    "problem4.py": "1d684acc541100bae4104fc1a2663d9a18a49c72811fbbda55fae74ca4492cf4",
+    "radial_fvm.py": "a971934481734141ced1d9dae481211a0e582adad7e3b601b90816f9ca46ca88"
+  }
+}

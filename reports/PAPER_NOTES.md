@@ -1,6 +1,25 @@
+> **2026-09-13 短板修补**：按用户授权完成除“问题分析结构图”外的正文修补，正式四问数字未改。阅读版 31 页：`paper/guosai2026/reading.pdf`（与 `reading_comparison.pdf` 同步）；完整版 113 页 `main.pdf`。映射如下。
+>
+> - 假设（6）后期 \(T_a=50^\circ\mathrm C\)、\(C_a=0.05\)：`sections/02_assumptions.tex`；预处理与问题三引用该假设。
+> - 表 `tab_q3_sensitivity`：`sections/05_q3.tex`；\(C_a\pm10\%\) 两行来自 `results/diagnostics/q3_sensitivity/`，\(h_m\) 注明全程缩放。
+> - 图 `fig_q3_2d`、式 `eq_q3_2d`：`sections/07_validation.tex`；数组 `results/q3_axisymmetric/comparison.json`，图 `figures/q3_axisymmetric_check.pdf`。
+> - 问题一假设（1）（3）：`sections/03_q1.tex`。问题二环层守恒到本构更新：`sections/04_q2.tex`。问题四 \(\mathrm DT/\mathrm Dt=T_t+vT_r\)：`sections/06_q4.tex`。
+> - 评价章二维结论与 \(C_a\) 敏感性：`sections/08_evaluation.tex`。AI 说明补充：`ai_details.tex`。
+> - 编译核验：`code/qa_guosai_paper.py` 通过；本轮记录 `reports/PAPER_SHORTBOARD_20260913.md`。未把新敏感性或二维时长差记为用户已验收。
+
+> **2026-09-12 第四问重写**：`paper/guosai2026/sections/06_q4.tex` 按六节结构重组（轨迹→物理坐标守恒/有效传热→材料坐标→离散输出→结果→几何与物性讨论）。新增图 `q4_R_history.pdf`（附件2+PCHIP）。数值仍为 q4-baseline-v1：51.0877 h。未做附录4固定半径对照。
+
 > **2026-09-12 当前论文**：按用户本次全文写作要求，已完成 paper/guosai2026/ 新稿，源码与PDF独立保存。旧 paper/main.tex 及旧草稿保留。六张题定表216个数值由未舍入源解生成并独立核验；现行模型口径以新稿及 reports/PAPER_EVIDENCE_MAP_20260912.md 为准。写作已恢复并完成本次交付，下方暂停措辞仅记录历史。
 
 # 论文笔记与来源映射
+
+最新位置调整：用户要求在第三问直接论证径向模型合理性，故将sections/07_axisymmetric.tex改由sections/05_q3.tex末尾引入，第7.7节位于第20—21页，对照表8、图6。第四问开头补充径向收缩下长径比增大、端侧面积比减小的沿用依据，同时不迁移第三问0.004%的定量误差结论。旧第9.6节安排已被替代，数值来源不变。
+
+## 2026-09-13 当前整合：二维端面校核
+
+用户接受q3-axisymmetric-v1并授权加入论文，当前任务负责最终整合。第9.6节（sections/07_axisymmetric.tex）使用Hussain与Dincer（2003）作路线依据，变系数守恒方程继承本题；表13五组配对数值来自results/q3_axisymmetric/comparison.json，图8来自同目录NPZ和paired_history.csv。z=0为中截面，N_r/N_z为区间数。解释采用约8 s、0.004%、累计端面排湿5.3%，不作第四问二维验证。
+
+摘要、假设、问题三图文衔接、评价、AI说明和程序附录已同步；原单独最大值图合入二维组合对照，题定表和剖面保留。阅读版31页、完整程序版113页。并行的环境假设、边界说明及敏感性补充已保留。最新交付论文交付_20260913_二维校核/，核验见Q3_PAPER_INTEGRATION_20260913.md。本节优先于历史暂停或待开展措辞。
 
 > 最新写作偏好（2026-09-11）：用户要求“论文先不要写，我有我写的想法”。论文工作暂停，不续写、润色或合并正文。下方已生成稿件只保留参考；第三问模型记录与数值工作不等于论文写作授权。
 
@@ -31,3 +50,8 @@
 - 解析温度推导与用户整理的分离变量链条一致；\(A_n\) 两种写法等价。
 - 问题一结果：`q1-baseline-v1` 待审，见 `reports/RESULTS_REPORT.md`。方法草稿可迁入正文，表1–2数字须等结果批准。
 - 对应模型记录：`reports/models/q1.md`，版本 `q1-plan-v1`。
+
+
+## 2026-09-12 同物性收缩对照补充
+
+已按本轮用户指令完成q4-fixed-comparison-v1补算、技术核验与论文整合。附录4固定半径129.8448h，对比实测收缩51.0877h，节时78.7571h（60.65%）；结果限定于既定有效模型与环境。来源、配置、验证及论文位置见reports/Q4_FIXED_COMPARISON_REPORT.md。原四问主结果保持。执行与写作已获本轮授权，未代记用户已完成新结果人工验收。

@@ -1,97 +1,220 @@
-\section{问题四：给定径向收缩的移动边界模型}
-\subsection{由干物质守恒推导材料运动}
-问题四同时给出了半径变化和一套新的经验物性，不能仅把问题三的固定半径替换为末时半径。Brasiello等研究了食品干燥的非等温移动边界模型~\cite{brasiello2021}，将收缩与传热传质联系起来。本文直接利用附件2构造已知$R(t)$，按假设（2）取比例径向收缩速度
-\begin{equation}\label{eq_velocity}
-v(r,t)=\frac{\dot R(t)}{R(t)}r.
-\end{equation}
-外半径数据本身不能唯一确定内部运动，式\eqref{eq_velocity}是用于闭合速度场的假设。
+\section{问题四：径向收缩条件下的热湿传递}
+\subsection{问题分析与比例收缩假设}
+第\ref{sec_axisymmetric}节的二维校核表明，问题三在指定端面条件下，端面效应对中心控制的达标时长影响很小。问题四忽略轴向缩短，长度仍取$L=0.25$ m；随径向收缩，半径与长度之比$R(t)/L$减小，该比值也等于两端总面积与侧面积之比。因此，从几何上看，端面交换的相对作用减弱，预期其对达标时长的影响进一步减小。结合第三问的校核结果，在周向均匀、物性各向同性及相同端面环境假设下，本问继续采用一维径向模型，在移动区域$0\le r\le R(t)$上考察收缩作用。上述判断用于说明模型简化的依据；附录4物性及收缩条件下的端面时间误差尚未单独量化，第三问的0.004\%不作为本问误差界。
 
-设$s(r,t)$为单位当前体积的干物质质量，$j$为相对固体骨架的向外水质量通量。干物质不流失时，干物质与水质量分别满足
-\begin{equation}\label{eq_solid_water}
-\begin{aligned}
-s_t+\frac1r\partial_r(rsv)&=0,\\
-\partial_t(sC)+\frac1r\partial_r[r(sCv+j)]&=0,\qquad j=-sD(C,T)C_r.
-\end{aligned}
-\end{equation}
-将第二式展开，减去第一式乘以$C$，得到
-\begin{equation}\label{eq_material_C}
-C_t+vC_r=\frac1{sr}\partial_r(rsDC_r).
-\end{equation}
-初始$s$均匀时，将式\eqref{eq_velocity}代入干物质方程，可得
-\begin{equation}\label{eq_s_density}
-\dot s+2\frac{\dot R}{R}s=0,\qquad
-s(t)=s_0\left[\frac{R_0}{R(t)}\right]^2.
-\end{equation}
-因此$s$保持空间均匀，可从式\eqref{eq_material_C}的空间散度中约去。式\eqref{eq_solid_water}至式\eqref{eq_s_density}说明，纯收缩不会改变同一材料单元的水质量与干物质质量之比；对干基含水率直接添加$-C\nabla\cdot v$项会重复计算几何变化。
-
-\subsection{材料坐标变换与控制方程}
-定义固定区间上的材料坐标和状态
-\begin{equation}\label{eq_xi}
-\xi=\frac{r}{R(t)},\quad
-U(\xi,t)=C(R(t)\xi,t),\quad
-\Theta(\xi,t)=T(R(t)\xi,t),\qquad 0\le\xi\le1.
-\end{equation}
-由链式法则，$U_t=C_t+\xi\dot R C_r=C_t+vC_r$，且$C_r=U_\xi/R$。式\eqref{eq_material_C}于是变为
-\begin{equation}\label{eq_shrink}
-\boxed{\begin{aligned}
-U_t&=\frac1{R(t)^2\xi}\partial_\xi[\xi D(U,\Theta)U_\xi],\\
-B(U)\Theta_t&=\frac1{R(t)^2\xi}\partial_\xi[\xi k(U)\Theta_\xi].
-\end{aligned}}
-\end{equation}
-材料运动与坐标网格同步，使显式对流项抵消。式\eqref{eq_shrink}的热方程是前述有效传热近似在材料坐标下的表达，不由水质量守恒自动推出，也未包含收缩机械功或完整水分携焓。
-
-本问全部物性改为附录4经验式：
-\begin{equation}\label{eq_prop4}
-\begin{aligned}
-\rho(U)&=760+90U,&c_p(U)&=1850+2150\frac{U}{1+U},\\
-k(U)&=0.12+0.20\frac{U}{1+U},&&\\[-3pt]
-D(U,\Theta)&=4.2\times10^{-4}\exp\!\left(-\frac{0.30}{U}\right)
-\exp\!\left[-\frac{3850}{\Theta+273.15}\right].&&
-\end{aligned}
-\end{equation}
-将式\eqref{eq_prop4}与$R(0)=0.02$ m、$U(\xi,0)=2.55$、$\Theta(\xi,0)=28$共同使用。中心仍取$U_\xi(0,t)=\Theta_\xi(0,t)=0$；外表面为
-\begin{equation}\label{eq_shrink_boundary}
--\frac{D_s}{R}U_\xi(1,t)=h_m(U_s-C_a),\qquad
--\frac{k_s}{R}\Theta_\xi(1,t)=h(\Theta_s-T_a).
-\end{equation}
-式\eqref{eq_xi}至式\eqref{eq_shrink_boundary}共同保留了内部扩散的$R^{-2}$与边界梯度的$R^{-1}$，不能只改控制方程而遗漏边界尺度。
-
-\subsection{固定材料网格上的求解与物理输出}
-将问题一的$G_8$节点除以$R_0$得到固定材料节点$\xi_i$，令内部面$\xi_{i+1/2}=(\xi_i+\xi_{i+1})/2$，径向权重$w_i=(\xi_{i+1/2}^2-\xi_{i-1/2}^2)/2$，端点按0和1截取。记
+本问同时更换物性：全部经验式改用附录4，并从$T(r,0)=28\ ^\circ$C、$C(r,0)=2.55$ kg/kg独立积分，不读取问题三的末态。环境输入和半径轨迹采用第\ref{sec_preprocessing}节的统一处理。第四问新增的本质是
 \[
-\widehat F^C_{i+1/2}=-\xi_{i+1/2}D_{i+1/2}
-\frac{U_{i+1}-U_i}{\xi_{i+1}-\xi_i},\qquad
-\widehat F^T_{i+1/2}=-\xi_{i+1/2}k_{i+1/2}
-\frac{\Theta_{i+1}-\Theta_i}{\xi_{i+1}-\xi_i}.
+R_0\longrightarrow R(t),\qquad
+\text{附录3物性}\longrightarrow\text{附录4物性}.
 \]
-表面通量分别取$Rh_m(U_N-C_a)$与$Rh(\Theta_N-T_a)$。半离散方程为
+Brasiello等讨论了食品干燥中收缩与非等温热湿传递的耦合~\cite{brasiello2021}。该工作支持将材料运动写入传递方程，其对象、吸附关系与蒸发机制与本题不同，不能证明本题必须采用比例收缩。
+
+题目只给出外半径，没有给出内部各点位移。按假设（2），令初始位置$r_0$的材料点按相同比例收缩：
+\begin{equation}\label{eq_proportional}
+r(t)=\frac{R(t)}{R_0}r_0.
+\end{equation}
+相应骨架径向速度为
+\begin{equation}\label{eq_velocity}
+v(r,t)=\frac{\mathrm dr}{\mathrm dt}=\frac{\dot R(t)}{R(t)}\,r.
+\end{equation}
+外半径观测不能唯一决定内部材料运动，式\eqref{eq_proportional}和式\eqref{eq_velocity}是用于闭合速度场的模型假设，不是题给事实。长度仍取$L=0.25$ m，忽略轴向缩短。
+\FloatBarrier
+
+\subsection{收缩条件下的水分守恒与有效传热方程}
+直接在移动区间$0\le r\le R(t)$上离散不便于沿用前问网格。本节先在物理坐标中写出传递方程，下一节再映到固定区间。
+
+\medskip
+\noindent\textbf{（1）干物质守恒。}设$s(r,t)$为单位当前体积中的干物质质量。干物质不流失时，
+\begin{equation}\label{eq_solid}
+s_t+\frac{1}{r}\partial_r(r s v)=0.
+\end{equation}
+将式\eqref{eq_velocity}代入，并设初始干物质密度均匀，则$s$保持空间均匀，满足
+\begin{equation}\label{eq_s_density}
+\begin{gathered}
+\dot s+2\frac{\dot R}{R}s=0,\\
+s(t)=s_0\left[\frac{R_0}{R(t)}\right]^{2}.
+\end{gathered}
+\end{equation}
+其中因子2来自仅考虑径向收缩、长度不变：当前体积$V(t)=\pi R^{2}(t)L$。半径减小后，同样的干物质被压缩到更小体积，因而当前体积干物质密度按$R^{-2}$增大。
+
+\medskip
+\noindent\textbf{（2）水分守恒。}干基含水率$C$是水质量与干物质质量之比，不是单位体积的水分浓度。单位当前体积中，干物质质量为$s$，水质量为$sC$。相对固体骨架的有效Fick通量为
+\[
+j=-s\,D(C,T)\,C_r.
+\]
+水分守恒为
+\begin{equation}\label{eq_solid_water}
+\partial_t(sC)+\frac{1}{r}\partial_r\bigl[r(s C v+j)\bigr]=0.
+\end{equation}
+由式\eqref{eq_solid}消去几何压缩项，得到
+\begin{equation}\label{eq_material_C}
+C_t+v C_r=\frac{1}{s\,r}\,\partial_r(r\,s\,D\,C_r).
+\end{equation}
+在式\eqref{eq_s_density}下$s=s(t)$不依赖$r$，故
+\[
+C_t+v C_r=\frac{1}{r}\partial_r\bigl[r D(C,T)\,C_r\bigr].
+\]
+若一个材料单元只发生收缩，水和干物质都没有进出，则二者质量之比不变。因此不能对干基含水率再添加$-C\nabla\cdot v$形式的体积压缩源项；那样会把体积浓度的几何浓缩误加到干基量上。
+
+\medskip
+\noindent\textbf{（3）有效传热方程。}热方程沿用问题二、三的有效热容量描述。在假设（3）下，不显式计入汽化潜热、水分携焓和收缩机械功。对随骨架运动的同一材料微元，温度变化率应取物质导数
+\[
+\frac{\mathrm DT}{\mathrm Dt}=T_t+vT_r.
+\]
+因此，将固定域中的有效传热方程推广至收缩域时，以物质导数代替固定空间点的$T_t$，得到
+\begin{equation}\label{eq_moving_heat}
+\begin{gathered}
+B(C)(T_t+v T_r)=\frac{1}{r}\partial_r\bigl[r k(C)\,T_r\bigr],\\
+B(C)=\rho(C)c_p(C).
+\end{gathered}
+\end{equation}
+式\eqref{eq_moving_heat}是有效传热近似，不是完整多相系统的能量守恒方程。经验密度$\rho(C)$仅用于构造$B(C)$；质量记账中的$s$由式\eqref{eq_s_density}决定，不强制$s=\rho(C)/(1+C)$。若同时把$\rho$当作真实湿体积密度，则与给定$R(t)$、固定长度和干物质守恒不能精确相容，该项限制见模型评价。
+
+于是物理坐标下的热湿方程为
+\begin{equation}\label{eq_moving}
+\left\{
+\begin{gathered}
+B(C)(T_t+v T_r)=\frac{1}{r}\partial_r\bigl[r k(C)\,T_r\bigr],\\
+C_t+v C_r=\frac{1}{r}\partial_r\bigl[r D(C,T)\,C_r\bigr].
+\end{gathered}
+\right.
+\end{equation}
+相对于前三问，收缩首先通过材料随动项$vT_r$和$vC_r$进入方程。
+
+\subsection{材料坐标变换与定解条件}
+定义
+\begin{equation}\label{eq_xi}
+\begin{gathered}
+\xi=\frac{r}{R(t)},\qquad 0\le\xi\le1,\\
+U(\xi,t)=C\bigl(R(t)\xi,t\bigr),\\
+\Theta(\xi,t)=T\bigl(R(t)\xi,t\bigr).
+\end{gathered}
+\end{equation}
+在比例收缩\eqref{eq_proportional}下，同一材料点满足$\xi=r_0/R_0$，不随时间变化，因而$\xi$标记随骨架运动的相对位置，计算区域始终为固定区间$[0,1]$。一般非均匀收缩时，$\xi$首先只是瞬时归一化坐标，不能自动等同于材料标记。
+
+由链式法则，$C_r=U_\xi/R$，$U_t=C_t+\xi\dot R C_r$。由于$v=\dot R\xi$，有$U_t=C_t+vC_r$。温度场同样满足$\Theta_t=T_t+vT_r$。材料运动与坐标网格同步，式\eqref{eq_moving}中的显式随动项被坐标变换吸收。固定半径模型中内部扩散含因子$R_0^{-2}$；收缩后该因子成为$R(t)^{-2}$。随着$R(t)$减小，$R^{-2}$增大，表示在相同无量纲梯度下，中心到表面的实际迁移距离缩短。这是收缩可能改变干燥速度的几何机制，但不能把$R^{-2}$的倍率直接换成烘干时长倍率。
+
+问题四按题意从初始时刻统一使用附录4经验式：
+\begin{equation}\label{eq_prop4}
+\begin{gathered}
+\rho(U)=760+90U,\\[4pt]
+c_p(U)=1850+2150\times\frac{U}{1+U},\\[4pt]
+k(U)=0.12+0.20\times\frac{U}{1+U},\\[6pt]
+D(U,\Theta)=4.2\times10^{-4}
+\exp\!\left(-\frac{0.30}{U}\right)
+\times\exp\!\left[-\frac{3850}{\Theta+273.15}\right].
+\end{gathered}
+\end{equation}
+扩散系数仍由药材局部温度进入指数，而不是烘房温度。表面梯度由$C_r=U_\xi/R$改写，因而内部扩散带$R^{-2}$、表面交换带$R^{-1}$，二者必须同时进入定解问题。$R(t)$由附件2的PCHIP给出，$T_a(t)$、$C_a(t)$沿用式\eqref{eq_late}。于是在固定区间$0\le\xi\le1$上，本问实际积分的定解问题为
+\begin{equation}\label{eq_shrink}
+\left\{
+\begin{gathered}
+U_t=\frac{1}{R^{2}(t)\,\xi}\,
+\partial_\xi\bigl[\xi\, D(U,\Theta)\, U_\xi\bigr],\\[3pt]
+B(U)\Theta_t=\frac{1}{R^{2}(t)\,\xi}\,
+\partial_\xi\bigl[\xi\, k(U)\, \Theta_\xi\bigr],\\[5pt]
+U(\xi,0)=2.55,\qquad
+\Theta(\xi,0)=28,\\[3pt]
+U_\xi(0,t)=\Theta_\xi(0,t)=0,\\[5pt]
+-\frac{D_s}{R(t)}\,U_\xi(1,t)
+=h_m\bigl[U_s-C_a(t)\bigr],\\[3pt]
+-\frac{k_s}{R(t)}\,\Theta_\xi(1,t)
+=h\bigl[\Theta_s-T_a(t)\bigr].
+\end{gathered}
+\right.
+\end{equation}
+其中$B(U)=\rho(U)c_p(U)$，物性取式\eqref{eq_prop4}。含水率初值以kg/kg计，温度初值以$^\circ$C计。物理坐标式\eqref{eq_moving}只用于说明随动项如何进入方程，离散求解针对式\eqref{eq_shrink}。
+
+\subsection{数值求解、达标判据与输出转换}
+在$\xi\in[0,1]$上沿用前三问的环形有限体积结构。将问题一的$G_8$节点除以$R_0$得到固定材料节点$\xi_i$，内部面取相邻节点中点，径向权重
+\[
+w_i=\int_{\xi_{i-1/2}}^{\xi_{i+1/2}}\xi\,\mathrm d\xi,
+\]
+端点按0和1截取。内部水分通量与半离散方程为
 \begin{equation}\label{eq_shrink_fvm}
-R^2w_i\dot U_i=\widehat F^C_{i-1/2}-\widehat F^C_{i+1/2},\quad
-R^2w_iB_i\dot\Theta_i=\widehat F^T_{i-1/2}-\widehat F^T_{i+1/2}.
+\begin{gathered}
+\widehat F^C_{i+1/2}
+=-\xi_{i+1/2}\,D_{i+1/2}
+\cdot\frac{U_{i+1}-U_i}{\xi_{i+1}-\xi_i},\\[6pt]
+R^{2}(t)\,w_i\,\dot U_i
+=\widehat F^C_{i-1/2}-\widehat F^C_{i+1/2}.
+\end{gathered}
 \end{equation}
-式\eqref{eq_shrink_fvm}使用2113个材料节点，BDF相对容差为$10^{-8}$，温度与含水率绝对容差分别为$10^{-8}$、$10^{-10}$；前4 h最大步长10 s，其后60 s。环境切换处分段，过程状态连续。以全部材料节点的最大含水率定位事件，并在细网格和时间收紧解上核验同一报告时刻。
+温度方程将$D$换为$k$，并乘以$B_i$。表面通量分别取$R h_m(U_N-C_a)$与$R h(\Theta_N-T_a)$。
+时间推进仍采用隐式BDF，局部物性在每次迭代中按当前温湿状态更新。生产计算使用2113个材料节点；相对容差$10^{-8}$，温度与含水率绝对容差分别为$10^{-8}$、$10^{-10}$。前4 h最大步长10 s，其后60 s，并在环境切换处分段接续。网格加密与时间收紧检验见第\ref{sec_validation}节。
 
-题目要求的是当前物理距离。对每个$r_j\le R(t)$，先求$\xi_j=r_j/R(t)$，再对材料网格上的$U$作保形插值；固定$r_j>R(t)$的位置已在药材外，单元格留空。表面始终使用$\xi=1$的实际节点并单列，不能用固定的2 cm列表示移动表面。
+烘干完成的定义沿用式\eqref{eq_event}，只把固定半径上的最大值换成材料坐标上的最大值：
+\[
+M(t)=\max_{0\le\xi\le1}U(\xi,t),\qquad
+t_*=\inf\{t\ge0:M(t)<0.15\}.
+\]
+离散求解监测全部材料节点。临界时刻满足$M(t_*)=0.15$；题目要求严格低于阈值，故另取稍晚的报告时刻$t_{\mathrm{rep}}$，并用未舍入结果复核。本问没有重新定义“烘干完成”，只是把第三问的事件判据放到收缩域上。
 
-\subsection{烘干时长与径向含水率}
-生产解临界时刻为51.0871229810 h。程序在生产、空间加密和时间收紧解的最晚临界时刻之后增加2 s，再向上选择四位小时报告值，并复核三组未舍入最大值。最终得到
+题目要求按当前物理距离输出。对$r_j\le R(t)$，先取$\xi_j=r_j/R(t)$，再在材料网格上对$U$作保形插值；若$r_j>R(t)$，该位置已在药材外，单元格记为“---”，不填0或环境值。药材表面始终对应$\xi=1$，含水率与当时半径分别单列，不能用固定的2 cm列代替移动表面。
+
+\subsection{烘干时长与含水率分布}
+生产解临界时刻为$t_*=51.0871229810$ h。按式\eqref{eq_event}的严格低于阈值规则，得到
 \begin{equation}\label{eq_q4_answer}
-\boxed{t_{\mathrm{rep},4}=51.0877\ \mathrm h=183915.72\ \mathrm s.}
+t_{\mathrm{rep},4}=51.0877\ \mathrm h=183915.72\ \mathrm s.
 \end{equation}
-式\eqref{eq_q4_answer}对应最大含水率为0.1499989333 kg/kg，最大值位于中心，当前半径为1.2000 cm，位于附件2的72 h覆盖范围内，无需半径外推。表\ref{tab_q4C}为题目要求的结果，图\ref{fig_q4}同时展示含水率历程与当前物理半径剖面。
+此时生产解的最大含水率为0.1499989333 kg/kg，严格低于0.15 kg/kg，最大值位于中心，当时半径为1.2000 cm，仍在附件2的72 h覆盖范围内，无需半径外推。规定时刻的径向剖面见图\ref{fig_q4profiles}，表\ref{tab_q4C}给出每6 h及结束时刻的含水率。
+
 \input{tables/q4C}
-\figpair{q4_C_history.pdf}{q4_C_profiles.pdf}{收缩模型的含水率变化。左图为中心和表面历程；右图以当前物理半径绘制剖面，曲线右端随收缩移动，始终对应真实表面。}{fig_q4}
+\begin{figure}[H]
+\centering\includegraphics[width=.72\linewidth]{q4_C_profiles.pdf}
+\caption{每6 h及结束时刻的含水率剖面。横坐标为当前物理半径，曲线右端随收缩内移。}
+\label{fig_q4profiles}
+\end{figure}
 
-表\ref{tab_q4C}各列含水率单位均为kg/kg，空白表示该固定距离已超出当时半径；附加的$R(t)$列用于明确表面位置。终时中心四位显示为0.1500，与问题三相同，应结合未舍入最大值理解严格达标条件。
+表\ref{tab_q4C}中“---”表示该固定距离已超出当时半径；药材表面列始终取$U(1,t)$，$R(t)$列给出表面位置。终时中心四位显示为0.1500，对应未舍入值0.1499989333 kg/kg，达标判断以未舍入值为准。完整结果保存至\texttt{result4.xlsx}，从60 s起每60 s输出一次，并追加183915.72 s的准确结束时刻。论文表格与结果文件由同一未舍入数值解生成。
 
-第四问比第三问的报告时长减少6.3854 h，约为第三问的11.11\%。这个差异同时包含附录3变为附录4以及几何收缩两项改变，不能据此认定收缩单独使时长减少11.11\%。若要分离二者作用，需要另作相同物性下固定域与收缩域的对照，本文不将尚未完成的对照写成结论。
+18 h时表面含水率已降至0.0892 kg/kg，中心仍为0.4086 kg/kg；48 h时中心为0.1561 kg/kg，仍高于阈值。因此表面先接近干燥要求，不能代表内部湿芯已经消失，本问以空间最大值作为达标判据。
 
-\subsection{收缩过程的干基收支}
-按式\eqref{eq_s_density}，干物质总量$M_d=s_0\pi R_0^2L$保持不变，水质量满足
-\begin{equation}\label{eq_mass_shrink}
-\frac{M_w}{M_d}=2\int_0^1U\xi\dd\xi,\qquad
-\frac{\dd}{\dd t}\left(\frac{M_w}{M_d}\right)
-=-\frac{2h_m}{R(t)}[U_s-C_a(t)].
+\subsection{同物性对照与收缩贡献}
+第三、四问同时改变物性和几何，时长差不能单独归因于收缩。为分离几何作用，在附录4物性下增加$R\equiv R_0=0.02$ m对照，与实测$R(t)$组保持初值、热湿方程、交换系数及全域达标判据一致。两组前4 h均用同一环境插值，此后保持50 $^\circ$C、0.05 kg/kg；固定组由式\eqref{eq_shrink}取常半径并联合求解温湿场。
+
+表\ref{tab_q4_control}列出两组结果。固定组沿用收缩组的$G_8$及BDF配置，均以$G_{16}$和时间收紧复核，并在最晚临界根后留出2 s、向上取四位小时；报告时刻另经未舍入最大值与经验裕量检查。
+\begin{table}[htbp]\centering\small
+\caption{附录4物性下固定半径与实测收缩的对照}\label{tab_q4_control}
+\begin{tabular}{lrrr}\toprule
+半径方案 & 临界时间/h & 严格报告时间/h & 报告时最大含水率\\
+ & & & (kg/kg)\\\midrule
+固定$R=R_0$ & 129.8442292 & 129.8448 & 0.1499996198\\
+实测$R(t)$ & 51.0871230 & 51.0877 & 0.1499989333\\\bottomrule
+\end{tabular}
+\end{table}
+
+以固定组报告时长为分母，收缩使本模型的预测烘干时间减少
+\begin{equation}\label{eq_q4_saving}
+\begin{gathered}
+\Delta t_{\rm shrink}=t_{\rm fixed,4}-t_{\rm shrink,4}
+=129.8448-51.0877=78.7571\ \mathrm h,\\
+\eta_t=\frac{\Delta t_{\rm shrink}}{t_{\rm fixed,4}}\times100\%
+\approx60.65\%.
+\end{gathered}
 \end{equation}
-式\eqref{eq_mass_shrink}由材料域方程积分并使用表面条件得到，可不指定未知$s_0$而检验归一化水分收支。关闭边界交换时，均匀初始含水率在纯收缩下保持不变；令$R$为常数时，模型退化为采用同一附录4物性的固定域方程。两种退化测试均与现有程序结果一致。
+两组临界根之差为78.7571062 h，与报告时长差在四位小数下一致，说明该差异不由严格达标的时间裕量造成。图\ref{fig_q4_control}展示中心含水率全过程及后期放大；保存轨迹中两组中心均与径向最大值重合，收缩组更早穿越阈值。
+\begin{figure}[htbp]\centering
+\includegraphics[width=.94\linewidth]{q4_fixed_vs_shrink.pdf}
+\caption{同一附录4物性下，收缩组比固定半径组更早达标。左图为中心含水率全过程，右图放大后期；曲线止于各自报告时刻，点线为0.15 kg/kg阈值。}
+\label{fig_q4_control}
+\end{figure}
+
+固定组约129.84 h超过72 h半径记录，但使用指定常半径，无需外推半径；收缩组仍在观测范围内达标。该对照依赖既定后期环境，量化有效模型中扩散距离、表面交换及温湿反馈共同形成的收缩总效应，不是实测节时比例。
+
+就方程结构而言，材料坐标中内部扩散含$R^{-2}$。报告时刻$R=1.2000$ cm，相对于初值2 cm，
+\[
+\left(\frac{R_0}{R}\right)^2=\left(\frac{2.0}{1.2}\right)^2\approx2.78.
+\]
+该2.78倍仅表示扩散算子的几何系数变化，不能直接当作速度或时长倍率；实际还受局部$D$、温度场和表面$R^{-1}$交换影响。
+
+收缩域的水分总量按干物质质量归一化后满足
+\begin{equation}\label{eq_mass_shrink}
+\begin{gathered}
+\frac{M_w}{M_d}=2\int_0^1 U\,\xi\,\mathrm d\xi,\\[4pt]
+\frac{\mathrm d}{\mathrm dt}\left(\frac{M_w}{M_d}\right)
+=-\frac{2h_m}{R(t)}\bigl[U_s-C_a(t)\bigr].
+\end{gathered}
+\end{equation}
+式\eqref{eq_mass_shrink}由材料域方程积分并使用表面条件得到，无需指定未经测量的$s_0$。令$R(t)\equiv R_0$时，式\eqref{eq_shrink}退化为同一附录4物性的固定域方程；关闭表面交换且初值均匀时，纯收缩不改变干基含水率。这两种退化及式\eqref{eq_mass_shrink}的数值收支均已检查，网格与时间加密结果见表\ref{tab_event_convergence}和表\ref{tab_balance}。
 \FloatBarrier

@@ -4,6 +4,26 @@
 
 由 `3coding-visual` 在已审核方案落地后填写。
 
+## 2026-09-13 第三问二维端面校核补充
+
+写作更新：用户已接受本结果并授权加入论文，结果采纳APPROVED。第9.6节、表13和图8已整合，原四问正式结果保持。见reports/Q3_PAPER_INTEGRATION_20260913.md；下段“供审阅”记录此前计算交付阶段。
+
+q3-axisymmetric-v1已完成计算、验证和图表，技术PASS，新结果供审阅，原四问正式答案及论文保留。完整模型、精确结果、显示精度、网格/时间检查和局限见 `reports/Q3_AXISYMMETRIC_REPORT.md`。
+
+| 指标 | 模拟结果 | 单位/尺度 | 来源 |
+|---|---:|---|---|
+| 主对照二维临界时间 | 57.47763747934139 | h，非严格报告时刻 | comparison.json: production_2d_t_star_h |
+| 同径向网格一维临界时间 | 57.47975790994204 | h | comparison.json: production_paired_1d_t_star_h |
+| 开放端面时间差 | -7.633550162339816 | s，负数为提前 | comparison.json: paired_end_effect_s |
+| 同上相对差 | -0.0036890040559533857 | %，正文建议约0.004% | comparison.json: paired_end_effect_pct |
+| 两端累计排湿占比 | 0.053011378587826945 | 比例，约5.3% | comparison.json: production_end_loss_fraction |
+
+精确汇总与验证在 `results/q3_axisymmetric/comparison.json`、`comparison.csv`；模型程序 `code/q3_axisymmetric.py`，独立汇总程序 `code/verify_q3_axisymmetric.py`。所有算例JSON/NPZ保存在同目录；绘图由 `code/plot_q3_axisymmetric.py` 读取主对照NPZ和 `paired_history.csv`，输出 `figures/q3_axisymmetric_check.pdf` 及PNG，图源记录 `figure_provenance.json`。
+
+10项汇总检查通过。配对端面差的径向加密变化0.01017 s、轴向加密变化0.50939 s、时间收紧变化0.00120 s；中心在采样和临界时刻控制全域最大含水率。绝对时间径向加密变化80.28 s，局部场轴向加密最大差0.00167 kg/kg，因此仅支持“中心达标时长受端面影响很小”，不声称全场四位稳定或现实预测秒级精度。与原高精度一维的18.42472 s正差包含网格变化，不能作为端面时间效应。
+
+建议保留第三问一维主模型，将二维结果用作条件性补充校核；本轮不扩展第四问，不据此验证第四问收缩节时百分数。
+
 ## 运行环境
 
 - 解释器：`D:/python/python.exe`，Python 3.14.6，NumPy 2.5.1，SciPy 1.18.0，openpyxl 3.1.5，matplotlib 3.11.1
@@ -169,3 +189,8 @@ D:/python/python.exe code/plot_q3_results.py
 - 结果results/result4.xlsx、q4_solution.npz、q4_validation.json、q4_delivery_validation.json；各网格源数据与配置results/q4_baseline/；绘图figures/q4_C_history.pdf、q4_C_profiles.pdf，PNG为预览，均来自同一生产源数组。
 - Excel导出3067行×23列，含表头，数值与源数据全量一致，域外留空。热验证限于有效热方程离散残差与收敛，不声称完整多相物理守恒。
 - 数值及导出技术PASS，用户采纳PENDING；论文暂停。第三问现已单独完成q3-closeout-v1修复，未改变第四问代码及结果。
+
+
+## 2026-09-12 同物性收缩对照补充
+
+已按本轮用户指令完成q4-fixed-comparison-v1补算、技术核验与论文整合。附录4固定半径129.8448h，对比实测收缩51.0877h，节时78.7571h（60.65%）；结果限定于既定有效模型与环境。来源、配置、验证及论文位置见reports/Q4_FIXED_COMPARISON_REPORT.md。原四问主结果保持。执行与写作已获本轮授权，未代记用户已完成新结果人工验收。

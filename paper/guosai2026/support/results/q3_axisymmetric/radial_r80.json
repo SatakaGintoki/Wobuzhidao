@@ -1,0 +1,25 @@
+{
+  "tag": "radial_r80",
+  "nr": 81,
+  "tight": false,
+  "t_star_s": 207007.41627120218,
+  "t_star_h": 57.50206007533394,
+  "wall_s": 3.6289827000000514,
+  "source_sha256": {
+    "code/q3_axisymmetric.py": "fe641a568ce42d299113418b6fd8c59ad5428e3e69aa1b2203f4f6345cdad778",
+    "code/appendix3.py": "55dbd6219d0c3a60ad7bb46d07500d21e994b1d60fc7e5c27fad970c13e490de",
+    "code/problem3.py": "e94dbf26889ff85356712a9d09c425f16fa462f535191df5b56df8127009be3d",
+    "code/utils.py": "bc1fb8a55cf09eed7ef27386bed3a443c35cd148798e1bc572fae2b00a38bc47",
+    "data/附件/附件1.xlsx": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7",
+    "results/q3_validation.json": "7e1cdb2ac0090eca990ba4170560ce5f8dc8d3857ff9507db2fc3441302f83db"
+  },
+  "original_source_sha256": {
+    "code/q3_axisymmetric.py": "fe641a568ce42d299113418b6fd8c59ad5428e3e69aa1b2203f4f6345cdad778",
+    "code/appendix3.py": "f511164c8fe42cd15ca1fa59aea9552dd413f1b00487360ff0c3e1f53b276d44",
+    "code/problem3.py": "c510ea0aec630ff5b18c19498c025309ce4cae2ad58e77df79ba7b96b5aa8b07",
+    "code/utils.py": "bc1fb8a55cf09eed7ef27386bed3a443c35cd148798e1bc572fae2b00a38bc47",
+    "data/附件/附件1.xlsx": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7",
+    "results/q3_validation.json": "7e1cdb2ac0090eca990ba4170560ce5f8dc8d3857ff9507db2fc3441302f83db"
+  },
+  "packaging_note": "Paths made relative; original hashes retained. Packaged problem3.py has only the documented export-path adaptations. Numerical arrays unchanged."
+}

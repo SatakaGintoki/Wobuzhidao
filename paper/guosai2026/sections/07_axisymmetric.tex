@@ -1,0 +1,34 @@
+\subsection{径向简化的二维端面校核}\label{sec_axisymmetric}
+短时传播尺度不能直接保证约57 h预测中的端面影响仍小。参考Hussain和Dincer对有限圆柱二维热湿传递的研究\cite{hussain2003}，在第三问原初值、附录3物性及环境输入下恢复轴向通量。取$z=0$为中截面，在$0\le r\le R$、$0\le z\le L/2$上建立
+\begin{equation}\label{eq_q3_2d}
+\begin{aligned}
+B(C)T_t&=\frac1r\frac{\partial}{\partial r}\left(rk(C)T_r\right)
+       +\frac{\partial}{\partial z}\left(k(C)T_z\right),\\
+C_t&=\frac1r\frac{\partial}{\partial r}\left(rD(C,T)C_r\right)
+       +\frac{\partial}{\partial z}\left(D(C,T)C_z\right).
+\end{aligned}
+\end{equation}
+中心轴和中截面施加零法向梯度，侧面沿用原边界；端面$z=L/2$取$-kT_z=h_z(T-T_a)$、$-DC_z=h_{m,z}(C-C_a)$，其中$h_z=h$、$h_{m,z}=h_m$为指定对照情景。该模型保留本文的变系数守恒形式，以表面加密有限体积法和隐式BDF求解，不移植文献材料参数。
+
+以全部二维节点的$\max C_{ij}(t)=0.15$定位临界根，并对每个径向网格独立计算一维配对解。表\ref{tab_axisymmetric}中$N_r,N_z$为区间数，$\Delta t_*=t_{*,2D}-t_{*,1D}$；采用同径向网格比较，以分离改变网格与开放端面的作用。
+\begin{table}[htbp]\centering\small
+\caption{同径向网格下一、二维临界时间对照}\label{tab_axisymmetric}
+\begin{tabular}{llrrr}\toprule
+$N_r\times N_z$ & 时间配置 & 一维 / h & 二维 / h & $\Delta t_*$ / s\\\midrule
+$80\times40$ & 普通 & 57.502060 & 57.499795 & -8.153\\
+$160\times40$ & 普通 & 57.479758 & 57.477496 & -8.143\\
+$80\times80$ & 普通 & 57.502060 & 57.499937 & -7.644\\
+$160\times80$ & 普通 & 57.479758 & 57.477637 & -7.634\\
+$160\times80$ & 收紧 & 57.479760 & 57.477640 & -7.635\\\bottomrule
+\end{tabular}
+\end{table}
+
+关闭端面交换后，二维与配对一维临界时间相差0.0015 s，支持退化一致性。开放端面时累计水分收支相对残差均低于$1.2\times10^{-8}$。在细网格附近，径向加密、轴向加密及时间收紧使配对时间差分别变化0.0102、0.5094和0.0012 s，支持端面对中心达标时长影响很小的判断。二维绝对临界时间的径向加密差仍为80.28 s，不能据输出位数声称秒级绝对精度，也不以此替换原$G_8$一维正式答案。
+
+\begin{figure}[htbp]\centering
+\includegraphics[width=.87\linewidth]{q3_axisymmetric_check.pdf}
+\caption{第三问二维端面校核。上图为36 h纵剖面含水率，保持实际长径比；下图比较同径向网格的全域最大值及其差异。}
+\label{fig_q3_2d}
+\end{figure}
+图\ref{fig_q3_2d}表明，端面促进端部干燥，但采样及临界时刻的全域最大值仍由中心控制。细网格开放端面后仅提前约8 s，约占配对一维时长的0.004\%；两端累计排湿却约占总排湿5.3\%，说明总排湿贡献不能直接换算为中心达标的节时比例。该结果支持本问采用一维径向主模型，并为下一问沿用径向近似提供参考。结论限于各向同性、两端同环境及等交换系数情景，不保证局部二维场四位小数稳定，也不构成实验验证；收缩情景下的沿用依据与限制将在下一问说明。
+\FloatBarrier

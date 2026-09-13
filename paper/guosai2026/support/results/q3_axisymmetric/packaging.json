@@ -1,0 +1,25 @@
+{
+  "rebased_case_metadata": [
+    "r160_z40_end1.json",
+    "r160_z80_end1.json",
+    "r160_z80_end1_tight.json",
+    "r80_z40_end0.json",
+    "r80_z40_end1.json",
+    "r80_z80_end1.json",
+    "radial_r160.json",
+    "radial_r160_tight.json",
+    "radial_r80.json"
+  ],
+  "arrays": {
+    "r160_z40_end1.npz": "87188f8b041d8b66b784308ca6825fe83daa482bde3aabc5ba5cd7a7f779e425",
+    "r160_z80_end1.npz": "5792a306f24c6207614656e598a99166854d10c287ad75617626fecc0473fc1e",
+    "r160_z80_end1_tight.npz": "c2010b2975e964bf5272fef91c0387c807976ba6761e0b9a97af86023ee409be",
+    "r80_z40_end0.npz": "7b1902013502fc8131784628f7fac2000cdc7d76bb70ad92ee65e365a70daaee",
+    "r80_z40_end1.npz": "3647e2936536f0394c13c87afde5eb9c0c859afd450d4796f39a622f8d8f98e0",
+    "r80_z80_end1.npz": "50faa37bfae1ab2ee9e41e8bb434414faaf93b265c0d4e23f69acee673383769",
+    "radial_r160.npz": "f152c02c3bf1967161638d931c3e3e7acdc3b5ce081d554ba03c3dedfe3f7914",
+    "radial_r160_tight.npz": "9b62561054286171a0e31e4476580b6b77d4bf6f1df89e595c6dd453b6dd1854",
+    "radial_r80.npz": "a2464946c6d604b4b05d790287d72e875197e571057f4c48a310391ab5abb9d8"
+  },
+  "all_arrays_match_original": true
+}
