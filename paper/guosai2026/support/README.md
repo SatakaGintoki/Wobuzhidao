@@ -1,5 +1,11 @@
 # 支撑材料使用说明
 
+## 当前附录的精简求解程序
+
+论文附录D现引用code/Q1.py至Q4.py，每问独立计算，仅需NumPy、SciPy、openpyxl。运行`python code/Q1.py`（其他问同理），原始附件和模板位于code/data/，新结果写入code/results/。论文同级的“支撑材料_按问复现”文件夹及压缩包提供同样的四个独立脚本和附件。
+
+四份精简程序已通过语法导入、核心方程对照、短时积分和Excel抽样导出检查，未完整重算全部结果。以下为原始完整求解、验证及补充实验程序的历史说明，不代表精简版仍依赖Matplotlib、Node或其他问题的结果。
+
 本文计算使用 Python、NumPy、SciPy、openpyxl 与 Matplotlib。原生产环境记录为 Python 3.14.6、NumPy 2.5.1、SciPy 1.18.0；程序相对项目根读取文件。Excel 3、4 的原导出脚本另需 Node.js 与 @oai/artifact-tool；已包含正式结果文件。
 
 ## 输入位置

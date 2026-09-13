@@ -1,7 +1,7 @@
 \section*{附录C\quad 支撑材料清单与复现说明}
-支撑材料包含四问完整Python程序\texttt{Q1.py}--\texttt{Q4.py}、四个正式Excel结果文件和AI工具使用详情。四份程序均内嵌相应问题所需模块，可独立展开运行时目录；输入、输出相对于程序所在目录定位。
+支撑材料包含四问独立Python求解程序\texttt{Q1.py}--\texttt{Q4.py}、四个正式Excel结果文件和AI工具使用详情。各问程序保留附件读取、基准网格求解与答案导出，不调用其他问题的程序；输入、输出相对于程序所在目录定位。
 
-运行环境需安装NumPy、SciPy、openpyxl和Matplotlib，并在支撑材料目录中保留题目附件及结果模板。可按下列命令复算各问；使用\texttt{--check}参数可先检查运行环境和文件完整性。
+运行环境需安装NumPy、SciPy和openpyxl，并在程序同目录的\texttt{data}子目录中保留题目附件及结果模板。可单独运行下列任一命令，结果写入程序同目录的\texttt{results}子目录。
 \begin{Verbatim}[fontsize=\small,breaklines=true]
 python Q1.py
 python Q2.py
@@ -9,7 +9,9 @@ python Q3.py
 python Q4.py
 \end{Verbatim}
 
-\section*{附录D\quad 完整源程序}
+以下程序仅执行各问基准计算，不包含绘图、网格加密及附加实验。问题三保留原数值复核确定的经验裕量；问题四采用基准临界时刻延后2秒并向上取四位小时的报告规则，不在精简程序中重新比较其他网格。修改题目输入或参数后，应重新评估报告裕量。
+
+\section*{附录D\quad 各问求解源程序}
 
 \subsection*{D.1\quad\texttt{Q1.py}}
 \VerbatimInput[fontsize=\fontsize{7.5}{9}\selectfont,breaklines=true,breakanywhere=true,numbers=left,numbersep=5pt,xleftmargin=12pt]{support/code/Q1.py}
