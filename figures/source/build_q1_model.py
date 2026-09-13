@@ -9,13 +9,13 @@ ROOT = Path(__file__).resolve().parents[2]
 FIG = ROOT / "figures"
 WIDTH, HEIGHT = 1180, 580
 UNIT_PT = 0.44
-BLUE = "#5470DB"
-ORANGE = "#E6886D"
+BLUE = "#1D91C0"
+ORANGE = "#D65244"
 INK = "#333333"
 GRAY = "#B8B8B8"
 LIGHT = "#E5E5E5"
-OUTLINE = BLUE
-LIGHT_BLUE = "#96B7FC"
+OUTLINE = "#4358C5"
+LIGHT_BLUE = "#80CDBB"
 
 mxfile = ET.Element("mxfile", host="app.diagrams.net", agent="Codex", version="24.7.17")
 diagram = ET.SubElement(mxfile, "diagram", id="q1-physical-model", name="问题一物理模型")

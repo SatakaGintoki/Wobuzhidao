@@ -1,0 +1,101 @@
+{
+  "documents": {
+    "main": {
+      "before_pages": 117,
+      "pages": 113,
+      "sha256": "c2cacd83b684a215a2fbd2140fd747bf6119e3ff1f52b7533a2011c2ca5e7745",
+      "errors_or_overflow": [],
+      "replacement_character_pages": [],
+      "unwanted_tokens": [],
+      "missing_key_values": []
+    },
+    "reading": {
+      "before_pages": 35,
+      "pages": 31,
+      "sha256": "2e346563086b3cbc9e8aa7bdc38744d54c7827135e1ceaa46cf9a05dff2ae0ea",
+      "errors_or_overflow": [],
+      "replacement_character_pages": [],
+      "unwanted_tokens": [],
+      "missing_key_values": []
+    }
+  },
+  "protected_file_changes": [],
+  "section_changes": {
+    "01_analysis.tex": {
+      "before_chars": 1178,
+      "after_chars": 900
+    },
+    "03_q1.tex": {
+      "before_chars": 8858,
+      "after_chars": 5257
+    },
+    "04_q2.tex": {
+      "before_chars": 3083,
+      "after_chars": 3092
+    },
+    "05_q3.tex": {
+      "before_chars": 4249,
+      "after_chars": 3561
+    },
+    "06_q4.tex": {
+      "before_chars": 8813,
+      "after_chars": 8382
+    },
+    "07_validation.tex": {
+      "before_chars": 4283,
+      "after_chars": 4284
+    },
+    "08_evaluation.tex": {
+      "before_chars": 1230,
+      "after_chars": 867
+    },
+    "abstract.tex": {
+      "before_chars": 1252,
+      "after_chars": 1022
+    },
+    "appendix.tex": {
+      "before_chars": 8665,
+      "after_chars": 8665
+    },
+    "appendix_numerics.tex": {
+      "before_chars": 2170,
+      "after_chars": 3027
+    },
+    "q1_reference_appendix.tex": {
+      "before_chars": 1288,
+      "after_chars": 1564
+    }
+  },
+  "concurrent_figure_updates": [
+    {
+      "path": "code/plot_paper_spacetime.py",
+      "before_sha256": "8B1350F9AAABDB46EAE396CD1828B7BC8CEA66A8474293E4C80C028F06085697",
+      "current_sha256": "FB660FF8F43ADB84F61A1C9F7A342189317B2474F4DF302B5D4BE3ACCEF57100"
+    },
+    {
+      "path": "paper/guosai2026/figures/q1_spacetime.pdf",
+      "before_sha256": "562177C711CD41BAB9170731E384491F0C81FE021FF89B18AC15FBD3FBC4E6FE",
+      "current_sha256": "1FDCFF9B590A76ABFC7E1466538AD66689D3FF5A61C39926DD0946D04FEC99FA"
+    },
+    {
+      "path": "paper/guosai2026/figures/q2_spacetime.pdf",
+      "before_sha256": "F4600B12833552419F7FC69BFF502676EDD2F02C6812EB11B02C2231EDA3CB91",
+      "current_sha256": "0631DE00F6BEA432977E7D9EE2838CA7CD571CF3E117A63E213A6D21AF80499F"
+    },
+    {
+      "path": "paper/guosai2026/figures/q3_spacetime.pdf",
+      "before_sha256": "76768BF2C501420F22EED6614A45D28B668CBD59F1C53243429A8F7C71BD7E72",
+      "current_sha256": "1C6D118B164BD09FF0F2B18ACACCD2589794BC171E68C522D6ED06910ED2EBA7"
+    },
+    {
+      "path": "paper/guosai2026/figures/q4_spacetime_comparison.pdf",
+      "before_sha256": "D4DB6CC82C27D37E50D2570D8AA8E10313487CD2F7EF158E84CDCB47B5E216F1",
+      "current_sha256": "5C3474E1857915B72CAEE9535A76AFF18BF59BD0EC73E4B22C73117B9B2F33E8"
+    }
+  ],
+  "shared_page_pixel_differences": [],
+  "duplicate_labels": [],
+  "old_precision_claim_present": false,
+  "code_appendix_numbering_ok": true,
+  "pass": true
+}

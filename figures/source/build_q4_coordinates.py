@@ -11,7 +11,7 @@ import zlib
 
 FIG = Path(__file__).resolve().parents[1]
 WIDTH, HEIGHT = 1260, 735
-BLUE, ORANGE, INK = "#5470DB", "#E6886D", "#333333"
+BLUE, ORANGE, INK = "#4358C5", "#D65244", "#333333"
 GRAY, LIGHT = "#B8B8B8", "#E5E5E5"
 UNIT = 0.44
 mxfile = ET.Element("mxfile", host="app.diagrams.net", agent="Codex", version="24.7.17")
@@ -131,9 +131,9 @@ def cylinder(prefix, rear, radius):
     rear_up, rear_down = add(rear, UP, radius), add(rear, UP, -radius)
     front_up, front_down = add(front, UP, radius), add(front, UP, -radius)
     vector_shape(prefix + "-section", [rear_up, front_up, front_down, rear_down],
-                 stroke=None, fill="#96B7FC", opacity=22)
-    vector_shape(prefix + "-rear", ring(rear, radius), stroke=BLUE, fill="#96B7FC", opacity=16)
-    vector_shape(prefix + "-front", ring(front, radius), stroke=BLUE, fill="#96B7FC", opacity=20)
+                 stroke=None, fill="#80CDBB", opacity=22)
+    vector_shape(prefix + "-rear", ring(rear, radius), stroke=BLUE, fill="#80CDBB", opacity=16)
+    vector_shape(prefix + "-front", ring(front, radius), stroke=BLUE, fill="#80CDBB", opacity=20)
     line(prefix + "-top", [rear_up, front_up], stroke=BLUE, lw=2)
     line(prefix + "-bottom", [rear_down, front_down], stroke=BLUE, lw=2)
     line(prefix + "-axis", [add(rear, AX, -radius * 0.38 - 12),

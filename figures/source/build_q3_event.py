@@ -7,8 +7,8 @@ import xml.etree.ElementTree as ET
 
 FIG = Path(__file__).resolve().parents[1]
 WIDTH, HEIGHT, UNIT_PT = 850, 900, 0.44
-BLUE = "#5470DB"
-ORANGE = "#E6886D"
+BLUE = "#4358C5"
+ORANGE = "#D65244"
 GRAY = "#B8B8B8"
 INK = "#333333"
 mxfile = ET.Element("mxfile", host="app.diagrams.net", agent="Codex", version="24.7.17")
@@ -45,7 +45,7 @@ def tex_label(x, y, value, size=24, ink=INK):
     )
 
 
-def node(name, x, y, w, h, title, detail=None, stroke=BLUE, fill="#F2F5FD",
+def node(name, x, y, w, h, title, detail=None, stroke=BLUE, fill="#EDF8F5",
          diamond=False, rounded=False, size=24, detail_size=23):
     bounds[name] = (x, y, w, h)
     mx_value = mathjax(title)
@@ -127,13 +127,13 @@ node("maximum", 330, 259, 470, 82, "计算全域最大含水率",
      r"$M_h(t)=\max_i C_i(t)$")
 node("crossing", 330, 363, 470, 154, "是否出现向下穿越？",
      r"$M_h(t):\ >0.15\ \longrightarrow\ \leq0.15$",
-     stroke=ORANGE, fill="#FCF0EA", diamond=True, detail_size=22)
+     stroke=ORANGE, fill="#FAE9E6", diamond=True, detail_size=22)
 node("continue", 50, 410, 200, 60, "继续积分", stroke=GRAY, fill="#F6F6F6")
 node("root", 330, 550, 470, 82, "局部精算并求根",
      r"$M_h(t_*)=0.15$")
 node("report-time", 330, 664, 470, 96, "选取严格达标报告时刻",
      r"$t_{\mathrm{rep}}>t_*,\quad M_h(t_{\mathrm{rep}})<0.15$",
-     stroke=ORANGE, fill="#FCF0EA")
+     stroke=ORANGE, fill="#FAE9E6")
 node("verify", 330, 792, 470, 82, "网格、时间与收支复核",
      r"同一 $t_{\mathrm{rep}}$，以未舍入值核对达标", rounded=True, detail_size=22)
 

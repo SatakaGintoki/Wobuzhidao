@@ -1,0 +1,59 @@
+\section*{附录B\quad 数值实现细节}
+\addcontentsline{toc}{section}{附录B\quad 数值实现细节}
+
+本附录补充插值表达式、网格细分方案、时间离散形式、密度相容性核算及问题一的收支残差定义，供复现与核对使用。
+
+\subsection*{B.1\quad 保形分段三次Hermite插值}
+记相邻观测点为$(t_j,f_j)$，区间长度$h_j=t_{j+1}-t_j$，$z=(t-t_j)/h_j$，则第\ref{sec_preprocessing}节所用插值为
+\begin{equation}\label{eq_pchip}
+\begin{gathered}
+f(t)=(2z^3-3z^2+1)f_j+(-2z^3+3z^2)f_{j+1}\\
++(z^3-2z^2+z)h_jm_j+(z^3-z^2)h_jm_{j+1},
+\end{gathered}
+\end{equation}
+其中节点导数$m_j$由保形规则确定：当相邻两段差商同号时，$m_j$取二者的加权调和平均；异号或任一差商为零时取$m_j=0$。由此保证插值精确通过全部观测点、节点处一阶导数连续，且不在单调区间内产生新的极值。$f$分别取烘房温度$T_a$、水分量$C_a$和第四问的半径$R$。
+
+\subsection*{B.2\quad 表面加密网格的分段细分方案}
+以问题一为例，将$0\le r\le R$按题目规定的0.1 cm输出位置分段，并在0至1.5 cm、1.5至1.8 cm、1.8至1.9 cm、1.9至2.0 cm四段内分别细分为$8m$、$16m$、$32m$、$64m$份，所得网格记为$G_m$，共$264m+1$个节点。该方案使全部规定输出位置保持为实际节点，无需空间插值，同时在表面附近提供更高的分辨率。正文各问采用的加密等级为：问题一、三、四取$G_8$（2113个节点），问题二取$G_4$（1057个节点），加密检验另用$G_2$、$G_{16}$。第四问的材料节点由问题一的$G_8$节点除以$R_0$得到。
+
+\subsection*{B.3\quad 隐式BDF的离散形式}
+空间离散后的半离散方程组记为$\dot{\boldsymbol y}=\boldsymbol f(t,\boldsymbol y)$。以等步长二阶BDF为例，下一时刻的状态满足
+\begin{equation}\label{eq_bdf_residual}
+\boldsymbol{\mathcal R}(\boldsymbol y^{n+1})
+=3\boldsymbol y^{n+1}-4\boldsymbol y^n+\boldsymbol y^{n-1}
+-2\Delta t\,\boldsymbol f(t_{n+1},\boldsymbol y^{n+1})
+=\boldsymbol0.
+\end{equation}
+其中历史状态$\boldsymbol y^n$、$\boldsymbol y^{n-1}$已知，而通量依赖待求的$\boldsymbol y^{n+1}$，故需求解隐式代数方程组；对水分场，$D$随未知含水率变化，方程组还具有非线性。每一步先由历史状态预测新状态，再作牛顿型迭代：按试探状态更新物性和通量，计算残差\eqref{eq_bdf_residual}，求解线性修正方程并更新状态，直至满足收敛要求；随后估计局部时间误差，误差满足容差时接受该步，否则缩小步长重算。实际计算调用SciPy的变步长、变阶BDF实现，式\eqref{eq_bdf_residual}仅用于说明其隐式离散形式，计算并不固定采用二阶公式。
+
+\subsection*{B.4\quad 经验密度与干物质密度的相容性核算}
+第\ref{sec_evaluation}节所述相容性检查的完整过程如下。若把附录4的$\rho(U)=760+90U$解释为真实湿体积密度，则单位当前体积中的干物质质量应为$s=\rho(U)/(1+U)$，初始时
+\[
+s_0=\frac{760+90\times2.55}{1+2.55}\approx278.73\ \mathrm{kg/m^3}.
+\]
+在长度固定、干物质守恒的前提下，72 h时半径由2 cm降至1.198 cm，体积比为$(1.198/2)^2=0.358801$，故当时的平均干物质密度应为
+\[
+\bar s(72\ \mathrm h)=\frac{s_0}{0.358801}\approx776.84\ \mathrm{kg/m^3}.
+\]
+然而对任意$U\ge0$，
+\[
+\frac{760+90U}{1+U}=90+\frac{670}{1+U}\le760\ \mathrm{kg/m^3},
+\]
+上界与$U$的径向分布无关，因此非均匀收缩也不能消除该矛盾，两种解释相差约2.2\%。这一核算针对72 h的半径数据与上述特定解释，不是报告时刻的误差估计。据此，本文把$\rho c_p$仅作为有效体积热容量使用，水分守恒另按式\eqref{eq_s_density}的干物质骨架计量，二者分别记账。
+
+\subsection*{B.5\quad 问题一的累计收支残差}
+对式\eqref{eq_fvm}在全部控制体上求和，内部通量成对抵消。定义有效蓄热增量、累计热输入、归一化水分存量与累计排湿量为
+\begin{equation}\label{eq_q1_balance}
+\begin{gathered}
+\mathcal E_T(t)=2\pi L\rho c_p\sum_iW_i[T_i(t)-T_i(0)],\\
+Q_T(t)=2\pi RL\int_0^t h[T_a(\tau)-T_s(\tau)]\dd\tau,\\
+M_C(t)=\sum_iW_iC_i(t),\qquad
+L_C(t)=R\int_0^t h_m[C_s(\tau)-C_a(\tau)]\dd\tau.
+\end{gathered}
+\end{equation}
+应满足$\mathcal E_T=Q_T$和$\Delta M_C=-L_C$，其中$\Delta M_C=M_C(t)-M_C(0)$。$M_C$乘以$2\pi Ls_0$后才对应水质量。相对残差定义为
+\begin{equation}\label{eq_q1_balance_residual}
+\varepsilon_T=\frac{|\mathcal E_T-Q_T|}{\max(|\mathcal E_T|,|Q_T|,\eta_T)},\qquad
+\varepsilon_{C,\mathrm{bal}}=\frac{|\Delta M_C+L_C|}{\max(|\Delta M_C|,|L_C|,\eta_C)},
+\end{equation}
+其中$\eta_T=10^{-12}$ J、$\eta_C=10^{-18}$ m$^2\cdot$(kg/kg)为近零分母下限。利用连续数值输出，在PCHIP观测分区间上对表面通量自适应积分，再与末态存量独立比较，所得1800 s残差见表\ref{tab_balance}。

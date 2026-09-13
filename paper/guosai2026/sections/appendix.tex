@@ -1,4 +1,4 @@
-\section*{附录A\quad 支撑材料清单与复现说明}
+\section*{附录C\quad 支撑材料清单与复现说明}
 支撑材料包含完整Python模型与验证程序、JavaScript导出与检查脚本、四个正式Excel结果文件、题定结果CSV、验证JSON、主要报告、依赖清单、源文件哈希映射和AI工具使用详情。另附第三问二维校核的全部网格场与配对数据；原四问的大型内部数组可复算。
 
 Python依赖为NumPy、SciPy、openpyxl和Matplotlib；原生产运行记录为Python 3.14.6、NumPy 2.5.1、SciPy 1.18.0。代码采用相对项目根目录，需提供\texttt{data/附件/附件1.xlsx}、\texttt{附件2.xlsx}及\texttt{附件3/}中的题给模板。所有初值、物性和时间单位与正文一致。
@@ -21,97 +21,97 @@ python code/plot_q4_radius.py
 原第3、4问Excel导出脚本依赖Node.js与\texttt{@oai/artifact-tool}。配置依赖后，第3问不加\texttt{--no-xlsx}运行，第4问执行\texttt{node tmp/q4\_export/build.mjs}。支撑材料附完整导出脚本。为使代码可迁移，仅将原计算机的Node路径改为从PATH查找，将第3问布局模板路径改为随附结果文件；数值方程与参数保持原实现。
 
 以下列出本论文模型与验证所使用的完整源程序。部分文件保留历史诊断函数；正式入口及当前输出以以上复现顺序为准。各程序运行会在本地生成结果与诊断文件，宜在支撑材料副本中执行。
-\section*{附录B\quad 完整源程序}
+\section*{附录D\quad 完整源程序}
 
-\subsection*{B.1\quad\texttt{code/utils.py}}
+\subsection*{D.1\quad\texttt{code/utils.py}}
 
 \VerbatimInput[fontsize=\fontsize{7.5}{9}\selectfont,breaklines=true,breakanywhere=true,numbers=left,numbersep=5pt,xleftmargin=12pt]{support/code/utils.py}
 
-\subsection*{B.2\quad\texttt{code/appendix3.py}}
+\subsection*{D.2\quad\texttt{code/appendix3.py}}
 
 \VerbatimInput[fontsize=\fontsize{7.5}{9}\selectfont,breaklines=true,breakanywhere=true,numbers=left,numbersep=5pt,xleftmargin=12pt]{support/code/appendix3.py}
 
-\subsection*{B.3\quad\texttt{code/radial\_fvm.py}}
+\subsection*{D.3\quad\texttt{code/radial\_fvm.py}}
 
 \VerbatimInput[fontsize=\fontsize{7.5}{9}\selectfont,breaklines=true,breakanywhere=true,numbers=left,numbersep=5pt,xleftmargin=12pt]{support/code/radial_fvm.py}
 
-\subsection*{B.4\quad\texttt{code/radial\_coupled.py}}
+\subsection*{D.4\quad\texttt{code/radial\_coupled.py}}
 
 \VerbatimInput[fontsize=\fontsize{7.5}{9}\selectfont,breaklines=true,breakanywhere=true,numbers=left,numbersep=5pt,xleftmargin=12pt]{support/code/radial_coupled.py}
 
-\subsection*{B.5\quad\texttt{code/q1\_analytic.py}}
+\subsection*{D.5\quad\texttt{code/q1\_analytic.py}}
 
 \VerbatimInput[fontsize=\fontsize{7.5}{9}\selectfont,breaklines=true,breakanywhere=true,numbers=left,numbersep=5pt,xleftmargin=12pt]{support/code/q1_analytic.py}
 
-\subsection*{B.6\quad\texttt{code/delivery.py}}
+\subsection*{D.6\quad\texttt{code/delivery.py}}
 
 \VerbatimInput[fontsize=\fontsize{7.5}{9}\selectfont,breaklines=true,breakanywhere=true,numbers=left,numbersep=5pt,xleftmargin=12pt]{support/code/delivery.py}
 
-\subsection*{B.7\quad\texttt{code/problem1.py}}
+\subsection*{D.7\quad\texttt{code/problem1.py}}
 
 \VerbatimInput[fontsize=\fontsize{7.5}{9}\selectfont,breaklines=true,breakanywhere=true,numbers=left,numbersep=5pt,xleftmargin=12pt]{support/code/problem1.py}
 
-\subsection*{B.8\quad\texttt{code/problem2.py}}
+\subsection*{D.8\quad\texttt{code/problem2.py}}
 
 \VerbatimInput[fontsize=\fontsize{7.5}{9}\selectfont,breaklines=true,breakanywhere=true,numbers=left,numbersep=5pt,xleftmargin=12pt]{support/code/problem2.py}
 
-\subsection*{B.9\quad\texttt{code/problem3.py}}
+\subsection*{D.9\quad\texttt{code/problem3.py}}
 
 \VerbatimInput[fontsize=\fontsize{7.5}{9}\selectfont,breaklines=true,breakanywhere=true,numbers=left,numbersep=5pt,xleftmargin=12pt]{support/code/problem3.py}
 
-\subsection*{B.10\quad\texttt{code/q3\_balance.py}}
+\subsection*{D.10\quad\texttt{code/q3\_balance.py}}
 
 \VerbatimInput[fontsize=\fontsize{7.5}{9}\selectfont,breaklines=true,breakanywhere=true,numbers=left,numbersep=5pt,xleftmargin=12pt]{support/code/q3_balance.py}
 
-\subsection*{B.11\quad\texttt{code/q3\_closeout.py}}
+\subsection*{D.11\quad\texttt{code/q3\_closeout.py}}
 
 \VerbatimInput[fontsize=\fontsize{7.5}{9}\selectfont,breaklines=true,breakanywhere=true,numbers=left,numbersep=5pt,xleftmargin=12pt]{support/code/q3_closeout.py}
 
-\subsection*{B.12\quad\texttt{code/problem4.py}}
+\subsection*{D.12\quad\texttt{code/problem4.py}}
 
 \VerbatimInput[fontsize=\fontsize{7.5}{9}\selectfont,breaklines=true,breakanywhere=true,numbers=left,numbersep=5pt,xleftmargin=12pt]{support/code/problem4.py}
 
-\subsection*{B.13\quad\texttt{code/verify\_q4\_results.py}}
+\subsection*{D.13\quad\texttt{code/verify\_q4\_results.py}}
 
 \VerbatimInput[fontsize=\fontsize{7.5}{9}\selectfont,breaklines=true,breakanywhere=true,numbers=left,numbersep=5pt,xleftmargin=12pt]{support/code/verify_q4_results.py}
 
-\subsection*{B.14\quad\texttt{code/plot\_q3\_results.py}}
+\subsection*{D.14\quad\texttt{code/plot\_q3\_results.py}}
 
 \VerbatimInput[fontsize=\fontsize{7.5}{9}\selectfont,breaklines=true,breakanywhere=true,numbers=left,numbersep=5pt,xleftmargin=12pt]{support/code/plot_q3_results.py}
 
-\subsection*{B.15\quad\texttt{code/verify\_closeout.py}}
+\subsection*{D.15\quad\texttt{code/verify\_closeout.py}}
 
 \VerbatimInput[fontsize=\fontsize{7.5}{9}\selectfont,breaklines=true,breakanywhere=true,numbers=left,numbersep=5pt,xleftmargin=12pt]{support/code/verify_closeout.py}
 
-\subsection*{B.16\quad\texttt{code/verify\_q2\_results.py}}
+\subsection*{D.16\quad\texttt{code/verify\_q2\_results.py}}
 
 \VerbatimInput[fontsize=\fontsize{7.5}{9}\selectfont,breaklines=true,breakanywhere=true,numbers=left,numbersep=5pt,xleftmargin=12pt]{support/code/verify_q2_results.py}
 
-\subsection*{B.17\quad\texttt{code/verify\_q3\_closeout.py}}
+\subsection*{D.17\quad\texttt{code/verify\_q3\_closeout.py}}
 
 \VerbatimInput[fontsize=\fontsize{7.5}{9}\selectfont,breaklines=true,breakanywhere=true,numbers=left,numbersep=5pt,xleftmargin=12pt]{support/code/verify_q3_closeout.py}
 
-\subsection*{B.18\quad\texttt{code/verify\_q4\_delivery.py}}
+\subsection*{D.18\quad\texttt{code/verify\_q4\_delivery.py}}
 
 \VerbatimInput[fontsize=\fontsize{7.5}{9}\selectfont,breaklines=true,breakanywhere=true,numbers=left,numbersep=5pt,xleftmargin=12pt]{support/code/verify_q4_delivery.py}
 
-\subsection*{B.19\quad\texttt{tmp/q3\_export/build.mjs}}
+\subsection*{D.19\quad\texttt{tmp/q3\_export/build.mjs}}
 
 \VerbatimInput[fontsize=\fontsize{7.5}{9}\selectfont,breaklines=true,breakanywhere=true,numbers=left,numbersep=5pt,xleftmargin=12pt]{support/tmp/q3_export/build.mjs}
 
-\subsection*{B.20\quad\texttt{tmp/q3\_export/gate.mjs}}
+\subsection*{D.20\quad\texttt{tmp/q3\_export/gate.mjs}}
 
 \VerbatimInput[fontsize=\fontsize{7.5}{9}\selectfont,breaklines=true,breakanywhere=true,numbers=left,numbersep=5pt,xleftmargin=12pt]{support/tmp/q3_export/gate.mjs}
 
-\subsection*{B.21\quad\texttt{tmp/q3\_export/test\_gate.mjs}}
+\subsection*{D.21\quad\texttt{tmp/q3\_export/test\_gate.mjs}}
 
 \VerbatimInput[fontsize=\fontsize{7.5}{9}\selectfont,breaklines=true,breakanywhere=true,numbers=left,numbersep=5pt,xleftmargin=12pt]{support/tmp/q3_export/test_gate.mjs}
 
-\subsection*{B.22\quad\texttt{tmp/q4\_export/build.mjs}}
+\subsection*{D.22\quad\texttt{tmp/q4\_export/build.mjs}}
 
 \VerbatimInput[fontsize=\fontsize{7.5}{9}\selectfont,breaklines=true,breakanywhere=true,numbers=left,numbersep=5pt,xleftmargin=12pt]{support/tmp/q4_export/build.mjs}
 
-\subsection*{B.23\quad\texttt{code/plot\_q4\_radius.py}}
+\subsection*{D.23\quad\texttt{code/plot\_q4\_radius.py}}
 
 \VerbatimInput[fontsize=\fontsize{7.5}{9}\selectfont,breaklines=true,breakanywhere=true,numbers=left,numbersep=5pt,xleftmargin=12pt]{support/code/plot_q4_radius.py}
 

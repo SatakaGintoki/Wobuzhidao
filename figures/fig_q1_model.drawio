@@ -5,22 +5,22 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="001-longitudinal-section" value="" style="shape=rectangle;html=1;whiteSpace=wrap;fillColor=#96B7FC;strokeColor=none;strokeWidth=1.5;fillOpacity=22;dashed=0;dashPattern=6 5;" parent="1" vertex="1">
+        <mxCell id="001-longitudinal-section" value="" style="shape=rectangle;html=1;whiteSpace=wrap;fillColor=#80CDBB;strokeColor=none;strokeWidth=1.5;fillOpacity=22;dashed=0;dashPattern=6 5;" parent="1" vertex="1">
           <mxGeometry x="112" y="204" width="480" height="204" as="geometry" />
         </mxCell>
-        <mxCell id="002-left-end" value="" style="shape=ellipse;html=1;whiteSpace=wrap;fillColor=#96B7FC;strokeColor=#5470DB;strokeWidth=1.8;fillOpacity=16;dashed=0;dashPattern=6 5;" parent="1" vertex="1">
+        <mxCell id="002-left-end" value="" style="shape=ellipse;html=1;whiteSpace=wrap;fillColor=#80CDBB;strokeColor=#4358C5;strokeWidth=1.8;fillOpacity=16;dashed=0;dashPattern=6 5;" parent="1" vertex="1">
           <mxGeometry x="60" y="204" width="104" height="204" as="geometry" />
         </mxCell>
-        <mxCell id="003-right-end" value="" style="shape=ellipse;html=1;whiteSpace=wrap;fillColor=#96B7FC;strokeColor=#5470DB;strokeWidth=1.8;fillOpacity=20;dashed=0;dashPattern=6 5;" parent="1" vertex="1">
+        <mxCell id="003-right-end" value="" style="shape=ellipse;html=1;whiteSpace=wrap;fillColor=#80CDBB;strokeColor=#4358C5;strokeWidth=1.8;fillOpacity=20;dashed=0;dashPattern=6 5;" parent="1" vertex="1">
           <mxGeometry x="540" y="204" width="104" height="204" as="geometry" />
         </mxCell>
-        <mxCell id="004-top-surface" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#5470DB;strokeWidth=2.2;dashed=0;dashPattern=6 5;startArrow=none;endArrow=none;startFill=1;endFill=1;endSize=8;startSize=8;" parent="1" edge="1">
+        <mxCell id="004-top-surface" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#4358C5;strokeWidth=2.2;dashed=0;dashPattern=6 5;startArrow=none;endArrow=none;startFill=1;endFill=1;endSize=8;startSize=8;" parent="1" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="112" y="204" as="sourcePoint" />
             <mxPoint x="592" y="204" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="005-bottom-surface" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#5470DB;strokeWidth=2.2;dashed=0;dashPattern=6 5;startArrow=none;endArrow=none;startFill=1;endFill=1;endSize=8;startSize=8;" parent="1" edge="1">
+        <mxCell id="005-bottom-surface" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#4358C5;strokeWidth=2.2;dashed=0;dashPattern=6 5;startArrow=none;endArrow=none;startFill=1;endFill=1;endSize=8;startSize=8;" parent="1" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="112" y="408" as="sourcePoint" />
             <mxPoint x="592" y="408" as="targetPoint" />
@@ -35,37 +35,37 @@
         <mxCell id="007-oven-environment" value="烘房环境：\(T_a(t),\ C_a(t)\)" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;overflow=visible;verticalAlign=middle;spacing=0;align=center;fontFamily=SimSun;fontSize=23;fontColor=#333333;fontStyle=0;" parent="1" vertex="1">
           <mxGeometry x="87.0" y="16.0" width="530" height="28" as="geometry" />
         </mxCell>
-        <mxCell id="008-heat-direction" value="热量传入" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;overflow=visible;verticalAlign=middle;spacing=0;align=center;fontFamily=SimSun;fontSize=22;fontColor=#E6886D;fontStyle=0;" parent="1" vertex="1">
+        <mxCell id="008-heat-direction" value="热量传入" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;overflow=visible;verticalAlign=middle;spacing=0;align=center;fontFamily=SimSun;fontSize=22;fontColor=#D65244;fontStyle=0;" parent="1" vertex="1">
           <mxGeometry x="184.0" y="79.0" width="180" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="009-water-direction" value="水分迁出" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;overflow=visible;verticalAlign=middle;spacing=0;align=center;fontFamily=SimSun;fontSize=22;fontColor=#5470DB;fontStyle=0;" parent="1" vertex="1">
+        <mxCell id="009-water-direction" value="水分迁出" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;overflow=visible;verticalAlign=middle;spacing=0;align=center;fontFamily=SimSun;fontSize=22;fontColor=#1D91C0;fontStyle=0;" parent="1" vertex="1">
           <mxGeometry x="368.0" y="79.0" width="180" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="010-heat-sign" value="\(q_s&lt;0\)" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;overflow=visible;verticalAlign=middle;spacing=0;align=center;fontFamily=SimSun;fontSize=21;fontColor=#E6886D;fontStyle=0;" parent="1" vertex="1">
+        <mxCell id="010-heat-sign" value="\(q_s&lt;0\)" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;overflow=visible;verticalAlign=middle;spacing=0;align=center;fontFamily=SimSun;fontSize=21;fontColor=#D65244;fontStyle=0;" parent="1" vertex="1">
           <mxGeometry x="214.0" y="112.5" width="120" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="011-water-sign" value="\(j_s&gt;0\)" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;overflow=visible;verticalAlign=middle;spacing=0;align=center;fontFamily=SimSun;fontSize=21;fontColor=#5470DB;fontStyle=0;" parent="1" vertex="1">
+        <mxCell id="011-water-sign" value="\(j_s&gt;0\)" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;overflow=visible;verticalAlign=middle;spacing=0;align=center;fontFamily=SimSun;fontSize=21;fontColor=#1D91C0;fontStyle=0;" parent="1" vertex="1">
           <mxGeometry x="398.0" y="112.5" width="120" height="25" as="geometry" />
         </mxCell>
-        <mxCell id="012-heat-in" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#E6886D;strokeWidth=3.2;dashed=0;dashPattern=6 5;startArrow=none;endArrow=classic;startFill=1;endFill=1;endSize=8;startSize=8;" parent="1" edge="1">
+        <mxCell id="012-heat-in" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#D65244;strokeWidth=3.2;dashed=0;dashPattern=6 5;startArrow=none;endArrow=classic;startFill=1;endFill=1;endSize=8;startSize=8;" parent="1" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="249" y="153" as="sourcePoint" />
             <mxPoint x="249" y="229" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="013-water-out" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#5470DB;strokeWidth=3.2;dashed=0;dashPattern=6 5;startArrow=none;endArrow=classic;startFill=1;endFill=1;endSize=8;startSize=8;" parent="1" edge="1">
+        <mxCell id="013-water-out" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#1D91C0;strokeWidth=3.2;dashed=0;dashPattern=6 5;startArrow=none;endArrow=classic;startFill=1;endFill=1;endSize=8;startSize=8;" parent="1" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="433" y="222" as="sourcePoint" />
             <mxPoint x="433" y="146" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="014-heat-in" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#E6886D;strokeWidth=3.2;dashed=0;dashPattern=6 5;startArrow=none;endArrow=classic;startFill=1;endFill=1;endSize=8;startSize=8;" parent="1" edge="1">
+        <mxCell id="014-heat-in" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#D65244;strokeWidth=3.2;dashed=0;dashPattern=6 5;startArrow=none;endArrow=classic;startFill=1;endFill=1;endSize=8;startSize=8;" parent="1" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="299" y="153" as="sourcePoint" />
             <mxPoint x="299" y="229" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="015-water-out" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#5470DB;strokeWidth=3.2;dashed=0;dashPattern=6 5;startArrow=none;endArrow=classic;startFill=1;endFill=1;endSize=8;startSize=8;" parent="1" edge="1">
+        <mxCell id="015-water-out" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#1D91C0;strokeWidth=3.2;dashed=0;dashPattern=6 5;startArrow=none;endArrow=classic;startFill=1;endFill=1;endSize=8;startSize=8;" parent="1" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="483" y="222" as="sourcePoint" />
             <mxPoint x="483" y="146" as="targetPoint" />
@@ -92,10 +92,10 @@
         <mxCell id="021-surface-label" value="表面 \(r=R\)" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;overflow=visible;verticalAlign=middle;spacing=0;align=center;fontFamily=SimSun;fontSize=22;fontColor=#333333;fontStyle=0;" parent="1" vertex="1">
           <mxGeometry x="101.5" y="159.0" width="165" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="022-temperature-field" value="温度场 \(T(r,t)\)" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;overflow=visible;verticalAlign=middle;spacing=0;align=center;fontFamily=SimSun;fontSize=26;fontColor=#E6886D;fontStyle=0;" parent="1" vertex="1">
+        <mxCell id="022-temperature-field" value="温度场 \(T(r,t)\)" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;overflow=visible;verticalAlign=middle;spacing=0;align=center;fontFamily=SimSun;fontSize=26;fontColor=#D65244;fontStyle=0;" parent="1" vertex="1">
           <mxGeometry x="244.5" y="245.0" width="275" height="38" as="geometry" />
         </mxCell>
-        <mxCell id="023-moisture-field" value="含水率场 \(C(r,t)\)" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;overflow=visible;verticalAlign=middle;spacing=0;align=center;fontFamily=SimSun;fontSize=26;fontColor=#5470DB;fontStyle=0;" parent="1" vertex="1">
+        <mxCell id="023-moisture-field" value="含水率场 \(C(r,t)\)" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;overflow=visible;verticalAlign=middle;spacing=0;align=center;fontFamily=SimSun;fontSize=26;fontColor=#1D91C0;fontStyle=0;" parent="1" vertex="1">
           <mxGeometry x="249.0" y="349.0" width="300" height="38" as="geometry" />
         </mxCell>
         <mxCell id="024-section-label" value="圆柱药材（内部纵剖示意）" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;overflow=visible;verticalAlign=middle;spacing=0;align=center;fontFamily=SimSun;fontSize=22;fontColor=#333333;fontStyle=0;" parent="1" vertex="1">
@@ -113,13 +113,13 @@
         <mxCell id="027-surface-values" value="\(T_s=T(R,t),\quad C_s=C(R,t)\)" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;overflow=visible;verticalAlign=middle;spacing=0;align=center;fontFamily=SimSun;fontSize=21;fontColor=#333333;fontStyle=0;" parent="1" vertex="1">
           <mxGeometry x="690.0" y="102.0" width="468" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="028-heat-heading" value="表面热通量" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;overflow=visible;verticalAlign=middle;spacing=0;align=left;fontFamily=SimSun;fontSize=22;fontColor=#E6886D;fontStyle=0;" parent="1" vertex="1">
+        <mxCell id="028-heat-heading" value="表面热通量" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;overflow=visible;verticalAlign=middle;spacing=0;align=left;fontFamily=SimSun;fontSize=22;fontColor=#D65244;fontStyle=0;" parent="1" vertex="1">
           <mxGeometry x="690.0" y="175.0" width="468" height="30" as="geometry" />
         </mxCell>
         <mxCell id="029-heat-equation" value="\(q_s=-kT_r(R,t)=h[T_s-T_a(t)]\)" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;overflow=visible;verticalAlign=middle;spacing=0;align=left;fontFamily=SimSun;fontSize=23;fontColor=#333333;fontStyle=0;" parent="1" vertex="1">
           <mxGeometry x="690.0" y="212.0" width="468" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="030-moisture-heading" value="表面水分通量" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;overflow=visible;verticalAlign=middle;spacing=0;align=left;fontFamily=SimSun;fontSize=22;fontColor=#5470DB;fontStyle=0;" parent="1" vertex="1">
+        <mxCell id="030-moisture-heading" value="表面水分通量" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;overflow=visible;verticalAlign=middle;spacing=0;align=left;fontFamily=SimSun;fontSize=22;fontColor=#1D91C0;fontStyle=0;" parent="1" vertex="1">
           <mxGeometry x="690.0" y="301.0" width="468" height="30" as="geometry" />
         </mxCell>
         <mxCell id="031-moisture-equation" value="\(\dfrac{j_s}{s_0}=-D(C_s)C_r(R,t)=h_m[C_s-C_a(t)]\)" style="text;html=1;strokeColor=none;fillColor=none;whiteSpace=wrap;overflow=visible;verticalAlign=middle;spacing=0;align=left;fontFamily=SimSun;fontSize=23;fontColor=#333333;fontStyle=0;" parent="1" vertex="1">

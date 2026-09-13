@@ -1,3 +1,4 @@
+% !TeX program = xelatex
 \input{preamble}
 \begin{document}
 \input{sections/abstract}
@@ -16,10 +17,12 @@
 \input{sections/09_declaration}
 \input{references}
 \label{body_end}
+\clearpage
+\input{sections/q1_reference_appendix}
+\clearpage
+\input{sections/appendix_numerics}
 \ifdefined\readingonly\else
 \clearpage
 \input{sections/appendix}
-\clearpage
-\input{sections/q1_reference_appendix}
 \fi
 \end{document}

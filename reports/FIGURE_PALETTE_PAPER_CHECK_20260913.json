@@ -1,0 +1,62 @@
+{
+  "reading_pages": 35,
+  "full_pages": 117,
+  "matching_reading_and_full_body": true,
+  "figure_labels": [
+    [
+      "fig_input",
+      "1",
+      "5"
+    ],
+    [
+      "fig_q4R",
+      "2",
+      "6"
+    ],
+    [
+      "fig_q1_model",
+      "3",
+      "8"
+    ],
+    [
+      "fig_q1",
+      "4",
+      "10"
+    ],
+    [
+      "fig_q2",
+      "5",
+      "15"
+    ],
+    [
+      "fig_q3_event",
+      "6",
+      "17"
+    ],
+    [
+      "fig_q3profiles",
+      "7",
+      "19"
+    ],
+    [
+      "fig_q3_2d",
+      "8",
+      "21"
+    ],
+    [
+      "fig_q4_coordinates",
+      "9",
+      "22"
+    ],
+    [
+      "fig_q4profiles",
+      "10",
+      "26"
+    ],
+    [
+      "fig_q4_control",
+      "11",
+      "27"
+    ]
+  ]
+}

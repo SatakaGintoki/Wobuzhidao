@@ -1,0 +1,30 @@
+{
+  "version": "paper-spacetime-v1",
+  "solver_rerun": false,
+  "sources": {
+    "results/q1_solution.npz": "27ca0df391acdc73e13ddfa3263b8927373c0b7325b6ed1b2424e8c4315ff811",
+    "results/q2_solution.npz": "b622354459b4ab3216a22a91306d0e0f639bb37a7468d76850a38c549aed5cf9",
+    "results/q3_solution.npz": "b270a1cd041d9b5e5f0545bbdd70f34b55bdbbf5fb3476265684cd22c920e9a4",
+    "results/q4_fixed_comparison/fixed_solution.npz": "b92b0e348498ff15ccbb2cc7137b0ef6b0b267db2504e9e3ce73e76103acce53",
+    "results/q4_solution.npz": "56ad712b46804eb669c483efb94087208320e7c07273be6b6085314af4f39458"
+  },
+  "figures": {
+    "q1_spacetime": {
+      "description": "Q1: temperature and moisture over time and radius",
+      "pdf_sha256": "1fdcff9b590a76abfc7e1466538ad66689d3ff5a61c39926dd0946d04fec99fa"
+    },
+    "q2_spacetime": {
+      "description": "Q2: temperature and moisture over time and radius",
+      "pdf_sha256": "0631de00f6bea432977e7d9ee2838ca7cd571cf3e117a63e213a6d21af80499f"
+    },
+    "q3_spacetime": {
+      "description": "Q3: nonuniform contour bins, exact critical and report states included",
+      "pdf_sha256": "1c6d118b164bd09ff0f2b18acaccd2589794bc171e68c522d6ed06910ed2eba7"
+    },
+    "q4_spacetime_comparison": {
+      "description": "Appendix-4 fixed/shrink fields with shared-time center comparison",
+      "pdf_sha256": "5c3474e1857915b72caee9535a76aff18bf59bd0ec73e4b22c73117b9b2f33e8"
+    }
+  },
+  "interpolation": "PCHIP only for Q2 radial display; saved states otherwise"
+}

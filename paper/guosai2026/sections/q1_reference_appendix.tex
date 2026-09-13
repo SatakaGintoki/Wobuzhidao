@@ -1,4 +1,4 @@
-\section*{附录C\quad 问题一温度参考解的推导}
+\section*{附录A\quad 问题一温度参考解的推导}
 
 本附录补充第\ref{sec_q1_validation}节温度参考解的构造过程。先求恒定环境下的阶跃响应，再对环境温度的连续变化进行叠加。
 
@@ -11,7 +11,11 @@
 \[
 r^2X''+rX'+\lambda^2\frac{r^2}{R^2}X=0.
 \]
-该方程为零阶Bessel方程。中心有界性排除第二类Bessel函数，取$X(r)=J_0(\lambda r/R)$。由$J_0'=-J_1$，将其代入表面条件$-ku_r(R,t)=hu(R,t)$，即得正文式\eqref{eq_bessel}。
+该方程为零阶Bessel方程。中心有界性排除第二类Bessel函数，取$X(r)=J_0(\lambda r/R)$，其中$J_0,J_1$为第一类Bessel函数。由$J_0'=-J_1$及表面条件$-ku_r(R,t)=hu(R,t)$，得到
+\begin{equation}\label{eq_bessel}
+\lambda_nJ_1(\lambda_n)=\mathrm{Bi}\,J_0(\lambda_n),\qquad
+\mathrm{Bi}=\frac{hR}{k}.
+\end{equation}
 
 以$r$为权展开均匀初始温差$28-T_f$。令$x=r/R$，利用径向模态的正交性，得到
 \[
@@ -34,7 +38,11 @@ H(r,t)=1-\sum_{n=1}^{\infty}A_nJ_0(\lambda_nr/R)e^{-\beta_nt}.
 \[
 T_{\mathrm{ref}}(r,t)=28+\int_0^tH(r,t-\tau)T_a'(\tau)\dd\tau.
 \]
-代入$H$并利用$\int_0^tT_a'(\tau)\dd\tau=T_a(t)-28$，即可得到正文式\eqref{eq_duhamel}。
+代入$H$并利用$\int_0^tT_a'(\tau)\dd\tau=T_a(t)-28$，得到
+\begin{equation}\label{eq_duhamel}
+T_{\mathrm{ref}}(r,t)=T_a(t)-\sum_{n=1}^{\infty}A_nJ_0(\lambda_nr/R)
+\int_0^t e^{-\beta_n(t-\tau)}T_a'(\tau)\dd\tau.
+\end{equation}
 
 计算中对PCHIP插值函数求导。各阶卷积积分记为
 \[

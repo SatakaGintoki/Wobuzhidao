@@ -1,0 +1,185 @@
+{
+  "palette": "coolwarm + YlGnBu",
+  "figures": {
+    "q1_oven_input": {
+      "source": "ARCHIVE_all\\figure_palette_before_reference_20260913\\figures\\q1_oven_input.pdf",
+      "source_sha256": "bad54c7381cf3d68179c9c1fe55735b13b10cf68adb85501ce9be9058c20e707",
+      "output_sha256": "9ccbf5e7112af1d09fadd30287191f45ca235c74f37c78b6165759e97a20093c",
+      "color_operations_changed": 11,
+      "geometry_and_text_unchanged": true,
+      "max_pdf_serialization_numeric_drift": 4.4559999423654517e-07,
+      "color_mapping": {
+        "(0.12157, 0.46667, 0.70588)": "#d65244",
+        "(1.0, 0.49804, 0.0549)": "#1d91c0"
+      }
+    },
+    "q4_R_history": {
+      "source": "ARCHIVE_all\\figure_palette_before_reference_20260913\\figures\\q4_R_history.pdf",
+      "source_sha256": "79dc8778632e59a39e807cfc2fd5e289dc24d5a4848d0e51ab0261267005c5c4",
+      "output_sha256": "7f638e4dd0c526be1e3ce2ce72c578e18bcadb0941a7aa803d7552b887c0d204",
+      "color_operations_changed": 8,
+      "geometry_and_text_unchanged": true,
+      "max_pdf_serialization_numeric_drift": 4.358000182946853e-07,
+      "color_mapping": {
+        "(0.12157, 0.46667, 0.70588)": "#4358c5"
+      }
+    },
+    "q1_T_profiles": {
+      "source": "ARCHIVE_all\\figure_palette_before_reference_20260913\\figures\\q1_T_profiles.pdf",
+      "source_sha256": "c080f504682250ae50ae31b301f50e0c2e4686d16b2c286670066469e3eeaa46",
+      "output_sha256": "0953af52241102c7231fde3222949b9c6947324fd949bc3c6897c69c97f4d94d",
+      "color_operations_changed": 14,
+      "geometry_and_text_unchanged": true,
+      "max_pdf_serialization_numeric_drift": 4.999999987376214e-07,
+      "color_mapping": {
+        "(0.12157, 0.46667, 0.70588)": "#465ecf",
+        "(1.0, 0.49804, 0.0549)": "#6c8ff1",
+        "(0.17255, 0.62745, 0.17255)": "#9bbcff",
+        "(0.83922, 0.15294, 0.15686)": "#f7ac8e",
+        "(0.58039, 0.40392, 0.74118)": "#ee8468",
+        "(0.54902, 0.33725, 0.29412)": "#d95847",
+        "(0.8902, 0.46667, 0.76078)": "#be242e"
+      }
+    },
+    "q1_C_profiles": {
+      "source": "ARCHIVE_all\\figure_palette_before_reference_20260913\\figures\\q1_C_profiles.pdf",
+      "source_sha256": "2e47981de5a808379699376f548766f8e34b18237e4567fe8da622a471a7524c",
+      "output_sha256": "04e5adbf20bc65414fe94e71469fe1055853531509b366c82dac6fe7a6f316da",
+      "color_operations_changed": 14,
+      "geometry_and_text_unchanged": true,
+      "max_pdf_serialization_numeric_drift": 4.999999987376214e-07,
+      "color_mapping": {
+        "(0.12157, 0.46667, 0.70588)": "#0d2161",
+        "(1.0, 0.49804, 0.0549)": "#21318d",
+        "(0.17255, 0.62745, 0.17255)": "#234fa1",
+        "(0.83922, 0.15294, 0.15686)": "#2070b0",
+        "(0.58039, 0.40392, 0.74118)": "#2094c0",
+        "(0.54902, 0.33725, 0.29412)": "#3bb0c3",
+        "(0.8902, 0.46667, 0.76078)": "#63c3bf"
+      }
+    },
+    "q2_T_profiles": {
+      "source": "ARCHIVE_all\\figure_palette_before_reference_20260913\\figures\\q2_T_profiles.pdf",
+      "source_sha256": "635b27367a94b8b0c11662372f1511aab7a221fd3ecc23d3eafa5e9b7978178b",
+      "output_sha256": "7f8276637daa8d24abda74765e016ab268bc41b84151ff882ce99f3b25cdfa0d",
+      "color_operations_changed": 12,
+      "geometry_and_text_unchanged": true,
+      "max_pdf_serialization_numeric_drift": 4.999999987376214e-07,
+      "color_mapping": {
+        "(0.12157, 0.46667, 0.70588)": "#465ecf",
+        "(1.0, 0.49804, 0.0549)": "#7597f6",
+        "(0.17255, 0.62745, 0.17255)": "#a2c1ff",
+        "(0.83922, 0.15294, 0.15686)": "#f6a586",
+        "(0.58039, 0.40392, 0.74118)": "#e16751",
+        "(0.54902, 0.33725, 0.29412)": "#be242e"
+      }
+    },
+    "q2_C_profiles": {
+      "source": "ARCHIVE_all\\figure_palette_before_reference_20260913\\figures\\q2_C_profiles.pdf",
+      "source_sha256": "bf939721a28c5584ef4df583ecae3c9249d564c41f96dddda08cb56f48b3768e",
+      "output_sha256": "f01e8db2bfcb8b1f9177f3be0e70c8d918d2344a4338e4390ea1e3f749a939a2",
+      "color_operations_changed": 12,
+      "geometry_and_text_unchanged": true,
+      "max_pdf_serialization_numeric_drift": 4.999999987376214e-07,
+      "color_mapping": {
+        "(0.12157, 0.46667, 0.70588)": "#0d2161",
+        "(1.0, 0.49804, 0.0549)": "#253595",
+        "(0.17255, 0.62745, 0.17255)": "#225aa6",
+        "(0.83922, 0.15294, 0.15686)": "#1e86bb",
+        "(0.58039, 0.40392, 0.74118)": "#35aac3",
+        "(0.54902, 0.33725, 0.29412)": "#63c3bf"
+      }
+    },
+    "q3_C_profiles": {
+      "source": "ARCHIVE_all\\figure_palette_before_reference_20260913\\figures\\q3_C_profiles.pdf",
+      "source_sha256": "368d57475dcf1965649c9489d15f7e8733558e408c57e15c91504bf0b7ef92da",
+      "output_sha256": "c7bbb19c305c2cdfa3c16bab5ebe9e7546d8233c49d244ceb3573004b8a8070c",
+      "color_operations_changed": 20,
+      "geometry_and_text_unchanged": true,
+      "max_pdf_serialization_numeric_drift": 4.999999987376214e-07,
+      "color_mapping": {
+        "(0.12157, 0.46667, 0.70588)": "#0d2161",
+        "(1.0, 0.49804, 0.0549)": "#1a2b7e",
+        "(0.17255, 0.62745, 0.17255)": "#253997",
+        "(0.83922, 0.15294, 0.15686)": "#234fa1",
+        "(0.58039, 0.40392, 0.74118)": "#2163aa",
+        "(0.54902, 0.33725, 0.29412)": "#1f7db6",
+        "(0.8902, 0.46667, 0.76078)": "#2094c0",
+        "(0.49804, 0.49804, 0.49804)": "#32a6c2",
+        "(0.73725, 0.74118, 0.13333)": "#46b8c3",
+        "(0.0902, 0.7451, 0.81176)": "#63c3bf"
+      }
+    },
+    "q4_C_profiles": {
+      "source": "ARCHIVE_all\\figure_palette_before_reference_20260913\\figures\\q4_C_profiles.pdf",
+      "source_sha256": "0d452c3acef905f79353bec90cbd7553dcbbdb42935fe0a2f83359a318ba4e0e",
+      "output_sha256": "66500c62defce294a3616f0e4db9538eea033f3361b5fed41305a634a81e3a5e",
+      "color_operations_changed": 18,
+      "geometry_and_text_unchanged": true,
+      "max_pdf_serialization_numeric_drift": 4.374999775791366e-07,
+      "color_mapping": {
+        "(0.12157, 0.46667, 0.70588)": "#0d2161",
+        "(1.0, 0.49804, 0.0549)": "#1c2d81",
+        "(0.17255, 0.62745, 0.17255)": "#243f99",
+        "(0.83922, 0.15294, 0.15686)": "#2355a4",
+        "(0.58039, 0.40392, 0.74118)": "#2070b0",
+        "(0.54902, 0.33725, 0.29412)": "#1d8dbe",
+        "(0.8902, 0.46667, 0.76078)": "#2da2c2",
+        "(0.49804, 0.49804, 0.49804)": "#42b6c4",
+        "(0.73725, 0.74118, 0.13333)": "#63c3bf"
+      }
+    },
+    "q3_axisymmetric_check": {
+      "source": "ARCHIVE_all\\figure_palette_before_reference_20260913\\figures\\q3_axisymmetric_check.pdf",
+      "source_sha256": "f9a4c6f50e97780c8ff5ce68345e33ac98f71f77e7645ed195448641ac6270de",
+      "output_sha256": "33e8a6f01ff6f8417b220018f30d59da84cea80013d3bb66da6ff162c545afbe",
+      "color_operations_changed": 117,
+      "geometry_and_text_unchanged": true,
+      "max_pdf_serialization_numeric_drift": 4.999999987376214e-07,
+      "color_mapping": {
+        "(0.71373, 0.35686, 0.23137)": "#d65244",
+        "(0.14118, 0.48235, 0.52941)": "#4358c5",
+        "(0.27259, 0.02556, 0.35309)": "#fdfed4",
+        "(0.28089, 0.07891, 0.40233)": "#f8fcc9",
+        "(0.28319, 0.12585, 0.44496)": "#f3fabd",
+        "(0.27883, 0.17549, 0.4834)": "#edf8b1",
+        "(0.26931, 0.21882, 0.50958)": "#e2f4b2",
+        "(0.25565, 0.2607, 0.52831)": "#d7efb3",
+        "(0.23935, 0.30085, 0.54084)": "#cdebb4",
+        "(0.22199, 0.33916, 0.54875)": "#bde5b5",
+        "(0.2049, 0.37575, 0.55353)": "#a9ddb7",
+        "(0.18892, 0.41091, 0.55633)": "#95d5b9",
+        "(0.17272, 0.44879, 0.55788)": "#7ecdbb",
+        "(0.15919, 0.48224, 0.55807)": "#6dc6be",
+        "(0.14618, 0.51541, 0.55682)": "#5bc0c0",
+        "(0.13374, 0.54853, 0.55354)": "#4ab9c3",
+        "(0.12346, 0.58169, 0.54744)": "#3cb1c3",
+        "(0.11948, 0.61482, 0.53769)": "#32a6c2",
+        "(0.12809, 0.64775, 0.52349)": "#289cc1",
+        "(0.15785, 0.68376, 0.50169)": "#1d90c0",
+        "(0.20222, 0.71527, 0.47608)": "#1f82b9",
+        "(0.25986, 0.74549, 0.44447)": "#2073b2",
+        "(0.3278, 0.77398, 0.40664)": "#2165ab",
+        "(0.404, 0.80027, 0.36255)": "#2258a5",
+        "(0.48703, 0.82393, 0.31232)": "#234c9f",
+        "(0.57556, 0.84457, 0.25642)": "#24409a",
+        "(0.66805, 0.862, 0.19629)": "#253494",
+        "(0.77285, 0.87787, 0.13111)": "#1c2d81",
+        "(0.86601, 0.88987, 0.09595)": "#142670",
+        "(0.9553, 0.90107, 0.11813)": "#0c2060"
+      }
+    },
+    "q4_fixed_vs_shrink": {
+      "source": "ARCHIVE_all\\figure_palette_before_reference_20260913\\figures\\q4_fixed_vs_shrink.pdf",
+      "source_sha256": "a784d87fd21a9bbb8ba0480a1b0139a4881c29120c9faae5c0deecfe09f5d66d",
+      "output_sha256": "5acba4d5da55ffa6d7d7717df3df966448b6902965c03ec17d84e7d2212e536a",
+      "color_operations_changed": 18,
+      "geometry_and_text_unchanged": true,
+      "max_pdf_serialization_numeric_drift": 4.999999987376214e-07,
+      "color_mapping": {
+        "(0.71373, 0.35686, 0.23137)": "#d65244",
+        "(0.14118, 0.48235, 0.52941)": "#4358c5"
+      }
+    }
+  }
+}

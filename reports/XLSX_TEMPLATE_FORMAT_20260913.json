@@ -1,0 +1,96 @@
+{
+  "date": "2026-09-13T15:35:58.934630",
+  "scope": "Template text and formatting only",
+  "backup": "C:\\Users\\chens\\Desktop\\国赛文件夹 GPT\\ARCHIVE_all\\xlsx_before_template_format_20260913_153558",
+  "files": [
+    {
+      "file": "result1.xlsx",
+      "template_sha256": "23b261b295c1b787d000eebbca6521c37075107b6fcf78724f8d395ce1798ff4",
+      "before_sha256": "d687fd668e6187375f08816ad047a06e4fd01f2bcf0990107a38f954c6e83956",
+      "after_sha256": "0ffb4f33663bea008a614a84137aa833e1d757fb2aca1762b935cf85cd3832d0",
+      "validation": {
+        "numeric_cells_unchanged": 79242,
+        "blank_cells_unchanged": 0,
+        "sheets": [
+          {
+            "before_name": "温度",
+            "after_name": "温度",
+            "rows": 1801,
+            "columns": 22
+          },
+          {
+            "before_name": "水分浓度",
+            "after_name": "水分浓度",
+            "rows": 1801,
+            "columns": 22
+          }
+        ]
+      },
+      "packaged_before_sha256": "d687fd668e6187375f08816ad047a06e4fd01f2bcf0990107a38f954c6e83956"
+    },
+    {
+      "file": "result2.xlsx",
+      "template_sha256": "23b261b295c1b787d000eebbca6521c37075107b6fcf78724f8d395ce1798ff4",
+      "before_sha256": "4679b545e5d081a2055221c7a65390bca361ed03f1e27fabc4b26afcd04f1393",
+      "after_sha256": "50024f4ec0b776786cd6745279d8f209c7331e15748da9935f98bb7e4745e0ee",
+      "validation": {
+        "numeric_cells_unchanged": 475242,
+        "blank_cells_unchanged": 0,
+        "sheets": [
+          {
+            "before_name": "温度",
+            "after_name": "温度",
+            "rows": 10801,
+            "columns": 22
+          },
+          {
+            "before_name": "水分浓度",
+            "after_name": "水分浓度",
+            "rows": 10801,
+            "columns": 22
+          }
+        ]
+      },
+      "packaged_before_sha256": "4679b545e5d081a2055221c7a65390bca361ed03f1e27fabc4b26afcd04f1393"
+    },
+    {
+      "file": "result3.xlsx",
+      "template_sha256": "07e4793d620a7f899804c0298d49a16a197960440fd47f8bb780c57ec27e2859",
+      "before_sha256": "a6c184d59ddbb5f4b5b5bc6999ac9859f8389f40c7c08c4384f379690fec2eb9",
+      "after_sha256": "819558df4e17546f70a22e8a4545b7921703b5bbada605208249b4642f80541c",
+      "validation": {
+        "numeric_cells_unchanged": 75899,
+        "blank_cells_unchanged": 0,
+        "sheets": [
+          {
+            "before_name": "水分浓度",
+            "after_name": "Sheet1",
+            "rows": 3450,
+            "columns": 22
+          }
+        ]
+      },
+      "packaged_before_sha256": "a6c184d59ddbb5f4b5b5bc6999ac9859f8389f40c7c08c4384f379690fec2eb9"
+    },
+    {
+      "file": "result4.xlsx",
+      "template_sha256": "86e9300ffa3d30c43de895ea6723da943e85b8740b137bcae5af7107f076eeac",
+      "before_sha256": "36b9722163dd9b7d7bc8c59af46946f4f0c6e508840e0a1e969f2cf74b664099",
+      "after_sha256": "4e5fc6af4b1461fde492e539368acbdb8b511fa990484c1ddf51f94e5188f83c",
+      "validation": {
+        "numeric_cells_unchanged": 47372,
+        "blank_cells_unchanged": 23167,
+        "sheets": [
+          {
+            "before_name": "Sheet1",
+            "after_name": "Sheet1",
+            "rows": 3067,
+            "columns": 23
+          }
+        ]
+      },
+      "packaged_before_sha256": "36b9722163dd9b7d7bc8c59af46946f4f0c6e508840e0a1e969f2cf74b664099"
+    }
+  ],
+  "note": "Historical file hashes describe pre-format files. Model source solutions are unchanged."
+}
