@@ -1,0 +1,40 @@
+{
+  "scope": "Syntax/imports; original RHS comparison; 1 second solves; Q3/Q4 near-finish restarts; 3-row Excel exports. Not a full rerun.",
+  "checks": [
+    {
+      "question": 1,
+      "syntax_imports": true,
+      "lines": 144,
+      "core_rhs_matches_original": true,
+      "one_second_actual_integration": true,
+      "three_row_excel_roundtrip": true
+    },
+    {
+      "question": 2,
+      "syntax_imports": true,
+      "lines": 161,
+      "core_rhs_matches_original": true,
+      "one_second_actual_integration": true,
+      "three_row_excel_roundtrip": true
+    },
+    {
+      "question": 3,
+      "syntax_imports": true,
+      "lines": 193,
+      "core_rhs_matches_original": true,
+      "one_second_actual_integration": true,
+      "near_finish_max_difference": 8.742451207410795e-12,
+      "three_row_excel_roundtrip": true
+    },
+    {
+      "question": 4,
+      "syntax_imports": true,
+      "lines": 193,
+      "core_rhs_matches_original": true,
+      "one_second_actual_integration": true,
+      "near_finish_max_difference": 0.0,
+      "three_row_excel_roundtrip": true
+    }
+  ],
+  "pass": true
+}
