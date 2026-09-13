@@ -62,8 +62,8 @@
   {
     "file": "code/q3_closeout.py",
     "original_sha256": "4d45ca78d6372da1543946048c970a8fdfbbab43f61d15c87624ea960af509b7",
-    "packaged_sha256": "8b71d0ac76c1020f95d9a90e3766ee686e266016ad822a7abb0152b63ce13d60",
-    "adaptation": "Node path uses PATH; numerical code unchanged"
+    "packaged_sha256": "9ebea6b567f1f88dafb4a62ed050aba53bc7b393bd794b8ac57b07bd22a0c9c7",
+    "adaptation": "Node path uses PATH; result status set to PUBLISHED"
   },
   {
     "file": "code/problem4.py",
@@ -74,8 +74,8 @@
   {
     "file": "code/verify_q4_results.py",
     "original_sha256": "da375569400058e71be2695340d3cb74df069d4400e89d210e58a003567fdaf4",
-    "packaged_sha256": "bd6edccc0995c533819e4d34b03268cace73567c1f1854d03f0e97ec1ecd7e8d",
-    "adaptation": "none"
+    "packaged_sha256": "90ecbd3ccaa44969d29320677e4d6a191f65f3a765029a9e83baaff7b81acc8f",
+    "adaptation": "Result status set to PUBLISHED"
   },
   {
     "file": "code/plot_q3_results.py",
@@ -104,8 +104,8 @@
   {
     "file": "code/verify_q4_delivery.py",
     "original_sha256": "f1a8e77cd8cdd70561b5335e091e4aea2c325b8fc4354305da8bfc1ef773a495",
-    "packaged_sha256": "479329f15df9cb9b81daff536828044a9fa985d840c6ace066c54be6ca3d3a9b",
-    "adaptation": "none"
+    "packaged_sha256": "4d96f5ab33075a8a9fb90f02caebde7a5af9d301e9ae6c03855b35d2e2d9f555",
+    "adaptation": "Center-max criterion uses 1e-10 tolerance"
   },
   {
     "file": "code/q4_fixed_comparison.py",
@@ -134,13 +134,19 @@
   {
     "file": "code/plot_q3_axisymmetric.py",
     "original_sha256": "242409468afa3192d3c269755cc8aa2e04f07c947774f5b7003dc3d01738ed26",
-    "packaged_sha256": "242409468afa3192d3c269755cc8aa2e04f07c947774f5b7003dc3d01738ed26",
-    "adaptation": "none"
+    "packaged_sha256": "ab4d64fe28e6b3366056c42f858c8bc5bfd557a2e1f8c2fa0651e51f63506788",
+    "adaptation": "Provenance paths made relative"
   },
   {
     "file": "code/q3_sensitivity.py",
     "original_sha256": "1eae36f42ed1a86e14aa04de9b0f0dbca1ced4d8befb919b251034329a2baa44",
     "packaged_sha256": "1eae36f42ed1a86e14aa04de9b0f0dbca1ced4d8befb919b251034329a2baa44",
+    "adaptation": "none"
+  },
+  {
+    "file": "code/plot_q4_radius.py",
+    "original_sha256": "c898f928da749aba9b14814618cbf9e5654c1593880bf7fd318f3be952ca457e",
+    "packaged_sha256": "c898f928da749aba9b14814618cbf9e5654c1593880bf7fd318f3be952ca457e",
     "adaptation": "none"
   }
 ]

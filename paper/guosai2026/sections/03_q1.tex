@@ -76,6 +76,10 @@ D(C)=7\times10^{-9}\exp\!\left(-\frac{0.89}{C}\right).
 
 综上，问题一的热物性均为常数，水分扩散系数仅依赖含水率。在不显式考虑汽化潜热及水分携热的假设下，温度方程与水分方程相互独立，可分别结合各自的初始条件和表面交换条件进行求解。
 
+图\ref{fig_q1_model}给出径向计算域、内部温湿场及中心与表面的边界关系。图中通量均以径向向外为正，表面加热对应$q_s<0$，排湿对应$j_s>0$。
+\figone{fig_q1_model.pdf}{1.0}{圆柱药材的径向热湿传递及交换边界。橙红箭头表示热量传入，蓝色箭头表示水分迁出；底色仅示意药材几何域，长径比不按实物比例绘制。}{fig_q1_model}
+\FloatBarrier
+
 \subsection{初始条件与边界条件}
 入炉时药材各处温度和含水率均匀，题给初始状态为
 \begin{equation}\label{eq_initial}
@@ -232,14 +236,14 @@ L_C(t)=R\int_0^t h_m[C_s(\tau)-C_a(\tau)]\dd\tau.
 式\eqref{eq_q1_balance}中的量应满足$\mathcal E_T=Q_T$和$\Delta M_C=-L_C$，其中$\Delta M_C(t)=M_C(t)-M_C(0)$。$M_C$为归一化水分存量，乘以$2\pi Ls_0$后才对应水质量。为比较收支偏差与实际交换量的大小，定义相对残差
 \begin{equation}\label{eq_q1_balance_residual}
 \varepsilon_T=\frac{|\mathcal E_T-Q_T|}{\max(|\mathcal E_T|,|Q_T|,\eta_T)},\qquad
-\varepsilon_C=\frac{|\Delta M_C+L_C|}{\max(|\Delta M_C|,|L_C|,\eta_C)}.
+\varepsilon_{C,\mathrm{bal}}=\frac{|\Delta M_C+L_C|}{\max(|\Delta M_C|,|L_C|,\eta_C)}.
 \end{equation}
 其中，$\eta_T=10^{-12}$ J、$\eta_C=10^{-18}$ m$^2\cdot$(kg/kg)为防止分母接近零的数值下限。
 
 利用求解器的连续输出，在PCHIP观测分区间上对表面通量作自适应积分，再与末态存量独立比较。在$t=1800$ s处，前1800 s累计收支的相对残差为
 \[
 \varepsilon_T=2.0484\times10^{-9},\qquad
-\varepsilon_C=2.4254\times10^{-11}.
+\varepsilon_{C,\mathrm{bal}}=2.4254\times10^{-11}.
 \]
 按式\eqref{eq_q1_balance_residual}计算的两个残差均低于所设$10^{-6}$的数值检查阈值，表明常热物性温度场和正式非线性水分场的末时累计收支与边界交换一致。这些数值对应1800 s末时检查，不是全过程残差的最大值。
 

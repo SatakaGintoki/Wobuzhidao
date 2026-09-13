@@ -2,7 +2,7 @@
   "version": "q4-baseline-v1",
   "model": "q4-model-v1",
   "production": "G8",
-  "result_status": "PENDING",
+  "result_status": "PUBLISHED",
   "critical_s": 183913.64273142023,
   "critical_h": 51.08712298095006,
   "report_s": 183915.72,

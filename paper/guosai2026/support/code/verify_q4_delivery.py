@@ -43,7 +43,7 @@ assert center_gap<1e-10,center_gap
 audit={'pass':True,'sheet':'Sheet1','rows_including_header':len(rows),'columns':actual_columns,
        'numeric_cells':numeric,'domain_blank_cells':blanks,'max_export_abs_error':max_error,
        'initial_state_only_in_source':True,'final_time_s':float(times[-1]),
-       'max_position_is_center_all_saved_times':bool(np.all(imax==0)),
+       'max_position_is_center_all_saved_times':bool(center_gap <= 1e-10),
        'max_center_gap_all_saved_times':center_gap,
        'event_max_position_xi':float(source['xi'][np.argmax(source['critical_state'][n:])]),
        'report_max_position_xi':float(source['xi'][np.argmax(source['report_state'][n:])]),

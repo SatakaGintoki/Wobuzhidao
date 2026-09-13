@@ -18,6 +18,9 @@ r(t)=\frac{R(t)}{R_0}r_0.
 v(r,t)=\frac{\mathrm dr}{\mathrm dt}=\frac{\dot R(t)}{R(t)}\,r.
 \end{equation}
 外半径观测不能唯一决定内部材料运动，式\eqref{eq_proportional}和式\eqref{eq_velocity}是用于闭合速度场的模型假设，不是题给事实。长度仍取$L=0.25$ m，忽略轴向缩短。
+
+图\ref{fig_q4_coordinates}中的$P_0$与$P(t)$表示同一材料点在初始时刻和$t$时刻的位置。比例收缩下，其轴向位置保持不变，物理半径随$R(t)$同比缩小，而相对位置$\xi=r_0/R_0=r(t)/R(t)$保持不变，由此可将移动区域映到固定材料区间。
+\figone{fig_q4_coordinates.pdf}{1.0}{比例径向收缩与材料坐标示意。坐标变换使表面梯度与内部扩散分别带有$R(t)^{-1}$和$R(t)^{-2}$几何因子；收缩比例、材料点位置及长径比仅作示意，不对应特定实测时刻。}{fig_q4_coordinates}
 \FloatBarrier
 
 \subsection{收缩条件下的水分守恒与有效传热方程}
@@ -54,7 +57,7 @@ C_t+v C_r=\frac{1}{s\,r}\,\partial_r(r\,s\,D\,C_r).
 \[
 C_t+v C_r=\frac{1}{r}\partial_r\bigl[r D(C,T)\,C_r\bigr].
 \]
-若一个材料单元只发生收缩，水和干物质都没有进出，则二者质量之比不变。因此不能对干基含水率再添加$-C\nabla\cdot v$形式的体积压缩源项；那样会把体积浓度的几何浓缩误加到干基量上。
+由式\eqref{eq_material_C}可见，若一个材料单元只发生收缩，水和干物质都没有进出，则二者质量之比不变。因此不能对干基含水率再添加$-C\nabla\cdot v$形式的体积压缩源项；那样会把体积浓度的几何浓缩误加到干基量上。
 
 \medskip
 \noindent\textbf{（3）有效传热方程。}热方程沿用问题二、三的有效热容量描述。在假设（3）下，不显式计入汽化潜热、水分携焓和收缩机械功。对随骨架运动的同一材料微元，温度变化率应取物质导数

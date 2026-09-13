@@ -22,6 +22,7 @@ python code/problem4.py --level 16
 python code/problem4.py --level 8 --tight
 python code/verify_q4_results.py
 python code/plot_q3_results.py
+python code/plot_q4_radius.py
 ```
 
 上述过程重新计算四问及所用加密对照并生成NPZ/CSV/图；第3问 --no-xlsx 不重新导出Excel，现有随附结果表保留。第1、2问脚本会覆盖本支撑目录下对应结果，建议在副本中复算。各类目录由程序建立，必要时预先创建 results、figures、reports、tmp。
@@ -43,6 +44,14 @@ code/ 包含全文模型、计算与对应验证程序；tmp/ 包含原Excel导�
 运行原始记录中的路径已在算例JSON内改为相对路径，original_source_sha256保留原代码哈希；source_sha256对应随附代码，原problem3.py的导出路径适配沿用source_manifest.json说明。数值数组未改，详见packaging.json。原figure_provenance.json是生成记录；在本目录重新绘图后会生成当前目录的图源记录。该校核只支持第三问指定情景下的径向简化，不验证第四问收缩时长。
 
 现有敏感性表的程序 q3_sensitivity.py 及全部情景JSON/CSV一并收录。其后期温度、水分量仅在4 h后改变，传质系数在全过程缩放；大数组可复算。
+
+问题二的 $G_4/G_8$ 数值核验可运行：
+
+```text
+python code/verify_q2_results.py --numerical
+```
+
+该命令生成 `results/verification/q2/numerical_audit.json`，其中保留当次源数组哈希快照；随附 NPZ 的字段级数值与复核输出逐点一致，文件哈希差异只反映封装版本不同。
 
 ## AI记录
 

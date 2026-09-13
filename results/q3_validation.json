@@ -1,7 +1,7 @@
 {
   "result_version": "q3-closeout-v1",
   "model": "q3-model-v1",
-  "result_status": "PENDING",
+  "result_status": "PUBLISHED",
   "published_mesh": "G8",
   "published_n_nodes": 2113,
   "rtol": 1e-09,

@@ -22,11 +22,10 @@
 基含水率错误添加体积压缩项。采用附录 4 物性得到烘干时长 51.0877 h，终时半径为
 1.2000 cm，最大含水率为 0.1499989333 kg/kg，计算未超出半径观测范围。同用附录 4
 物性时，固定半径对照需 129.8448 h，收缩使预测时长减少 78.7571 h（约 60.65%）。
-通过解析对照、退化情形、收支、网格加密及问题三轴对称端面校核检验数值实现。
-开放端面后，临界达标时刻相对同网格一维解仅提前约 8 s。第三、四问的细网格临界时
-间差分别为 0.5851 s、0.1135 s。结果表明，保留径向梯度、非线性物性和移动表面有助
-于一致地求解四问；所报时长为等效模型下的预测，潜热及界面平衡关系仍构成适用限
-制。
+通过解析对照、退化情形、收支与时空加密检验数值实现。第三问另作轴对称二
+维校核，在端面与侧面交换系数相等的情景下，开放端面仅使配对达标时间提前约 8 s
+（0.004%），中心仍控制达标，支持保留径向主模型。所报时长为既定环境下的有效模型
+预测，潜热及界面平衡关系仍构成适用限制。
 关键词：热湿传递；干基含水率；有限体积法；材料坐标；全域阈值
 1
 一 问题重述
@@ -94,9 +93,9 @@
 当前表面单列。
 三 模型假设与符号说明
 3.1 模型假设及其用途
-（1） 药材横截面内满足轴对称，材料在周向上均匀，表面交换条件沿周向一致。忽略轴
-向梯度和端面交换，建立长度中部截面的一维径向模型。长时间端面影响由问题三
-的轴对称校核检验。
+（1） 药材及交换条件沿周向均匀，主模型忽略轴向梯度和端面交换，采用一维径向形式。
+第三问另作轴对称二维校核，假设物性各向同性、两端环境相同，端面交换系数与
+侧面相等，见第 7.7 节。
 （2） 初始温度与干基含水率均匀；问题一至三半径与长度固定。问题四长度仍取 0.25 m，
 骨架按给定 R(t) 作比例径向收缩，干物质不流失。比例收缩用于由外半径轨迹闭
 3
@@ -140,7 +139,7 @@ Wi
 , wi 物理域、材料域控制体的径向权重 m2，1
 M, t∗, trep 全域最大含水率、临界时刻、报告时刻 kg/kg，s，s
 下标 s 表示当前表面，i 表示内部计算节点。正文中的时间公式以 s 为单位，时长结果及
-表 4 至表 8 的时间列换算为 h。
+表 4 至表 9 的时间列换算为 h。
 4
 四 数据预处理
 为使四问模型使用一致的输入口径，本节统一整理附件 1 的烘房温湿环境和附件 2
@@ -898,7 +897,7 @@ maxi Ci(t)，同时记录最大值位置并检查径向分布。表格中的 5 �
 严格达标时刻的选取还需考虑离散差异。根据空间加密和时间容差收紧的结果设置
 经验裕量 εC，先寻找 Mh(t) < 0.15 − εC 的时刻，再向上选择整秒并向上保留四位小时。
 最后在生产解、细网格解和时间收紧解上核对同一报告时刻的最大水分浓度。裕量的定
-义及数值核验见本问最后一节。
+义及数值核验见第 7.6 节。
 7.4 烘干时长与水分分布结果
 生产网格得到的临界时刻为 t∗ = 57.4725195022 h。按上述严格达标处理，药材所需
 烘干时长为
@@ -906,7 +905,7 @@ trep,3 = 57.4731 h = 206903.16 s. (22)
 考虑到 4 h 后的烘房条件来自假设（6），进一步进行小规模情景敏感性分析。前 4 h
 仍使用附件 1 数据。后期温度和水分量按指定情景改变；有效传质系数则在全程按比例
 缩放。水分量 ±10% 是对后期延续假设的工程扰动，大于附件 1 末 1 h 的观测波动。其
-余数值设置和全域阈值判据保持不变。结果表明，后期温度延续情景可使达标时间变化
+余数值设置和全域阈值判据保持不变。
 17
 表 6 问题三长期输入敏感性分析
 情景 Ta /
@@ -921,36 +920,13 @@ Ca − 10% 50 0.045 1.0 57.3815 -0.16%
 Ca + 10% 50 0.055 1.0 57.5826 +0.19%
 hm − 20% 50 0.050 0.8 59.1690 +2.95%
 hm + 20% 50 0.050 1.2 56.4333 -1.81%
-约 6%，全程传质系数情景约 2–3%，后期水分量 ±10% 仅约 0.2%，均明显大于数值离散
-误差。因此报告时长的末位反映给定情景下的事件定位精度，不代表实际烘干时间具有
-同等的输入确定性。此时生产解的最大水分浓度为 0.1499993913 kg/kg，严格低于 0.15
-kg/kg，最大值位于中心。
-图 5 给出最大水分浓度随时间的变化及达标阈值；表 7 按题目要求列出每 6 h 及结
-束时刻的水分浓度；图 6 展示相应径向剖面。
-0 10 20 30 40 50
-时间 t (h)
-0.0
-0.5
-1.0
-1.5
-2.0
-2.5
-干
-基
-含
-水
-率
-C (k
-g
-/
-k
-g)
-阈值 0.15
-全网格 maxC
-中心
-表面
-图 5 全域最大水分浓度随时间的变化及干燥阈值
-18
+结果表明，后期温度延续情景可使达标时间变化约 6%，全程传质系数情景约 2–3%，
+后期水分量 ±10% 仅约 0.2%，均明显大于数值离散误差。因此报告时长的末位反映给
+定情景下的事件定位精度，不代表实际烘干时间具有同等的输入确定性。在基准报告时
+刻，生产解的最大水分浓度为 0.1499993913 kg/kg，严格低于 0.15 kg/kg，最大值位于中
+心。
+表 7 列出每 6 h 及结束时刻的水分浓度，图 5 展示相应径向剖面。第 7.7 节进一步
+比较一、二维模型的最大含水率历程，检验端面对达标时间的影响。
 表 7 固定半径模型药材烘干过程的水分浓度（kg/kg）
 到药材中心的距离/cm
 时间/h 0 0.5 1.0 1.5 2.0
@@ -965,6 +941,7 @@ g)
 54 0.1539 0.1514 0.1436 0.1277 0.0530
 57.4731 0.1500 0.1477 0.1402 0.1249 0.0527
 注：终时中心未舍入值为 0.1499993913 kg/kg，严格低于 0.15；0.1500 为四位显示。
+18
 0.00 0.25 0.50 0.75 1.00 1.25 1.50 1.75 2.00
 半径 r (cm)
 0.2
@@ -992,8 +969,7 @@ t = 42 h
 t = 48 h
 t = 54 h
 t = 57.4731 h
-图 6 每 6 h 及结束时刻的径向水分浓度分布
-19
+图 5 每 6 h 及结束时刻的径向水分浓度分布
 7.5 干燥过程与控制位置分析
 计算保存的径向剖面由中心向表面不增，中心附近控制最终达标时间。18 h 时，表
 面水分浓度已降至 0.0845 kg/kg，而中心仍为 0.2988 kg/kg；48 h 时，中心仍为 0.1618
@@ -1007,7 +983,7 @@ kg/kg。
 以 G16 网格和 G8 时间收紧解复核生产结果。空间加密后的临界时间变化为 0.585132
 s，时间收紧后的变化为 1.7506 × 10−5
 s，表 7 的数值在两类加密下保留四位小数均一致；
-完整配置对照见表 12。
+完整配置对照见表 13。
 为复核严格不等式，在同一生产网格临界时刻 t∗,h 比较三组解，并定义
 εC = 2 max 
 |Mh(t∗,h) − Mh/2(t∗,h)|, |Mh(t∗,h) − Mh,tight(t∗,h)|
@@ -1018,23 +994,107 @@ s，表 7 的数值在两类加密下保留四位小数均一致；
 εC = 3.5088 × 10−7 kg/kg。在 trep,3 时，生产解最大值加上该裕量仍低于 0.15 kg/kg；细
 网格解和时间收紧解的最大值分别为 0.1499992209 和 0.1499993913 kg/kg，也均严格达
 标。该裕量来自已完成的数值加密比较，不是连续方程解的严格误差上界。热湿收支检
-验见表 10。
+验见表 11。
+19
 表 7 末行中心显示 0.1500，是未舍入值 0.1499993913 保留四位小数的结果，达标判
 断以未舍入值为准。完整水分浓度结果保存至 result3.xlsx，从 60 s 起每 60 s 输出一
 次，径向从 0 至 2 cm 每 0.1 cm 采样，并追加 206903.16 s 的准确结束时刻。论文表格和
 结果文件均由同一未舍入数值解生成。
+7.7 径向简化的二维端面校核
+短时传播尺度不能直接保证约 57 h 预测中的端面影响仍小。参考 Hussain 和 Dincer
+对有限圆柱二维热湿传递的研究 [1]，在第三问原初值、附录 3 物性及环境输入下恢复
+轴向通量。取 z = 0 为中截面，在 0 ≤ r ≤ R、0 ≤ z ≤ L/2 上建立
+B(C)Tt =
+1
+r
+∂
+∂r (rk(C)Tr) + ∂
+∂z (k(C)Tz),
+Ct =
+1
+r
+∂
+∂r (rD(C, T)Cr) + ∂
+∂z (D(C, T)Cz).
+(24)
+中心轴和中截面施加零法向梯度，侧面沿用原边界；端面 z = L/2 取 −kTz = hz(T −Ta)、
+−DCz = hm,z(C − Ca)，其中 hz = h、hm,z = hm 为指定对照情景。该模型保留本文的变
+系数守恒形式，以表面加密有限体积法和隐式 BDF 求解，不移植文献材料参数。
+以全部二维节点的 max Cij (t) = 0.15 定位临界根，并对每个径向网格独立计算一维
+配对解。表 8 中 Nr, Nz 为区间数，∆t∗ = t∗,2D − t∗,1D；采用同径向网格比较，以分离改
+变网格与开放端面的作用。
+表 8 同径向网格下一、二维临界时间对照
+Nr × Nz 时间配置 一维 / h 二维 / h ∆t∗ / s
+80 × 40 普通 57.502060 57.499795 -8.153
+160 × 40 普通 57.479758 57.477496 -8.143
+80 × 80 普通 57.502060 57.499937 -7.644
+160 × 80 普通 57.479758 57.477637 -7.634
+160 × 80 收紧 57.479760 57.477640 -7.635
+关闭端面交换后，二维与配对一维临界时间相差 0.0015 s，支持退化一致性。开放
+端面时累计水分收支相对残差均低于 1.2 × 10−8。在细网格附近，径向加密、轴向加密
+及时间收紧使配对时间差分别变化 0.0102、0.5094 和 0.0012 s，支持端面对中心达标时
+长影响很小的判断。二维绝对临界时间的径向加密差仍为 80.28 s，不能据输出位数声称
+秒级绝对精度，也不以此替换原 G8 一维正式答案。
+图 6 表明，端面促进端部干燥，但采样及临界时刻的全域最大值仍由中心控制。细
+网格开放端面后仅提前约 8 s，约占配对一维时长的 0.004%；两端累计排湿却约占总排
+湿 5.3%，说明总排湿贡献不能直接换算为中心达标的节时比例。该结果支持本问采用
+一维径向主模型，并为下一问沿用径向近似提供参考。结论限于各向同性、两端同环境
+及等交换系数情景，不保证局部二维场四位小数稳定，也不构成实验验证；收缩情景下
+的沿用依据与限制将在下一问说明。
+20
+-10 -5 0 5 10
+轴向距离 z / cm
+-2
+0
+2
+横向位置 / cm
+(a) 36 h 含水率分布
+0.05 0.08 0.11 0.14 0.17
+干基含水率 / (kg/kg)
+0 10 20 30 40 50 60
+时间 / h
+0
+1
+2
+全域最大含水率 / (kg/kg)
+(b) 全域最大含水率
+配对一维
+二维开放端面
+阈值 0.15
+0 10 20 30 40 50 60
+时间 / h
+-2.0
+-1.5
+-1.0
+-0.5
+0.0
+二
+维
+减
+一
+维
+/ (10
+−5 k
+g
+/
+k
+g)
+(c) 同时刻、同径向网格的差异
+图 6 第三问二维端面校核。上图为 36 h 纵剖面含水率，保持实际长径比；下图比较同径向网格
+的全域最大值及其差异。
 八 问题四：径向收缩条件下的热湿传递
 8.1 问题分析与比例收缩假设
-问题三在固定半径 R = R0 下建立了变物性热湿耦合模型，并以全域最大含水率
-确定烘干时长。实际烘干中药材持续失水并发生明显径向收缩，附件 2 给出了外半径
-的观测轨迹。因此问题四不能沿用固定区域 0 ≤ r ≤ R0，而应在随时间变化的区域
-0 ≤ r ≤ R(t) 上描述温度和水分迁移。本问仍采用一维径向基线，不引入轴向传导或端
-面损失，以免把几何收缩与维度改变混在同一时长差异中。
+第 7.7 节的二维校核表明，问题三在指定端面条件下，端面效应对中心控制的达标
+时长影响很小。问题四忽略轴向缩短，长度仍取 L = 0.25 m；随径向收缩，半径与长度
+之比 R(t)/L 减小，该比值也等于两端总面积与侧面积之比。因此，从几何上看，端面交
+换的相对作用减弱，预期其对达标时长的影响进一步减小。结合第三问的校核结果，在
+周向均匀、物性各向同性及相同端面环境假设下，本问继续采用一维径向模型，在移动
+区域 0 ≤ r ≤ R(t) 上考察收缩作用。上述判断用于说明模型简化的依据；附录 4 物性及
+收缩条件下的端面时间误差尚未单独量化，第三问的 0.004% 不作为本问误差界。
 本问同时更换物性：全部经验式改用附录 4，并从 T(r, 0) = 28 ◦C、C(r, 0) = 2.55
 kg/kg 独立积分，不读取问题三的末态。环境输入和半径轨迹采用第四节的统一处理。第
 四问新增的本质是
 R0 −→ R(t), 附录 3 物性 −→ 附录 4 物性.
-20
 Brasiello 等讨论了食品干燥中收缩与非等温热湿传递的耦合 [5]。该工作支持将材料运
 动写入传递方程，其对象、吸附关系与蒸发机制与本题不同，不能证明本题必须采用比
 例收缩。
@@ -1042,15 +1102,16 @@ Brasiello 等讨论了食品干燥中收缩与非等温热湿传递的耦合 [5]
 按相同比例收缩：
 r(t) = R(t)
 R0
-r0. (24)
+r0. (25)
 相应骨架径向速度为
 v(r, t) = dr
 dt
 =
 R˙(t)
 R(t)
-r. (25)
-外半径观测不能唯一决定内部材料运动，式(24)和式(25)是用于闭合速度场的模型假设，
+r. (26)
+21
+外半径观测不能唯一决定内部材料运动，式(25)和式(26)是用于闭合速度场的模型假设，
 不是题给事实。长度仍取 L = 0.25 m，忽略轴向缩短。
 8.2 收缩条件下的水分守恒与有效传热方程
 直接在移动区间 0 ≤ r ≤ R(t) 上离散不便于沿用前问网格。本节先在物理坐标中写
@@ -1059,8 +1120,8 @@ r. (25)
 st +
 1
 r
-∂r(rsv) = 0. (26)
-将式(25)代入，并设初始干物质密度均匀，则 s 保持空间均匀，满足
+∂r(rsv) = 0. (27)
+将式(26)代入，并设初始干物质密度均匀，则 s 保持空间均匀，满足
 s˙ + 2
 R˙
 R
@@ -1071,7 +1132,7 @@ R0
 R(t)
 2
 .
-(27)
+(28)
 其中因子 2 来自仅考虑径向收缩、长度不变：当前体积 V (t) = πR2
 (t)L。半径减小后，
 同样的干物质被压缩到更小体积，因而当前体积干物质密度按 R−2 增大。
@@ -1085,13 +1146,13 @@ r
 
 r(sCv + j)
 
-= 0. (28)
-由式(26)消去几何压缩项，得到
+= 0. (29)
+由式(27)消去几何压缩项，得到
 Ct + vCr =
 1
 s r
-∂r(r s D Cr). (29)
-在式(27)下 s = s(t) 不依赖 r，故
+∂r(r s D Cr). (30)
+在式(28)下 s = s(t) 不依赖 r，故
 Ct + vCr =
 1
 r
@@ -1100,7 +1161,6 @@ r
 rD(C, T) Cr
 
 .
-21
 若一个材料单元只发生收缩，水和干物质都没有进出，则二者质量之比不变。因此不能
 对干基含水率再添加 −C∇ · v 形式的体积压缩源项；那样会把体积浓度的几何浓缩误加
 到干基量上。
@@ -1110,6 +1170,7 @@ rD(C, T) Cr
 DT
 Dt
 = Tt + vTr.
+22
 因此，将固定域中的有效传热方程推广至收缩域时，以物质导数代替固定空间点的 Tt，
 得到
 B(C)(Tt + vTr) = 1
@@ -1120,9 +1181,9 @@ rk(C) Tr
 
 ,
 B(C) = ρ(C)cp(C).
-(30)
-式(30)是有效传热近似，不是完整多相系统的能量守恒方程。经验密度 ρ(C) 仅用于构造
-B(C)；质量记账中的 s 由式(27)决定，不强制 s = ρ(C)/(1 + C)。若同时把 ρ 当作真实
+(31)
+式(31)是有效传热近似，不是完整多相系统的能量守恒方程。经验密度 ρ(C) 仅用于构造
+B(C)；质量记账中的 s 由式(28)决定，不强制 s = ρ(C)/(1 + C)。若同时把 ρ 当作真实
 湿体积密度，则与给定 R(t)、固定长度和干物质守恒不能精确相容，该项限制见模型评
 价。
 于是物理坐标下的热湿方程为
@@ -1144,7 +1205,7 @@ r
 rD(C, T) Cr
 
 .
-(31)
+(32)
 相对于前三问，收缩首先通过材料随动项 vTr 和 vCr 进入方程。
 8.3 材料坐标变换与定解条件
 定义
@@ -1160,20 +1221,19 @@ R(t)ξ, t
 
 R(t)ξ, t
 .
-(32)
-在比例收缩(24)下，同一材料点满足 ξ = r0/R0，不随时间变化，因而 ξ 标记随骨架运动
+(33)
+在比例收缩(25)下，同一材料点满足 ξ = r0/R0，不随时间变化，因而 ξ 标记随骨架运动
 的相对位置，计算区域始终为固定区间 [0, 1]。一般非均匀收缩时，ξ 首先只是瞬时归一
 化坐标，不能自动等同于材料标记。
 由链式法则，Cr = Uξ/R，Ut = Ct + ξRC˙
 r。由于 v = Rξ˙ ，有 Ut = Ct + vCr。温度
-场同样满足 Θt = Tt + vTr。材料运动与坐标网格同步，式(31)中的显式随动项被坐标变
+场同样满足 Θt = Tt + vTr。材料运动与坐标网格同步，式(32)中的显式随动项被坐标变
 换吸收。固定半径模型中内部扩散含因子 R
 −2
 0 ；收缩后该因子成为 R(t)
 −2。随着 R(t) 减
 小，R−2 增大，表示在相同无量纲梯度下，中心到表面的实际迁移距离缩短。这是收缩
 可能改变干燥速度的几何机制，但不能把 R−2 的倍率直接换成烘干时长倍率。
-22
 问题四按题意从初始时刻统一使用附录 4 经验式：
 ρ(U) = 760 + 90U,
 cp(U) = 1850 + 2150 ×
@@ -1195,9 +1255,10 @@ U
 3850
 Θ + 273.15
 .
-(33)
+(34)
 扩散系数仍由药材局部温度进入指数，而不是烘房温度。表面梯度由 Cr = Uξ/R 改写，
 因而内部扩散带 R−2、表面交换带 R−1，二者必须同时进入定解问题。R(t) 由附件 2 的
+23
 PCHIP 给出，Ta(t)、Ca(t) 沿用式(2)。于是在固定区间 0 ≤ ξ ≤ 1 上，本问实际积分的定
 解问题为
 
@@ -1239,9 +1300,9 @@ R(t)
 Θs − Ta(t)
 
 .
-(34)
-其中 B(U) = ρ(U)cp(U)，物性取式(33)。含水率初值以 kg/kg 计，温度初值以 ◦C 计。物
-理坐标式(31)只用于说明随动项如何进入方程，离散求解针对式(34)。
+(35)
+其中 B(U) = ρ(U)cp(U)，物性取式(34)。含水率初值以 kg/kg 计，温度初值以 ◦C 计。物
+理坐标式(32)只用于说明随动项如何进入方程，离散求解针对式(35)。
 8.4 数值求解、达标判据与输出转换
 在 ξ ∈ [0, 1] 上沿用前三问的环形有限体积结构。将问题一的 G8 节点除以 R0 得到
 固定材料节点 ξi，内部面取相邻节点中点，径向权重
@@ -1261,10 +1322,9 @@ R
 i = FbC
 i−1/2 − FbC
 i+1/2.
-(35)
+(36)
 温度方程将 D 换为 k，并乘以 Bi。表面通量分别取 Rhm(UN − Ca) 与 Rh(ΘN − Ta)。时
 间推进仍采用隐式 BDF，局部物性在每次迭代中按当前温湿状态更新。生产计算使用
-23
 2113 个材料节点；相对容差 10−8，温度与含水率绝对容差分别为 10−8、10−10。前 4 h 最
 大步长 10 s，其后 60 s，并在环境切换处分段接续。网格加密与时间收紧检验见第九节。
 烘干完成的定义沿用式(21)，只把固定半径上的最大值换成材料坐标上的最大值：
@@ -1278,13 +1338,14 @@ U(ξ, t), t∗ = inf{t ≥ 0 : M(t) < 0.15}.
 对 U 作保形插值；若 rj > R(t)，该位置已在药材外，单元格记为“—”，不填 0 或环境
 值。药材表面始终对应 ξ = 1，含水率与当时半径分别单列，不能用固定的 2 cm 列代替
 移动表面。
+24
 8.5 烘干时长与含水率分布
 生产解临界时刻为 t∗ = 51.0871229810 h。按式(21)的严格低于阈值规则，得到
-trep,4 = 51.0877 h = 183915.72 s. (36)
+trep,4 = 51.0877 h = 183915.72 s. (37)
 此时生产解的最大含水率为 0.1499989333 kg/kg，严格低于 0.15 kg/kg，最大值位于中心，
 当时半径为 1.2000 cm，仍在附件 2 的 72 h 覆盖范围内，无需半径外推。规定时刻的径
-向剖面见图 7，表 8 给出每 6 h 及结束时刻的含水率。
-表 8 收缩模型药材烘干过程的水分浓度（kg/kg）
+向剖面见图 7，表 9 给出每 6 h 及结束时刻的含水率。
+表 9 收缩模型药材烘干过程的水分浓度（kg/kg）
 到药材中心的距离/cm
 时间/h 0 0.5 1.0 1.5 2.0 药材表面 R(t)/cm
 6 1.7188 1.5370 1.0221 — — 0.4205 1.3740
@@ -1298,7 +1359,6 @@ trep,4 = 51.0877 h = 183915.72 s. (36)
 51.0877 0.1500 0.1413 0.1081 — — 0.0526 1.2000
 注：—表示该固定距离已超出当时半径；药材表面对应当前 R(t)。终时中心未舍入值为 0.1499989333
 kg/kg。
-24
 0.0 0.2 0.4 0.6 0.8 1.0 1.2 1.4
 到药材中心的距离 / cm
 0.00
@@ -1320,8 +1380,9 @@ kg/kg。
 48.00 h
 51.09 h
 图 7 每 6 h 及结束时刻的含水率剖面。横坐标为当前物理半径，曲线右端随收缩内移。
-表 8 中“—”表示该固定距离已超出当时半径；药材表面列始终取 U(1, t)，R(t) 列
+表 9 中“—”表示该固定距离已超出当时半径；药材表面列始终取 U(1, t)，R(t) 列
 给出表面位置。终时中心四位显示为 0.1500，对应未舍入值 0.1499989333 kg/kg，达标
+25
 判断以未舍入值为准。完整结果保存至 result4.xlsx，从 60 s 起每 60 s 输出一次，并
 追加 183915.72 s 的准确结束时刻。论文表格与结果文件由同一未舍入数值解生成。
 18 h 时表面含水率已降至 0.0892 kg/kg，中心仍为 0.4086 kg/kg；48 h 时中心为 0.1561
@@ -1331,26 +1392,42 @@ kg/kg，仍高于阈值。因此表面先接近干燥要求，不能代表内部
 第三、四问同时改变物性和几何，时长差不能单独归因于收缩。为分离几何作用，
 在附录 4 物性下增加 R ≡ R0 = 0.02 m 对照，与实测 R(t) 组保持初值、热湿方程、交换
 系数及全域达标判据一致。两组前 4 h 均用同一环境插值，此后保持 50 ◦C、0.05 kg/kg；
-固定组由式(34)取常半径并联合求解温湿场。
-表 9 列出两组结果。固定组沿用收缩组的 G8 及 BDF 配置，均以 G16 和时间收紧复
-核，并在最晚临界根后留出 2 s、向上取四位小时；报告时刻另经未舍入最大值与经验裕
-量检查。
-表 9 附录 4 物性下固定半径与实测收缩的对照
+固定组由式(35)取常半径并联合求解温湿场。
+表 10 列出两组结果。固定组沿用收缩组的 G8 及 BDF 配置，均以 G16 和时间收紧
+复核，并在最晚临界根后留出 2 s、向上取四位小时；报告时刻另经未舍入最大值与经验
+裕量检查。
+表 10 附录 4 物性下固定半径与实测收缩的对照
 半径方案 临界时间/h 严格报告时间/h 报告时最大含水率
 (kg/kg)
 固定 R = R0 129.8442292 129.8448 0.1499996198
 实测 R(t) 51.0871230 51.0877 0.1499989333
-25
 以固定组报告时长为分母，收缩使本模型的预测烘干时间减少
 ∆tshrink = tfixed,4 − tshrink,4 = 129.8448 − 51.0877 = 78.7571 h,
 ηt =
 ∆tshrink
 tfixed,4
 × 100% ≈ 60.65%.
-(37)
+(38)
 两组临界根之差为 78.7571062 h，与报告时长差在四位小数下一致，说明该差异不由严
 格达标的时间裕量造成。图 8 展示中心含水率全过程及后期放大；保存轨迹中两组中心
 均与径向最大值重合，收缩组更早穿越阈值。
+固定组约 129.84 h 超过 72 h 半径记录，但使用指定常半径，无需外推半径；收缩组
+仍在观测范围内达标。该对照依赖既定后期环境，量化有效模型中扩散距离、表面交换
+及温湿反馈共同形成的收缩总效应，不是实测节时比例。
+就方程结构而言，材料坐标中内部扩散含 R−2。报告时刻 R = 1.2000 cm，相对于
+初值 2 cm， 
+R0
+R
+2
+=
+
+2.0
+1.2
+2
+≈ 2.78.
+该 2.78 倍仅表示扩散算子的几何系数变化，不能直接当作速度或时长倍率；实际还受局
+部 D、温度场和表面 R−1 交换影响。
+26
 0 20 40 60 80 100 120
 时间 / h
 0.0
@@ -1376,22 +1453,6 @@ tfixed,4
 129.8448 h
 图 8 同一附录 4 物性下，收缩组比固定半径组更早达标。左图为中心含水率全过程，右图放大
 后期；曲线止于各自报告时刻，点线为 0.15 kg/kg 阈值。
-固定组约 129.84 h 超过 72 h 半径记录，但使用指定常半径，无需外推半径；收缩组
-仍在观测范围内达标。该对照依赖既定后期环境，量化有效模型中扩散距离、表面交换
-及温湿反馈共同形成的收缩总效应，不是实测节时比例。
-就方程结构而言，材料坐标中内部扩散含 R−2。报告时刻 R = 1.2000 cm，相对于
-初值 2 cm， 
-R0
-R
-2
-=
-
-2.0
-1.2
-2
-≈ 2.78.
-该 2.78 倍仅表示扩散算子的几何系数变化，不能直接当作速度或时长倍率；实际还受局
-部 D、温度场和表面 R−1 交换影响。
 收缩域的水分总量按干物质质量归一化后满足
 Mw
 Md
@@ -1411,12 +1472,11 @@ R(t)
 Us − Ca(t)
 
 .
-(38)
-式(38)由材料域方程积分并使用表面条件得到，无需指定未经测量的 s0。令 R(t) ≡ R0
-时，式(34)退化为同一附录 4 物性的固定域方程；关闭表面交换且初值均匀时，纯收缩
-不改变干基含水率。这两种退化及式(38)的数值收支均已检查，网格与时间加密结果见
-表 12 和表 10。
-26
+(39)
+式(39)由材料域方程积分并使用表面条件得到，无需指定未经测量的 s0。令 R(t) ≡ R0
+时，式(35)退化为同一附录 4 物性的固定域方程；关闭表面交换且初值均匀时，纯收缩
+不改变干基含水率。这两种退化及式(39)的数值收支均已检查，网格与时间加密结果见
+表 13 和表 11。
 九 模型检验与误差分析
 9.1 水分收支与有效热方程检验
 固定域对半离散方程求和，内部通量相消，得到
@@ -1426,9 +1486,8 @@ Wi
 [Ci(t) − Ci(0)] = −Rhm
 Z t
 0
-[Cs(τ ) − Ca(τ )] dτ. (39)
-式(39)以统一参考干密度归一化，未乘干密度和长度时不能直接标为失水质量 kg。收缩
-域则使用式(38)，累计表面通量在 BDF 接受步区间上积分。
+[Cs(τ ) − Ca(τ )] dτ. (40)
+式(40)按参考干密度归一化，不能直接以 kg 标记；收缩域使用式(39)。
 问题一热容量恒定，总有效蓄热增量应与累计对流输入一致。问题二、三则令
 E(t) = 2πLX
 i
@@ -1445,51 +1504,32 @@ i dτ
 = 2πLRh Z t
 0
 (Ta − Ts) dτ.
-(40)
-式(40)中的组成修正项不能省略。相对残差以收支两侧之差的绝对值除以相应累计交换
-量的尺度计算；接近零时设正的小量下限。问题三在连续解各接受步上采用 4 点、8 点
-Gauss 积分对照，避免用 60 s 输出样本的粗梯形积分代替高精度轨迹积分。
-现有计算的收支残差见表 10。其中，第一问为 1800 s 末时的累计收支检查，残差定
-义见式(15)。第四问的热量检查限定为加权半离散热方程残差及温度收敛，不套用固定
-几何下的累计储量公式。残差较小支持离散通量与所选方程的一致性，不验证潜热、相
-表 10 各问收支检验；相对残差仅针对所选有效模型
+(41)
+27
+组成修正项不能省略。相对残差用收支差除以累计交换量尺度，近零时设正下限；第一
+问定义见式(15)。第三问在 BDF 接受步连续解上作 4 点、8 点 Gauss 积分对照。表 11 汇
+总结果，第四问热量仅检验加权半离散方程及温度收敛。残差较小支持离散通量与所选
+表 11 各问收支检验；相对残差仅针对所选有效模型
 问题 水分相对残差 有效热收支相对残差 检验范围
 一 2.4254 × 10−11 2.0484 × 10−9 0 至 1800 s
 二 4.312 × 10−7 3.565 × 10−8 0 至 10800 s
 三 4.0221 × 10−11 3.6640 × 10−8 至报告时刻
 四 4.0558 × 10−9 不作同类累计比较 生产计算至 72 h
-平衡或端面简化的真实物理误差。
+方程的一致性，不验证潜热、相平衡或端面简化的真实物理误差。
 9.2 空间与时间加密
-对固定域共享节点、收缩域共享材料节点，在相同物理时刻比较温度和含水率。每
-个比较量定义为 maxi,j |u
-(a)
-i
-(tj ) − u
-(b)
-i
-(tj )|。表 11 列出各问主要空间、时间比较值，温度
-和含水率分别按自身单位评价，不将二者合成无量纲误差。第一、二问比较全部规定输
-出点；第三、四问还比较内部共享节点。第四问共享节点比较覆盖用于验证的 72 h 轨迹。
-上述数值是相邻计算配置之间的差，不是已知真解误差。第二问另有 G4/G8 独立复核，
-温度、含水率最大差分别为 6.244 × 10−7 ◦C、3.732 × 10−6 kg/kg。
-27
-表 11 主要网格与时间加密差异
+在相同物理时刻比较固定域共享节点及收缩域共享材料节点，以各配置的节点最大
+绝对差为指标。表 12 分别列出温度和含水率结果。前两问覆盖全部规定输出点，后两
+表 12 主要网格与时间加密差异
 问题 空间比较 ∆Tspace ∆Cspace ∆Ttime ∆Ctime
 ◦C kg/kg ◦C kg/kg
 一 G4/G8 5.895×10−7 4.564×10−6 2.874×10−8 1.179×10−9
 二 G2/G4 2.452×10−6 1.493×10−5 4.108×10−7 2.381×10−8
 三 G8/G16 9.545×10−7 1.537×10−5 1.002×10−6 7.716×10−9
 四 G8/G16 1.012×10−5 8.681×10−7 1.188×10−5 6.383×10−8
-第三问的 G4/G8 内部水分最大差为 6.2693 × 10−5 kg/kg，超过所取 2 × 10−5 的数值
-比较目标，因此采用 G8 生产。第四问 G4/G8 在 36 h、1.0 cm 处跨越四位舍入边界，采
-用 G8 并以 G16 复核后，题定表格有效单元格四位稳定。可见时长稳定与表格显示稳定
-应分别检查。
-临界时间对照见表 12。第三问空间加密临界时间差为 0.585132 s，时间收紧差为
-1.7506 × 10−5
-s；第四问对应为 0.113486 s 和 0.002883 s。六张题定结果表在相应空间及
-时间检验下四位一致，但部分 Excel 单元格可能恰处于舍入边界，不能据此声称所有输
-出的第四位已完全冻结。
-表 12 不同计算配置下的临界烘干时间（h）
+问还覆盖内部节点，第四问比较至 72 h。第二问另以 G4/G8 复核，温度、含水率最大差
+为 6.244 × 10−7 ◦C、3.732 × 10−6 kg/kg。配置差不等于真解误差；临界时间见表 13。六
+张题定表在相应加密下四位一致，但不能据此声称全部 Excel 单元格的末位均已稳定。
+表 13 不同计算配置下的临界烘干时间（h）
 配置 问题三 问题四
 G4 57.4731739851 51.0872487284
 G8 57.4725195022 51.0871229810
@@ -1498,22 +1538,21 @@ G8 时间收紧 57.4725194974 51.0871221801
 9.3 独立对照与输出一致性
 问题一的 Bessel–Duhamel 温度对照及冻结扩散系数辅助测试见第 5.5 节。问题二在
 短时制造解测试中保留变系数导数项，温度和含水率最大误差分别为 6.0949 × 10−8 ◦C
+28
 和 8.9808 × 10−9 kg/kg。制造解用于检验实现，不是药材实验数据。
 第三问与第二问在 1800、3600、7200、9000 s 的重叠输出比较中，温度、水分最大
 差分别为 4.66 × 10−7 ◦C 和 9.12 × 10−7 kg/kg，支持独立起算的两个过程在共享区间内一
 致。第四问则采用同一附录 4 物性的固定半径退化检查及关闭边界交换的纯收缩检查，
 不把附录 3 结果直接作为附录 4 的退化参照。
-输出环节保持源数组、论文表格和 Excel 来自同一状态。数值非有限、含水率越界、
-必需收支或收敛检查失败时，程序阻断正式文件写入。第三问另存准确终时，第四问逐
-行核对当前半径、域外“—”与移动表面。这些检查服务于结果可追溯性，不替代模型
-的物理验证。
-28
+源数组、题定表及 Excel 保持同源，数值非有限、含水率越界或必需检查失败均阻
+断正式输出；另核对第三问准确终时、第四问当前半径及域外标记。这些检查不替代物
+理验证。
 9.4 同物性固定半径对照的检验
 固定组通过独立物理环层算子检查。空间加密和时间收紧的临界时间差为 0.498231
 s 和 0.013113 s；至 132 h 共同保存时刻的温度、水分空间差分别为 1.3522 × 10−5 ◦C、
 1.9052 × 10−6 kg/kg，时间差分别为 1.4730 × 10−5 ◦C、6.4161 × 10−8 kg/kg。三组累计水
 分相对残差均低于 10−6。129.8448 h 时三组最大含水率均低于 0.15，生产值加经验裕量
-1.9437 × 10−7 后仍达标，支持表 9 的数值可比性。
+1.9437 × 10−7 后仍达标，支持表 10 的数值可比性。
 9.5 局部敏感性与适用边界
 式(20)给出扩散系数对状态变量的局部敏感性。在 T = 50 ◦C、C = 0.15 时，问题三
 有
@@ -1526,104 +1565,55 @@ s 和 0.013113 s；至 132 h 共同保存时刻的温度、水分空间差分别
 ∂C = 20 (kg/kg)
 −1
 .
-因而在固定其他状态的一阶近似下，升温 1
-◦C 对应局部 D 约 3.69% 的相对变化；该结
-论不能直接等同于烘干时长变化 3.69%。问题四对应 ∂ ln D/∂U = 0.30/U
-2，在阈值处为
-13.3333 (kg/kg)
-−1。材料域扩散系数前的几何因子满足 ∂ ln(R−2
-)/∂ ln R = −2，可说明
-局部方程中的几何敏感方向，不能代替全过程几何对照。
+局部升温 1
+◦C 对应 D 约 3.69% 的一阶变化，不能等同于时长变化。问题四有 ∂ ln D/∂U =
+0.30/U
+2，阈值处为 13.3333 (kg/kg)
+−1；几何因子满足 ∂ ln(R−2
+)/∂ ln R = −2，其局部方
+向仍需全过程对照检验。
 若事件附近最大值位置不变且 M′
 (t∗) ̸= 0，一阶扰动给出
 δt∗ ≈ −
 δM(t∗)
 M′
 (t∗)
-. (41)
-式(41)说明后期曲线越平缓，相同含水率误差可能造成越大的时间偏差，因而必须直接
-检验事件时间收敛。问题三已对后期温度、后期水分量及全程传质系数作有限情景扰动，
-见第七节；该结果量化指定输入变化下的时长差异，不构成全局稳健性保证。
-9.6 问题三轴对称端面校核
-根据假设（1），主模型忽略端面交换。为检验该简化，在附录 3 物性、原初值及假设
-（6）下将第三问推广为半圆柱轴对称二维热湿场(42)，计算域为 0 ≤ r ≤ R、0 ≤ z ≤ L/2
-（z = 0 为中截面）。侧面沿用原 h 和 hm，端面取相同系数作为对照情景；关闭端面时二
-维右端退化为配对一维算子。
-B(C)Tt =
-1
-r
-∂r[rk(C)Tr] + ∂z[k(C)Tz],
-Ct =
-1
-r
-∂r[rD(C, T)Cr] + ∂z[D(C, T)Cz].
-(42)
-主对照为 161 个径向节点、81 个轴向节点。开放端面后，临界达标时刻相对同径向网格
-一维解提前约 8 s（0.004%），时间收紧后保持；最大值仍由中截面中心控制。两端累计
-排湿约占总失水的 5.3%，但中心控制的达标时间几乎不变。因此在本题几何与等值端
-面系数下可保留径向一维主模型；该校核不改变 57.4731 h，也不验证第四问节时。
-29
--10 -5 0 5 10
-轴向距离 z / cm
--2
-0
-2
-横向位置 / cm
-(a) 36 h 含水率分布
-0.05000.06810.08620.10440.12250.14060.15870.1768
-干基含水率 / (kg/kg)
-0 10 20 30 40 50 60
-时间 / h
-0
-1
-2
-全域最大含水率 / (kg/kg)
-(b) 全域最大含水率
-配对一维
-二维开放端面
-阈值 0.15
-0 10 20 30 40 50 60
-时间 / h
--2.0
--1.5
--1.0
--0.5
-0.0
-二
-维
-减
-一
-维
-/ (10
-−5 k
-g
-/
-k
-g)
-(c) 同时刻、同径向网格的差异
-图 9 问题三轴对称端面校核。上图为 36 h 含水率纵剖面，下图为同径向网格的一维与二维最大
-含水率及差值。
+. (42)
+后期曲线越平缓，相同含水率误差越可能放大为时间偏差，故需直接检验事件收敛。表
+6 的有限输入扰动量化了指定情景的时长变化，不构成全局稳健性保证。
+第三问径向近似的二维端面校核已在第 7.7 节给出；其作用是检验本题条件下的维
+度简化，与本章的离散收支和数值加密检验相互补充。
 十 模型评价与结论
 10.1 模型特点
-本文围绕同一环层通量结构依次处理常热物性、双向物性耦合、全域阈值和径向收
-缩，四问的变量含义、初值与输出口径保持一致。有限体积形式便于保留变系数散度、
-处理圆柱中心并检查全局收支；表面加密网格兼顾薄层分辨与题定输出位置。温度解析
-展开、制造解和退化测试从不同角度检查实现，降低单一验证方式的局限。
-达标计算区分临界根、严格不等式与四位显示，避免将输出整分钟或表格中的 0.1500
-误作未经核验的终止条件。收缩问题则从两类质量守恒出发引入材料坐标，明确干基含
-水率与体积水浓度的区别，且按当前物理距离输出结果。
+四问以一致的变量和环层通量结构处理常热物性、双向耦合、全域阈值及径向收缩。
+有限体积保留变系数散度与收支关系，表面加密兼顾薄层分辨和题定输出；解析解、制
+造解、退化及二维对照分别检查实现与简化。达标时区分临界根、严格不等式与四位显
+示，收缩时以材料坐标保持干物质和水质量守恒，并按当前物理距离输出结果。
+29
 10.2 局限与可推广方向
+第三问二维校核为指定情景下的径向简化提供了定量依据。第四问结合径向收缩时
+长径比增大、端侧面积比减小的几何特征沿用这一近似；其依据仍受各向同性及端面条
+件假设限制，收缩情景下的端面时间误差尚未单独量化。
 等效水分边界缺少独立吸附等温关系，热方程也未显式描述汽化潜热和水分携焓。
 更完整的界面模型需要药材平衡含水率、相变和气固传质数据。仅凭当前方程的收支残
-差，不能证明这些机制对真实预测可忽略。第九节的二维校核仅对应固定圆柱与等值端
-面系数，不能直接推广到第四问收缩几何。
-经验密度与几何干物质密度分开使用。若同时把 ρ(U) 视为真实湿密度，则初值对
-应干密度约 278.73 kg/m3，而 72 h 半径在固定长度、干物质守恒下要求约 776.84 kg/m3；
-但对任意 U ≥ 0，(760 + 90U)/(1 + U) = 90 + 670/(1 + U) ≤ 760 kg/m3。二者不能同时
-精确成立，故本文只将 ρcp 用于有效热容量。该检查不是 51.0877 h 的误差估计。
-4 h 之后采用恒定环境延续，且无内部温湿实测可供辨识。问题三的后期温度情景
-可使达标时间变化约 6%，水分量 ±10% 仅约 0.2%，报告时长末位不应解释为实际预测
-精度。
+差，不能证明这些机制对真实预测可忽略。
+经验密度与几何干物质密度分开使用，是本模型的一项有效近似。以问题四为例，
+若同时把 ρ(U) 视为真实湿密度，则初始干密度为 (760 + 90 × 2.55)/(1 + 2.55) ≈ 278.73
+kg/m3。72 h 半径对应的体积比为 (1.198/2)2 = 0.358801，固定长度且干物质守恒要求平
+均干密度约 776.84 kg/m3；但对任意 U ≥ 0，
+760 + 90U
+1 + U
+= 90 +
+670
+1 + U
+≤ 760 kg/m
+3
+.
+这说明上述解释不能同时精确成立，因此本文只将 ρcp 用于有效热容量。该检查针对 72
+h 数据和指定解释，不是 51.0877 h 报告时刻的误差估计，也不说明题目无法建模。
+后期环境为恒定延续假设，尚无内部实测数据验证预测。问题三温度情景使时长变
+化约 6%，后期水分量 ±10% 使其变化约 0.2%；这些输入不确定性意味着数值时长末位
+不能解释为实际预测精度。
 10.3 结论
 在题给初值、经验物性和本文明确的等效假设下，问题一 1800 s 时中心温度 33.5758
 ◦C、表面 36.7879 ◦C，水分损失主要集中在外层；问题二 3 h 时中心温度 49.8494 ◦C、含
@@ -1634,10 +1624,9 @@ g)
 短 78.7571 h，约占固定组的 60.65%。
 30
 AI 工具使用声明
-本文工作使用了 AI 工具，主要用于既有建模材料与程序的辅助核对、论文结构整
-理、中文正文起草、公式与结果的一致性检查、同物性固定半径对照及问题三敏感性与
-二维校核的程序整理、比较图绘制以及 LaTeX 排版。具体使用范围、交互方式和核验记
-录见支撑材料中的《AI 工具使用详情》。
+本文工作使用了 AI 工具，主要用于建模材料核对、论文起草、同物性固定半径对
+照与二维端面校核的程序编写和数值验证，以及图表绘制、公式一致性检查和 LaTeX 排
+版。具体使用范围、交互方式和核验记录见支撑材料中的《AI 工具使用详情》。
 参考文献
 [1] Hussain M M, Dincer I. Two-dimensional heat and moisture transfer analysis of a cylindrical moist
 object subjected to drying: A finite-difference approach[J]. International Journal of Heat and Mass
@@ -1654,10 +1643,10 @@ PchipInterpolator.html.
 Chemical Engineering Transactions, 2021, 87: 193–198. DOI: 10.3303/CET2187033.
 31
 附录 A 支撑材料清单与复现说明
-支撑材料包含 code/中的 Python 源文件、tmp/中的 4 个 JavaScript 导出与检查脚
-本、四个正式 Excel 结果文件、题定结果 CSV、四问验证 JSON、主要验证报告、依赖清
-单、源文件哈希映射和 AI 工具使用详情。赛题原始数据按原附件目录放置，较大的内
-部网格数组可通过程序复算生成。
+支撑材料包含完整 Python 模型与验证程序、JavaScript 导出与检查脚本、四个正式
+Excel 结果文件、题定结果 CSV、验证 JSON、主要报告、依赖清单、源文件哈希映射和
+AI 工具使用详情。另附第三问二维校核的全部网格场与配对数据；原四问的大型内部数
+组可复算。
 Python 依赖为 NumPy、SciPy、openpyxl 和 Matplotlib；原生产运行记录为 Python
 3.14.6、NumPy 2.5.1、SciPy 1.18.0。代码采用相对项目根目录，需提供 data/附件/附件
 1.xlsx、附件 2.xlsx 及附件 3/中的题给模板。所有初值、物性和时间单位与正文一
@@ -1675,10 +1664,6 @@ python code/problem4.py ‐‐level 16
 python code/problem4.py ‐‐level 8 ‐‐tight
 python code/verify_q4_results.py
 python code/plot_q3_results.py
-python code/q3_sensitivity.py
-python code/q3_axisymmetric.py ‐‐checks
-python code/verify_q3_axisymmetric.py
-python code/plot_q3_axisymmetric.py
 原第 3、4 问 Excel 导出脚本依赖 Node.js 与 @oai/artifact‐tool。配置依赖后，第 3
 问不加‐‐no‐xlsx 运行，第 4 问执行 node tmp/q4_export/build.mjs。支撑材料附
 完整导出脚本。为使代码可迁移，仅将原计算机的 Node 路径改为从 PATH 查找，将第 3
@@ -1691,13 +1676,13 @@ B.1 code/utils.py
 1 """Shared paths and attachment readers for Problem A."""
 2 from __future__ import annotations
 3
-32
 4 from pathlib import Path
 5
 6 import numpy as np
 7 from openpyxl import load_workbook
 8 from scipy.interpolate import PchipInterpolator
 9
+32
 10 ROOT = Path(__file__).resolve().parents[1]
 11 DATA_DIR = ROOT / "data"
 12 ATTACH_DIR = DATA_DIR / " 附件"
@@ -1757,13 +1742,13 @@ B.1 code/utils.py
 66 if self.t.ndim != 1 or self.y.shape != self.t.shape:
 67 raise ValueError("interpolant requires matching 1‐D arrays")
 68 if np.any(np.diff(self.t) <= 0):
-33
 69 raise ValueError("breakpoints must be strictly increasing")
 70
 71 def __call__(self, t: float | np.ndarray) ‐> float | np.ndarray:
 72 return np.interp(t, self.t, self.y)
 73
 74 def slope(self, t: float) ‐> float:
+33
 75 t = float(t)
 76 if t <= self.t[0] or t >= self.t[‐1]:
 77 if t >= self.t[‐1]:
@@ -1821,13 +1806,13 @@ B.2 code/appendix3.py
 19
 20
 21 def cp(C: np.ndarray | float) ‐> np.ndarray | float:
-34
 22 C_arr = np.asarray(C, dtype=float)
 23 return CP_A + CP_B * C_arr / (1.0 + C_arr)
 24
 25
 26 def conductivity(C: np.ndarray | float) ‐> np.ndarray | float:
 27 C_arr = np.asarray(C, dtype=float)
+34
 28 return K_A + K_B * C_arr / (1.0 + C_arr)
 29
 30
@@ -1885,13 +1870,13 @@ B.3 code/radial_fvm.py
 3
 4 import numpy as np
 5 from scipy.sparse import diags
-35
 6
 7 from utils import CP, H, HM, K, R, RHO, moisture_diffusivity
 8
 9 OUTPUT_RADII_M = 0.001 * np.arange(21)
 10
 11
+35
 12 def graded_radial_nodes(level: int) ‐> np.ndarray:
 13 """Nodes denser near the surface; every 0.1 cm output radius remains a node.
 14
@@ -1951,13 +1936,13 @@ B.3 code/radial_fvm.py
 68 if abs(self.W.sum() ‐ 0.5 * R**2) > 1e‐14:
 69 raise RuntimeError("radial weights do not sum to R^2/2")
 70
-36
 71 self.M_heat = self._heat_matrix()
 72 self.M_heat_sparse = diags(
 73 [np.diag(self.M_heat, ‐1), np.diag(self.M_heat, 0), np.diag(self.M_heat, 1)],
 74 offsets=[‐1, 0, 1],
 75 shape=self.M_heat.shape,
 76 format="csc",
+36
 77 )
 78 self._heat_force_coef = (R * H) / (RHO * CP * self.W[‐1])
 79 self._heat_force_index = self.n_nodes ‐ 1
@@ -2017,13 +2002,13 @@ B.3 code/radial_fvm.py
 133 Cdot[1:‐1] = (F[:‐1] ‐ F[1:]) / self.W[1:‐1]
 134 F_surf = R * HM * (C[‐1] ‐ Ca)
 135 Cdot[‐1] = (F[‐1] ‐ F_surf) / self.W[‐1]
-37
 136 return Cdot
 137
 138 def moisture_jac_sparsity(self):
 139 return self.heat_jac_sparsity()
 140
 141 def surface_heat_influx_density(self, T_s: float, Ta: float) ‐> float:
+37
 142 """Heat into the solid per unit surface area, W/m^2."""
 143 return H * (Ta ‐ T_s)
 144
@@ -2081,13 +2066,13 @@ B.4 code/radial_coupled.py
 41 ST: np.ndarray | None = None,
 42 SC: np.ndarray | None = None,
 43 ) ‐> np.ndarray:
-38
 44 T, C = self.unpack(y)
 45 kn = np.asarray(conductivity(C), dtype=float)
 46 Bn = np.asarray(heat_capacity(C), dtype=float)
 47 if D_const is None:
 48 Dn = np.asarray(moisture_diffusivity_q2(C, T, protect=True), dtype=float)
 49 else:
+38
 50 Dn = np.full_like(C, float(D_const))
 51 k_face = harmonic_mean(kn[:‐1], kn[1:])
 52 D_face = harmonic_mean(Dn[:‐1], Dn[1:])
@@ -2145,13 +2130,13 @@ B.5 code/q1_analytic.py
 18
 19 def f(lam: float) ‐> float:
 20 return lam * j1(lam) ‐ Bi * j0(lam)
-39
 21
 22 lam_max = (n_roots + 4) * np.pi
 23 grid = np.linspace(1e‐10, lam_max, max(8000, 200 * n_roots))
 24 vals = grid * j1(grid) ‐ Bi * j0(grid)
 25 roots: list[float] = []
 26 for i in range(len(grid) ‐ 1):
+39
 27 v0, v1 = vals[i], vals[i + 1]
 28 if not np.isfinite(v0) or not np.isfinite(v1):
 29 continue
@@ -2211,13 +2196,13 @@ B.5 code/q1_analytic.py
 83 zero = times == 0.0
 84 if np.all(zero):
 85 out[:] = u0
-40
 86 return out
 87 t_eval = times[~zero]
 88 sol = solve_ivp(
 89 lambda t, I: ‐beta * I + env.slope(t),
 90 (0.0, max(t_end, 1e‐30)),
 91 I0,
+40
 92 method="BDF",
 93 jac=diags(‐beta, format="csc"),
 94 rtol=1e‐11,
@@ -2273,12 +2258,12 @@ B.6 code/delivery.py
 ,→ [])))
 B.7 code/problem1.py
 1 """Problem 1: radial FVM + BDF for preheating temperature and moisture."""
-41
 2 from __future__ import annotations
 3
 4 import json
 5 import sys
 6 import time
+41
 7 from pathlib import Path
 8
 9 import numpy as np
@@ -2339,12 +2324,12 @@ B.7 code/problem1.py
 64
 65
 66 def integrate_mol(
-42
 67 rhs,
 68 y0: np.ndarray,
 69 t_breaks: np.ndarray,
 70 *,
 71 rtol: float,
+42
 72 atol: float,
 73 max_step: float,
 74 jac=None,
@@ -2405,12 +2390,12 @@ B.7 code/problem1.py
 129 raise ValueError(f"time {t} not covered by dense output")
 130
 131
-43
 132 def extract_output_grid(fvm: RadialFVM, Y: np.ndarray) ‐> np.ndarray:
 133 idx = fvm.output_indices()
 134 return Y[:, idx]
 135
 136
+43
 137 def conservation_heat(fvm: RadialFVM, pieces, Ta_fun: PchipOven, T_init: np.ndarray, t: float) ‐> dict:
 138 T_t = dense_state(pieces, t)
 139 E = 2.0 * np.pi * L * RHO * CP * np.dot(fvm.W, T_t ‐ T_init)
@@ -2471,12 +2456,12 @@ B.7 code/problem1.py
 191 paper_changed = Ar[paper_t][:, paper_r] != Br[paper_t][:, paper_r]
 192 early = times <= 100.0
 193 return {
-44
 194 "changed_cells": int(np.sum(changed)),
 195 "total_cells": int(A.size),
 196 "paper_changed_cells": int(np.sum(paper_changed)),
 197 "paper_total_cells": int(paper_changed.size),
 198 "early100_changed_cells": int(np.sum(changed[early])),
+44
 199 "max_abs": float(np.max(np.abs(A ‐ B))),
 200 "paper_table_max_abs": float(np.max(np.abs(A[paper_t][:, paper_r] ‐ B[paper_t][:, paper_r]))),
 201 }
@@ -2537,12 +2522,12 @@ B.7 code/problem1.py
 256 ws = wb.create_sheet(title)
 257 ws["A1"] = " 时间\\到药材中心的距离"
 258 for j, rc in enumerate(radii_cm, start=2):
-45
 259 ws.cell(1, j, float(rc))
 260 for i, t in enumerate(times):
 261 ws.cell(i + 2, 1, int(round(float(t))))
 262 for j in range(21):
 263 cell = ws.cell(i + 2, j + 2, float(arr[i, j]))
+45
 264 cell.number_format = "0.0000"
 265 if "Sheet" in wb.sheetnames:
 266 del wb["Sheet"]
@@ -2603,12 +2588,12 @@ B.7 code/problem1.py
 321
 322 fig, ax = plt.subplots(figsize=(6.4, 3.8))
 323 for t in t_marks:
-46
 324 ax.plot(r_cm, C_full[idx[float(t)]], lw=1.2, label=fr"$t={int(t)}\,\mathrm{{s}}$")
 325 ax.set_xlabel(" 半径 $r$ (cm)")
 326 ax.set_ylabel(r" 干基含水率 $C$ (kg/kg)")
 327 ax.set_xlim(0, 2)
 328 ax.legend(frameon=False, ncol=2)
+46
 329 fig.tight_layout()
 330 fig.savefig(FIGURES_DIR / "q1_C_profiles.pdf")
 331 plt.close(fig)
@@ -2669,12 +2654,12 @@ B.7 code/problem1.py
 385 Ta_fun, Ca_fun, knots = load_q1_inputs()
 386 # PCHIP is C1; integrate as one span rather than 60 s linear kinks.
 387 t_breaks = np.array([0.0, T_END], dtype=float)
-47
 388 print(
 389 "oven points", knots.size,
 390 "kind", Ta_fun.kind,
 391 "Ta(1800)=", Ta_fun(T_END),
 392 "Ca(1800)=", Ca_fun(T_END),
+47
 393 )
 394 print("alpha", ALPHA, "D(C0)", moisture_diffusivity(C0), "Bi_T", H * R / K)
 395
@@ -2735,12 +2720,12 @@ B.7 code/problem1.py
 450 )
 451 fourdec[f"T_G{coarse}_vs_G{fine}"] = four_decimal_stats(
 452 solutions[coarse]["T_out"], solutions[fine]["T_out"], t
-48
 453 )
 454 fourdec[f"C_G{coarse}_vs_G{fine}"] = four_decimal_stats(
 455 solutions[coarse]["C_out"], solutions[fine]["C_out"], t
 456 )
 457 print("conv T", coarse, fine, conv[f"T_G{coarse}_vs_G{fine}"])
+48
 458 print("conv C", coarse, fine, conv[f"C_G{coarse}_vs_G{fine}"])
 459 print("4dp T", coarse, fine, fourdec[f"T_G{coarse}_vs_G{fine}"])
 460 print("4dp C", coarse, fine, fourdec[f"C_G{coarse}_vs_G{fine}"])
@@ -2801,12 +2786,12 @@ B.7 code/problem1.py
 514 nl_vs_frozen = compare_on_output(pub["C_out"], C_frozen, times)
 515 print("nonlinear vs frozen D", nl_vs_frozen)
 516 D_field = moisture_diffusivity(pub["YC"])
-49
 517 D_stats = {
 518 "D0": D0,
 519 "D_min": float(np.min(D_field)),
 520 "D_max": float(np.max(D_field)),
 521 "D_min_over_D0": float(np.min(D_field) / D0),
+49
 522 "D_max_over_D0": float(np.max(D_field) / D0),
 523 "C_min_field": float(np.min(pub["YC"])),
 524 "C_max_field": float(np.max(pub["YC"])),
@@ -2867,12 +2852,12 @@ B.7 code/problem1.py
 578 "atol_C": atol_C,
 579 "max_step": max_step,
 580 "t_breaks": t_breaks.tolist(),
-50
 581 "grid_convergence": conv,
 582 "four_decimal_grid": fourdec,
 583 "time_sensitivity": time_sens,
 584 "four_decimal_time": time_4dp,
 585 "delivery_gate": delivery,
+50
 586 "reference_truncation_T": heat_truncation,
 587 "bessel_temperature": bessel_T,
 588 "reference_truncation_C": moisture_truncation,
@@ -2931,12 +2916,12 @@ B.7 code/problem1.py
 B.8 code/problem2.py
 1 """Problem 2: coupled variable‐property radial drying for 0–3 h."""
 2 from __future__ import annotations
-51
 3
 4 import json
 5 import sys
 6 import time
 7 from pathlib import Path
+51
 8
 9 import numpy as np
 10 from openpyxl import Workbook
@@ -2997,12 +2982,12 @@ B.8 code/problem2.py
 65 raise RuntimeError(f"PCHIP misses Ca knot t={tj}")
 66 return Ta_fun, Ca_fun, t
 67
-52
 68
 69 def integrate_coupled(fvm: CoupledRadialFVM, y0, t_end, Ta_fun, Ca_fun, rtol, atol, max_step,
 70 D_const=None, source=None, t_eval=None):
 71 y0 = np.asarray(y0, dtype=float)
 72 n = fvm.n_nodes
+52
 73 atol_arr = np.asarray(atol, dtype=float)
 74 if atol_arr.ndim == 0:
 75 atol_arr = np.concatenate([np.full(n, float(atol_arr)), np.full(n, float(atol_arr) * 0.01)])
@@ -3063,12 +3048,12 @@ B.8 code/problem2.py
 130 Ar, Br = np.round(A, 4), np.round(B, 4)
 131 changed = Ar != Br
 132 paper_t = np.isin(times, TABLE_TIMES)
-53
 133 paper_r = slice(None, None, 5) if A.shape[1] == 21 else slice(None)
 134 paper_changed = Ar[paper_t][:, paper_r] != Br[paper_t][:, paper_r]
 135 return {
 136 "changed_cells": int(np.sum(changed)),
 137 "total_cells": int(A.size),
+53
 138 "paper_changed_cells": int(np.sum(paper_changed)),
 139 "paper_total_cells": int(paper_changed.size),
 140 "max_abs": float(np.max(np.abs(A ‐ B))),
@@ -3129,12 +3114,12 @@ B.8 code/problem2.py
 195 kn = np.asarray(conductivity(C), dtype=float)
 196 kp = np.asarray(conductivity_deriv(C), dtype=float)
 197 Bn = np.asarray(heat_capacity(C), dtype=float)
-54
 198 D, dD_dC, dD_dT = diffusivity_partials(C, T)
 199 ST = Bn * Tt ‐ (kn * lapT + kp * Cr * Tr)
 200 SC = Ct ‐ (D * lapC + dD_dC * Cr ** 2 + dD_dT * Tr * Cr)
 201 return ST, SC
 202
+54
 203
 204 def conservation_moisture(fvm, times, Y, Ca_fun) ‐> dict:
 205 n = fvm.n_nodes
@@ -3195,12 +3180,12 @@ B.8 code/problem2.py
 260
 261 def write_result_workbook(path: Path, T_out, C_out, times):
 262 radii_cm = 0.1 * np.arange(21)
-55
 263 wb = Workbook()
 264 for title, arr in ((" 温度", T_out), (" 水分浓度", C_out)):
 265 ws = wb.create_sheet(title)
 266 ws["A1"] = " 时间\\到药材中心的距离"
 267 for j, rc in enumerate(radii_cm, start=2):
+55
 268 ws.cell(1, j, float(rc))
 269 for i, t in enumerate(times):
 270 ws.cell(i + 2, 1, int(round(float(t))))
@@ -3261,12 +3246,12 @@ B.8 code/problem2.py
 325 ax.set_xlim(0, 2)
 326 ax.legend(frameon=False, ncol=3, loc="lower center", bbox_to_anchor=(0.5, 1.02))
 327 fig.tight_layout()
-56
 328 fig.savefig(FIGURES_DIR / "q2_T_profiles.pdf")
 329 plt.close(fig)
 330
 331 fig, ax = plt.subplots(figsize=(6.4, 3.8))
 332 for t in marks:
+56
 333 ax.plot(r_cm, Y[idx[float(t)], n:], lw=1.2, label=fr"$t={t/3600:g}\,\mathrm{{h}}$")
 334 ax.set_xlabel(" 半径 $r$ (cm)")
 335 ax.set_ylabel(r" 干基含水率 $C$ (kg/kg)")
@@ -3327,12 +3312,12 @@ B.8 code/problem2.py
 390 source=manufactured_sources,
 391 t_eval=np.arange(1.0, 100.5, 1.0),
 392 )
-57
 393 n = fvm.n_nodes
 394 T_num, C_num = Y[:, :n], Y[:, n:]
 395 T_ex = np.stack([manufactured_fields(fvm.r, t)[0] for t in times])
 396 C_ex = np.stack([manufactured_fields(fvm.r, t)[1] for t in times])
 397 return {
+57
 398 "level": level,
 399 "n_nodes": n,
 400 "T_max_abs": float(np.max(np.abs(T_num ‐ T_ex))),
@@ -3393,12 +3378,12 @@ B.8 code/problem2.py
 453 need_g8 = not (paper_ok and abs_ok)
 454 if need_g8:
 455 print("G2 vs G4 not enough; running G8")
-58
 456 level = 8
 457 r = graded_radial_nodes(level)
 458 fvm = CoupledRadialFVM(r)
 459 y0 = fvm.pack(np.full(fvm.n_nodes, T0), np.full(fvm.n_nodes, C0))
 460 atol = np.concatenate([np.full(fvm.n_nodes, atol_T), np.full(fvm.n_nodes, atol_C)])
+58
 461 times, Y = integrate_coupled(fvm, y0, T_END, Ta_fun, Ca_fun, rtol, atol, max_step)
 462 times_pos = times[times > 0]
 463 Y_pos = Y[times > 0]
@@ -3459,12 +3444,12 @@ B.8 code/problem2.py
 514 "D_max": float(np.max(D_field)),
 515 "D_min_over_D0": float(np.min(D_field) / D0),
 516 "D_max_over_D0": float(np.max(D_field) / D0),
-59
 517 "center_C_end": float(pub["C_out"][‐1, 0]),
 518 "surface_C_end": float(pub["C_out"][‐1, ‐1]),
 519 "center_T_end": float(pub["T_out"][‐1, 0]),
 520 "surface_T_end": float(pub["T_out"][‐1, ‐1]),
 521 }
+59
 522 print("D stats", D_stats)
 523
 524 bounds = assert_physical(pub["Y_full"][:, :n], pub["Y_full"][:, n:], Ta_fun, Ca_fun)
@@ -3525,12 +3510,12 @@ B.8 code/problem2.py
 578 }
 579 require_delivery(validation, RESULTS_DIR / "diagnostics/q2_delivery/latest.json")
 580 np.savez(
-60
 581 RESULTS_DIR / "q2_solution.npz",
 582 mesh_level=pub_level,
 583 n_nodes=pub["n_nodes"],
 584 times=times,
 585 r=fvm.r,
+60
 586 output_radii_m=OUTPUT_RADII_M,
 587 checkpoint_times=np.r_[0., 1., 60., 100., TABLE_TIMES],
 588 T_checkpoints=pub["Y_full"][np.r_[0., 1., 60., 100., TABLE_TIMES].astype(int), :n],
@@ -3589,12 +3574,12 @@ B.9 code/problem3.py
 29 load_oven_table,
 30 )
 31
-61
 32 T_SWITCH = 14400.0
 33 TA_AFTER = 50.0
 34 CA_AFTER = 0.05
 35 C_THRESH = 0.15
 36 T_HARD_CAP = 21.0 * 24.0 * 3600.0
+61
 37 OUTPUT_RADII_M = 0.001 * np.arange(21)
 38 TABLE_RADII_CM = np.array([0.0, 0.5, 1.0, 1.5, 2.0])
 39 EXCEL_DT = 60.0
@@ -3655,12 +3640,12 @@ B.9 code/problem3.py
 93 jump = {
 94 "Ta_at_4h": float(Ta_fun(T_SWITCH)),
 95 "Ca_at_4h": float(Ca_fun(T_SWITCH)),
-62
 96 "Ta_after": float(Ta_fun(T_SWITCH + 1e‐9)),
 97 "Ca_after": float(Ca_fun(T_SWITCH + 1e‐9)),
 98 }
 99 print("oven 4h jump", jump, flush=True)
 100 return Ta_fun, Ca_fun, t
+62
 101
 102
 103 def atol_vector(n: int, atol_T: float = ATOL_T, atol_C: float = ATOL_C) ‐> np.ndarray:
@@ -3721,12 +3706,12 @@ B.9 code/problem3.py
 158
 159 kwargs = dict(
 160 fun=rhs,
-63
 161 t_span=(t0, t1),
 162 y0=y0,
 163 method="BDF",
 164 rtol=rtol,
 165 atol=np.asarray(atol, dtype=float),
+63
 166 max_step=max_step,
 167 dense_output=dense_output or balance_audit,
 168 vectorized=False,
@@ -3787,12 +3772,12 @@ B.9 code/problem3.py
 223 "times": times,
 224 "M": M,
 225 "rmax_m": rmax,
-64
 226 "imax": imax,
 227 "center_is_max_frac": float(np.mean(center_is_max)),
 228 "n_radial_increases": n_increase,
 229 "C_center": C[:, 0].copy(),
 230 "C_surface": C[:, ‐1].copy(),
+64
 231 "T_center": Y[:, 0].copy(),
 232 "T_surface": Y[:, n ‐ 1].copy(),
 233 }
@@ -3853,12 +3838,12 @@ B.9 code/problem3.py
 288 "M_star": float(C_star[imax]),
 289 "g_star": float(C_star[imax] ‐ C_THRESH),
 290 "rmax_star_m": float(fvm.r[imax]),
-65
 291 "rmax_star_cm": float(fvm.r[imax] * 100.0),
 292 "imax_star": imax,
 293 "center_is_max": bool(imax == 0),
 294 "C_center_star": float(C_star[0]),
 295 "C_surface_star": float(C_star[‐1]),
+65
 296 "T_center_star": float(y_star[0]),
 297 "T_surface_star": float(y_star[n ‐ 1]),
 298 "bracket_s": [float(t_left), float(t_hi_root)],
@@ -3919,12 +3904,12 @@ B.9 code/problem3.py
 353 "M_hour4": float(eval_M(t_hour4_s)),
 354 "t_grid60_s": float(t_grid60),
 355 "M_grid60": float(eval_M(t_grid60)),
-66
 356 "margin": float(margin),
 357 "strict_below_rep": bool(float(eval_M(t_rep)) < C_THRESH),
 358 "strict_below_hour4": bool(float(eval_M(t_hour4_s)) < C_THRESH),
 359 }
 360
+66
 361
 362 def slope_at(eval_M, t: float, h: float = 1.0) ‐> float:
 363 return float(eval_M(t + h) ‐ eval_M(t ‐ h)) / (2.0 * h)
@@ -3985,12 +3970,12 @@ B.9 code/problem3.py
 415 fvm, y_cont, t_cont, T_HARD_CAP, Ta_fun, Ca_fun, rtol, atol,
 416 max_step=max_step_late, t_eval=t_eval_cap, events=event,
 417 first_step=0.2, label=f"{tag} cap ", dense_output=audit_balances,
-67
 418 )
 419 if sol2b.t_events is None or len(sol2b.t_events[0]) == 0:
 420 raise RuntimeError(
 421 f"{tag} not dry at {T_HARD_CAP/3600:.1f} h, maxC={float(np.max(sol2b.y[n:, ‐1]))}"
 422 )
+67
 423 times2 = np.concatenate([sol2.t[sol2.t > T_SWITCH + 1e‐12], sol2b.t[sol2b.t > t_cont + 1e‐12]])
 424 Y2 = np.vstack([sol2.y[:, sol2.t > T_SWITCH + 1e‐12].T, sol2b.y[:, sol2b.t > t_cont + 1e‐12].T])
 425 t_event_raw = float(sol2b.t_events[0][0])
@@ -4051,12 +4036,12 @@ B.9 code/problem3.py
 480 def eval_M(t):
 481 return float(np.max(eval_y(float(t))[n:]))
 482
-68
 483 def eval_y(t):
 484 tt = float(t)
 485 if abs(tt ‐ t_star) <= 1e‐12:
 486 return y_star.copy()
 487 if tt < t_star:
+68
 488 if tt < times[0]:
 489 raise ValueError(f"state requested before initial time: {tt}")
 490 if tt >= t_left:
@@ -4117,12 +4102,12 @@ B.9 code/problem3.py
 545 y_e = np.asarray(sol2.y_events[0][0], dtype=float)
 546 imax = int(np.argmax(y_e[n:]))
 547 info = {
-69
 548 "n_nodes": n,
 549 "t_star_s": t_star,
 550 "t_star_h": t_star / 3600.0,
 551 "M_star": float(y_e[n + imax]),
 552 "rmax_cm": float(fvm.r[imax] * 100.0),
+69
 553 "C_center": float(y_e[n]),
 554 "C_surface": float(y_e[‐1]),
 555 "nfev": int(sol1.nfev + sol2.nfev),
@@ -4183,12 +4168,12 @@ B.9 code/problem3.py
 610 times_x = excel_times(t_rep)
 611 C_excel = np.empty((times_x.size, 21), dtype=float)
 612 T_excel = np.empty_like(C_excel)
-70
 613 n = fvm.n_nodes
 614 idx = fvm.output_indices()
 615 t_star = case["t_star"]
 616 times = case["times"]
 617 Y = case["Y"]
+70
 618 for i, t in enumerate(times_x):
 619 if t <= times[‐1] + 1e‐12 and t < t_star ‐ 1e‐9:
 620 j = int(np.argmin(np.abs(times ‐ t)))
@@ -4249,12 +4234,12 @@ B.9 code/problem3.py
 675 n = case["n_nodes"]
 676 T = case["Y"][:, :n]
 677 C = case["Y"][:, n:]
-71
 678 Ta_max = max(float(np.max(Ta_fun.y)), TA_AFTER)
 679 info = {
 680 "T_min": float(T.min()),
 681 "T_max": float(T.max()),
 682 "C_min": float(C.min()),
+71
 683 "C_max": float(C.max()),
 684 "T_below_28": float(max(0.0, 28.0 ‐ T.min())),
 685 "T_above_Ta_max": float(max(0.0, T.max() ‐ Ta_max)),
@@ -4315,12 +4300,12 @@ B.9 code/problem3.py
 740 show = hrs
 741 for th in show:
 742 t = 3600.0 * float(th)
-72
 743 if t < pub["t_star"] ‐ 1e‐9:
 744 j = int(np.argmin(np.abs(pub["times"] ‐ t)))
 745 C = pub["Y"][j, n:]
 746 else:
 747 C = pub["eval_y"](t)[n:]
+72
 748 ax.plot(r_cm, C, lw=1.2, label=fr"$t={th:g}\,\mathrm{{h}}$")
 749 ax.set_xlabel(" 半径 $r$ (cm)")
 750 ax.set_ylabel(r" 干基含水率 $C$ (kg/kg)")
@@ -4380,11 +4365,11 @@ B.9 code/problem3.py
 803
 804 if __name__ == '__main__':
 805 main()
-73
 B.10 code/q3_balance.py
 1 """Continuous‐solution balance integrals for the accepted Q3 effective model."""
 2 import numpy as np
 3 from numpy.polynomial.legendre import leggauss
+73
 4 from appendix3 import heat_capacity, heat_capacity_deriv, moisture_diffusivity_q2
 5 from utils import R, L, H, HM
 6
@@ -4445,12 +4430,12 @@ B.10 code/q3_balance.py
 61 return {
 62 'moisture':{'M0':M0,'M_end':M1,'surface_integral':float(I[0]),
 63 'relative_residual':float(abs(M1‐M0+I[0])/mass_denom)},
-74
 64 'heat':{'E_end_minus_E0':E1‐E0,'composition_correction':float(I[2]),'Q_surface':float(I[1]),
 65 'relative_residual':float(abs(E1‐E0‐I[2]‐I[1])/heat_denom)},
 66 'quadrature_relative_difference':{'moisture':float(abs(I[0]‐I4[0])/mass_denom),
 67 'heat_and_composition':float((abs(I[1]‐I4[1])+abs(I[2]‐I4[2]))/heat_denom)},
 68 'parts':parts,
+74
 69 'interpretation':'Integrated effective equation with B_prime(C)*(T‐28)*Cdot correction; not full
 ,→ multiphase energy conservation.'}
 B.11 code/q3_closeout.py
@@ -4509,12 +4494,12 @@ B.11 code/q3_closeout.py
 49
 50 def compare_fields(a,b):
 51 """Shared physical nodes and exactly matching stored times."""
-75
 52 times,ia,ib=np.intersect1d(a['times'],b['times'],return_indices=True)
 53 ra,rb=a['fvm'].r,b['fvm'].r
 54 j=np.searchsorted(rb,ra)
 55 if np.max(abs(rb[j]‐ra))>1e‐13:
 56 raise RuntimeError('spatial meshes are not nested')
+75
 57 na,nb=a['n_nodes'],b['n_nodes']
 58 # Batch to bound temporary array sizes for fine meshes.
 59 maxT=maxC=0.
@@ -4575,12 +4560,12 @@ B.11 code/q3_closeout.py
 110 'event_found':abs(pub['event']['g_star'])<1e‐8,
 111 'finite':bool(np.isfinite(checked_states).all() and np.isfinite(tables['C_excel']).all()
 112 and np.isfinite(tables['T_excel']).all()),
-76
 113 'strict_below_all_verified_grids':all(v<.15 for v in report_M.values()),
 114 'strict_below_with_empirical_margin':report_M['G8']+margin<.15,
 115 'moisture_bounds':bounds['C_bounds_ok'],'temperature_bounds':bounds['T_bounds_ok'],
 116 'moisture_balance_1e‐6':balances['moisture']['relative_residual']<1e‐6,
 117 'heat_balance_1e‐6':balances['heat']['relative_residual']<1e‐6,
+76
 118 'quadrature_convergence_1e‐7':max(balances['quadrature_relative_difference'].values())<1e‐7,
 119 'space_event_60s':event_space<=60.,'time_event_60s':event_time<=60.,
 120 'space_full_fields_2e‐5':max(space['max_T'],space['max_C'],output_space)<2e‐5,
@@ -4640,12 +4625,12 @@ B.11 code/q3_closeout.py
 166 interpolation=np.array('pchip_then_constant'))
 167 (RESULTS_DIR/'q3_validation.json').write_text(json.dumps(v,ensure_ascii=False,indent=2),encoding='utf‐ ⌋
 ,→ 8')
-77
 168 write_table5_csv(RESULTS_DIR/'q3_table_moisture.csv',tables['table_hours'],tables['C_table'])
 169 if not no_xlsx:
 170 write_result3_xlsx(RESULTS_DIR/'result3.xlsx',tables['C_excel'],tables['excel_times'],validation=v)
 171 plot_figures(setup_mpl(),pub,tables,t_rep,Ta)
 172
+77
 173
 174 if __name__=='__main__':
 175 main()
@@ -4704,12 +4689,12 @@ B.12 code/problem4.py
 52 wb.close()
 53 a = np.asarray(radius_rows[1:], dtype=float)
 54 self.rt, self.rv = a[:, 0], a[:, 1] / 100.0
-78
 55 if (a.shape != (145, 2) or not np.all(np.isfinite(a))
 56 or np.any(np.diff(self.rt) <= 0) or np.any(np.diff(self.rv) > 0)
 57 or self.rt[0] != 0 or self.rt[‐1] != CAP or self.rv[0] != R):
 58 raise ValueError("unexpected radius input")
 59 self.radius = PchipInterpolator(self.rt, self.rv, extrapolate=False)
+78
 60 self.audit = {"radius_records": len(a), "radius_range_m": [float(self.rv[0]), float(self.rv[‐1])],
 61 "radius_cap_s": CAP, "oven_records": len(t), "radius_input_headers":
 ,→ list(radius_rows[0]),
@@ -4769,13 +4754,13 @@ B.12 code/problem4.py
 114 rp = rr*x
 115 rf = (rp[:‐1]+rp[1:])/2
 116 volumes = np.diff(np.r_[0., rf, rr]**2)/2
-79
 117 flows_T = np.r_[0., ‐rf*harmonic_mean(k[:‐1], k[1:])*np.diff(y[:fvm.n])/np.diff(rp),
 ,→ rr*H*(y[fvm.n‐1]‐50.)]
 118 flows_C = np.r_[0., ‐rf*harmonic_mean(D[:‐1], D[1:])*np.diff(y[fvm.n:])/np.diff(rp),
 ,→ rr*HM*(y[‐1]‐0.05)]
 119 reference = np.r_[‐np.diff(flows_T)/(volumes*B), ‐np.diff(flows_C)/volumes]
 120 fixed_error = float(np.max(abs(dy‐reference)))
+79
 121 uniform = np.r_[np.full(fvm.n, T0), np.full(fvm.n, C0)]
 122 pure = solve_ivp(lambda t,z: fvm.rhs(z, float(inputs.radius(t)), T0, C0, hm=0., ht=0.),
 123 (0., CAP), uniform, method="BDF", jac_sparsity=fvm.sparsity(),
@@ -4835,13 +4820,13 @@ B.12 code/problem4.py
 177 # Quadrature on accepted BDF step intervals; 4‐point Gaussian rule.
 178 integral = 0.
 179 for start in range(0, len(sol.t)‐1, 128):
-80
 180 aa, bb = sol.t[start:‐1][:128], sol.t[start+1:][:128]
 181 qq = ((aa+bb)[:,None]/2 + (bb‐aa)[:,None]/2*gx).ravel()
 182 surface = sol.sol(qq)[‐1]
 183 ca = np.full_like(qq, 0.05) if late else inputs.Ca(qq)
 184 loss = 2*HM/inputs.radius(qq)*(surface‐ca)
 185 integral += float(np.sum(loss.reshape(‐1,4)*gw*(bb‐aa)[:,None]/2))
+80
 186 mass_loss += integral
 187 y0 = sol.y[:,‐1]
 188 mass_error = abs(float(2*np.dot(fvm.w,y0[n:])‐C0+mass_loss))
@@ -4898,13 +4883,13 @@ B.13 code/verify_q4_results.py
 6 from pathlib import Path
 7 import numpy as np
 8 from scipy.integrate import solve_ivp
-81
 9 from scipy.interpolate import PchipInterpolator
 10 from problem4 import OUT, Inputs, ShrinkingFVM, THRESHOLD, SWITCH
 11 from problem2 import setup_mpl
 12 from utils import RESULTS_DIR, FIGURES_DIR, REPORTS_DIR
 13
 14
+81
 15 def load(label):
 16 return np.load(OUT/f"{label}.npz"), json.loads((OUT/f"{label}.json").read_text(encoding="utf‐8"))
 17
@@ -4964,13 +4949,13 @@ B.13 code/verify_q4_results.py
 69 at_report = {k:state_at(d,md,t_rep,inputs) for k,(d,md) in datasets.items() if k in checked}
 70 maxima = {k:float(z[len(datasets[k][0]["xi"]):].max()) for k,z in at_report.items()}
 71 critical_max = {k:float(z[len(datasets[k][0]["xi"]):].max()) for k,z in at_critical.items()}
-82
 72 event_C_error = max(abs(critical_max[production]‐critical_max[reference]),
 73 abs(critical_max[production]‐critical_max[tightened]))
 74 empirical_margin = 2*event_C_error + 1e‐8
 75 idx = a["times_s"] < t_rep
 76 tt = np.r_[a["times_s"][idx],t_rep]
 77 YY = np.vstack([a["Y"][idx],at_report[production]])
+82
 78 C_phys,radii,fixed = physical_values(a["xi"],YY,tt,inputs)
 79 C8,_,_ = physical_values(b["xi"],np.vstack([b["Y"][idx],at_report[reference]]),tt,inputs)
 80 physical_C_error = float(np.nanmax(abs(C_phys‐C8)))
@@ -5028,13 +5013,13 @@ B.13 code/verify_q4_results.py
 121 rows = [[float(t)]+[safe(v) for v in row] for t,row in zip(tt[1:],C_phys[1:])]
 122 payload = {"sheet":"Sheet1","headers":[" 时间/s\\距离/cm"]+[float(r*100) for r in fixed]+[" 药材表面"],
 123 "rows":rows,"report_h":t_rep/3600.}
-83
 124 (OUT/"excel_payload.json").write_text(json.dumps(payload,ensure_ascii=False,allow_nan=False),encoding= ⌋
 ,→ "utf‐8")
 125 with (RESULTS_DIR/"q4_table6.csv").open("w",newline="",encoding="utf‐8‐sig") as f:
 126 writer=csv.writer(f);writer.writerow(["时间/h"]+[f"{r*100:g} cm" for r in
 ,→ table_fixed]+["药材表面","表面半径/cm"])
 127 for t,row,rr in zip(table_times,table_C,table_R):
+83
 128 writer.writerow([f"{t/3600:.4f}"]+["" if np.isnan(v) else f"{v:.4f}" for v in
 ,→ row]+[f"{rr*100:.6f}"])
 129 with (RESULTS_DIR/"q4_radius_output.csv").open("w",newline="",encoding="utf‐8‐sig") as f:
@@ -5091,13 +5076,13 @@ B.14 code/plot_q3_results.py
 16 validation = json.loads((RESULTS_DIR / 'q3_validation.json').read_text(encoding='utf‐8'))
 17 require_q3_delivery(validation, out / 'pre_plot.json')
 18 z = np.load(RESULTS_DIR / 'q3_solution.npz')
-84
 19 n = int(z['n_nodes'])
 20 plt = setup_mpl()
 21 fig, ax = plt.subplots(figsize=(6.4, 4.8))
 22 for hour in z['table_hours']:
 23 if abs(hour * 3600 ‐ float(z['t_rep'])) < 1e‐7:
 24 state = z['y_end']
+84
 25 else:
 26 indices = np.flatnonzero(abs(z['times'] ‐ hour * 3600) < 1e‐7)
 27 if len(indices) != 1:
@@ -5155,13 +5140,13 @@ B.15 code/verify_closeout.py
 10 import tempfile
 11 import numpy as np
 12
-85
 13 ROOT = Path(__file__).resolve().parents[1]
 14 OUT = ROOT / 'results/verification/closeout'
 15 ARCHIVE = ROOT / 'results/archive/pre‐closeout‐20260911'
 16
 17
 18 def dump(name, report):
+85
 19 OUT.mkdir(parents=True, exist_ok=True)
 20 (OUT/name).write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding='utf‐8')
 21 print(json.dumps(report, ensure_ascii=True, indent=2), flush=True)
@@ -5223,13 +5208,13 @@ B.15 code/verify_closeout.py
 68 idx = np.array([np.argmin(abs(z['r']‐x)) for x in z['output_radii_m']])
 69 assert np.max(abs(z['r'][idx]‐z['output_radii_m'])) < 1e‐14
 70 wb = load_workbook(ROOT/f'results/result{q}.xlsx',read_only=True,data_only=False)
-86
 71 before = load_workbook(ARCHIVE/f'results/result{q}.xlsx',read_only=True,data_only=False)
 72 assert wb.sheetnames == before.sheetnames == [' 温度',' 水分浓度']
 73 for key, name, kind in [('T',' 温度','temperature'),('C',' 水分浓度','moisture')]:
 74 ws = wb[name]
 75 assert (ws.max_row,ws.max_column)==(end+1,22)
 76 same = True
+86
 77 rows = ws.iter_rows()
 78 header=next(rows)
 79 assert np.allclose([c.value for c in header[1:]], np.arange(21)*.1,atol=1e‐14,rtol=0)
@@ -5292,13 +5277,13 @@ son',ROOT/f'results/result{q}.xlsx']}
 124 moments=[hyp1f1(1,k+2,‐ref.beta)/(k+1) for k in range(3)]
 125 I=(env(0)‐p.C0)*np.exp(‐ref.beta)+coeff[2]*moments[0]+2*coeff[1]*moments[1]+3*coeff[0]*moments ⌋
 ,→ [2]
-87
 126 exact=env(1)‐I@ref.radial_modes(p.OUTPUT_RADII_M)
 127 values[terms]=exact
 128 ode=BesselDuhamel(p.HM*p.R/D,D,p.R,640).evaluate_many(p.OUTPUT_RADII_M,np.array([1.]),env,p.C0)[0]
 129 diff=float(np.max(abs(ode‐values[640])))
 130 assert diff<1e‐8
 131 assert np.max(abs(values[640]‐values[1280]))<1e‐8
+87
 132 report[f'q{q}']={'surface_C_at_1s':{str(k):float(v[‐1]) for k,v in
 values.items()},'640_vs_1280_max':float(np.max(abs(values[640]‐values[1280]))),'ode_vs_exact_c ⌋
 onvolution_max':diff,'passed':True}
@@ -5357,7 +5342,6 @@ B.16 code/verify_q2_results.py
 17
 18 def files():
 19 from openpyxl import load_workbook
-88
 20 import pypdfium2 as pdfium
 21 from PIL import Image, ImageDraw
 22 paths = [ROOT/'data/A.pdf', ROOT/'data/附件/附件 1.xlsx', ROOT/'data/附件/附件 3/result2.xlsx']
@@ -5365,6 +5349,7 @@ B.16 code/verify_q2_results.py
 24 paths += list((ROOT/'figures').glob('q2*.pdf'))
 25 paths += [ROOT/'code'/n for n in
 ,→ ['problem2.py','radial_coupled.py','appendix3.py','utils.py','radial_fvm.py']]
+88
 26 hashes = {str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}
 27 z = np.load(ROOT/'results/q2_solution.npz')
 28 v = json.loads((ROOT/'results/q2_validation.json').read_text(encoding='utf‐8'))
@@ -5423,7 +5408,6 @@ B.16 code/verify_q2_results.py
 78 pg=doc[i]; bm=pg.render(scale=1.5); bm.to_pil().save(OUT/f'problem_page_{i+1}.png');
 ,→ bm.close();pg.close()
 79 doc.close()
-89
 80 report['source_files_unchanged']=all(hashlib.sha256((ROOT/p).read_bytes()).hexdigest()==h for p,h in
 ,→ hashes.items())
 81 dump('file_audit.json',report)
@@ -5431,6 +5415,7 @@ B.16 code/verify_q2_results.py
 83 def numerical():
 84 import problem2 as p
 85 start=time.perf_counter()
+89
 86 z=np.load(ROOT/'results/q2_solution.npz')
 87 Ta,Ca,knots=p.load_q2_inputs()
 88 report={'scope':'G4 reproduction, G4 time refinement, G8 space refinement, all 10800 seconds',
@@ -5488,7 +5473,6 @@ B.16 code/verify_q2_results.py
 133 _,env,_=p.load_q2_inputs()
 134 coeff=env._pchip.c[:,0]
 135 D0=float(p.moisture_diffusivity_q2(p.C0,p.T0))
-90
 136 values={}
 137 for n in [80,160,320,640]:
 138 ref=p.BesselDuhamel(p.HM*p.R/D0,D0,p.R,n_terms=n)
@@ -5496,6 +5480,7 @@ B.16 code/verify_q2_results.py
 140 moments=[hyp1f1(1,k+2,‐beta)/(k+1) for k in range(3)]
 141 modes=(float(env(0))‐p.C0)*np.exp(‐beta)+coeff[2]*moments[0]+2*coeff[1]*moments[1]+3*coeff[0]*mome ⌋
 ,→ nts[2]
+90
 142 values[str(n)]=float(env(1)‐modes@ref.radial_modes(np.array([p.R]))[:,0])
 143 dump('modal_truncation_audit.json',dict(t_s=1,surface_C=values,
 144 difference_320_vs_640=abs(values['320']‐values['640']),method='exact first‐interval PCHIP
@@ -5551,7 +5536,6 @@ B.17 code/verify_q3_closeout.py
 42 with patch.object(q3_closeout,'DIAG',root/'diagnostics'):
 43 try:
 44 q3_closeout.publish_results(None, None, missing, None)
-91
 45 raise AssertionError('missing check reached production publisher')
 46 except RuntimeError:
 47 pass
@@ -5560,6 +5544,7 @@ B.17 code/verify_q3_closeout.py
 ,→ writer:
 50 try:
 51 problem3.write_result3_xlsx(out,np.zeros((1,21)),np.array([60.]),validation=empty)
+91
 52 raise AssertionError('empty gate passed')
 53 except RuntimeError:
 54 pass
@@ -5617,7 +5602,6 @@ B.17 code/verify_q3_closeout.py
 105 wb.close()
 106 assert np.array_equal(source['excel_times'][:‐1],np.arange(60.,source['t_rep'],60.))
 107 assert float(source['t_rep'])==v['t_rep_s']
-92
 108 n=int(source['n_nodes'])
 109 assert source['Y'].shape==(len(source['times']),2*n)
 110 assert np.max(source['y_end'][n:])+v['moisture_margin']<.15
@@ -5626,6 +5610,7 @@ B.17 code/verify_q3_closeout.py
 113 assert len(times)==len(source['excel_times'])‐1
 114 assert np.array_equal(source['Y'][iy,n:][:,indices],source['C_out'][ix])
 115 assert np.array_equal(source['Y'][iy,:n][:,indices],source['T_out'][ix])
+92
 116 assert np.array_equal(source['y_end'][n:][indices],source['C_out'][‐1])
 117 assert np.array_equal(source['Y'][0,:n],np.full(n,28.))
 118 assert np.array_equal(source['Y'][0,n:],np.full(n,2.55))
@@ -5682,7 +5667,6 @@ B.17 code/verify_q3_closeout.py
 162 figure_hashes={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest()
 163 for p in sorted((ROOT/'figures').glob('q3_*.pdf'))}
 164 assert len(figure_hashes)==5
-93
 165 prior=json.loads((RESULTS_DIR/'verification/closeout/files.json').read_text(encoding='utf‐8'))
 166 prior_hashes={path:hashlib.sha256((ROOT/path).read_bytes()).hexdigest()==sha
 167 for q in ('q1','q2') for path,sha in prior[q]['source_sha256'].items()}
@@ -5690,6 +5674,7 @@ B.17 code/verify_q3_closeout.py
 169 audit={'pass':True,'gate_failures_blocked':checked,'missing_required_checks_blocked':checked,
 170 'publisher_failure_blocked':True,'js_gate_test':js,'balance_continuity_regression':True,
 171 'weighted_rhs_balance_identity':True,'source_hashes_match':source_checks,
+93
 172 'internal_fields_and_initial_state_match':True,'empty_gate_blocked':True,'valid_gate_reaches_wr ⌋
 ,→ iter':True,
 173 'strict_report_rounding_regression':True,'workbook_rows_including_header':len(rows),'columns':2 ⌋
@@ -5745,7 +5730,6 @@ B.18 code/verify_q4_delivery.py
 33 assert max_error<1e‐10,max_error
 34 wb.close()
 35 source=np.load(RESULTS_DIR/'q4_solution.npz')
-94
 36 times=source['times_s'][1:]
 37 assert np.array_equal(times[:‐1],np.arange(60.,times[‐1],60.))
 38 assert source['C_physical'].shape[0]==len(times)+1
@@ -5753,6 +5737,7 @@ B.18 code/verify_q4_delivery.py
 40 imax=np.argmax(source['Y'][:,n:],axis=1)
 41 center_gap=float(np.max(np.max(source['Y'][:,n:],axis=1)‐source['Y'][:,n]))
 42 assert center_gap<1e‐10,center_gap
+94
 43 audit={'pass':True,'sheet':'Sheet1','rows_including_header':len(rows),'columns':actual_columns,
 44 'numeric_cells':numeric,'domain_blank_cells':blanks,'max_export_abs_error':max_error,
 45 'initial_state_only_in_source':True,'final_time_s':float(times[‐1]),
@@ -5806,13 +5791,13 @@ B.19 tmp/q3_export/build.mjs
 34 const output=await SpreadsheetFile.exportXlsx(wb);await output.save(data.path);
 35 console.log(JSON.stringify({path:data.path,rows:nr,cols:nc}));
 36 }
-95
 B.20 tmp/q3_export/gate.mjs
 1 export const requiredChecks = [
 2 'event_found', 'finite', 'strict_below_all_verified_grids',
 3 'strict_below_with_empirical_margin', 'moisture_bounds', 'temperature_bounds',
 4 'moisture_balance_1e‐6', 'heat_balance_1e‐6', 'quadrature_convergence_1e‐7',
 5 'space_event_60s', 'time_event_60s', 'space_full_fields_2e‐5',
+95
 6 'time_full_fields_2e‐5', 'table_four_decimals', 'q2_overlap',
 7 ];
 8
@@ -5866,7 +5851,6 @@ B.22 tmp/q4_export/build.mjs
 14 const nr=matrix.length,nc=matrix[0].length;
 15 sheet.getRangeByIndexes(0,0,nr,nc).values=matrix;
 16 const all=sheet.getRangeByIndexes(0,0,nr,nc);
-96
 17 all.format.font={name:'Microsoft YaHei',size:10};
 18 all.format.rowHeight=20;
 19 all.format.columnWidth=11;
@@ -5874,6 +5858,7 @@ B.22 tmp/q4_export/build.mjs
 21 sheet.getRangeByIndexes(0,0,nr,1).format.columnWidth=25;
 22 sheet.getRangeByIndexes(1,1,nr‐1,nc‐1).setNumberFormat('0.0000');
 23 sheet.getRangeByIndexes(1,0,nr‐1,1).setNumberFormat('0');
+96
 24 sheet.getRangeByIndexes(nr‐1,0,1,1).setNumberFormat('0.00');
 25 const header=sheet.getRangeByIndexes(0,0,1,nc);
 26 header.format.fill='#E7EDF4';
@@ -5922,7 +5907,6 @@ python code/plot_q4_fixed_comparison.py
 15 from scipy.integrate import solve_ivp
 16 from problem4 import Inputs, ShrinkingFVM, properties, SWITCH, THRESHOLD
 17 from radial_fvm import graded_radial_nodes, harmonic_mean
-97
 18 from utils import RESULTS_DIR, R, T0, C0, H, HM
 19
 20 OUT = RESULTS_DIR / 'q4_fixed_comparison'
@@ -5930,6 +5914,7 @@ python code/plot_q4_fixed_comparison.py
 22
 23 def dump(path, obj):
 24 path.write_text(json.dumps(obj, ensure_ascii=False, indent=2), encoding='utf‐8')
+97
 25
 26
 27 def run(level, tight):
@@ -5988,7 +5973,6 @@ python code/plot_q4_fixed_comparison.py
 79 break
 80 if critical is None:
 81 raise RuntimeError('Fixed control has not crossed threshold by the 240 h numerical cap')
-98
 82 tt, YY = np.concatenate(times), np.vstack(states)
 83 if not np.all(np.isfinite(YY)):
 84 raise RuntimeError('nonfinite state')
@@ -5996,6 +5980,7 @@ python code/plot_q4_fixed_comparison.py
 86 rp = R*fvm.xi; rf = (rp[:‐1]+rp[1:])/2
 87 vol = np.diff(np.r_[0.,rf,R]**2)/2
 88 z = np.r_[35.+10*fvm.xi**2, 1.7‐1.2*fvm.xi**2]
+98
 89 B,k,D = properties(z[n:],z[:n])
 90 ft = np.r_[0.,‐rf*harmonic_mean(k[:‐1],k[1:])*np.diff(z[:n])/np.diff(rp),R*H*(z[n‐1]‐50.)]
 91 fc = np.r_[0.,‐rf*harmonic_mean(D[:‐1],D[1:])*np.diff(z[n:])/np.diff(rp),R*HM*(z[‐1]‐.05)]
@@ -6054,7 +6039,6 @@ python code/plot_q4_fixed_comparison.py
 142 report += .36
 143 spatial_event = abs(ms['G8']['critical_s']‐ms['G16']['critical_s'])
 144 temporal_event = abs(ms['G8']['critical_s']‐ms['G8_tight']['critical_s'])
-99
 145 shrink = json.loads((RESULTS_DIR/'q4_validation.json').read_text(encoding='utf‐8'))
 146 checks = {'spatial_T_2e‐5':space[0]<2e‐5,'spatial_C_2e‐5':space[1]<2e‐5,
 147 'temporal_T_2e‐5':temporal[0]<2e‐5,'temporal_C_2e‐5':temporal[1]<2e‐5,
@@ -6062,6 +6046,7 @@ python code/plot_q4_fixed_comparison.py
 149 'mass_1e‐6':all(v['mass_relative_error']<1e‐6 for v in ms.values()),
 150 'heat_equation_1e‐6':all(v['heat_equation_residual']<1e‐6 for v in ms.values()),
 151 'fixed_operator_1e‐8':all(v['physical_operator_error']<1e‐8 for v in ms.values()),
+99
 152 'physical_C_bounds':all(v['bounds'][2]>=0 and v['bounds'][3]<=C0+1e‐8 for v in ms.values()),
 153 'center_is_maximum':all(v['max_center_gap']<1e‐10 for v in ms.values()),
 154 'strict_report':max(maxima.values())<THRESHOLD and maxima['G8']+margin<THRESHOLD,
@@ -6119,7 +6104,6 @@ python code/plot_q4_fixed_comparison.py
 19 for axis in (ax,zoom):
 20 axis.plot(a[:,0]/3600,a[:,1],color=color,ls=ls,lw=1.5,label=label)
 21 zoom.plot(a[‐1,0]/3600,a[‐1,1],'o',color=color,ms=4)
-100
 22 for axis in (ax,zoom):
 23 axis.axhline(.15,color='.4',ls=':',lw=1,label=' 达标阈值 0.15')
 24 axis.set_xlabel(' 时间 / h')
@@ -6127,6 +6111,7 @@ python code/plot_q4_fixed_comparison.py
 26 ax.set(ylabel=' 中心干基含水率 / (kg/kg)',xlim=(0,138),ylim=(0,2.65))
 27 ax.legend(frameon=False,loc='upper right')
 28 zoom.set(xlim=(24,138),ylim=(.135,.43),ylabel=' 中心干基含水率 / (kg/kg)')
+100
 29 zoom.annotate(f"{result['shrink_report_h']:.4f} h",(result['shrink_report_h'],.15),xytext=(40,.22),
 30 arrowprops={'arrowstyle':'‐','color':styles['shrink'][0]},color=styles['shrink'][0],font ⌋
 ,→ size=8)
@@ -6141,9 +6126,10 @@ python code/plot_q4_fixed_comparison.py
 38
 39
 40 if __name__=='__main__': main()
-第三问敏感性与轴对称校核程序如下。水分量新增情景可运行
+第三问敏感性程序
+敏感性程序从原初值独立计算各情景，参数口径和结果见随附报告。新增后期水分
+量情景可单独复算：
 python code/q3_sensitivity.py ‐‐only Ca_minus10pct Ca_plus10pct
-二维校核较大内部数组见支撑材料，正文仅引用已核验的配对时长差。
 1 """Bounded Q3 sensitivity analysis for late environment and hm."""
 2 from __future__ import annotations
 3
@@ -6179,12 +6165,12 @@ python code/q3_sensitivity.py ‐‐only Ca_minus10pct Ca_plus10pct
 33
 34 def __call__(self, t):
 35 if np.ndim(t) == 0:
-101
 36 return float(self.base(t)) if float(t) <= problem3.T_SWITCH else self.after
 37 t = np.asarray(t, dtype=float)
 38 return np.where(t <= problem3.T_SWITCH, self.base(t), self.after)
 39
 40 return Late(Ta_base, Ta0), Late(Ca_base, Ca0), hm_scale
+101
 41
 42
 43 def run_case_sensitivity(level, Ta_fun, Ca_fun, hm_scale, tag):
@@ -6244,13 +6230,13 @@ python code/q3_sensitivity.py ‐‐only Ca_minus10pct Ca_plus10pct
 97 row["relative_change_pct"] = 100.0 * (row["t_star_h"] ‐ base) / base
 98 (OUT / "summary.json").write_text(json.dumps(rows, ensure_ascii=False, indent=2), encoding="utf‐8")
 99 lines = ["case,Ta_after_C,Ca_after,hm_scale,t_star_h,relative_change_pct"]
-102
 100 lines += [f"{r['case']},{r['Ta_after_C']},{r['Ca_after']},{r['hm_scale']},{r['t_star_h']:.6f},{r['rela ⌋
 ,→ tive_change_pct']:.3f}" for r in rows]
 101 (OUT / "summary.csv").write_text("\n".join(lines) + "\n", encoding="utf‐8")
 102 return rows
 103
 104
+102
 105 def main():
 106 parser = argparse.ArgumentParser()
 107 parser.add_argument("‐‐only", nargs="*", default=None)
@@ -6281,12 +6267,29 @@ python code/q3_sensitivity.py ‐‐only Ca_minus10pct Ca_plus10pct
 132
 133 if __name__ == "__main__":
 134 main()
+第三问二维端面校核程序与复现
+本项采用独立二维求解器，保留第三问原初值、物性与环境。支撑材料附全部校核
+网格的 NPZ、配对曲线及验证 JSON；可直接运行下列最后两项复核和重绘，重算全部
+对照则依次执行完整命令。运行时需提供原附件 1。
+python code/q3_axisymmetric.py ‐‐checks
+python code/q3_axisymmetric.py ‐‐radial ‐‐nr 80
+python code/q3_axisymmetric.py ‐‐radial ‐‐nr 160
+python code/q3_axisymmetric.py ‐‐radial ‐‐nr 160 ‐‐tight
+python code/q3_axisymmetric.py ‐‐nr 80 ‐‐nz 40 ‐‐end‐scale 0
+python code/q3_axisymmetric.py ‐‐nr 80 ‐‐nz 40
+python code/q3_axisymmetric.py ‐‐nr 160 ‐‐nz 40
+python code/q3_axisymmetric.py ‐‐nr 80 ‐‐nz 80
+python code/q3_axisymmetric.py ‐‐nr 160 ‐‐nz 80
+python code/q3_axisymmetric.py ‐‐nr 160 ‐‐nz 80 ‐‐tight
+python code/verify_q3_axisymmetric.py
+python code/plot_q3_axisymmetric.py
 1 """Bounded Q3 end‐face audit; node‐centered annular FVM and streaming BDF."""
 2 from __future__ import annotations
 3
 4 import argparse
 5 import hashlib
 6 import json
+103
 7 import platform
 8 import time
 9 from pathlib import Path
@@ -6309,7 +6312,6 @@ python code/q3_sensitivity.py ‐‐only Ca_minus10pct Ca_plus10pct
 26 THRESHOLD = 0.15
 27 CAP = 72.0 * 3600.0
 28 Z = L / 2.0
-103
 29
 30
 31 def nodes(intervals: int, extent: float, power: float) ‐> np.ndarray:
@@ -6353,6 +6355,7 @@ python code/q3_sensitivity.py ‐‐only Ca_minus10pct Ca_plus10pct
 69 fr[0] = 0.0
 70 fr[1:‐1] = (‐self.rf[:, None]
 71 * harmonic_mean(coefficient[:‐1], coefficient[1:])
+104
 72 * np.diff(state, axis=0) / self.dr[:, None])
 73 fr[‐1] = R * exchange * (state[‐1] ‐ ambient)
 74 fz[:, 0] = 0.0
@@ -6375,7 +6378,6 @@ python code/q3_sensitivity.py ‐‐only Ca_minus10pct Ca_plus10pct
 91 side = R * HM * np.dot(self.wz, C[‐1] ‐ Ca) / self.normalizer
 92 end = self.end_scale * HM * np.dot(self.wr, C[:, ‐1] ‐ Ca) / self.normalizer
 93 return np.array([side, end])
-104
 94
 95 def mean_C(self, y):
 96 return float(np.sum(self.volume * self.unpack(y)[1]) / self.normalizer)
@@ -6419,6 +6421,7 @@ python code/q3_sensitivity.py ‐‐only Ca_minus10pct Ca_plus10pct
 134 reduction = max(float(np.max(abs(a‐b[:,None]))) for a,b in zip(two,one))
 135
 136 # Constant‐coefficient polynomial has a known cylindrical Laplacian (4+2).
+105
 137 q = rr**2 + zz**2
 138 lap = f.divergence(q, np.ones_like(q), 0., 0.)
 139 exact = 4/R**2 + 2/Z**2
@@ -6441,7 +6444,6 @@ python code/q3_sensitivity.py ‐‐only Ca_minus10pct Ca_plus10pct
 156 "sealed_rhs_vs_independent_radial_max_abs":float(reduction),
 157 "uniform_polynomial_relative_error":polynomial,
 158 "jacobian_missing_entry_max_abs":missing,
-105
 159 "volume_relative_error":float(abs(f.volume.sum()/f.normalizer‐1))}
 160 out["pass"] = bool(mass < 1e‐12 and heat < 1e‐10 and reduction < 1e‐10
 161 and polynomial < 1e‐10 and missing < 1e‐10)
@@ -6485,6 +6487,7 @@ python code/q3_sensitivity.py ‐‐only Ca_minus10pct Ca_plus10pct
 199 T,C = f.unpack(state)
 200 loc = np.unravel_index(np.argmax(C),C.shape)
 201 max_radial_increase = max(max_radial_increase,float(np.max(np.diff(C,axis=0))))
+106
 202 max_axial_increase = max(max_axial_increase,float(np.max(np.diff(C,axis=1))))
 203 max_center_gap = max(max_center_gap,float(C.max()‐C[0,0]))
 204 if end_scale == 0:
@@ -6507,7 +6510,6 @@ python code/q3_sensitivity.py ‐‐only Ca_minus10pct Ca_plus10pct
 221 while solver.status == "running":
 222 a = solver.t
 223 message = solver.step()
-106
 224 if solver.status == "failed":
 225 raise RuntimeError(message)
 226 accepted += 1
@@ -6551,6 +6553,7 @@ python code/q3_sensitivity.py ‐‐only Ca_minus10pct Ca_plus10pct
 263 previous_M = current_M
 264 nfev += solver.nfev
 265 njev += solver.njev
+107
 266 nlu += solver.nlu
 267 y = solver.y.copy()
 268 if event_t is None:
@@ -6573,7 +6576,6 @@ python code/q3_sensitivity.py ‐‐only Ca_minus10pct Ca_plus10pct
 285 "ends_loss_per_dry_mass":float(loss8[1]),
 286 "mass_balance_max_abs":max_mass_res,"mass_balance_relative_initial":max_mass_res/C0,
 287 "mass_balance_relative_loss":max_mass_res/(C0‐f.mean_C(event_y)),
-107
 288 "quadrature_4_vs_8_abs":float(np.max(abs(loss4‐loss8))),
 289 "bounds_Tmin_Tmax_Cmin_Cmax":bounds,
 290 "sampled_max_radial_C_increase":max_radial_increase,
@@ -6617,6 +6619,7 @@ python code/q3_sensitivity.py ‐‐only Ca_minus10pct Ca_plus10pct
 327 np.full(f.n_nodes,1e‐10 if tight else 1e‐9)],
 328 max_step=(5. if tight else 10.) if not late else (30. if tight else 60.),
 329 jac_sparsity=f.jac_sparsity(),dense_output=True,events=event)
+108
 330 if not sol.success:
 331 raise RuntimeError(sol.message)
 332 ts = np.arange(a,sol.t[‐1]+1e‐8,600.)
@@ -6639,7 +6642,6 @@ python code/q3_sensitivity.py ‐‐only Ca_minus10pct Ca_plus10pct
 349 return meta
 350
 351
-108
 352 if __name__ == "__main__":
 353 parser = argparse.ArgumentParser()
 354 parser.add_argument("‐‐nr",type=int,default=80)
@@ -6682,6 +6684,7 @@ python code/q3_sensitivity.py ‐‐only Ca_minus10pct Ca_plus10pct
 19
 20 def summarize(production="r160_z80_end1", tight="r160_z80_end1_tight"):
 21 original = json.loads((RESULTS_DIR/"q3_validation.json").read_text(encoding="utf‐8"))
+109
 22 structural = json.loads((OUT/"structural_checks.json").read_text(encoding="utf‐8"))
 23 labels = ["r80_z40_end1","r160_z40_end1","r80_z80_end1",production,tight]
 24 labels = list(dict.fromkeys(labels))
@@ -6704,7 +6707,6 @@ python code/q3_sensitivity.py ‐‐only Ca_minus10pct Ca_plus10pct
 41 "axial_refinement_at_r80_s":cases["r80_z80_end1"]["t_star_s"]‐cases["r80_z40_end1"]["t_star_s"],
 42 "axial_refinement_at_r160_s":cases["r160_z80_end1"]["t_star_s"]‐cases["r160_z40_end1"]["t_star_s"],
 43 "time_tightening_s":cases[tight]["t_star_s"]‐base["t_star_s"],
-109
 44 "sealed_2d_vs_paired_1d_s":sealed["t_star_s"]‐radial80["t_star_s"],
 45 }
 46 production_radial = read_case(f"radial_r{base['nr']‐1}")
@@ -6747,6 +6749,7 @@ python code/q3_sensitivity.py ‐‐only Ca_minus10pct Ca_plus10pct
 81 "axial_event_change_below_0_1pct":abs(numerical["axial_refinement_at_r160_s"])/base["t_star_s"]<.0 ⌋
 ,→ 01,
 82 "time_event_change_below_0_01pct":abs(numerical["time_tightening_s"])/base["t_star_s"]<.0001,
+110
 83 "event_at_center_with_tolerance":all(d["event_max_C"]‐d["event_center_C"]<1e‐7 for d in
 ,→ cases.values()),
 84 "sampled_center_controls":all(d["sampled_max_C_minus_center"]<1e‐7 for d in cases.values()),
@@ -6769,7 +6772,6 @@ python code/q3_sensitivity.py ‐‐only Ca_minus10pct Ca_plus10pct
 ,→ "]+base["side_loss_per_dry_mass"]),
 100 "wet_region_tolerance_C":base["wet_region_tolerance_C"],
 101 "production_wet_region_max_rz_m":base["event_wet_region_max_rz_m"],
-110
 102 "rows":rows,"gates":gates,"pass":all(gates.values()),
 103 "interpretation":"Dimensional sensitivity of the stipulated effective Q3 model; not
 ,→ experimental validation or a rigorous PDE error bound.",
@@ -6811,6 +6813,7 @@ python code/q3_sensitivity.py ‐‐only Ca_minus10pct Ca_plus10pct
 7 from problem2 import setup_mpl
 8 from q3_axisymmetric import OUT
 9 from utils import FIGURES_DIR
+111
 10
 11
 12 def main():
@@ -6829,12 +6832,11 @@ python code/q3_sensitivity.py ‐‐only Ca_minus10pct Ca_plus10pct
 25 fig=plt.figure(figsize=(7.2,3.55),layout="constrained")
 26 gs=fig.add_gridspec(2,2,height_ratios=[.62,1.18],hspace=.06,wspace=.16)
 27 field=fig.add_subplot(gs[0,:])
-28 levels=np.linspace(float(full.min()),float(full.max()),31)
+28 levels=np.linspace(np.floor(full.min()*100)/100,np.ceil(full.max()*100)/100,29)
 29 im=field.contourf(z,r,full,levels=levels,cmap="viridis")
 30 field.contour(z,r,full,levels=[.08,.12,.16,.18],colors="white",linewidths=.45,alpha=.65)
 31 field.set_aspect("equal")
 32 field.set(xlabel=" 轴向距离 $z$ / cm",ylabel=" 横向位置 / cm",xlim=(‐12.5,12.5),ylim=(‐2,2))
-111
 33 field.text(.01,1.04,"(a) 36 h 含水率分布",transform=field.transAxes,fontsize=9)
 34 cb=fig.colorbar(im,ax=field,orientation="horizontal",fraction=.08,pad=.10,aspect=48)
 35 cb.set_label(" 干基含水率 / (kg/kg)",fontsize=8)

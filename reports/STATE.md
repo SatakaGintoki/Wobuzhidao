@@ -1,4 +1,24 @@
 
+## 2026-09-13 当前交付：三张示意图已加入正文
+
+用户明确授权将现有三张示意图插入论文，已完成问题一 v4、问题三 v1、问题四 v2 的引用、图注与排版。正式入口 `paper/guosai2026/reading.pdf`（35 页）、`main.pdf`（118 页）已更新；图 3/6/9 分别位于第 9/19/25 页。两版正文一致，插图页视觉检查及交叉引用检查通过；详见 `reports/DRAWIO_REPORT.md` 顶部。图示采用与嵌入为 APPROVED，全文人工终审不代记；模型数值与临时结果图未改。下方待审图示为历史记录。
+
+## 2026-09-13 当前图示：问题一圆柱配色统一
+
+按用户要求完成 `q1-physical-figure-v4`，状态 `PENDING`，v3 为 `REVISION_REQUESTED`。问题一圆柱采用与问题四相同的主蓝轮廓、半透明浅蓝填充；红色传热、蓝色排湿和公式布局保持。Draw.io、PDF、PNG 及生成来源已更新并检查；未插入正文，未更改其他图、模型或数值。下方为此前图示记录。
+
+## 2026-09-13 当前图示：问题四收缩与材料坐标第二版
+
+按用户对倾斜圆柱与 `P_0` 位置的反馈完成 `q4-coordinate-figure-v2`，状态 `PENDING`，v1 为 `REVISION_REQUESTED`。两侧圆柱已改为水平，材料点置于同一内部中截面，不再放在端面；相对半径均为示意值 0.60，径向收缩比仍为示意值 0.70。已核对点位、轴向位置、径向比例和表面引线，重新渲染检查。文件仍为 `figures/fig_q4_coordinates.drawio`、PDF、PNG，详见 `reports/DRAWIO_REPORT.md`。当前只供审阅，未插入 `06_q4.tex`，未改动前两张图、模型或数值。
+
+## 2026-09-13 当前图示：问题三全域达标事件流程初稿
+
+已按用户提供流程完成 `q3-event-figure-v1`，状态 `PENDING`。产物为 `figures/fig_flow_q3.drawio`、PDF 与 PNG，沿用蓝橙配色；突出向下穿越、临界根与严格达标报告时刻，“否”分支回到联合积分。图源连接关系、公式和 PDF 预览检查完成，详见 `reports/DRAWIO_REPORT.md`。当前先展示图面，未嵌入 `05_q3.tex`，未重跑模型。问题一 `q1-physical-figure-v3` 仍保留供审阅，不因开始第二张图而代记批准。
+
+## 2026-09-13 当前图示：问题一物理模型第三版
+
+已按用户第三轮反馈保留完整圆柱、两个闭合椭圆端面，并将每条 Robin 公式改为完整单行。继续红色传热、蓝色排湿，仅中心轴采用点划线。当前 `q1-physical-figure-v3` 为 `PENDING`，v1/v2 为 `REVISION_REQUESTED`。文件仍为 `figures/fig_q1_model.drawio`、PDF 与 PNG；已重新生成并检查图面，详见 `reports/DRAWIO_REPORT.md`。当前供用户审阅，不自动嵌入 `paper/guosai2026/sections/03_q1.tex`。论文、模型与数值未改。此前整体路线图保留为未采纳草稿。下一步按用户对本图的反馈修改或嵌入。
+
 ## 2026-09-13 当前工作：正文短板修补（已编译）
 
 按用户“结构图不用做，剩下的可以完成，并按 skill 留档”完成本轮。入口 `paper/guosai2026/`。阅读版 `reading.pdf` 与 `reading_comparison.pdf` 为 31 页；完整版 `main.pdf` 113 页。`reading_updated.pdf` 当时锁定，不是本轮文件。

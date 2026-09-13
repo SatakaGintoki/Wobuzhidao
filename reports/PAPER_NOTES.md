@@ -1,3 +1,5 @@
+> **2026-09-13 三张示意图插入**：按用户明确授权，问题一 v4、问题三 v1、问题四 v2 已分别加入 `03_q1.tex` 控制方程后、`05_q3.tex` 全域判据后、`06_q4.tex` 比例收缩假设后。图标签为 `fig_q1_model`、`fig_q3_event`、`fig_q4_coordinates`；图 3/6/9 位于第 9/19/25 页。PDF 副本位于论文内部 `figures/`，与工作区同名源图一致。当前正式阅读版 35 页，完整版 118 页；检查详见 `reports/DRAWIO_REPORT.md` 顶部。模型数值及既有结果图不变，下方页码为历史记录。
+
 > **2026-09-13 短板修补**：按用户授权完成除“问题分析结构图”外的正文修补，正式四问数字未改。阅读版 31 页：`paper/guosai2026/reading.pdf`（与 `reading_comparison.pdf` 同步）；完整版 113 页 `main.pdf`。映射如下。
 >
 > - 假设（6）后期 \(T_a=50^\circ\mathrm C\)、\(C_a=0.05\)：`sections/02_assumptions.tex`；预处理与问题三引用该假设。

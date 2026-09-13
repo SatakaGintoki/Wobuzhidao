@@ -100,7 +100,7 @@ def main():
         "event_within_observed_radius":t_rep<=259200.,
         "table_four_decimals":table_changed==0,
     }
-    summary = {"version":"q4-baseline-v1","model":"q4-model-v1","production":production, "result_status":"PENDING",
+    summary = {"version":"q4-baseline-v1","model":"q4-model-v1","production":production, "result_status":"PUBLISHED",
                "critical_s":critical,"critical_h":critical/3600.,"report_s":t_rep,"report_h":t_rep/3600.,
                "report_radius_cm":float(inputs.radius(t_rep)*100),"report_maxima":maxima,"same_time_critical_maxima":critical_max,
                "empirical_C_margin":empirical_margin,"event_spatial_difference_s":abs(ma["event_s"]-mb["event_s"]),

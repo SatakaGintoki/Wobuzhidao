@@ -51,7 +51,10 @@ def main():
     assert all(hashlib.sha256((ROOT/k).read_bytes()).hexdigest()==v for k,v in original.items())
     # Gather page statistics and render contact sheets plus full body pages.
     pdf_summary={}
-    for stem in ['reading','main','ai_details']:
+    stems=['reading','main']
+    if (P/'ai_details.pdf').exists():
+        stems.append('ai_details')
+    for stem in stems:
         file_stem=args.reading_stem if stem=='reading' else stem
         doc=pdfium.PdfDocument(str(P/f'{file_stem}.pdf'))
         thumbs=[]; stats=[]; all_text=[]

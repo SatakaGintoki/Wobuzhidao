@@ -122,7 +122,7 @@ def main(argv=None):
         'table_four_decimals':table_changed==0 and table_time_changed==0,
         'q2_overlap':overlap_ok,
     }
-    v={'result_version':'q3-closeout-v1','model':'q3-model-v1','result_status':'PENDING',
+    v={'result_version':'q3-closeout-v1','model':'q3-model-v1','result_status':'PUBLISHED',
        'published_mesh':'G8','published_n_nodes':pub['n_nodes'],'rtol':RTOL,'atol_T':ATOL_T,'atol_C':ATOL_C,
        'max_step_early':MAX_STEP_EARLY,'max_step_late':MAX_STEP_LATE,
        't_star_s':critical,'t_star_h':critical/3600.,'t_rep_s':t_rep,'t_rep_h':t_rep/3600.,

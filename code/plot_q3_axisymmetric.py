@@ -54,8 +54,9 @@ def main():
     for ext in ("pdf","png"):
         fig.savefig(FIGURES_DIR/f"q3_axisymmetric_check.{ext}",dpi=200,bbox_inches="tight")
     plt.close(fig)
+    package_root=OUT.parents[1]
     evidence={"figure":"figures/q3_axisymmetric_check.pdf","field_time_s":129600,
-              "sources":{str(p):hashlib.sha256(p.read_bytes()).hexdigest()
+              "sources":{str(p.relative_to(package_root)).replace('\\','/'):hashlib.sha256(p.read_bytes()).hexdigest()
                          for p in (path,OUT/"paired_history.csv",OUT/"comparison.json")},
               "field_reconstruction":"Mirror the symmetric half-cylinder across z=0 and transverse axis.",
               "curve_comparison":"Matched radial mesh; common exact 600 s sample times only."}

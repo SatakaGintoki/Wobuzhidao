@@ -44,7 +44,7 @@ E(t)-E(0)-2\pi L\int_0^t\sum_iW_iB'(C_i)(T_i-T_{\mathrm{ini}})\dot C_i\dd\tau\\
 四 & $G_8/G_{16}$ & $1.012\!\times\!10^{-5}$ & $8.681\!\times\!10^{-7}$ & $1.188\!\times\!10^{-5}$ & $6.383\!\times\!10^{-8}$\\\bottomrule
 \end{tabular}
 \end{table}
-前两问覆盖全部规定输出点，后两问还覆盖内部节点，第四问比较至72 h。第二问另以$G_4/G_8$复核，温度、含水率最大差为$6.244\times10^{-7}$ $^\circ$C、$3.732\times10^{-6}$ kg/kg。配置差不等于真解误差；临界时间见表\ref{tab_event_convergence}。六张题定表在相应加密下四位一致，但不能据此声称全部Excel单元格的末位均已稳定。
+前两问覆盖全部规定输出点，后两问还覆盖内部节点，第四问比较至72 h。第二问另以$G_4/G_8$复核，温度、含水率最大差为$6.244\times10^{-7}$ $^\circ$C、$3.732\times10^{-6}$ kg/kg；该数值来自支撑材料的 Q2 数值审计文件（运行后位于\texttt{results/verification/q2/}），可由\texttt{python code/verify\_q2\_results.py --numerical}复现，随附源数组的字段级输出逐点一致。配置差不等于真解误差；临界时间见表\ref{tab_event_convergence}。六张题定表在相应加密下四位一致，但不能据此声称全部Excel单元格的末位均已稳定。
 \begin{table}[htbp]\centering\small
 \caption{不同计算配置下的临界烘干时间（h）}\label{tab_event_convergence}
 \begin{tabular}{crr}\toprule

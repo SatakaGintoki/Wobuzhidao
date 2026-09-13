@@ -16,6 +16,7 @@ python code/problem4.py --level 16
 python code/problem4.py --level 8 --tight
 python code/verify_q4_results.py
 python code/plot_q3_results.py
+python code/plot_q4_radius.py
 \end{Verbatim}
 原第3、4问Excel导出脚本依赖Node.js与\texttt{@oai/artifact-tool}。配置依赖后，第3问不加\texttt{--no-xlsx}运行，第4问执行\texttt{node tmp/q4\_export/build.mjs}。支撑材料附完整导出脚本。为使代码可迁移，仅将原计算机的Node路径改为从PATH查找，将第3问布局模板路径改为随附结果文件；数值方程与参数保持原实现。
 
@@ -109,6 +110,10 @@ python code/plot_q3_results.py
 \subsection*{B.22\quad\texttt{tmp/q4\_export/build.mjs}}
 
 \VerbatimInput[fontsize=\fontsize{7.5}{9}\selectfont,breaklines=true,breakanywhere=true,numbers=left,numbersep=5pt,xleftmargin=12pt]{support/tmp/q4_export/build.mjs}
+
+\subsection*{B.23\quad\texttt{code/plot\_q4\_radius.py}}
+
+\VerbatimInput[fontsize=\fontsize{7.5}{9}\selectfont,breaklines=true,breakanywhere=true,numbers=left,numbersep=5pt,xleftmargin=12pt]{support/code/plot_q4_radius.py}
 
 \subsection*{补充对照程序与复现}
 附录4固定半径对照的完整程序如下。复算依次运行：

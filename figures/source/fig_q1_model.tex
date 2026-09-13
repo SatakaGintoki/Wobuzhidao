@@ -1,0 +1,47 @@
+\documentclass[border=0pt]{standalone}
+\usepackage[fontset=windows]{ctex}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\pagestyle{empty}
+\begin{document}
+\begin{tikzpicture}[x=0.44pt,y=-0.44pt]
+\path[use as bounding box] (0,0) rectangle (1180,580);
+\path[line width=0.660pt,draw=none,fill={rgb,255:red,150;green,183;blue,252},fill opacity=0.22] (112,204) rectangle (592,408);
+\path[line width=0.792pt,draw={rgb,255:red,84;green,112;blue,219},fill={rgb,255:red,150;green,183;blue,252},fill opacity=0.16] (112.0,306.0) ellipse [x radius=52.0, y radius=102.0];
+\path[line width=0.792pt,draw={rgb,255:red,84;green,112;blue,219},fill={rgb,255:red,150;green,183;blue,252},fill opacity=0.2] (592.0,306.0) ellipse [x radius=52.0, y radius=102.0];
+\draw[draw={rgb,255:red,84;green,112;blue,219},line width=0.968pt] (112,204) -- (592,204);
+\draw[draw={rgb,255:red,84;green,112;blue,219},line width=0.968pt] (112,408) -- (592,408);
+\draw[draw={rgb,255:red,142;green,142;blue,142},line width=0.660pt,dash pattern=on 5.28pt off 1.76pt on 0.88pt off 1.76pt] (42,306) -- (660,306);
+\node[align=center,inner sep=0pt,outer sep=0pt,text={rgb,255:red,51;green,51;blue,51},font={\fontsize{10.12}{12.95}\selectfont}] at (352,30) {烘房环境：$T_a(t),\ C_a(t)$};
+\node[align=center,inner sep=0pt,outer sep=0pt,text={rgb,255:red,230;green,136;blue,109},font={\fontsize{9.68}{12.39}\selectfont}] at (274,94) {热量传入};
+\node[align=center,inner sep=0pt,outer sep=0pt,text={rgb,255:red,84;green,112;blue,219},font={\fontsize{9.68}{12.39}\selectfont}] at (458,94) {水分迁出};
+\node[align=center,inner sep=0pt,outer sep=0pt,text={rgb,255:red,230;green,136;blue,109},font={\fontsize{9.24}{11.83}\selectfont}] at (274,125) {$q_s<0$};
+\node[align=center,inner sep=0pt,outer sep=0pt,text={rgb,255:red,84;green,112;blue,219},font={\fontsize{9.24}{11.83}\selectfont}] at (458,125) {$j_s>0$};
+\draw[draw={rgb,255:red,230;green,136;blue,109},line width=1.408pt,-{Latex[length=3.5pt,width=2.8pt]}] (249,153) -- (249,229);
+\draw[draw={rgb,255:red,84;green,112;blue,219},line width=1.408pt,-{Latex[length=3.5pt,width=2.8pt]}] (433,222) -- (433,146);
+\draw[draw={rgb,255:red,230;green,136;blue,109},line width=1.408pt,-{Latex[length=3.5pt,width=2.8pt]}] (299,153) -- (299,229);
+\draw[draw={rgb,255:red,84;green,112;blue,219},line width=1.408pt,-{Latex[length=3.5pt,width=2.8pt]}] (483,222) -- (483,146);
+\draw[draw={rgb,255:red,51;green,51;blue,51},line width=0.836pt,-{Latex[length=3.5pt,width=2.8pt]}] (200,306) -- (200,205);
+\path[line width=0.660pt,draw=none,fill={rgb,255:red,51;green,51;blue,51}] (200.0,306.0) ellipse [x radius=3.2, y radius=3.2];
+\path[line width=0.660pt,draw=none,fill={rgb,255:red,51;green,51;blue,51}] (200.0,204.0) ellipse [x radius=3.2, y radius=3.2];
+\node[align=center,inner sep=0pt,outer sep=0pt,text={rgb,255:red,51;green,51;blue,51},font={\fontsize{11.00}{14.08}\selectfont}] at (219,254) {$r$};
+\node[align=center,inner sep=0pt,outer sep=0pt,text={rgb,255:red,51;green,51;blue,51},font={\fontsize{9.68}{12.39}\selectfont}] at (245,338) {中心 $r=0$};
+\node[align=center,inner sep=0pt,outer sep=0pt,text={rgb,255:red,51;green,51;blue,51},font={\fontsize{9.68}{12.39}\selectfont}] at (184,174) {表面 $r=R$};
+\node[align=center,inner sep=0pt,outer sep=0pt,text={rgb,255:red,230;green,136;blue,109},font={\fontsize{11.44}{14.64}\selectfont}] at (382,264) {温度场 $T(r,t)$};
+\node[align=center,inner sep=0pt,outer sep=0pt,text={rgb,255:red,84;green,112;blue,219},font={\fontsize{11.44}{14.64}\selectfont}] at (399,368) {含水率场 $C(r,t)$};
+\node[align=center,inner sep=0pt,outer sep=0pt,text={rgb,255:red,51;green,51;blue,51},font={\fontsize{9.68}{12.39}\selectfont}] at (352,443) {圆柱药材（内部纵剖示意）};
+\draw[draw={rgb,255:red,184;green,184;blue,184},line width=0.440pt] (690,91) -- (1158,91);
+\node[align=center,inner sep=0pt,outer sep=0pt,text={rgb,255:red,51;green,51;blue,51},font={\fontsize{10.56}{13.52}\selectfont\bfseries}] at (924,63) {表面 Robin 交换边界};
+\node[align=center,inner sep=0pt,outer sep=0pt,text={rgb,255:red,51;green,51;blue,51},font={\fontsize{9.24}{11.83}\selectfont}] at (924,117) {$T_s=T(R,t),\quad C_s=C(R,t)$};
+\node[align=left,inner sep=0pt,outer sep=0pt,text={rgb,255:red,230;green,136;blue,109},font={\fontsize{9.68}{12.39}\selectfont},anchor=west,text width=205.92pt] at (690.0,190) {表面热通量};
+\node[align=left,inner sep=0pt,outer sep=0pt,text={rgb,255:red,51;green,51;blue,51},font={\fontsize{10.12}{12.95}\selectfont},anchor=west,text width=205.92pt] at (690.0,236) {$q_s=-kT_r(R,t)=h[T_s-T_a(t)]$};
+\node[align=left,inner sep=0pt,outer sep=0pt,text={rgb,255:red,84;green,112;blue,219},font={\fontsize{9.68}{12.39}\selectfont},anchor=west,text width=205.92pt] at (690.0,316) {表面水分通量};
+\node[align=left,inner sep=0pt,outer sep=0pt,text={rgb,255:red,51;green,51;blue,51},font={\fontsize{10.12}{12.95}\selectfont},anchor=west,text width=205.92pt] at (690.0,365) {$\dfrac{j_s}{s_0}=-D(C_s)C_r(R,t)=h_m[C_s-C_a(t)]$};
+\node[align=left,inner sep=0pt,outer sep=0pt,text={rgb,255:red,51;green,51;blue,51},font={\fontsize{9.24}{11.83}\selectfont},anchor=west,text width=205.92pt] at (690.0,444) {$s_0$：单位体积干物质质量};
+\node[align=left,inner sep=0pt,outer sep=0pt,text={rgb,255:red,51;green,51;blue,51},font={\fontsize{9.24}{11.83}\selectfont},anchor=west,text width=205.92pt] at (690.0,483) {通量均以径向向外为正};
+\draw[draw={rgb,255:red,229;green,229;blue,229},line width=0.440pt] (113,477) -- (591,477);
+\node[align=center,inner sep=0pt,outer sep=0pt,text={rgb,255:red,51;green,51;blue,51},font={\fontsize{9.68}{12.39}\selectfont}] at (352,504) {中心对称边界};
+\node[align=center,inner sep=0pt,outer sep=0pt,text={rgb,255:red,51;green,51;blue,51},font={\fontsize{10.12}{12.95}\selectfont}] at (352,546) {$\dfrac{\partial T}{\partial r}(0,t)=0,\qquad\dfrac{\partial C}{\partial r}(0,t)=0$};
+\end{tikzpicture}
+\end{document}

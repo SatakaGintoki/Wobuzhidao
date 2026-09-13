@@ -12,14 +12,15 @@ def write(path, text):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(text, encoding='utf-8')
 
-def table(name, caption, label, hours, values, time_heading, note='', radius=None):
+def table(name, caption, label, hours, values, time_heading, note='', radius=None,
+          float_spec='htbp', missing_token=''):
     columns = len(values[0]) + 1 + (radius is not None)
     header = [time_heading, '0', '0.5', '1.0', '1.5', '2.0']
     if values.shape[1] == 6:
         header += ['药材表面']
     if radius is not None:
         header += ['$R(t)$/cm']
-    out = [r'\begin{table}[htbp]\centering\small',
+    out = [r'\begin{table}['+float_spec+r']\centering\small',
            r'\caption{'+caption+r'}\label{'+label+'}',
            r'\renewcommand{\arraystretch}{1.12}',
            r'\begin{tabular}{'+'c'*columns+r'}\toprule',
@@ -28,7 +29,7 @@ def table(name, caption, label, hours, values, time_heading, note='', radius=Non
     records=[]
     for i,(t,row) in enumerate(zip(hours, values)):
         ts = f'{t:.4f}' if not np.isclose(t,round(t),rtol=0,atol=1e-7) and t>6 else f'{t:g}'
-        cells = [f'{v:.4f}' if np.isfinite(v) else '' for v in row]
+        cells = [f'{v:.4f}' if np.isfinite(v) else missing_token for v in row]
         if radius is not None:
             cells += [f'{radius[i]*100:.4f}']
         out.append(' & '.join([ts]+cells)+r'\\')
@@ -59,9 +60,9 @@ def main():
         else:
             ids=np.searchsorted(z['times_s'],z['table_times_s'])
             assert np.allclose(z['times_s'][ids],z['table_times_s'],rtol=0,atol=1e-8)
-            tables['q4C']=table('q4C','收缩模型药材烘干过程的水分浓度（kg/kg）','tab_q4C',z['table_times_s']/3600,z['table_C'],'时间/h',r'注：域外位置留空，药材表面对应当前$R(t)$。终时中心未舍入值为0.1499989333 kg/kg。',z['radius_m'][ids])
+            tables['q4C']=table('q4C','收缩模型药材烘干过程的水分浓度（kg/kg）','tab_q4C',z['table_times_s']/3600,z['table_C'],'时间/h',r'注：---表示该固定距离已超出当时半径；药材表面对应当前$R(t)$。终时中心未舍入值为0.1499989333 kg/kg。',z['radius_m'][ids],float_spec='H',missing_token='---')
         z.close()
-    figs=['q1_oven_input','q1_T_profiles','q1_C_profiles','q2_T_profiles','q2_C_profiles','q3_C_max_history','q3_C_profiles','q3_axisymmetric_check','q4_R_history','q4_C_history','q4_C_profiles']
+    figs=['q1_oven_input','q1_T_profiles','q1_C_profiles','q2_T_profiles','q2_C_profiles','q3_C_profiles','q3_axisymmetric_check','q4_R_history','q4_C_profiles','q4_fixed_vs_shrink']
     (PAPER/'figures').mkdir(exist_ok=True)
     for f in figs:
         shutil.copy2(ROOT/f'figures/{f}.pdf',PAPER/f'figures/{f}.pdf')
