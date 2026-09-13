@@ -1,0 +1,17 @@
+{
+  "source_sha256": "27ca0df391acdc73e13ddfa3263b8927373c0b7325b6ed1b2424e8c4315ff811",
+  "nodes": 2113,
+  "time_s": 1800,
+  "mean_C": 2.2935571301478603,
+  "mean_T_C": 35.168694722546626,
+  "assumptions": [
+    "820 kg/m3 interpreted as initial wet bulk density for screening only",
+    "free-water latent heat scale assumed 2.4 MJ/kg",
+    "all predicted moisture loss counted as evaporation"
+  ],
+  "mass_lost_g": 18.609127028569898,
+  "latent_kJ": 44.661904868567746,
+  "sensible_kJ": 4.801502501761662,
+  "ratio": 9.301651900041994,
+  "scope": "Energy scale only; not corrected temperature, time, or error bound"
+}

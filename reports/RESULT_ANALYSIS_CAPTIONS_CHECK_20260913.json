@@ -1,0 +1,701 @@
+{
+  "protected_changed": [],
+  "text_stats": {
+    "02_preprocessing": {
+      "before_han": 712,
+      "after_han": 695
+    },
+    "03_q1": {
+      "before_han": 1853,
+      "after_han": 1845
+    },
+    "04_q2": {
+      "before_han": 1168,
+      "after_han": 1136
+    },
+    "05_q3": {
+      "before_han": 1179,
+      "after_han": 1257
+    },
+    "06_q4": {
+      "before_han": 2798,
+      "after_han": 2795
+    },
+    "07_axisymmetric": {
+      "before_han": 582,
+      "after_han": 584
+    }
+  },
+  "pdfs": {
+    "reading": {
+      "pages": 32,
+      "page_stats": [
+        {
+          "page": 1,
+          "chars": 886
+        },
+        {
+          "page": 2,
+          "chars": 1181
+        },
+        {
+          "page": 3,
+          "chars": 1069
+        },
+        {
+          "page": 4,
+          "chars": 1115
+        },
+        {
+          "page": 5,
+          "chars": 1083
+        },
+        {
+          "page": 6,
+          "chars": 763
+        },
+        {
+          "page": 7,
+          "chars": 1032
+        },
+        {
+          "page": 8,
+          "chars": 1293
+        },
+        {
+          "page": 9,
+          "chars": 808
+        },
+        {
+          "page": 10,
+          "chars": 1443
+        },
+        {
+          "page": 11,
+          "chars": 1172
+        },
+        {
+          "page": 12,
+          "chars": 1185
+        },
+        {
+          "page": 13,
+          "chars": 955
+        },
+        {
+          "page": 14,
+          "chars": 726
+        },
+        {
+          "page": 15,
+          "chars": 1105
+        },
+        {
+          "page": 16,
+          "chars": 544
+        },
+        {
+          "page": 17,
+          "chars": 1585
+        },
+        {
+          "page": 18,
+          "chars": 1163
+        },
+        {
+          "page": 19,
+          "chars": 870
+        },
+        {
+          "page": 20,
+          "chars": 985
+        },
+        {
+          "page": 21,
+          "chars": 1175
+        },
+        {
+          "page": 22,
+          "chars": 1355
+        },
+        {
+          "page": 23,
+          "chars": 1330
+        },
+        {
+          "page": 24,
+          "chars": 803
+        },
+        {
+          "page": 25,
+          "chars": 1083
+        },
+        {
+          "page": 26,
+          "chars": 1262
+        },
+        {
+          "page": 27,
+          "chars": 1176
+        },
+        {
+          "page": 28,
+          "chars": 319
+        },
+        {
+          "page": 29,
+          "chars": 1152
+        },
+        {
+          "page": 30,
+          "chars": 1205
+        },
+        {
+          "page": 31,
+          "chars": 1292
+        },
+        {
+          "page": 32,
+          "chars": 869
+        }
+      ],
+      "log_issues": []
+    },
+    "main": {
+      "pages": 116,
+      "page_stats": [
+        {
+          "page": 1,
+          "chars": 886
+        },
+        {
+          "page": 2,
+          "chars": 1181
+        },
+        {
+          "page": 3,
+          "chars": 1069
+        },
+        {
+          "page": 4,
+          "chars": 1115
+        },
+        {
+          "page": 5,
+          "chars": 1083
+        },
+        {
+          "page": 6,
+          "chars": 763
+        },
+        {
+          "page": 7,
+          "chars": 1032
+        },
+        {
+          "page": 8,
+          "chars": 1293
+        },
+        {
+          "page": 9,
+          "chars": 808
+        },
+        {
+          "page": 10,
+          "chars": 1443
+        },
+        {
+          "page": 11,
+          "chars": 1172
+        },
+        {
+          "page": 12,
+          "chars": 1185
+        },
+        {
+          "page": 13,
+          "chars": 955
+        },
+        {
+          "page": 14,
+          "chars": 726
+        },
+        {
+          "page": 15,
+          "chars": 1105
+        },
+        {
+          "page": 16,
+          "chars": 544
+        },
+        {
+          "page": 17,
+          "chars": 1585
+        },
+        {
+          "page": 18,
+          "chars": 1163
+        },
+        {
+          "page": 19,
+          "chars": 870
+        },
+        {
+          "page": 20,
+          "chars": 985
+        },
+        {
+          "page": 21,
+          "chars": 1175
+        },
+        {
+          "page": 22,
+          "chars": 1355
+        },
+        {
+          "page": 23,
+          "chars": 1330
+        },
+        {
+          "page": 24,
+          "chars": 803
+        },
+        {
+          "page": 25,
+          "chars": 1083
+        },
+        {
+          "page": 26,
+          "chars": 1262
+        },
+        {
+          "page": 27,
+          "chars": 1176
+        },
+        {
+          "page": 28,
+          "chars": 319
+        },
+        {
+          "page": 29,
+          "chars": 1152
+        },
+        {
+          "page": 30,
+          "chars": 1205
+        },
+        {
+          "page": 31,
+          "chars": 1292
+        },
+        {
+          "page": 32,
+          "chars": 869
+        },
+        {
+          "page": 33,
+          "chars": 1339
+        },
+        {
+          "page": 34,
+          "chars": 2175
+        },
+        {
+          "page": 35,
+          "chars": 2028
+        },
+        {
+          "page": 36,
+          "chars": 2285
+        },
+        {
+          "page": 37,
+          "chars": 2218
+        },
+        {
+          "page": 38,
+          "chars": 2288
+        },
+        {
+          "page": 39,
+          "chars": 1900
+        },
+        {
+          "page": 40,
+          "chars": 2051
+        },
+        {
+          "page": 41,
+          "chars": 2294
+        },
+        {
+          "page": 42,
+          "chars": 2570
+        },
+        {
+          "page": 43,
+          "chars": 1866
+        },
+        {
+          "page": 44,
+          "chars": 1929
+        },
+        {
+          "page": 45,
+          "chars": 2511
+        },
+        {
+          "page": 46,
+          "chars": 2516
+        },
+        {
+          "page": 47,
+          "chars": 2222
+        },
+        {
+          "page": 48,
+          "chars": 2481
+        },
+        {
+          "page": 49,
+          "chars": 2171
+        },
+        {
+          "page": 50,
+          "chars": 2636
+        },
+        {
+          "page": 51,
+          "chars": 2683
+        },
+        {
+          "page": 52,
+          "chars": 2211
+        },
+        {
+          "page": 53,
+          "chars": 1971
+        },
+        {
+          "page": 54,
+          "chars": 2019
+        },
+        {
+          "page": 55,
+          "chars": 2412
+        },
+        {
+          "page": 56,
+          "chars": 2429
+        },
+        {
+          "page": 57,
+          "chars": 2174
+        },
+        {
+          "page": 58,
+          "chars": 2441
+        },
+        {
+          "page": 59,
+          "chars": 2750
+        },
+        {
+          "page": 60,
+          "chars": 3357
+        },
+        {
+          "page": 61,
+          "chars": 2780
+        },
+        {
+          "page": 62,
+          "chars": 2109
+        },
+        {
+          "page": 63,
+          "chars": 2213
+        },
+        {
+          "page": 64,
+          "chars": 1668
+        },
+        {
+          "page": 65,
+          "chars": 2234
+        },
+        {
+          "page": 66,
+          "chars": 2158
+        },
+        {
+          "page": 67,
+          "chars": 2499
+        },
+        {
+          "page": 68,
+          "chars": 2585
+        },
+        {
+          "page": 69,
+          "chars": 2530
+        },
+        {
+          "page": 70,
+          "chars": 2718
+        },
+        {
+          "page": 71,
+          "chars": 2148
+        },
+        {
+          "page": 72,
+          "chars": 2446
+        },
+        {
+          "page": 73,
+          "chars": 2406
+        },
+        {
+          "page": 74,
+          "chars": 2313
+        },
+        {
+          "page": 75,
+          "chars": 3055
+        },
+        {
+          "page": 76,
+          "chars": 2792
+        },
+        {
+          "page": 77,
+          "chars": 3836
+        },
+        {
+          "page": 78,
+          "chars": 4401
+        },
+        {
+          "page": 79,
+          "chars": 2175
+        },
+        {
+          "page": 80,
+          "chars": 2715
+        },
+        {
+          "page": 81,
+          "chars": 2972
+        },
+        {
+          "page": 82,
+          "chars": 3372
+        },
+        {
+          "page": 83,
+          "chars": 2994
+        },
+        {
+          "page": 84,
+          "chars": 4084
+        },
+        {
+          "page": 85,
+          "chars": 3032
+        },
+        {
+          "page": 86,
+          "chars": 2784
+        },
+        {
+          "page": 87,
+          "chars": 3391
+        },
+        {
+          "page": 88,
+          "chars": 2990
+        },
+        {
+          "page": 89,
+          "chars": 2492
+        },
+        {
+          "page": 90,
+          "chars": 3901
+        },
+        {
+          "page": 91,
+          "chars": 3217
+        },
+        {
+          "page": 92,
+          "chars": 2711
+        },
+        {
+          "page": 93,
+          "chars": 3418
+        },
+        {
+          "page": 94,
+          "chars": 3996
+        },
+        {
+          "page": 95,
+          "chars": 2965
+        },
+        {
+          "page": 96,
+          "chars": 3726
+        },
+        {
+          "page": 97,
+          "chars": 2929
+        },
+        {
+          "page": 98,
+          "chars": 2831
+        },
+        {
+          "page": 99,
+          "chars": 1901
+        },
+        {
+          "page": 100,
+          "chars": 3371
+        },
+        {
+          "page": 101,
+          "chars": 3820
+        },
+        {
+          "page": 102,
+          "chars": 3659
+        },
+        {
+          "page": 103,
+          "chars": 1857
+        },
+        {
+          "page": 104,
+          "chars": 3157
+        },
+        {
+          "page": 105,
+          "chars": 1810
+        },
+        {
+          "page": 106,
+          "chars": 2584
+        },
+        {
+          "page": 107,
+          "chars": 2706
+        },
+        {
+          "page": 108,
+          "chars": 2942
+        },
+        {
+          "page": 109,
+          "chars": 2735
+        },
+        {
+          "page": 110,
+          "chars": 3561
+        },
+        {
+          "page": 111,
+          "chars": 2620
+        },
+        {
+          "page": 112,
+          "chars": 3913
+        },
+        {
+          "page": 113,
+          "chars": 3169
+        },
+        {
+          "page": 114,
+          "chars": 3062
+        },
+        {
+          "page": 115,
+          "chars": 2682
+        },
+        {
+          "page": 116,
+          "chars": 2075
+        }
+      ],
+      "log_issues": []
+    }
+  },
+  "body_text_identical": true,
+  "body_pixels_identical": true,
+  "figure_labels": [
+    [
+      "fig_input",
+      "1",
+      "5"
+    ],
+    [
+      "fig_q4R",
+      "2",
+      "6"
+    ],
+    [
+      "fig_q1_model",
+      "3",
+      "7"
+    ],
+    [
+      "fig_q1",
+      "4",
+      "9"
+    ],
+    [
+      "fig_q2",
+      "5",
+      "13"
+    ],
+    [
+      "fig_q3_event",
+      "6",
+      "14"
+    ],
+    [
+      "fig_q3profiles",
+      "7",
+      "16"
+    ],
+    [
+      "fig_q3_2d",
+      "8",
+      "18"
+    ],
+    [
+      "fig_q4_coordinates",
+      "9",
+      "19"
+    ],
+    [
+      "fig_q4_control",
+      "10",
+      "24"
+    ]
+  ],
+  "captions": [
+    "\\@writefile{lof}{\\contentsline {figure}{\\numberline {1}{\\ignorespaces 前30 min烘房温湿环境插值曲线}}{5}{figure.caption.1}\\protected@file@percent }",
+    "\\@writefile{lof}{\\contentsline {figure}{\\numberline {2}{\\ignorespaces 药材半径观测与PCHIP插值曲线}}{6}{figure.caption.2}\\protected@file@percent }",
+    "\\@writefile{lof}{\\contentsline {figure}{\\numberline {3}{\\ignorespaces 圆柱药材径向热湿传递模型示意图}}{7}{figure.caption.3}\\protected@file@percent }",
+    "\\@writefile{lof}{\\contentsline {figure}{\\numberline {4}{\\ignorespaces 预热阶段温度与干基含水率时空分布}}{9}{figure.caption.6}\\protected@file@percent }",
+    "\\@writefile{lof}{\\contentsline {figure}{\\numberline {5}{\\ignorespaces 变物性模型前3 h温度与干基含水率时空分布}}{13}{figure.caption.9}\\protected@file@percent }",
+    "\\@writefile{lof}{\\contentsline {figure}{\\numberline {6}{\\ignorespaces 全域达标事件定位与结果核验流程}}{14}{figure.caption.10}\\protected@file@percent }",
+    "\\@writefile{lof}{\\contentsline {figure}{\\numberline {7}{\\ignorespaces 全程干基含水率时空分布与达标阈值等值线}}{16}{figure.caption.13}\\protected@file@percent }",
+    "\\@writefile{lof}{\\contentsline {figure}{\\numberline {8}{\\ignorespaces 第三问轴对称二维端面校核}}{18}{figure.caption.15}\\protected@file@percent }",
+    "\\@writefile{lof}{\\contentsline {figure}{\\numberline {9}{\\ignorespaces 比例径向收缩与材料坐标变换示意图}}{19}{figure.caption.16}\\protected@file@percent }",
+    "\\@writefile{lof}{\\contentsline {figure}{\\numberline {10}{\\ignorespaces 附录4物性下固定半径与收缩模型的含水率时空分布}}{24}{figure.caption.19}\\protected@file@percent }"
+  ]
+}

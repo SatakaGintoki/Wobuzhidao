@@ -11,7 +11,7 @@
 
 \subsection{烘房环境插值与时间延续}
 数值求解器需要在观测时刻之间取得表面环境值。为避免普通三次样条在观测点附近产生过冲，本文采用保形分段三次Hermite插值（PCHIP）构造$T_a(t)$与$C_a(t)$~\cite{pchip}：该插值精确通过全部观测点，在节点处一阶导数连续，且不在单调区间内引入新的极值，插值表达式见附录B。前30 min的环境插值结果见图\ref{fig_input}。
-\figone{q1_oven_input.pdf}{.76}{前30 min烘房温度和水分量随时间变化，曲线由附件1观测插值得到。}{fig_input}
+\figone{q1_oven_input.pdf}{.76}{前30 min烘房温湿环境插值曲线}{fig_input}
 
 附件1没有覆盖完整干燥时段，其最后1 h的温度和水分量均值分别约为$49.999\ ^\circ\mathrm C$和$0.04999$ kg/kg，已接近平台。据此按假设（6），问题三、四在$t\le14400$ s时保留全部观测输入，其后采用恒定环境延续
 \begin{equation}\label{eq_late}
@@ -25,7 +25,7 @@ T_a(t)=50\ ^\circ\mathrm C,\qquad C_a(t)=0.05\ \mathrm{kg/kg},\qquad t>14400\ \m
 R(t)=\mathrm{PCHIP}\{(t_j,R_j)\},\qquad 0\le t\le259200\ \mathrm s.
 \end{equation}
 图\ref{fig_q4R}给出半径观测散点与插值曲线。$R(t)$仅在附件2的覆盖区间内使用；第四问的预测终点落在该区间之内，因此无需对半径作数据外推。
-\figone{q4_R_history.pdf}{.78}{附件2半径观测及PCHIP插值，半径由2 cm降至1.198 cm。}{fig_q4R}
+\figone{q4_R_history.pdf}{.78}{药材半径观测与PCHIP插值曲线}{fig_q4R}
 
 附件2只记录外表面轨迹，内部各材料点的位移需由模型假设补充，相应处理见第\ref{sec_q4}节。
 \FloatBarrier

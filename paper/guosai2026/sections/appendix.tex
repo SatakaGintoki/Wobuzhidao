@@ -154,3 +154,17 @@ python code/plot_q3_axisymmetric.py
 \VerbatimInput[fontsize=\fontsize{7.5}{9}\selectfont,breaklines=true,breakanywhere=true,numbers=left,numbersep=5pt,xleftmargin=12pt]{support/code/q3_axisymmetric.py}
 \VerbatimInput[fontsize=\fontsize{7.5}{9}\selectfont,breaklines=true,breakanywhere=true,numbers=left,numbersep=5pt,xleftmargin=12pt]{support/code/verify_q3_axisymmetric.py}
 \VerbatimInput[fontsize=\fontsize{7.5}{9}\selectfont,breaklines=true,breakanywhere=true,numbers=left,numbersep=5pt,xleftmargin=12pt]{support/code/plot_q3_axisymmetric.py}
+
+\subsection*{第四问后期温度情景的复现}
+运行以下程序得到48、50、52 $^\circ$C下的固定与收缩对照及$G_4/G_8$检验。各情景固定原半径轨迹，数值输出位于\texttt{results/diagnostics/q4\_temperature\_sensitivity/}，不覆盖正式Excel结果。
+\begin{Verbatim}[fontsize=\small,breaklines=true]
+python code/q4_temperature_sensitivity.py
+\end{Verbatim}
+\VerbatimInput[fontsize=\fontsize{7.5}{9}\selectfont,breaklines=true,breakanywhere=true,numbers=left,numbersep=5pt,xleftmargin=12pt]{support/code/q4_temperature_sensitivity.py}
+
+\subsection*{第一问潜热量级核算的复现}
+先运行第一问正式程序生成\texttt{results/q1\_solution.npz}，再运行以下后处理。它只读取原解，不改变温度、水分或正式Excel结果；质量及自由水潜热假设见附录B.6。
+\begin{Verbatim}[fontsize=\small,breaklines=true]
+python code/q1_energy_scale_current.py
+\end{Verbatim}
+\VerbatimInput[fontsize=\fontsize{7.5}{9}\selectfont,breaklines=true,breakanywhere=true,numbers=left,numbersep=5pt,xleftmargin=12pt]{support/code/q1_energy_scale_current.py}

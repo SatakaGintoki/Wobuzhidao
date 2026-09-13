@@ -1,0 +1,21 @@
+{
+  "pdfs": {
+    "reading": {
+      "pages": 32,
+      "errors": [],
+      "bad_tokens": [],
+      "missing_values": [],
+      "sha256": "0c2d9cabca2bde6bc90c55a0a28ddd1a5eef94f999a948bdd7fbb54e826184a6"
+    },
+    "main": {
+      "pages": 117,
+      "errors": [],
+      "bad_tokens": [],
+      "missing_values": [],
+      "sha256": "5c75eb00ffeba696931532294e4b693fb193221b61324cf18643d75ff197798d"
+    }
+  },
+  "protected_changes": [],
+  "different_pages": [],
+  "pass": true
+}

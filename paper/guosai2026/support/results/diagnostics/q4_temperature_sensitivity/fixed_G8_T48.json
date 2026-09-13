@@ -1,0 +1,13 @@
+{
+  "level": 8,
+  "geometry": "fixed",
+  "late_T_C": 48.0,
+  "critical_h": 139.3230429963116,
+  "critical_s": 501562.9547867218,
+  "late_mass_relative_residual": 4.554559936122634e-13,
+  "terminal_max_C": 0.15,
+  "max_center_gap": 0.0,
+  "finite": true,
+  "min_C": 0.05145907884536056,
+  "wall_s": 30.845909499999834
+}
