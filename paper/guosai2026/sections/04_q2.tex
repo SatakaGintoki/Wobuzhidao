@@ -35,12 +35,12 @@ C_t=D\left(C_{rr}+\frac{C_r}{r}\right)+D_C(C_r)^2+D_TT_rC_r,
 \begin{equation}\label{eq_B_identity}
 \partial_t[B(C)(T-T_{\mathrm{ini}})]=B(C)T_t+B'(C)(T-T_{\mathrm{ini}})C_t,
 \end{equation}
-其中第二项反映有效热容量随组成变化而改变。本文采用以温度形式表达的有效热方程，并在收支检验中保留该修正项。
+其中第二项反映有效热容量随组成变化而改变。我们采用以温度形式表达的有效热方程，并在收支检验中保留该修正项。
 
 \subsection{联合求解与结果}
 沿用问题一的环形控制体，热导率与扩散系数均取相邻节点的调和平均。将$\boldsymbol y=(T_0,\ldots,T_N,C_0,\ldots,C_N)^{\mathsf T}$作为联合状态，在每次右端函数求值及隐式迭代中按局部温湿状态更新物性；每个节点只与相邻节点的两个场相联系，BDF积分利用这一稀疏结构。本问采用$G_4$网格，相对容差$10^{-9}$，温度、含水率绝对容差分别为$10^{-8}$、$10^{-10}$，最大步长1 s。
 
-表\ref{tab_q2T}和表\ref{tab_q2C}给出每0.5 h的题定结果。图\ref{fig_q2}左、右图分别展示前3 h的温度与干基含水率时空等值线，数值单位分别为$^\circ$C和kg/kg；完整结果另存于\texttt{result2.xlsx}。
+表\ref{tab_q2T}和表\ref{tab_q2C}给出每0.5 h的题定结果。图\ref{fig_q2}左、右图分别展示前3 h的温度与干基含水率时空等值线，数值单位分别为$^\circ$C和kg/kg。
 \input{tables/q2T}
 \input{tables/q2C}
 \figone{q2_spacetime_original.png}{1.0}{变物性模型前3 h温度与干基含水率时空分布}{fig_q2}
